@@ -1,0 +1,14 @@
+{
+  "name": "tonada",
+  "version": "1.0.0",
+  "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ui-kit"
+  ],
+  "author": "codexline",
+  "license": "ISC"
+}
