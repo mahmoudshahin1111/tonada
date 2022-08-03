@@ -4,6 +4,7 @@
 }
 .tornada-control * {
   box-sizing: border-box;
+  font-size: 16px;
 }
 .tornada-control .tornada-input {
   border: 0;
@@ -23,7 +24,7 @@
   position: absolute;
   top: -0.6rem;
   left: 0.1rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   transition: all 0.1s;
   background-color: #ffffff;
 }
@@ -41,6 +42,7 @@
 .tornada-control.floatlabel .tornada-input:focus + label {
   top: -0.6rem;
   left: 0.1rem;
+  font-size: 0.875rem;
 }
 
 .tornada-control.input-group {

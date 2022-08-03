@@ -3,6 +3,7 @@
   position: relative;
   * {
     box-sizing: border-box;
+    font-size: $font-size;
   }
   .#{$prefix}-input {
     border: 0;
@@ -24,7 +25,7 @@
     position: absolute;
     top: -0.6rem;
     left: 0.1rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     transition: all 0.1s;
     background-color: #ffffff;
   }
@@ -43,38 +44,38 @@
   .#{$prefix}-input:focus + label {
     top: -0.6rem;
     left: 0.1rem;
+    font-size: 0.875rem;
   }
 }
 
-
 .#{$prefix}-control.input-group {
-    box-shadow: $input-shadow-box;
-    box-shadow: $input-focused-shadow-box;
-    display: flex;
-    flex-direction: row;
-    background-color: map-get($colors,'secondary');
-    border-radius: $border-radius;
-    > span{
-        display: grid;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        height: 2rem;
-        color: #ffffff;
-        user-select: none;
-        padding: 0 1rem;
+  box-shadow: $input-shadow-box;
+  box-shadow: $input-focused-shadow-box;
+  display: flex;
+  flex-direction: row;
+  background-color: map-get($colors, "secondary");
+  border-radius: $border-radius;
+  > span {
+    display: grid;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    color: #ffffff;
+    user-select: none;
+    padding: 0 1rem;
+  }
+  .#{$prefix}-input {
+    border: 0;
+    box-shadow: none;
+    padding: 0.4rem 0.5rem;
+    width: unset;
+    flex: 1;
+    outline: none;
+    border-radius: 0px;
+    &:focus {
+      outline: none;
+      box-shadow: $input-focused-shadow-box;
     }
-    .#{$prefix}-input {
-        border: 0;
-        box-shadow: none;
-        padding: 0.4rem 0.5rem;
-        width: unset;
-        flex: 1;
-        outline: none;
-        border-radius: 0px;
-        &:focus {
-          outline: none;
-          box-shadow: $input-focused-shadow-box;
-        }
-      }
+  }
 }
