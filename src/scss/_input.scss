@@ -1,9 +1,10 @@
 .#{$prefix}-control {
+  --#{$prefix}-shadow-box:$input-shadow-box;
   box-sizing: border-box;
   position: relative;
   * {
     box-sizing: border-box;
-    font-size: $font-size;
+    font-size: var(--#{$prefix}-shadow-box);
   }
   .#{$prefix}-input {
     border: 0;

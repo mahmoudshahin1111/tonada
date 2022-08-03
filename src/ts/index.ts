@@ -1,8 +1,10 @@
 import { default as Input } from "./input";
-import { TornadaElement } from "./tornada-element";
+import { BaseElement } from "./base-element";
 
 window.document.addEventListener('DOMContentLoaded',()=>{
-    window.document.body.querySelectorAll('.tornada-input').forEach((input:HTMLInputElement) => {
-        const tornadaElement:Input = new Input(new TornadaElement(input));
+    window.document.body.querySelectorAll('.tornada-input').forEach((inputElement:HTMLInputElement) => {
+        const input = new Input(new BaseElement(inputElement));
+        console.log("input created",input);
+        
     })
 });

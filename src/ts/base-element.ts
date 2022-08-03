@@ -1,4 +1,4 @@
-export class TornadaElement {
+export class BaseElement {
     constructor(private _element:HTMLElement) {
     }
     getElement() {
