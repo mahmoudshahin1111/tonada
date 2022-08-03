@@ -8,16 +8,38 @@
     <link rel="stylesheet" href="../dist/css/tornada.css">
     <title>Tornada</title>
 </head>
-    <style>
-       body{
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputs {
         padding: 1rem;
-       }
-    </style>
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 50%;
+    }
+</style>
+
 <body>
-    <div  class="tornada-control floatlabel ">
-        <input class="tornada-input" type="text" name="name" placeholder="Name" >
-        <label for="">Name</label>
+    <div class="inputs">
+        <h1>Inputs</h1>
+        <div class="tornada-control">
+            <input class="tornada-input" type="text" name="name" placeholder="Name">
+        </div>
+        <div class="tornada-control floatlabel ">
+            <input class="tornada-input" type="text" name="name" placeholder="Name">
+            <label for="">Name</label>
+        </div>
+        <div class="tornada-control input-group">
+            <span>$</span>
+            <input class="tornada-input" type="text" name="name" placeholder="Name">
+            <span>.00</span>
+        </div>
     </div>
+
 </body>
 <script src="../dist/js/tonada.js"></script>
 <script>

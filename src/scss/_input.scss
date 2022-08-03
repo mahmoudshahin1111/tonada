@@ -11,7 +11,7 @@
     width: 100%;
     transition: all 0.1s;
     outline: none;
-    border-radius: 2px;
+    border-radius: $border-radius;
     &:focus {
       outline: none;
       box-shadow: $input-focused-shadow-box;
@@ -27,8 +27,6 @@
     font-size: 0.875rem;
     transition: all 0.1s;
     background-color: #ffffff;
-  }
-  .#{$prefix}-input {
   }
   .#{$prefix}-input::placeholder {
     opacity: 0;
@@ -46,11 +44,37 @@
     top: -0.6rem;
     left: 0.1rem;
   }
-  // .#{$prefix}-input:focus ::after{
+}
 
-  // }
-  // .#{$prefix}-input:placeholder-shown {
-  //     top: 0px;
-  //     color: aqua;
-  // }
+
+.#{$prefix}-control.input-group {
+    box-shadow: $input-shadow-box;
+    box-shadow: $input-focused-shadow-box;
+    display: flex;
+    flex-direction: row;
+    background-color: map-get($colors,'secondary');
+    border-radius: $border-radius;
+    > span{
+        display: grid;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        color: #ffffff;
+        user-select: none;
+        padding: 0 1rem;
+    }
+    .#{$prefix}-input {
+        border: 0;
+        box-shadow: none;
+        padding: 0.4rem 0.5rem;
+        width: unset;
+        flex: 1;
+        outline: none;
+        border-radius: 0px;
+        &:focus {
+          outline: none;
+          box-shadow: $input-focused-shadow-box;
+        }
+      }
 }
