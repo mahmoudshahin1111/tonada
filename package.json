@@ -4,11 +4,22 @@
   "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:ts":"webpack",
+    "build:sass":"sass --no-source-map ./src/scss/index.scss ./dist/css/tornada.css",
+    "build": "npm run build:ts && npm run build:sass",
+    "serve:ts":"webpack --watch",
+    "serve:sass":"sass --no-source-map --watch ./src/scss/_index.scss ./dist/css/tornada.css",
+    "serve":"npm run serve:ts & npm run serve:sass"
   },
   "keywords": [
     "ui-kit"
   ],
   "author": "codexline",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
 }

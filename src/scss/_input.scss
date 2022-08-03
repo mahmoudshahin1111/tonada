@@ -1,0 +1,56 @@
+.#{$prefix}-control {
+  box-sizing: border-box;
+  position: relative;
+  * {
+    box-sizing: border-box;
+  }
+  .#{$prefix}-input {
+    border: 0;
+    box-shadow: $input-shadow-box;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
+    transition: all 0.1s;
+    outline: none;
+    border-radius: 2px;
+    &:focus {
+      outline: none;
+      box-shadow: $input-focused-shadow-box;
+    }
+  }
+}
+
+.#{$prefix}-control.floatlabel {
+  label {
+    position: absolute;
+    top: -0.6rem;
+    left: 0.1rem;
+    font-size: 0.875rem;
+    transition: all 0.1s;
+    background-color: #ffffff;
+  }
+  .#{$prefix}-input {
+  }
+  .#{$prefix}-input::placeholder {
+    opacity: 0;
+  }
+
+  .#{$prefix}-input:placeholder-shown + label {
+    left: 0.5rem;
+    top: 0.4rem;
+    background-color: transparent;
+  }
+  .#{$prefix}-input:placeholder-shown:focus + label {
+    background-color: #ffffff;
+  }
+  .#{$prefix}-input:focus + label {
+    top: -0.6rem;
+    left: 0.1rem;
+  }
+  // .#{$prefix}-input:focus ::after{
+
+  // }
+  // .#{$prefix}-input:placeholder-shown {
+  //     top: 0px;
+  //     color: aqua;
+  // }
+}
