@@ -9,7 +9,7 @@
     "build": "npm run build:ts && npm run build:sass",
     "serve:ts": "webpack --watch",
     "serve:sass": "sass --no-source-map --watch ./src/scss/_index.scss ./dist/css/tornada.css",
-    "serve": "npm run serve:ts & npm run serve:sass"
+    "serve": "npx concurrently \"npm:serve:ts\" \"npm:serve:sass\""
   },
   "keywords": [
     "ui-kit"

@@ -1,3 +1,4 @@
+import { log } from "../utils/global";
 import { BaseElement } from "./base-element";
 
 export default class Input {
@@ -5,6 +6,6 @@ export default class Input {
      this._element.getElement().addEventListener('focus',e=>this.onFocus(e))   
     }
     private onFocus(event:FocusEvent) {
-        console.log('focus')
+        log(`input created`,this);
     }
 }
