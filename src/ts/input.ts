@@ -1,11 +1,11 @@
-import { log } from "../utils/global";
 import { BaseElement } from "./base-element";
 
-export default class Input {
-    constructor(private _element:BaseElement){
-     this._element.getElement().addEventListener('focus',e=>this.onFocus(e))   
-    }
-    private onFocus(event:FocusEvent) {
-        log(`input created`,this);
-    }
+export class Input {
+  constructor(public baseElement: BaseElement) {}
+  getInputElement(): HTMLInputElement {
+    return this.baseElement._element.querySelector(".tonada-input");
+  }
+  getInputValue(): string {
+    return this.getInputElement().value;
+  } 
 }

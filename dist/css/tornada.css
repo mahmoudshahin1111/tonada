@@ -1,13 +1,13 @@
-.tn-control {
-  --tn-shadow-box:$input-shadow-box;
+.tonada-control {
+  --tonada-shadow-box: $input-shadow-box;
   box-sizing: border-box;
   position: relative;
 }
-.tn-control * {
+.tonada-control * {
   box-sizing: border-box;
-  font-size: var(--tn-shadow-box);
+  font-size: var(--tonada-shadow-box);
 }
-.tn-control .tn-input {
+.tonada-control .tonada-input {
   border: 0;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   padding: 0.4rem 0.5rem;
@@ -16,37 +16,53 @@
   outline: none;
   border-radius: 2px;
 }
-.tn-control .tn-input:focus {
+.tonada-control .tonada-input:focus {
   outline: none;
   box-shadow: 0px 0px 1px 1px #1c3879;
 }
 
-.tn-control.floatlabel label {
-  position: absolute;
-  top: -0.6rem;
-  left: 0.1rem;
+.tonada-control.tonada-sm {
+  font-size: 0.8rem;
+}
+
+.tonada-control.tonada-md {
   font-size: 1rem;
+}
+
+.tonada-control.tonada-lg {
+  font-size: 1.2rem;
+}
+
+.tonada-control.tonada-xl {
+  font-size: 1.5rem;
+}
+
+.tonada-control.floating-label label {
+  position: absolute;
+  top: -0.6em;
+  left: 0.1em;
+  font-size: 1em;
   transition: all 0.1s;
   background-color: #ffffff;
 }
-.tn-control.floatlabel .tn-input::placeholder {
+.tonada-control.floating-label .tonada-input::placeholder {
   opacity: 0;
 }
-.tn-control.floatlabel .tn-input:placeholder-shown + label {
-  left: 0.5rem;
-  top: 0.4rem;
+.tonada-control.floating-label .tonada-input:placeholder-shown + label {
+  left: 0.5em;
+  top: 0.3em;
   background-color: transparent;
 }
-.tn-control.floatlabel .tn-input:placeholder-shown:focus + label {
+.tonada-control.floating-label .tonada-input:placeholder-shown:focus + label {
   background-color: #ffffff;
 }
-.tn-control.floatlabel .tn-input:focus + label {
-  top: -0.6rem;
-  left: 0.1rem;
-  font-size: 0.875rem;
+.tonada-control.floating-label .tonada-input:focus + label {
+  top: -0.6em;
+  left: 0.1em;
+  font-size: 0.875em;
 }
 
-.tn-control.input-group {
+.tonada-control.tonada-input-group {
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 1px 1px #1c3879;
   display: flex;
@@ -54,7 +70,7 @@
   background-color: #607eaa;
   border-radius: 2px;
 }
-.tn-control.input-group > span {
+.tonada-control.tonada-input-group > span {
   display: grid;
   height: 100%;
   align-items: center;
@@ -64,7 +80,7 @@
   user-select: none;
   padding: 0 1rem;
 }
-.tn-control.input-group .tn-input {
+.tonada-control.tonada-input-group .tonada-input {
   border: 0;
   box-shadow: none;
   padding: 0.4rem 0.5rem;
@@ -73,7 +89,22 @@
   outline: none;
   border-radius: 0px;
 }
-.tn-control.input-group .tn-input:focus {
+.tonada-control.tonada-input-group .tonada-input:focus {
   outline: none;
   box-shadow: 0px 0px 1px 1px #1c3879;
+}
+
+.tonada-control.tonada-password {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tonada-control.tonada-password .tonada-input + i {
+  position: absolute;
+  right: 0.5em;
+  opacity: 0.5;
+}
+.tonada-control.tonada-password .tonada-input:focus:not(.tonada-input:placeholder-shown) + i {
+  opacity: 1;
 }
