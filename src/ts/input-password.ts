@@ -33,9 +33,3 @@ export class InputPassword {
   }
 }
 
-
-export function inputPassword(element: HTMLDivElement) {
-    console.log(element);
-    
-  return new InputPassword(new Input(new BaseElement(element)));
-}
