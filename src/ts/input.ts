@@ -1,11 +1,19 @@
 import { BaseElement } from "./base-element";
 
-export class Input {
-  constructor(public baseElement: BaseElement) {}
+
+
+export class Input extends BaseElement {
+  public _input:HTMLInputElement;
+  constructor() {
+    super();
+    this._input = document.createElement('input');
+    this._input.classList.add('tonada-input');
+    this.appendChild(this._input);
+  }
   getInputElement(): HTMLInputElement {
-    return this.baseElement._element.querySelector(".tonada-input");
+    return this._input;
   }
   getInputValue(): string {
-    return this.getInputElement().value;
+    return this,this._input.value;
   } 
 }

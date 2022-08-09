@@ -68,25 +68,25 @@
             <label for="">Name</label>
         </div>
 
-        <h4>Password</h4>
+        <!-- <h4>Password</h4>
         <div class="tonada-control tonada-password">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <i  class="tonada-password-toggle fa-solid fa-eye"></i>
-        </div>
-
-
+        </div> -->
+        <tonada-input></tonada-input>
+        <tonada-input-password></tonada-input-password>
     </div>
 
 </body>
 <script src="../dist/js/tonada.js"></script>
 <script>
-    window.document.addEventListener('DOMContentLoaded',()=>{
-        // PASSWORD
-        document.querySelectorAll('.tonada-control.tonada-password').forEach(element=>{
-        const inputPassword = Tornada.inputPassword(element);
-        // END INPUT PASSWORD 
-    });
-    })
+    // window.document.addEventListener('DOMContentLoaded',()=>{
+    //     // PASSWORD
+    //     document.querySelectorAll('.tonada-control.tonada-password').forEach(element=>{
+    //     const inputPassword = Tornada.inputPassword(element);
+    //     // END INPUT PASSWORD 
+    // });
+    // })
     console.log(Tornada);
 </script>
 

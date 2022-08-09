@@ -1,35 +1,41 @@
 import { BaseElement } from "./base-element";
 import { Input } from "./input";
 
-export class InputPassword {
-  constructor(public input: Input) {
-    this.getToggler().addEventListener("click", () => {
+export class InputPassword extends BaseElement{
+  private _toggler:HTMLElement;
+  constructor(private _input:Input) {
+    super();
+    this._toggler = document.createElement('i');
+    this._toggler.classList.add('tonada-password-toggle fa-solid fa-eye');
+    this.appendChild(this._input);
+    this.appendChild(this._toggler);
+    this._toggler.addEventListener("click", () => {
       this.toggle();
     } );
   }
   getToggler():HTMLElement {
-    return this.input.baseElement._element.querySelector(".tonada-password-toggle");
+    return this._input.querySelector(".tonada-password-toggle");
   }
   toggle() {
     if (this.isToggled()) {
-      this.hidden();
+      this.hiddenText();
     } else {
       this.show();
     }
-    this.input.getInputElement().focus();
+    this._input.focus();
   }
   show() {
-    this.input.getInputElement().setAttribute("type", "text");
+    this._input.setAttribute("type", "text");
     this.getToggler().classList.remove('fa-eye');
     this.getToggler().classList.add('fa-eye-slash');
   }
-  hidden() {
-    this.input.getInputElement().setAttribute("type", "password");
+  hiddenText() {
+    this._input.setAttribute("type", "password");
     this.getToggler().classList.remove('fa-eye-slash');
     this.getToggler().classList.add('fa-eye');
   }
   isToggled() {
-    return this.input.getInputElement().getAttribute("type") == "text";
+    return this._input.getAttribute("type") == "text";
   }
 }
 

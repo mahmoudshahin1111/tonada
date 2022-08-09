@@ -1,5 +1,5 @@
-export class BaseElement{
-    constructor(public _element:HTMLDivElement){
-
+export class BaseElement extends HTMLElement{
+    constructor(){
+        super();
     }
 }
