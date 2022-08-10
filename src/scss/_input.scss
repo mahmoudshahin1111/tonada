@@ -1,3 +1,4 @@
+@import "../scss/core";
 .#{$prefix}-control {
   --#{$prefix}-shadow-box: $input-shadow-box;
   box-sizing: border-box;

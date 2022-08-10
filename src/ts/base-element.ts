@@ -1,5 +1,5 @@
-export class BaseElement extends HTMLElement{
+export class BaseElement{
     constructor(){
-        super();
+
     }
 }

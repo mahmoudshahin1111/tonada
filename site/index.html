@@ -27,8 +27,8 @@
 </style>
 
 <body>
-    <p>Tonada is a free ui library make by 💖 for you foucs on the ease and performance and use the AI with UI so we can
-        give the user a good experience he haven't tried before</p>
+    <p>Tonada is a free UI library build with 💖 and it has many odd components from the simplest one to the complex
+         and our mainly focus on the performance and ease</p>
     <div class="inputs">
         <h1>Inputs</h1>
         <h3>Default</h3>
@@ -68,25 +68,31 @@
             <label for="">Name</label>
         </div>
 
-        <!-- <h4>Password</h4>
+        <h4>Password</h4>
         <div class="tonada-control tonada-password">
             <input type="password" class="tonada-input" name="password" placeholder="password">
-            <i  class="tonada-password-toggle fa-solid fa-eye"></i>
-        </div> -->
-        <tonada-input></tonada-input>
-        <tonada-input-password></tonada-input-password>
+            <i class="tonada-password-toggle fa-solid fa-eye"></i>
+        </div>
+
+        <h4>Float Password</h4>
+        <div class="tonada-control tonada-password floating-label">
+            <input type="password" class="tonada-input" name="password" placeholder="password">
+            <label for="">Password</label>
+            <i class="tonada-password-toggle fa-solid fa-eye"></i>
+        </div>
+
     </div>
 
 </body>
 <script src="../dist/js/tonada.js"></script>
 <script>
-    // window.document.addEventListener('DOMContentLoaded',()=>{
-    //     // PASSWORD
-    //     document.querySelectorAll('.tonada-control.tonada-password').forEach(element=>{
-    //     const inputPassword = Tornada.inputPassword(element);
-    //     // END INPUT PASSWORD 
-    // });
-    // })
+    window.document.addEventListener('DOMContentLoaded', () => {
+        // PASSWORD
+        document.querySelectorAll('.tonada-control.tonada-password').forEach(element => {
+            const inputPassword = Tornada.createInputPassword(element);
+            // END INPUT PASSWORD 
+        });
+    })
     console.log(Tornada);
 </script>
 
