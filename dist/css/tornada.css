@@ -10,11 +10,11 @@
 .tonada-control .tonada-input {
   border: 0;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
-  padding: 0.4rem 0.5rem;
+  padding: 0.4rem 1rem;
   width: 100%;
   transition: all 0.1s;
   outline: none;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 .tonada-control .tonada-input:focus {
   outline: none;
@@ -39,8 +39,8 @@
 
 .tonada-control.floating-label label {
   position: absolute;
-  top: -0.6em;
-  left: 0.1em;
+  top: -0.8em;
+  left: 0.8em;
   font-size: 1em;
   transition: all 0.1s;
   background-color: #ffffff;
@@ -49,16 +49,16 @@
   opacity: 0;
 }
 .tonada-control.floating-label .tonada-input:placeholder-shown + label {
-  left: 0.5em;
-  top: 0.3em;
+  top: 0.25em;
+  left: 0.8em;
   background-color: transparent;
 }
 .tonada-control.floating-label .tonada-input:placeholder-shown:focus + label {
   background-color: #ffffff;
 }
 .tonada-control.floating-label .tonada-input:focus + label {
-  top: -0.6em;
-  left: 0.1em;
+  top: -0.8em;
+  left: 0.8em;
   font-size: 0.875em;
 }
 
@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: row;
   background-color: #607eaa;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 .tonada-control.tonada-input-group > span {
   display: grid;
@@ -124,4 +124,40 @@
 }
 .tonada-control.tonada-password.floating-label .tonada-input:focus:not(.tonada-input:placeholder-shown) + label + i {
   opacity: 1;
+}
+
+.tonada-accordion {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: aqua;
+}
+.tonada-accordion * {
+  box-sizing: border-box;
+}
+.tonada-accordion > .tonada-accordion-section {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header {
+  display: flex;
+  flex-direction: row;
+  padding: 0.2em 0.9em;
+  align-items: center;
+  width: 100%;
+  background-color: red;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header > .tonada-accordion-toggler {
+  position: absolute;
+  right: 3em;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-content {
+  padding: 0.2em 0.9em;
+  overflow-y: hidden;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-content.tonada-hidden {
+  height: 0;
+  padding: 0;
 }

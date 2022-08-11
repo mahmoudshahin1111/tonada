@@ -10,7 +10,7 @@
   .#{$prefix}-input {
     border: 0;
     box-shadow: $input-shadow-box;
-    padding: 0.4rem 0.5rem;
+    padding: 0.4rem 1rem;
     width: 100%;
     transition: all 0.1s;
     outline: none;
@@ -38,8 +38,8 @@
 .#{$prefix}-control.floating-label {
   label {
     position: absolute;
-    top: -0.6em;
-    left: 0.1em;
+    top: -0.8em;
+    left: 0.8em;
     font-size: 1em;
     transition: all 0.1s;
     background-color: #ffffff;
@@ -49,16 +49,16 @@
   }
 
   .#{$prefix}-input:placeholder-shown + label {
-    left: 0.5em;
-    top: 0.3em;
+    top: 0.25em;
+    left: 0.8em;
     background-color: transparent;
   }
   .#{$prefix}-input:placeholder-shown:focus + label {
     background-color: #ffffff;
   }
   .#{$prefix}-input:focus + label {
-    top: -0.6em;
-    left: 0.1em;
+    top: -0.8em;
+    left: 0.8em;
     font-size: 0.875em;
   }
 }

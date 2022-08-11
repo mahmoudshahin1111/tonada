@@ -1,0 +1,27 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+@mixin font-size {
+  font-family: $font-family;
+  font-size: $font-size;
+}
+@mixin border-radius {
+  border-radius: $border-radius;
+}
+
+@mixin box-sizing {
+    * {
+        box-sizing: border-box;
+      }
+  }
+  
+
+  @mixin padding {
+    padding: 0.2em 0.9em;
+  }
+  

@@ -1,0 +1,31 @@
+.#{$prefix}-accordion {
+  @include flex-column;
+  @include border-radius;
+  @include box-sizing;
+  background-color: aqua;
+  & > .#{$prefix}-accordion-section {
+    @include flex-column;
+    @include border-radius;
+    overflow: hidden;
+    & > .#{$prefix}-accordion-header {
+      @include flex-row;
+      @include padding;
+      align-items: center;
+      width: 100%;
+      background-color: red;
+      & > .#{$prefix}-accordion-toggler {
+        position: absolute;
+        right: 3em;
+      }
+    }
+
+    & > .#{$prefix}-accordion-content {
+      @include padding;
+      overflow-y: hidden;
+      &.#{$prefix}-hidden {
+        height: 0;
+        padding: 0;
+      }
+    }
+  }
+}

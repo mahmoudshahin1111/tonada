@@ -1,11 +1,12 @@
 import { BaseElement } from "./base-element";
+import { PREFIX } from "./shared";
 
 export class InputPassword extends BaseElement {
   private _toggler:HTMLElement;
   private _input:HTMLInputElement;
-  constructor(public element: HTMLDivElement) {
-    super();
-    this._toggler = this.element.querySelector(".tonada-password-toggle");
+  constructor(element: HTMLDivElement) {
+    super(element);
+    this._toggler = this.element.querySelector(`.${PREFIX}-password-toggle`);
     this._input = this.element.querySelector("input");
     this._toggler.addEventListener("click", () => {
       this.toggle();

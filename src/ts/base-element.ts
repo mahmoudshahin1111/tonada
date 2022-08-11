@@ -1,5 +1,5 @@
 export class BaseElement{
-    constructor(){
+    constructor(public element:HTMLElement){
 
     }
 }
