@@ -105,7 +105,6 @@
         <div class="tonada-accordion-section">
             <div class="tonada-accordion-header">
                 <h1>Section 1</h1>
-                <button class="tonada-accordion-toggler">+</button>
             </div>
             <div class="tonada-accordion-content">
                 <p>Test text text text</p>
@@ -114,7 +113,6 @@
         <div class="tonada-accordion-section">
             <div class="tonada-accordion-header">
                 <h1>Section 2</h1>
-                <button class="tonada-accordion-toggler">+</button>
             </div>
             <div class="tonada-accordion-content">
                 <p>Test text text text</p>
@@ -129,12 +127,15 @@
         // PASSWORD
         document.querySelectorAll('.tonada-control.tonada-password').forEach(element => {
             const inputPassword = Tornada.createInputPassword(element);
-            // END INPUT PASSWORD 
+         
         });
+        // END INPUT PASSWORD
+        // ACCORDION
         document.querySelectorAll('.tonada-accordion').forEach(element => {
-            const inputPassword = Tornada.createAccordion(element);
-            // END INPUT PASSWORD 
+            const accordion = Tornada.createAccordion(element);
+            accordion.getSections()[0].open();
         });
+        // END ACCORDION
     })
     console.log(Tornada);
 </script>

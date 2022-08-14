@@ -149,9 +149,11 @@
   width: 100%;
   background-color: red;
 }
-.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header > .tonada-accordion-toggler {
-  position: absolute;
-  right: 3em;
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header::after {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: green;
 }
 .tonada-accordion > .tonada-accordion-section > .tonada-accordion-content {
   padding: 0.2em 0.9em;
