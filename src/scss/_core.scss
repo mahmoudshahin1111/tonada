@@ -5,15 +5,16 @@ $colors: (
   secondary: #607eaa,
   success: #30dd78,
   danger: #e78ea9,
+  black: #000000,
 );
 $breakpoints: (
   sm: 480px,
   md: 768px,
   lg: 1024px,
-  xl: 1200px,
+  xl: 1200px, 
 );
 $font-family: 'Courier New', Courier, monospace;
-$border-radius:8px;
+$border-radius:6px;
 $input-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
 $input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($colors, "primary"), 1);
 $input-border-radius: $border-radius;
