@@ -1,15 +1,15 @@
 import { BaseElement } from "./base-element";
+import { PREFIX } from "./shared";
 
-export class InputPassword extends BaseElement {
-  private _toggler:HTMLElement;
-  private _input:HTMLInputElement;
-  constructor(public element: HTMLDivElement) {
-    super();
-    this._toggler = this.element.querySelector(".tonada-password-toggle");
-    this._input = this.element.querySelector("input");
-    this._toggler.addEventListener("click", () => {
-      this.toggle();
-    } );
+export class InputPassword {
+  private _toggler: BaseElement;
+  private _input: BaseElement;
+  constructor(private _element: BaseElement) {
+    this._toggler = this._element
+      .querySelector(`.${PREFIX}-password-toggle`)
+      .at(0);
+    this._input = this._element.querySelector("input").at(0);
+    this._toggler.onEvent("click", () => this.toggle());
   }
 
   toggle() {
@@ -21,16 +21,17 @@ export class InputPassword extends BaseElement {
   }
   show() {
     this._input.setAttribute("type", "text");
-    this._toggler.classList.remove('fa-eye');
-    this._toggler.classList.add('fa-eye-slash');
+    this._toggler.removeClass("fa-eye");
+    this._toggler.addClass("fa-eye-slash");
   }
   hidden() {
     this._input.setAttribute("type", "password");
-    this._toggler.classList.remove('fa-eye-slash');
-    this._toggler.classList.add('fa-eye');
+    this._toggler.removeClass("fa-eye-slash");
+    this._toggler.addClass("fa-eye");
   }
   isToggled() {
+    console.log(this._input.getAttribute("type"));
+
     return this._input.getAttribute("type") == "text";
   }
 }
-

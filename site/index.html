@@ -100,7 +100,79 @@
         </div>
 
     </div>
+    <h1>Accordion</h1>
 
+    <div class="tonada-accordion">
+        <div class="tonada-accordion-section" >
+            <div class="tonada-accordion-header">
+                <h4>This is panel header 1</h4>
+            </div>
+            <div class="tonada-accordion-content">
+                <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+            </div>
+        </div>
+        <div class="tonada-accordion-section">
+            <div class="tonada-accordion-header">
+                <h4>This is panel header 2</h4>
+            </div>
+            <div class="tonada-accordion-content">
+                <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+            </div>
+        </div>
+    </div>
+    <h4>Nested</h4>
+    <div class="tonada-accordion">
+        <div class="tonada-accordion-section" >
+            <div class="tonada-accordion-header">
+                <h4>This is panel header 1</h4>
+            </div>
+            <div class="tonada-accordion-content">
+                <div class="tonada-accordion">
+                    <div class="tonada-accordion-section" >
+                        <div class="tonada-accordion-header">
+                            <h4>This is panel header 1</h4>
+                        </div>
+                        <div class="tonada-accordion-content">
+                            <div class="tonada-accordion">
+                                <div class="tonada-accordion-section" >
+                                    <div class="tonada-accordion-header">
+                                        <h4>This is panel header 1</h4>
+                                    </div>
+                                    <div class="tonada-accordion-content">
+                                        <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+                                    </div>
+                                </div>
+                                <div class="tonada-accordion-section">
+                                    <div class="tonada-accordion-header">
+                                        <h4>This is panel header 2</h4>
+                                    </div>
+                                    <div class="tonada-accordion-content">
+                                        <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tonada-accordion-section">
+                        <div class="tonada-accordion-header">
+                            <h4>This is panel header 2</h4>
+                        </div>
+                        <div class="tonada-accordion-content">
+                            <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tonada-accordion-section">
+            <div class="tonada-accordion-header">
+                <h4>This is panel header 2</h4>
+            </div>
+            <div class="tonada-accordion-content">
+                <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="../dist/js/tonada.js"></script>
 <script>
@@ -108,8 +180,15 @@
         // PASSWORD
         document.querySelectorAll('.tonada-control.tonada-password').forEach(element => {
             const inputPassword = Tornada.createInputPassword(element);
-            // END INPUT PASSWORD 
+         
         });
+        // END INPUT PASSWORD
+        // ACCORDION
+        document.querySelectorAll('.tonada-accordion').forEach(element => {
+            const accordion = Tornada.createAccordion(element);
+            accordion.getSections()[0].open();
+        });
+        // END ACCORDION
     })
     console.log(Tornada);
 </script>
