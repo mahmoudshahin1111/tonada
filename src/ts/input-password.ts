@@ -6,7 +6,7 @@ export class InputPassword {
   private _input: BaseElement;
   constructor(private _element: BaseElement) {
     this._toggler = this._element
-      .querySelector(`.${PREFIX}-password-toggle`)
+      .querySelector(`:scope > .${PREFIX}-password-toggle`)
       .at(0);
     this._input = this._element.querySelector("input").at(0);
     this._toggler.onEvent("click", () => this.toggle());
@@ -21,13 +21,13 @@ export class InputPassword {
   }
   show() {
     this._input.setAttribute("type", "text");
-    this._toggler.removeClass("fa-eye");
-    this._toggler.addClass("fa-eye-slash");
+    this._toggler.removeClass(`${PREFIX}-ic-show`);
+    this._toggler.addClass(`${PREFIX}-ic-hidden`);
   }
   hidden() {
     this._input.setAttribute("type", "password");
-    this._toggler.removeClass("fa-eye-slash");
-    this._toggler.addClass("fa-eye");
+    this._toggler.removeClass(`${PREFIX}-ic-hidden`);
+    this._toggler.addClass(`${PREFIX}-ic-show`);
   }
   isToggled() {
     console.log(this._input.getAttribute("type"));
