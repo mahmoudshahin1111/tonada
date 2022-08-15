@@ -1,16 +1,20 @@
-@import "../scss/core";
 .#{$prefix}-control {
-  --#{$prefix}-shadow-box: $input-shadow-box;
+  --#{$prefix}-shadow-box: #{$input-shadow-box};
+}
+.#{$prefix}-control {
+
   box-sizing: border-box;
   position: relative;
+  display: flex;
+  flex-direction: row;
   * {
     box-sizing: border-box;
     font-size: var(--#{$prefix}-shadow-box);
   }
   .#{$prefix}-input {
     border: 0;
-    box-shadow: $input-shadow-box;
-    padding: 0.4rem 1rem;
+    box-shadow: var(--#{$prefix}-shadow-box);
+    padding: 0.5em 1em;
     width: 100%;
     transition: all 0.1s;
     outline: none;
@@ -23,43 +27,43 @@
 }
 
 .#{$prefix}-control.#{$prefix}-sm {
-  font-size: 0.8rem;
+  font-size: 0.8em;
 }
 .#{$prefix}-control.#{$prefix}-md {
-  font-size: 1rem;
+  font-size: 1em;
 }
 .#{$prefix}-control.#{$prefix}-lg {
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 .#{$prefix}-control.#{$prefix}-xl {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .#{$prefix}-control.floating-label {
   label {
     position: absolute;
-    top: -0.8em;
-    left: 0.8em;
     font-size: 1em;
     transition: all 0.1s;
     background-color: #ffffff;
+    left: 0.8em;
+    top: -0.6em;
   }
   .#{$prefix}-input::placeholder {
     opacity: 0;
   }
-
+  .#{$prefix}-input:not(:placeholder-shown) + label {
+    font-size: 0.9em;
+  }
   .#{$prefix}-input:placeholder-shown + label {
-    top: 0.35em;
-    left: 0.8em;
+    top: 0.5em;
     background-color: transparent;
   }
   .#{$prefix}-input:placeholder-shown:focus + label {
+    top: -0.6em;
     background-color: #ffffff;
   }
   .#{$prefix}-input:focus + label {
-    top: -0.8em;
-    left: 0.8em;
-    font-size: 0.875em;
+    font-size: 0.9em;
   }
 }
 
@@ -71,28 +75,26 @@
   background-color: map-get($colors, "secondary");
   border-radius: $border-radius;
   > span {
-    display: grid;
-    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 2rem;
+    height: 2em;
     color: #ffffff;
     user-select: none;
-    padding: 0 1rem;
+    padding: 0 1em;
   }
-  .#{$prefix}-input {
-    border: 0;
-    box-shadow: none;
-    padding: 0.4rem 0.5rem;
-    width: unset;
+  & > .#{$prefix}-control {
     flex: 1;
-    outline: none;
-    border-radius: 0px;
-    &:focus {
+  }
+  & > .#{$prefix}-control > .#{$prefix}-input , & > .#{$prefix}-input {
+    border: 0;
+      box-shadow: none;
+
       outline: none;
-      box-shadow: $input-focused-shadow-box;
-    }
+      border-radius: 0px;
+      &:focus {
+        outline: none;
+        box-shadow: $input-focused-shadow-box;
+      }
   }
 }
-
-
