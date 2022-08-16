@@ -187,6 +187,20 @@
             </div>
         </div>
     </div>
+    <h1>Slider</h1>
+    <div class="tonada-slider">
+        <ul class="tonada-list">
+            <li class="tonada-list-item">1</li>
+            <li class="tonada-list-item">2</li>
+            <li class="tonada-list-item">3</li>
+            <li class="tonada-list-item">4</li>
+            <li class="tonada-list-item">5</li>
+        </ul>
+        <div class="tonada-slider-buttons">
+            <button>Prev</button>
+            <button>Next</button>
+        </div>
+    </div>
 </body>
 <script src="../dist/js/tonada.js"></script>
 <script>
@@ -203,6 +217,14 @@
             accordion.getSections()[0].open();
         });
         // END ACCORDION
+         // SLIDER
+         document.querySelectorAll('.tonada-slider').forEach(element => {
+            const slider = Tornada.createSlider(element,{
+                itemsPerPage:2,
+                spaceBetween:10
+            });
+        });
+        // END SLIDER
     })
     console.log(Tornada);
 </script>

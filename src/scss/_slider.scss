@@ -1,3 +1,28 @@
 .#{$prefix}-slider{
-    
+    display: flex;
+    flex-direction: column;
+    & > .#{$prefix}-list{
+        margin: 0;
+        padding: 0;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        background-color: green;
+        overflow-x: hidden;
+        height: 200px;
+        & > .#{$prefix}-list-item{
+            position: absolute;
+            background-color: red;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+    & > .#{$prefix}-slider-buttons{
+        
+    }
 }

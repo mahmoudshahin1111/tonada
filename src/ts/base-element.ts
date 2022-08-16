@@ -45,5 +45,11 @@ export class BaseElement{
     hasClass(className:string){
         return this.element.classList.contains(className);
     }
+    getLeft(){
+        return this.element.getBoundingClientRect().left;
+    }
+    getTop(){
+        return this.element.getBoundingClientRect().top;
+    }
 
 }
