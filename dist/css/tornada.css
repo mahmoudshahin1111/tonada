@@ -10,6 +10,15 @@
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
 }
 
+.tonada-ic-arrow-left {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+}
+
+.tonada-ic-arrow-right {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+  transform: rotate(180deg);
+}
+
 .tonada-control {
   --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -215,27 +224,75 @@
 }
 
 .tonada-slider {
+  --tonada-background-color: #1c3879;
+  --tonada-active-page: #1c3879;
+  --tonada-page: #607eaa;
+}
+
+.tonada-slider {
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
+  background-color: var(--tonada-background-color);
+  position: relative;
+  justify-content: center;
 }
 .tonada-slider > .tonada-list {
+  display: flex;
+  flex-direction: row;
   margin: 0;
   padding: 0;
   position: relative;
-  display: flex;
-  flex-direction: row;
   list-style: none;
-  background-color: green;
   overflow-x: hidden;
   height: 200px;
 }
 .tonada-slider > .tonada-list > .tonada-list-item {
-  position: absolute;
-  background-color: red;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  color: #ffffff;
+}
+.tonada-slider > .tonada-slider-button {
+  border-radius: 6px;
+  cursor: pointer;
+  position: absolute;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  z-index: 2;
+}
+.tonada-slider > .tonada-slider-button.tonada-next {
+  right: 1em;
+}
+.tonada-slider > .tonada-slider-button.tonada-prev {
+  left: 1em;
+}
+.tonada-slider > .tonada-slider-paginator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0.5em;
+  gap: 0.5em;
+  z-index: 2;
+}
+.tonada-slider > .tonada-slider-paginator > .tonada-slider-paginator-page {
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--tonada-page);
+  width: 2em;
+  height: 0.5em;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+.tonada-slider > .tonada-slider-paginator > .tonada-slider-paginator-page.tonada-active {
+  background-color: white;
+  opacity: 1;
+  width: 2.5em;
 }

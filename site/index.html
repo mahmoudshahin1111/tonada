@@ -196,10 +196,13 @@
             <li class="tonada-list-item">4</li>
             <li class="tonada-list-item">5</li>
         </ul>
-        <div class="tonada-slider-buttons">
-            <button>Prev</button>
-            <button>Next</button>
-        </div>
+        <button class="tonada-slider-button tonada-prev">
+            <i class="tonada-ic tonada-ic-arrow-left"></i>
+        </button>
+        <button class="tonada-slider-button tonada-next">
+            <i class="tonada-ic tonada-ic-arrow-right"></i>
+        </button>
+        <div class="tonada-slider-paginator"></div>
     </div>
 </body>
 <script src="../dist/js/tonada.js"></script>
@@ -221,7 +224,8 @@
          document.querySelectorAll('.tonada-slider').forEach(element => {
             const slider = Tornada.createSlider(element,{
                 itemsPerPage:2,
-                spaceBetween:10
+                spaceBetween:10,
+                slideAnimation:'moving'
             });
         });
         // END SLIDER
