@@ -13,11 +13,10 @@ export interface SliderSlidingAnimationState {
   getPagesCount(slider: Slider): number;
   prevSlider(slider: Slider): void;
   nextSlider(slider: Slider): void;
-  goToPage(slider:Slider,page:number):void;
+  goToPage(slider: Slider, page: number): void;
 }
 
 export class SliderSwitchMovingState implements SliderSlidingAnimationState {
-
   init(slider: Slider): void {
     slider.sliderItems.forEach((sliderItem, i) => {
       sliderItem.element.setStyle(
@@ -29,10 +28,22 @@ export class SliderSwitchMovingState implements SliderSlidingAnimationState {
     });
   }
   sliderToPage(slider: Slider, page: number): void {
+    // mark the current page as active
     slider.sliderPaginator.setActivePage(
       Math.ceil(page / slider.options.itemsPerPage)
     );
+    // if the page items less than the items per page then adjust the item width
     slider.sliderItems.forEach((_sliderItem, i) => {
+      if (
+        slider.sliderItems.length - page < slider.options.itemsPerPage &&
+        i >= page
+      ) {
+        const calculatedWidth =
+          slider.list.getWidth() / (slider.sliderItems.length - page) -
+          slider.options.spaceBetween / 2;
+        _sliderItem.element.setStyle("width", `${calculatedWidth}px`);
+      }
+      // move the item to the correct position
       _sliderItem.element.setStyle(
         "transform",
         `translateX(${
@@ -51,14 +62,18 @@ export class SliderSwitchMovingState implements SliderSlidingAnimationState {
     this.sliderToPage(slider, slider.page);
   }
   nextSlider(slider: Slider) {
-    if (slider.page * slider.options.itemsPerPage >=  slider.sliderItems.length - 2) return;
+    if (
+      slider.page * slider.options.itemsPerPage >=
+      slider.sliderItems.length - 2
+    )
+      return;
     slider.page += slider.options.itemsPerPage;
     this.sliderToPage(slider, slider.page);
   }
   goToPage(slider: Slider, page: number): void {
     slider.page = page * slider.options.itemsPerPage;
-    console.log(`go to page ${slider.page }`);
-    this.sliderToPage(slider, slider.page );
+    console.log(`go to page ${slider.page}`);
+    this.sliderToPage(slider, slider.page);
   }
 }
 
@@ -73,7 +88,7 @@ export class SliderSwitchFadingState implements SliderSlidingAnimationState {
   }
 
   sliderToPage(slider: Slider, page: number): void {
-    slider.page = page ;
+    slider.page = page;
     slider.sliderPaginator.setActivePage(page);
     slider.sliderItems.forEach((sliderItem, i) => {
       if (i === page) {
@@ -110,25 +125,27 @@ export class Slider {
   sliderSlidingAnimationState: SliderSlidingAnimationState;
   page = 0;
   constructor(private _element: BaseElement, public options?: SliderOptions) {
-    this.options = Object.assign({
-      itemsPerPage:1,
-      slideAnimation:'moving',
-      spaceBetween:0
-    } as SliderOptions,this.options);
+    this.options = Object.assign(
+      {
+        itemsPerPage: 1,
+        slideAnimation: "moving",
+        spaceBetween: 0,
+      } as SliderOptions,
+      this.options
+    );
     this.sliderSlidingAnimationState = new SliderSwitchMovingState();
-    if(this.options.slideAnimation === 'fading'){
+    if (this.options.slideAnimation === "fading") {
       this.sliderSlidingAnimationState = new SliderSwitchFadingState();
     }
     this.list = this._element.querySelector(`:scope > .${PREFIX}-list`).at(0);
     this.list
       .querySelector(`:scope > .${PREFIX}-list-item`)
       .forEach((element) => {
+        const calculatedWidth =
+          this.list.getWidth() / this.options?.itemsPerPage -
+          this.options.spaceBetween / 2;
         this.sliderItems.push(
-          new SliderItem(
-            element,
-            this.list.getWidth() / this.options?.itemsPerPage -
-              this.options.spaceBetween / 2
-          )
+          new SliderItem(element, { width: calculatedWidth })
         );
       });
     this.sliderPaginator = new SliderPaginator(
@@ -153,7 +170,7 @@ export class Slider {
     };
     this.sliderSlidingAnimationState.init(this);
     this.sliderPaginator.setActivePage(this.page);
-    if(this.sliderItems.length / this.options.itemsPerPage <= 1){
+    if (this.sliderItems.length / this.options.itemsPerPage <= 1) {
       this.sliderPaginator._element.hide();
       this.nextButton.hide();
       this.prevButton.hide();
@@ -171,8 +188,8 @@ export class Slider {
 }
 
 class SliderItem {
-  constructor(public element: BaseElement, width: number) {
-    this.element.setStyle("width", `${width}px`);
+  constructor(public element: BaseElement, options: { width: number }) {
+    this.element.setStyle("width", `${options.width}px`);
   }
 }
 
@@ -204,7 +221,6 @@ class SliderPaginator {
       }
     });
   }
-
 }
 
 export type SliderOptions = {
