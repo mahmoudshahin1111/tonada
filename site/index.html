@@ -188,7 +188,25 @@
         </div>
     </div>
     <h1>Slider</h1>
-    <div class="tonada-slider">
+    <h3>Slides Moving</h3>
+    <div id="tonada-slider-moving" class="tonada-slider">
+        <ul class="tonada-list">
+            <li class="tonada-list-item">1</li>
+            <li class="tonada-list-item">2</li>
+            <li class="tonada-list-item">3</li>
+            <li class="tonada-list-item">4</li>
+            <li class="tonada-list-item">5</li>
+        </ul>
+        <button class="tonada-slider-button tonada-prev">
+            <i class="tonada-ic tonada-ic-arrow-left"></i>
+        </button>
+        <button class="tonada-slider-button tonada-next">
+            <i class="tonada-ic tonada-ic-arrow-right"></i>
+        </button>
+        <div class="tonada-slider-paginator"></div>
+    </div>
+    <h3>Slides Fading</h3>
+    <div id="tonada-slider-fading" class="tonada-slider">
         <ul class="tonada-list">
             <li class="tonada-list-item">1</li>
             <li class="tonada-list-item">2</li>
@@ -220,12 +238,17 @@
             accordion.getSections()[0].open();
         });
         // END ACCORDION
-         // SLIDER
-         document.querySelectorAll('.tonada-slider').forEach(element => {
-            const slider = Tornada.createSlider(element,{
-                itemsPerPage:2,
-                spaceBetween:10,
-                slideAnimation:'moving'
+        // SLIDER
+        document.querySelectorAll('#tonada-slider-moving').forEach(element => {
+            const slider = Tornada.createSlider(element, {
+                itemsPerPage: 4,
+                slideAnimation: 'moving'
+            });
+        });
+        document.querySelectorAll('#tonada-slider-fading').forEach(element => {
+            const slider = Tornada.createSlider(element, {
+                itemsPerPage: 4,
+                slideAnimation: 'fading'
             });
         });
         // END SLIDER

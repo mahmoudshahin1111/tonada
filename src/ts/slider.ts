@@ -9,14 +9,16 @@ import { PREFIX } from "./shared";
 
 export interface SliderSlidingAnimationState {
   sliderToPage(slider: Slider, page: number): void;
-  initializeSliderItems(slider: Slider): void;
+  init(slider: Slider): void;
   getPagesCount(slider: Slider): number;
   prevSlider(slider: Slider): void;
   nextSlider(slider: Slider): void;
+  goToPage(slider:Slider,page:number):void;
 }
 
 export class SliderSwitchMovingState implements SliderSlidingAnimationState {
-  initializeSliderItems(slider: Slider): void {
+
+  init(slider: Slider): void {
     slider.sliderItems.forEach((sliderItem, i) => {
       sliderItem.element.setStyle(
         "transform",
@@ -49,14 +51,19 @@ export class SliderSwitchMovingState implements SliderSlidingAnimationState {
     this.sliderToPage(slider, slider.page);
   }
   nextSlider(slider: Slider) {
-    if (slider.page > slider.options.itemsPerPage) return;
+    if (slider.page * slider.options.itemsPerPage >=  slider.sliderItems.length - 2) return;
     slider.page += slider.options.itemsPerPage;
     this.sliderToPage(slider, slider.page);
+  }
+  goToPage(slider: Slider, page: number): void {
+    slider.page = page * slider.options.itemsPerPage;
+    console.log(`go to page ${slider.page }`);
+    this.sliderToPage(slider, slider.page );
   }
 }
 
 export class SliderSwitchFadingState implements SliderSlidingAnimationState {
-  initializeSliderItems(slider: Slider): void {
+  init(slider: Slider): void {
     slider.sliderItems.forEach((sliderItem, i) => {
       sliderItem.element.setStyle("opacity", `0`);
       sliderItem.element.setStyle("left", `0px`);
@@ -66,6 +73,7 @@ export class SliderSwitchFadingState implements SliderSlidingAnimationState {
   }
 
   sliderToPage(slider: Slider, page: number): void {
+    slider.page = page ;
     slider.sliderPaginator.setActivePage(page);
     slider.sliderItems.forEach((sliderItem, i) => {
       if (i === page) {
@@ -88,6 +96,9 @@ export class SliderSwitchFadingState implements SliderSlidingAnimationState {
     slider.page += 1;
     this.sliderToPage(slider, slider.page);
   }
+  goToPage(slider: Slider, page: number): void {
+    this.sliderToPage(slider, page);
+  }
 }
 
 export class Slider {
@@ -99,7 +110,15 @@ export class Slider {
   sliderSlidingAnimationState: SliderSlidingAnimationState;
   page = 0;
   constructor(private _element: BaseElement, public options?: SliderOptions) {
-    this.sliderSlidingAnimationState = new SliderSwitchFadingState();
+    this.options = Object.assign({
+      itemsPerPage:1,
+      slideAnimation:'moving',
+      spaceBetween:0
+    } as SliderOptions,this.options);
+    this.sliderSlidingAnimationState = new SliderSwitchMovingState();
+    if(this.options.slideAnimation === 'fading'){
+      this.sliderSlidingAnimationState = new SliderSwitchFadingState();
+    }
     this.list = this._element.querySelector(`:scope > .${PREFIX}-list`).at(0);
     this.list
       .querySelector(`:scope > .${PREFIX}-list-item`)
@@ -130,11 +149,15 @@ export class Slider {
       this.nextSlider();
     });
     this.sliderPaginator.onPageClicked = (page) => {
-      this.page = page * this.options.itemsPerPage;
-      this.sliderToPage(this.page);
+      this.goToPage(page);
     };
-    this.sliderSlidingAnimationState.initializeSliderItems(this);
+    this.sliderSlidingAnimationState.init(this);
     this.sliderPaginator.setActivePage(this.page);
+    if(this.sliderItems.length / this.options.itemsPerPage <= 1){
+      this.sliderPaginator._element.hide();
+      this.nextButton.hide();
+      this.prevButton.hide();
+    }
   }
   prevSlider() {
     this.sliderSlidingAnimationState.prevSlider(this);
@@ -142,8 +165,8 @@ export class Slider {
   nextSlider() {
     this.sliderSlidingAnimationState.nextSlider(this);
   }
-  sliderToPage(page: number) {
-    this.sliderSlidingAnimationState.sliderToPage(this, page);
+  goToPage(page: number) {
+    this.sliderSlidingAnimationState.goToPage(this, page);
   }
 }
 
@@ -156,7 +179,7 @@ class SliderItem {
 class SliderPaginator {
   onPageClicked: (page: number) => void;
   private _pages: BaseElement[] = [];
-  constructor(private _element: BaseElement, pages: number) {
+  constructor(public _element: BaseElement, pages: number) {
     for (let page = 0; page < pages; page++) {
       this.createPage(page);
     }
@@ -181,6 +204,7 @@ class SliderPaginator {
       }
     });
   }
+
 }
 
 export type SliderOptions = {
