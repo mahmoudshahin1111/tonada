@@ -1,14 +1,21 @@
 import { BaseElement } from "./base-element";
-import { PREFIX } from "./shared";
+import { createBaseElement } from "../utils/common";
+import { PREFIX } from "../utils/defaults";
+import { Component } from "./component";
 
-export class InputPassword {
+export function create(element: HTMLDivElement) {
+  return new InputPassword(createBaseElement(element));
+}
+
+export class InputPassword extends Component {
   private _toggler: BaseElement;
   private _input: BaseElement;
-  constructor(private _element: BaseElement) {
-    this._toggler = this._element
+  constructor(element: BaseElement) {
+    super(element);
+    this._toggler = this.element
       .querySelector(`:scope > .${PREFIX}-password-toggle`)
       .at(0);
-    this._input = this._element.querySelector("input").at(0);
+    this._input = this.element.querySelector("input").at(0);
     this._toggler.onEvent("click", () => this.toggle());
   }
 

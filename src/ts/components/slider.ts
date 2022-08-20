@@ -1,11 +1,83 @@
-/**
- * examples to make you inspire what you need to do
- * https://splidejs.com/
- *
- */
-
 import { BaseElement } from "./base-element";
-import { PREFIX } from "./shared";
+import { Component } from "./component";
+import { createBaseElement } from "../utils/common";
+import { PREFIX } from "../utils/defaults";
+
+export function create(element: HTMLDivElement, options?: SliderOptions) {
+  return new Slider(createBaseElement(element), options);
+}
+
+export class Slider extends Component {
+  list: BaseElement;
+  sliderItems: SliderItem[] = [];
+  prevButton: BaseElement;
+  nextButton: BaseElement;
+  sliderPaginator: SliderPaginator;
+  sliderSlidingAnimationState: SliderSlidingAnimationState;
+  page = 0;
+  constructor(element: BaseElement, public options?: SliderOptions) {
+    super(element);
+    this.options = Object.assign(
+      {
+        itemsPerPage: 1,
+        slideAnimation: "moving",
+        spaceBetween: 0,
+      } as SliderOptions,
+      this.options
+    );
+    this.sliderSlidingAnimationState = new SliderSwitchMovingState();
+    if (this.options.slideAnimation === "fading") {
+      this.sliderSlidingAnimationState = new SliderSwitchFadingState();
+    }
+    this.list = this.element.querySelector(`:scope > .${PREFIX}-list`).at(0);
+    this.list
+      .querySelector(`:scope > .${PREFIX}-list-item`)
+      .forEach((element) => {
+        const calculatedWidth =
+          this.list.getWidth() / this.options?.itemsPerPage -
+          this.options.spaceBetween / 2;
+        this.sliderItems.push(
+          new SliderItem(element, { width: calculatedWidth })
+        );
+      });
+    this.sliderPaginator = new SliderPaginator(
+      this.element.querySelector(`:scope > .${PREFIX}-slider-paginator`).at(0),
+      this.sliderSlidingAnimationState.getPagesCount(this)
+    );
+    const sliderButtons = this.element.querySelector(
+      `:scope > .${PREFIX}-slider-button`
+    );
+    this.prevButton = sliderButtons.at(0);
+    this.nextButton = sliderButtons.at(1);
+    this.prevButton.onEvent("click", () => {
+      console.log("prev button clicked");
+      this.prevSlider();
+    });
+    this.nextButton.onEvent("click", () => {
+      console.log("next button clicked");
+      this.nextSlider();
+    });
+    this.sliderPaginator.onPageClicked = (page) => {
+      this.goToPage(page);
+    };
+    this.sliderSlidingAnimationState.init(this);
+    this.sliderPaginator.setActivePage(this.page);
+    if (this.sliderItems.length / this.options.itemsPerPage <= 1) {
+      this.sliderPaginator.element.hide();
+      this.nextButton.hide();
+      this.prevButton.hide();
+    }
+  }
+  prevSlider() {
+    this.sliderSlidingAnimationState.prevSlider(this);
+  }
+  nextSlider() {
+    this.sliderSlidingAnimationState.nextSlider(this);
+  }
+  goToPage(page: number) {
+    this.sliderSlidingAnimationState.goToPage(this, page);
+  }
+}
 
 export interface SliderSlidingAnimationState {
   sliderToPage(slider: Slider, page: number): void;
@@ -116,87 +188,16 @@ export class SliderSwitchFadingState implements SliderSlidingAnimationState {
   }
 }
 
-export class Slider {
-  list: BaseElement;
-  sliderItems: SliderItem[] = [];
-  prevButton: BaseElement;
-  nextButton: BaseElement;
-  sliderPaginator: SliderPaginator;
-  sliderSlidingAnimationState: SliderSlidingAnimationState;
-  page = 0;
-  constructor(private _element: BaseElement, public options?: SliderOptions) {
-    this.options = Object.assign(
-      {
-        itemsPerPage: 1,
-        slideAnimation: "moving",
-        spaceBetween: 0,
-      } as SliderOptions,
-      this.options
-    );
-    this.sliderSlidingAnimationState = new SliderSwitchMovingState();
-    if (this.options.slideAnimation === "fading") {
-      this.sliderSlidingAnimationState = new SliderSwitchFadingState();
-    }
-    this.list = this._element.querySelector(`:scope > .${PREFIX}-list`).at(0);
-    this.list
-      .querySelector(`:scope > .${PREFIX}-list-item`)
-      .forEach((element) => {
-        const calculatedWidth =
-          this.list.getWidth() / this.options?.itemsPerPage -
-          this.options.spaceBetween / 2;
-        this.sliderItems.push(
-          new SliderItem(element, { width: calculatedWidth })
-        );
-      });
-    this.sliderPaginator = new SliderPaginator(
-      this._element.querySelector(`:scope > .${PREFIX}-slider-paginator`).at(0),
-      this.sliderSlidingAnimationState.getPagesCount(this)
-    );
-    const sliderButtons = this._element.querySelector(
-      `:scope > .${PREFIX}-slider-button`
-    );
-    this.prevButton = sliderButtons.at(0);
-    this.nextButton = sliderButtons.at(1);
-    this.prevButton.onEvent("click", () => {
-      console.log("prev button clicked");
-      this.prevSlider();
-    });
-    this.nextButton.onEvent("click", () => {
-      console.log("next button clicked");
-      this.nextSlider();
-    });
-    this.sliderPaginator.onPageClicked = (page) => {
-      this.goToPage(page);
-    };
-    this.sliderSlidingAnimationState.init(this);
-    this.sliderPaginator.setActivePage(this.page);
-    if (this.sliderItems.length / this.options.itemsPerPage <= 1) {
-      this.sliderPaginator._element.hide();
-      this.nextButton.hide();
-      this.prevButton.hide();
-    }
-  }
-  prevSlider() {
-    this.sliderSlidingAnimationState.prevSlider(this);
-  }
-  nextSlider() {
-    this.sliderSlidingAnimationState.nextSlider(this);
-  }
-  goToPage(page: number) {
-    this.sliderSlidingAnimationState.goToPage(this, page);
-  }
-}
-
-class SliderItem {
+export class SliderItem {
   constructor(public element: BaseElement, options: { width: number }) {
     this.element.setStyle("width", `${options.width}px`);
   }
 }
 
-class SliderPaginator {
+export class SliderPaginator {
   onPageClicked: (page: number) => void;
   private _pages: BaseElement[] = [];
-  constructor(public _element: BaseElement, pages: number) {
+  constructor(public element: BaseElement, pages: number) {
     for (let page = 0; page < pages; page++) {
       this.createPage(page);
     }
@@ -209,7 +210,7 @@ class SliderPaginator {
     baseElement.onEvent("click", () => {
       this.onPageClicked(page);
     });
-    this._element.element.appendChild(baseElement.element);
+    this.element.element.appendChild(baseElement.element);
     this._pages.push(baseElement);
   }
   setActivePage(page: number) {
@@ -223,7 +224,7 @@ class SliderPaginator {
   }
 }
 
-export type SliderOptions = {
+type SliderOptions = {
   itemsPerPage?: number;
   spaceBetween?: number;
   slideAnimation?: "moving" | "fading";
