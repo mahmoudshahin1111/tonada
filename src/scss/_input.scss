@@ -1,24 +1,29 @@
 .#{$prefix}-control {
   --#{$prefix}-shadow-box: #{$input-shadow-box};
+  --#{$prefix}-height: #{$form-control-height};
+  --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
 }
 .#{$prefix}-control {
-
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  height: var(--#{$prefix}-height);
+  font-size: var(--#{$prefix}-font-size);
   * {
     box-sizing: border-box;
     font-size: var(--#{$prefix}-shadow-box);
   }
-  .#{$prefix}-input {
+  & > .#{$prefix}-input {
     border: 0;
     box-shadow: var(--#{$prefix}-shadow-box);
-    padding: 0.5em 1em;
+    padding: 0 1em;
     width: 100%;
     transition: all 0.1s;
     outline: none;
     border-radius: $border-radius;
+    height: 100%;
     &:focus {
       outline: none;
       box-shadow: $input-focused-shadow-box;
@@ -27,43 +32,47 @@
 }
 
 .#{$prefix}-control.#{$prefix}-sm {
-  font-size: 0.8em;
-}
-.#{$prefix}-control.#{$prefix}-md {
-  font-size: 1em;
+  font-size: calc(var(--#{$prefix}-font-size) - 0.2em);
 }
 .#{$prefix}-control.#{$prefix}-lg {
-  font-size: 1.2em;
+  font-size: calc(var(--#{$prefix}-font-size) + 0.2em);
 }
 .#{$prefix}-control.#{$prefix}-xl {
-  font-size: 1.5em;
+  font-size: calc(var(--#{$prefix}-font-size) + 0.4em);
 }
 
 .#{$prefix}-control.floating-label {
-  label {
+  & > label {
     position: absolute;
     font-size: 1em;
-    transition: all 0.1s;
+    transition: all 0.1s ease-in-out;
     background-color: #ffffff;
-    left: 0.8em;
-    top: -0.6em;
+    transform: translateX(12px);
+    height: 0.8em;
   }
-  .#{$prefix}-input::placeholder {
+  & > .#{$prefix}-input::placeholder {
     opacity: 0;
   }
-  .#{$prefix}-input:not(:placeholder-shown) + label {
-    font-size: 0.9em;
+  & > .#{$prefix}-input:not(:placeholder-shown) + label {
+    transform: translate(
+      calc(var(--#{$prefix}-height) / 3),
+      calc(var(--#{$prefix}-height) / -1.7)
+    );
+    font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
   }
-  .#{$prefix}-input:placeholder-shown + label {
-    top: 0.5em;
+  & > .#{$prefix}-input:placeholder-shown + label {
+    transform: translate(calc(var(--#{$prefix}-height) / 3), -5px);
     background-color: transparent;
   }
-  .#{$prefix}-input:placeholder-shown:focus + label {
-    top: -0.6em;
+  & > .#{$prefix}-input:placeholder-shown:focus + label {
+    transform: translate(
+      calc(var(--#{$prefix}-height) / 3),
+      calc(var(--#{$prefix}-height) / -1.7)
+    );
     background-color: #ffffff;
   }
-  .#{$prefix}-input:focus + label {
-    font-size: 0.9em;
+  & > .#{$prefix}-input:focus + label {
+    font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
   }
 }
 
@@ -74,7 +83,7 @@
   flex-direction: row;
   background-color: map-get($colors, "secondary");
   border-radius: $border-radius;
-  > span {
+  & > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,15 +95,16 @@
   & > .#{$prefix}-control {
     flex: 1;
   }
-  & > .#{$prefix}-control > .#{$prefix}-input , & > .#{$prefix}-input {
+  & > .#{$prefix}-control > .#{$prefix}-input,
+  & > .#{$prefix}-input {
     border: 0;
-      box-shadow: none;
+    box-shadow: none;
 
+    outline: none;
+    border-radius: 0px;
+    &:focus {
       outline: none;
-      border-radius: 0px;
-      &:focus {
-        outline: none;
-        box-shadow: $input-focused-shadow-box;
-      }
+      box-shadow: $input-focused-shadow-box;
+    }
   }
 }
