@@ -21,6 +21,11 @@
         gap: 1rem;
         width: 50%;
     }
+
+    .float-password {
+        display: flex;
+        flex-direction: row;
+    }
 </style>
 
 <body>
@@ -58,7 +63,7 @@
             <input class="tonada-input" type="text" name="name" placeholder="Name">
             <label for="">Name</label>
         </div>
-        <div class="tonada-control floating-label tonada-md">
+        <div class="tonada-control floating-label">
             <input class="tonada-input" type="text" name="name" placeholder="Name">
             <label for="">Name</label>
         </div>
@@ -90,7 +95,7 @@
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
         </div>
-        <div class="tonada-control tonada-password floating-label tonada-md">
+        <div class="tonada-control tonada-password floating-label">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
@@ -240,7 +245,7 @@
 <script src="../dist/js/slider.js"></script>
 <script src="../dist/js/index.js"></script>
 <script>
-       console.log(Tonada);
+    console.log(Tonada);
     window.document.addEventListener('DOMContentLoaded', () => {
         console.log(TonadaSlider);
         // PASSWORD
@@ -269,7 +274,7 @@
         });
         // END SLIDER
     })
- 
+
 </script>
 
 </html>
