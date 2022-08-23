@@ -1,20 +1,14 @@
-import { createBaseElement } from "../utils/inspector";
-import { Accordion } from "./accordion";
-import { InputPassword } from "./input-password";
-import { Slider, SliderOptions } from "./slider";
+import { components as tonadaComponents } from "../../package.json";
 
+declare var window: any;
 
-
-export function createInputPassword(element:HTMLDivElement){
-    return new InputPassword(createBaseElement(element));
-}
-export function createAccordion(element:HTMLDivElement){
-    return new Accordion(createBaseElement(element));
-}
-
-export function createSlider(element:HTMLDivElement,options?:SliderOptions){
-    return new Slider(createBaseElement(element),options);
-}
-export function createSliderPagination(element:HTMLDivElement){
-    return 
+export function create(
+  componentName: string,
+  element: HTMLDivElement,
+  config?: any
+) {
+  const tonadaComponent = tonadaComponents.find(
+    (n) => n.name === componentName
+  );
+  return window[tonadaComponent.className]["create"](element, config);
 }

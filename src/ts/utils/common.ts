@@ -1,4 +1,4 @@
-import { BaseElement } from "../ts/base-element";
+import { BaseElement } from "../components/base-element";
 
 function querySelector(
   element: HTMLElement,
@@ -18,4 +18,13 @@ function createBaseElement(element:HTMLElement){
   return new BaseElement(element);
 }
 
-export { querySelector ,createBaseElement};
+
+function extendObject<T>(base:any, mixin:any) : T {
+    Object.getOwnPropertyNames(mixin).forEach((name) => {
+      base[name] = mixin[name];
+    }
+    );
+    return base;
+  }
+
+export { querySelector ,createBaseElement,extendObject};

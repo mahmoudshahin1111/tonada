@@ -15,12 +15,29 @@
     "ui-kit"
   ],
   "author": "codexline",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.3.0",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  }
+  },
+  "components":[
+    {
+      "name":"slider",
+      "className":"TonadaSlider",
+      "path":"src/ts/components/slider.ts"
+    },
+    {
+      "name":"input-password",
+      "className":"TonadaInputPassword",
+      "path":"src/ts/components/input-password.ts"
+    },
+    {
+      "name":"accordion",
+      "className":"TonadaAccordion",
+      "path":"src/ts/components/accordion.ts"
+    }
+  ]
 }

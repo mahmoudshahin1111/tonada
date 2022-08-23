@@ -1,6 +1,6 @@
-import { querySelector } from "../utils/inspector";
+import { querySelector } from "../utils/common";
 
-export class BaseElement {
+export class BaseElement  {
   constructor(public element: HTMLElement) {}
   getAttributes(): { name: string; value: string }[] {
     return this.element.getAttributeNames().map((name) => {
