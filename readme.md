@@ -52,14 +52,12 @@ Options:
 
 - itemsPerPage: number of items per page
 - slideAnimation: `moving` or `fading`
-- pagination: `true` or `false`
-- arrows: true or false
-- dots: true or false
-- autoplay: true or false
-- autoplaySpeed: number of milliseconds between each slide
-- infinite: `true` or `false`
-- speed: `number` of milliseconds for the animation
-- easing: `ease-in-out` or `ease-in` or `ease-out`
-- onChange: function to call when the slider changes
-- onInit: function to call when the slider is initialized
-- onDestroy: function to call when the slider is destroyed
+
+### Dropdown
+
+our dropdown out of the box because it's fully customizable .
+
+```javascript
+const element = document.querySelector("#slider");
+Tonada.create("dropdown", element);
+```
