@@ -235,37 +235,41 @@
         </div>
     </div>
 </body>
-<script src="../dist/js/tonada.js"></script>
+<script src="../dist/js/accordion.js"></script>
+<script src="../dist/js/input-password.js"></script>
+<script src="../dist/js/slider.js"></script>
+<script src="../dist/js/index.js"></script>
 <script>
+       console.log(Tonada);
     window.document.addEventListener('DOMContentLoaded', () => {
+        console.log(TonadaSlider);
         // PASSWORD
         document.querySelectorAll('.tonada-control.tonada-password').forEach(element => {
-            const inputPassword = Tornada.createInputPassword(element);
+            const inputPassword = Tonada.create('input-password', element);
 
         });
         // END INPUT PASSWORD
         // ACCORDION
         document.querySelectorAll('.tonada-accordion').forEach(element => {
-            const accordion = Tornada.createAccordion(element);
+            const accordion = Tonada.create('accordion', element);
             accordion.getSections()[0].open();
         });
         // END ACCORDION
         // SLIDER
         document.querySelectorAll('#tonada-slider-moving').forEach(element => {
-            const slider = Tornada.createSlider(element, {
+            const slider = Tonada.create('slider', element, {
                 itemsPerPage: 4,
                 slideAnimation: 'moving'
             });
         });
         document.querySelectorAll('#tonada-slider-fading').forEach(element => {
-            const slider = Tornada.createSlider(element, {
-                itemsPerPage: 4,
+            const slider = Tonada.create('slider', element, {
                 slideAnimation: 'fading'
             });
         });
         // END SLIDER
     })
-    console.log(Tornada);
+ 
 </script>
 
 </html>
