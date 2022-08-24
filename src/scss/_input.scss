@@ -1,9 +1,12 @@
-.#{$prefix}-control {
+$input-prefix: #{$prefix}-control;
+.#{$input-prefix} {
   --#{$prefix}-shadow-box: #{$input-shadow-box};
+  --#{$prefix}-invalid-shadow-box: #{$input-invalid-shadow-box};
+  --#{$prefix}-invalid-text-color: #{$input-invalid-text-color};
   --#{$prefix}-height: #{$form-control-height};
   --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
 }
-.#{$prefix}-control {
+.#{$input-prefix} {
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -29,82 +32,93 @@
       box-shadow: $input-focused-shadow-box;
     }
   }
-}
+  &.#{$prefix}-invalid {
+    & > .#{$prefix}-input {
+      box-shadow: var(--#{$prefix}-invalid-shadow-box);
+      &:focus {
+        box-shadow: var(--#{$prefix}-invalid-shadow-box);
+      }
+    }
+    & > label {
+      color: var(--#{$prefix}-invalid-text-color);
+    }
+  }
 
-.#{$prefix}-control.#{$prefix}-sm {
-  font-size: calc(var(--#{$prefix}-font-size) - 0.2em);
-}
-.#{$prefix}-control.#{$prefix}-lg {
-  font-size: calc(var(--#{$prefix}-font-size) + 0.2em);
-}
-.#{$prefix}-control.#{$prefix}-xl {
-  font-size: calc(var(--#{$prefix}-font-size) + 0.4em);
-}
+  &.#{$prefix}-sm {
+    font-size: calc(var(--#{$prefix}-font-size) - 0.2em);
+  }
+  &.#{$prefix}-lg {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.2em);
+  }
+  &.#{$prefix}-xl {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.4em);
+  }
 
-.#{$prefix}-control.floating-label {
-  & > label {
-    position: absolute;
-    font-size: 1em;
-    transition: all 0.1s ease-in-out;
-    background-color: #ffffff;
-    transform: translateX(12px);
-    height: 0.8em;
+  &.floating-label {
+    & > label {
+      position: absolute;
+      font-size: 1em;
+      transition: all 0.1s ease-in-out;
+      background-color: #ffffff;
+      transform: translateX(12px);
+      height: 0.8em;
+    }
+    & > .#{$prefix}-input::placeholder {
+      opacity: 0;
+    }
+    & > .#{$prefix}-input:not(:placeholder-shown) + label {
+      transform: translate(
+        calc(var(--#{$prefix}-height) / 3),
+        calc(var(--#{$prefix}-height) / -1.7)
+      );
+      font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
+    }
+    & > .#{$prefix}-input:placeholder-shown + label {
+      transform: translate(calc(var(--#{$prefix}-height) / 3), -5px);
+      background-color: transparent;
+    }
+    & > .#{$prefix}-input:placeholder-shown:focus + label {
+      transform: translate(
+        calc(var(--#{$prefix}-height) / 3),
+        calc(var(--#{$prefix}-height) / -1.7)
+      );
+      background-color: #ffffff;
+    }
+    & > .#{$prefix}-input:focus + label {
+      font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
+    }
   }
-  & > .#{$prefix}-input::placeholder {
-    opacity: 0;
-  }
-  & > .#{$prefix}-input:not(:placeholder-shown) + label {
-    transform: translate(
-      calc(var(--#{$prefix}-height) / 3),
-      calc(var(--#{$prefix}-height) / -1.7)
-    );
-    font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
-  }
-  & > .#{$prefix}-input:placeholder-shown + label {
-    transform: translate(calc(var(--#{$prefix}-height) / 3), -5px);
-    background-color: transparent;
-  }
-  & > .#{$prefix}-input:placeholder-shown:focus + label {
-    transform: translate(
-      calc(var(--#{$prefix}-height) / 3),
-      calc(var(--#{$prefix}-height) / -1.7)
-    );
-    background-color: #ffffff;
-  }
-  & > .#{$prefix}-input:focus + label {
-    font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
-  }
-}
 
-.#{$prefix}-control.#{$prefix}-input-group {
-  box-shadow: $input-shadow-box;
-  box-shadow: $input-focused-shadow-box;
-  display: flex;
-  flex-direction: row;
-  background-color: map-get($colors, "secondary");
-  border-radius: $border-radius;
-  & > span {
+  &.#{$prefix}-input-group {
+    box-shadow: $input-shadow-box;
+    box-shadow: $input-focused-shadow-box;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2em;
-    color: #ffffff;
-    user-select: none;
-    padding: 0 1em;
-  }
-  & > .#{$prefix}-control {
-    flex: 1;
-  }
-  & > .#{$prefix}-control > .#{$prefix}-input,
-  & > .#{$prefix}-input {
-    border: 0;
-    box-shadow: none;
+    flex-direction: row;
+    background-color: map-get($colors, "secondary");
+    border-radius: $border-radius;
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2em;
+      color: #ffffff;
+      user-select: none;
+      padding: 0 1em;
+    }
+    & > .#{$prefix}-control {
+      flex: 1;
+    }
+    & > .#{$prefix}-control > .#{$prefix}-input,
+    & > .#{$prefix}-input {
+      border: 0;
+      box-shadow: none;
 
-    outline: none;
-    border-radius: 0px;
-    &:focus {
       outline: none;
-      box-shadow: $input-focused-shadow-box;
+      border-radius: 0px;
+      &:focus {
+        outline: none;
+        box-shadow: $input-focused-shadow-box;
+      }
     }
   }
 }
