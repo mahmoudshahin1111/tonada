@@ -10,13 +10,18 @@ export function create(element: HTMLDivElement) {
 export class InputPassword extends Component {
   private _toggler: BaseElement;
   private _input: BaseElement;
+  private _label: BaseElement;
   constructor(element: BaseElement) {
     super(element);
     this._toggler = this.element
       .querySelector(`:scope > .${PREFIX}-password-toggle`)
       .at(0);
-    this._input = this.element.querySelector("input").at(0);
+    this._input = this.element.querySelector(":scope > input").at(0);
+    this._label = this.element.querySelector(":scope > label").at(0);
     this._toggler.onEvent("click", () => this.toggle());
+    if(this._label){
+      this._label.onEvent('click',()=>this._input.element.focus());
+    }
   }
 
   toggle() {

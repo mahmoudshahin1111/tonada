@@ -1,6 +1,6 @@
 import { BaseElement } from "./base-element";
 
-export class Component{
+export abstract class Component{
     constructor(protected element:BaseElement){
 
     }

@@ -30,6 +30,11 @@
       "path":"src/ts/components/slider.ts"
     },
     {
+      "name":"input",
+      "className":"TonadaInput",
+      "path":"src/ts/components/input.ts"
+    },
+    {
       "name":"input-password",
       "className":"TonadaInputPassword",
       "path":"src/ts/components/input-password.ts"
@@ -38,6 +43,11 @@
       "name":"accordion",
       "className":"TonadaAccordion",
       "path":"src/ts/components/accordion.ts"
+    },
+    {
+      "name":"select",
+      "className":"TonadaSelect",
+      "path":"src/ts/components/select.ts"
     }
   ]
 }

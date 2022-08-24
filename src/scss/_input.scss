@@ -10,8 +10,8 @@ $input-prefix: #{$prefix}-control;
   box-sizing: border-box;
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   height: var(--#{$prefix}-height);
   font-size: var(--#{$prefix}-font-size);
   * {
@@ -62,6 +62,7 @@ $input-prefix: #{$prefix}-control;
       background-color: #ffffff;
       transform: translateX(12px);
       height: 0.8em;
+      left: 0;
     }
     & > .#{$prefix}-input::placeholder {
       opacity: 0;
@@ -121,4 +122,12 @@ $input-prefix: #{$prefix}-control;
       }
     }
   }
+}
+
+.#{$prefix}-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #{$input-invalid-text-color};
 }

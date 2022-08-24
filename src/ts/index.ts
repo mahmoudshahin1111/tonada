@@ -8,7 +8,7 @@ export function create(
   config?: any
 ) {
   const tonadaComponent = tonadaComponents.find(
-    (n) => n.name === componentName
+    (n) => n.name.toLowerCase() === componentName.toLowerCase()
   );
   return window[tonadaComponent.className]["create"](element, config);
 }

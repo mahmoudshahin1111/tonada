@@ -1,3 +1,9 @@
+/*
+ * accordion.ts v1.0.0
+ * (c) 2022 Mahmoud Shahin
+ * Released under the MIT license
+ */
+
 import { BaseElement } from "./base-element";
 import { Component } from "./component";
 import { createBaseElement } from "../utils/common";

@@ -31,8 +31,8 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   height: var(--tonada-height);
   font-size: var(--tonada-font-size);
 }
@@ -79,6 +79,7 @@
   background-color: #ffffff;
   transform: translateX(12px);
   height: 0.8em;
+  left: 0;
 }
 .tonada-control.floating-label > .tonada-input::placeholder {
   opacity: 0;
@@ -127,6 +128,14 @@
 .tonada-control.tonada-input-group > .tonada-control > .tonada-input:focus, .tonada-control.tonada-input-group > .tonada-input:focus {
   outline: none;
   box-shadow: 0px 0px 1px 1px #1c3879;
+}
+
+.tonada-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #ff004c;
 }
 
 .tonada-control.tonada-password {
