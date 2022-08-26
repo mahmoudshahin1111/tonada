@@ -3,32 +3,52 @@ import { Component } from "./component";
 import { createBaseElement } from "../utils/common";
 import { PREFIX } from "../utils/defaults";
 
-export function create(element: HTMLDivElement, options?: SliderOptions) {
-  return new Slider(createBaseElement(element), options);
+export function getDefaultSliderOptions():SliderOptions{
+    return {
+      itemsPerPage: 1,
+      slideAnimation: "moving",
+      spaceBetween: 0,
+      paginator: true,
+      navigators: true,
+      infinite: false,
+      infiniteSlidingDuration:2000
+    } as SliderOptions
 }
+// -------------------------------------------------------------------------------------------------
+export function create(
+  element: HTMLDivElement,
+  options?: SliderOptions
+): Slider {
+  const baseSlider = new BaseSlider(createBaseElement(element), options);
+  let slider: Slider = new DefaultSlider(baseSlider);
+  if (options.slideAnimation === "fading") {
+    slider = new FadingSlider(baseSlider);
+  }
+  slider.build();
+  return slider;
+}
+// -------------------------------------------------------------------------------------------------
+export abstract class Slider {
+  abstract build(): void;
+  abstract prevSlider(): void;
+  abstract nextSlider(): void;
+  abstract goToPage(page: number): void;
+  abstract getPagesCount(): number;
+}
+// -------------------------------------------------------------------------------------------------
 
-export class Slider extends Component {
+export class BaseSlider extends Component implements Slider {
   list: BaseElement;
   sliderItems: SliderItem[] = [];
   prevButton: BaseElement;
   nextButton: BaseElement;
   sliderPaginator: SliderPaginator;
-  sliderSlidingAnimationState: SliderSlidingAnimationState;
-  page = 0;
+  page: number = 0;
   constructor(element: BaseElement, public options?: SliderOptions) {
     super(element);
-    this.options = Object.assign(
-      {
-        itemsPerPage: 1,
-        slideAnimation: "moving",
-        spaceBetween: 0,
-      } as SliderOptions,
-      this.options
-    );
-    this.sliderSlidingAnimationState = new SliderSwitchMovingState();
-    if (this.options.slideAnimation === "fading") {
-      this.sliderSlidingAnimationState = new SliderSwitchFadingState();
-    }
+  }
+  build(): void {
+    this.options = Object.assign(getDefaultSliderOptions(), this.options);
     this.list = this.element.querySelector(`:scope > .${PREFIX}-list`).at(0);
     this.list
       .querySelector(`:scope > .${PREFIX}-list-item`)
@@ -42,77 +62,98 @@ export class Slider extends Component {
       });
     this.sliderPaginator = new SliderPaginator(
       this.element.querySelector(`:scope > .${PREFIX}-slider-paginator`).at(0),
-      this.sliderSlidingAnimationState.getPagesCount(this)
+      this.getPagesCount()
     );
     const sliderButtons = this.element.querySelector(
       `:scope > .${PREFIX}-slider-button`
     );
     this.prevButton = sliderButtons.at(0);
     this.nextButton = sliderButtons.at(1);
-    this.prevButton.onEvent("click", () => {
-      console.log("prev button clicked");
-      this.prevSlider();
-    });
-    this.nextButton.onEvent("click", () => {
-      console.log("next button clicked");
-      this.nextSlider();
-    });
-    this.sliderPaginator.onPageClicked = (page) => {
-      this.goToPage(page);
-    };
-    this.sliderSlidingAnimationState.init(this);
-    this.sliderPaginator.setActivePage(this.page);
-    if (this.sliderItems.length / this.options.itemsPerPage <= 1) {
-      this.sliderPaginator.element.hide();
+    if (!this.options.navigators) {
       this.nextButton.hide();
       this.prevButton.hide();
     }
+    if (!this.options.paginator) {
+      this.sliderPaginator.element.hide();
+    }
   }
-  prevSlider() {
-    this.sliderSlidingAnimationState.prevSlider(this);
+  getPagesCount(): number {
+    return Math.ceil(this.sliderItems.length / this.options.itemsPerPage);
   }
-  nextSlider() {
-    this.sliderSlidingAnimationState.nextSlider(this);
-  }
-  goToPage(page: number) {
-    this.sliderSlidingAnimationState.goToPage(this, page);
-  }
+  prevSlider(): void {}
+  nextSlider(): void {}
+  goToPage(page: number): void {}
 }
 
-export interface SliderSlidingAnimationState {
-  sliderToPage(slider: Slider, page: number): void;
-  init(slider: Slider): void;
-  getPagesCount(slider: Slider): number;
-  prevSlider(slider: Slider): void;
-  nextSlider(slider: Slider): void;
-  goToPage(slider: Slider, page: number): void;
-}
+// -------------------------------------------------------------------------------------------------
 
-export class SliderSwitchMovingState implements SliderSlidingAnimationState {
-  init(slider: Slider): void {
-    slider.sliderItems.forEach((sliderItem, i) => {
+export class DefaultSlider extends Slider {
+  constructor(private _baseSlider: BaseSlider) {
+    super();
+  }
+
+  build(): void {
+    this._baseSlider.build();
+    this._baseSlider.prevButton.onEvent("click", () => {
+      this.prevSlider();
+    });
+    this._baseSlider.nextButton.onEvent("click", () => {
+      this.nextSlider();
+    });
+    this._baseSlider.sliderPaginator.onPageClicked = (page) => {
+      this.goToPage(page);
+    };
+    this._baseSlider.sliderItems.forEach((sliderItem, i) => {
       sliderItem.element.setStyle(
         "transform",
         `translateX(${
-          (slider.list.getWidth() / slider.options?.itemsPerPage) * i
+          (this._baseSlider.list.getWidth() /
+            this._baseSlider.options?.itemsPerPage) *
+          i
         }px)`
       );
     });
+    this._baseSlider.sliderPaginator.setActivePage(this._baseSlider.page);
+    this.sliderToPage(this._baseSlider.page);
   }
-  sliderToPage(slider: Slider, page: number): void {
+  prevSlider() {
+    if (this._baseSlider.page <= 0) return;
+    this._baseSlider.page -= this._baseSlider.options.itemsPerPage;
+    this.sliderToPage(this._baseSlider.page);
+  }
+  nextSlider() {
+    console.log(this._baseSlider.page * this._baseSlider.options.itemsPerPage >=
+      this._baseSlider.sliderItems.length - 2,this._baseSlider.page,this._baseSlider.options.itemsPerPage);
+    
+    if (
+      this._baseSlider.page * this._baseSlider.options.itemsPerPage >=
+      this._baseSlider.sliderItems.length - 2
+    )
+      return;
+    this._baseSlider.page += this._baseSlider.options.itemsPerPage;
+    this.sliderToPage(this._baseSlider.page);
+  }
+  goToPage(page: number) {
+    this._baseSlider.page = page * this._baseSlider.options.itemsPerPage;
+    this.sliderToPage(this._baseSlider.page);
+  }
+  getPagesCount(): number {
+    return this._baseSlider.getPagesCount();
+  }
+  sliderToPage(page: number): void {
     // mark the current page as active
-    slider.sliderPaginator.setActivePage(
-      Math.ceil(page / slider.options.itemsPerPage)
+    this._baseSlider.sliderPaginator.setActivePage(
+      Math.ceil(page / this._baseSlider.options.itemsPerPage)
     );
     // if the page items less than the items per page then adjust the item width
-    slider.sliderItems.forEach((_sliderItem, i) => {
+    this._baseSlider.sliderItems.forEach((_sliderItem, i) => {
       if (
-        slider.sliderItems.length - page < slider.options.itemsPerPage &&
+        this._baseSlider.sliderItems.length - page < this._baseSlider.options.itemsPerPage &&
         i >= page
       ) {
         const calculatedWidth =
-          slider.list.getWidth() / (slider.sliderItems.length - page) -
-          slider.options.spaceBetween / 2;
+        this._baseSlider.list.getWidth() / (this._baseSlider.sliderItems.length - page) -
+        this._baseSlider.options.spaceBetween / 2;
         _sliderItem.element.setStyle("width", `${calculatedWidth}px`);
       }
       // move the item to the correct position
@@ -120,49 +161,64 @@ export class SliderSwitchMovingState implements SliderSlidingAnimationState {
         "transform",
         `translateX(${
           (i - page) *
-          (_sliderItem.element.getWidth() + slider.options.spaceBetween)
+          (_sliderItem.element.getWidth() + this._baseSlider.options.spaceBetween)
         }px)`
       );
     });
   }
-  getPagesCount(slider: Slider) {
-    return Math.ceil(slider.sliderItems.length / slider.options.itemsPerPage);
-  }
-  prevSlider(slider: Slider) {
-    if (slider.page <= 0) return;
-    slider.page -= slider.options.itemsPerPage;
-    this.sliderToPage(slider, slider.page);
-  }
-  nextSlider(slider: Slider) {
-    if (
-      slider.page * slider.options.itemsPerPage >=
-      slider.sliderItems.length - 2
-    )
-      return;
-    slider.page += slider.options.itemsPerPage;
-    this.sliderToPage(slider, slider.page);
-  }
-  goToPage(slider: Slider, page: number): void {
-    slider.page = page * slider.options.itemsPerPage;
-    console.log(`go to page ${slider.page}`);
-    this.sliderToPage(slider, slider.page);
-  }
 }
 
-export class SliderSwitchFadingState implements SliderSlidingAnimationState {
-  init(slider: Slider): void {
-    slider.sliderItems.forEach((sliderItem, i) => {
+// -------------------------------------------------------------------------------------------------
+export class FadingSlider extends Slider {
+  private _autoSlidingIntervalId: NodeJS.Timer;
+  constructor(private _baseSlider: BaseSlider) {
+    super();
+  }
+
+  build(): void {
+   this._baseSlider.options.itemsPerPage = 1;
+    this._baseSlider.build();
+    this._baseSlider.prevButton.onEvent("click", () => {
+      this.prevSlider();
+    });
+    this._baseSlider.nextButton.onEvent("click", () => {
+      this.nextSlider();
+    });
+    this._baseSlider.sliderPaginator.onPageClicked = (page) => {
+      this.goToPage(page);
+    };
+    this._baseSlider.sliderItems.forEach((sliderItem, i) => {
       sliderItem.element.setStyle("opacity", `0`);
       sliderItem.element.setStyle("left", `0px`);
       sliderItem.element.setStyle("width", `100%`);
     });
-    this.sliderToPage(slider, 0);
+    this.sliderToPage(this._baseSlider.page);
+    this._baseSlider.sliderPaginator.setActivePage(this._baseSlider.page);
+    if (this._baseSlider.options.infinite) {
+      this.enableAutoSliding();
+    }
   }
-
-  sliderToPage(slider: Slider, page: number): void {
-    slider.page = page;
-    slider.sliderPaginator.setActivePage(page);
-    slider.sliderItems.forEach((sliderItem, i) => {
+  prevSlider() {
+    if (this._baseSlider.page === 0) return;
+    this._baseSlider.page -= 1;
+    this.sliderToPage(this._baseSlider.page);
+  }
+  nextSlider() {
+    if (this._baseSlider.page === this._baseSlider.sliderItems.length - 1)
+      return;
+    this._baseSlider.page += 1;
+    this.sliderToPage(this._baseSlider.page);
+  }
+  goToPage(page: number) {
+    this.sliderToPage(page);
+  }
+  getPagesCount(): number {
+    return this._baseSlider.getPagesCount();
+  }
+  sliderToPage(page: number): void {
+    this._baseSlider.page = page;
+    this._baseSlider.sliderPaginator.setActivePage(page);
+    this._baseSlider.sliderItems.forEach((sliderItem, i) => {
       if (i === page) {
         sliderItem.element.setStyle("opacity", `1`);
       } else {
@@ -170,30 +226,31 @@ export class SliderSwitchFadingState implements SliderSlidingAnimationState {
       }
     });
   }
-  getPagesCount(slider: Slider) {
-    return slider.sliderItems.length;
+  enableAutoSliding() {
+    if (this._autoSlidingIntervalId) {
+      clearInterval(this._autoSlidingIntervalId);
+    }
+    this._autoSlidingIntervalId = setInterval(() => {
+      if (this.isLastPage()) {
+        this.sliderToPage(0);
+        this._baseSlider.sliderPaginator.setActivePage(0);
+      }else{
+        this.nextSlider();
+      }
+     
+    }, this._baseSlider.options.infiniteSlidingDuration);
   }
-  prevSlider(slider: Slider) {
-    if (slider.page === 0) return;
-    slider.page -= 1;
-    this.sliderToPage(slider, slider.page);
-  }
-  nextSlider(slider: Slider) {
-    if (slider.page === slider.sliderItems.length - 1) return;
-    slider.page += 1;
-    this.sliderToPage(slider, slider.page);
-  }
-  goToPage(slider: Slider, page: number): void {
-    this.sliderToPage(slider, page);
+  isLastPage(): boolean {
+    return this._baseSlider.page === (this.getPagesCount() - 1);
   }
 }
-
+// -------------------------------------------------------------------------------------------------
 export class SliderItem {
   constructor(public element: BaseElement, options: { width: number }) {
     this.element.setStyle("width", `${options.width}px`);
   }
 }
-
+// -------------------------------------------------------------------------------------------------
 export class SliderPaginator {
   onPageClicked: (page: number) => void;
   private _pages: BaseElement[] = [];
@@ -223,9 +280,14 @@ export class SliderPaginator {
     });
   }
 }
-
+// -------------------------------------------------------------------------------------------------
 type SliderOptions = {
   itemsPerPage?: number;
   spaceBetween?: number;
   slideAnimation?: "moving" | "fading";
+  infinite?: boolean;
+  paginator?: boolean;
+  navigators?: boolean;
+  infiniteSlidingDuration?:number;
 };
+// -------------------------------------------------------------------------------------------------

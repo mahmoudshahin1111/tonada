@@ -50,8 +50,13 @@ Tonada.create("slider", element, {
 
 Options:
 
-- itemsPerPage: number of items per page
-- slideAnimation: `moving` or `fading`
+- itemsPerPage: number of items per page.
+- slideAnimation: `moving` or `fading`.
+- infinite: boolean for auto sliding.
+- infiniteSlidingDuration: number for the duration to sliding between items.
+- paginator: boolean for show or hide the pages buttons.
+- navigators: boolean for show or hide the next and previous buttons. 
+
 
 ### Dropdown
 

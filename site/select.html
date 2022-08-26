@@ -273,7 +273,8 @@
         });
         document.querySelectorAll('#tonada-slider-fading').forEach(element => {
             const slider = Tonada.create('slider', element, {
-                slideAnimation: 'fading'
+                slideAnimation: 'fading',
+                infinite:true
             });
         });
         // END SLIDER
