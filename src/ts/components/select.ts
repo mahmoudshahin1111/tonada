@@ -3,9 +3,9 @@ import { BaseElement } from "./base-element";
 import { Component } from "./component";
 
 export function create(element: HTMLDivElement) {
-    const select = new Select(createBaseElement(element));
-    select.build();
-    return select;
+    const component = new Select(createBaseElement(element));
+    component.build();
+    return component;
   }
 
 export class Select extends Component {
