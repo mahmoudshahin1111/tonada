@@ -20,12 +20,12 @@ export function create(
   options?: SliderOptions
 ): Slider {
   const baseSlider = new BaseSlider(createBaseElement(element), options);
-  let slider: Slider = new DefaultSlider(baseSlider);
+  let component: Slider = new DefaultSlider(baseSlider);
   if (options.slideAnimation === "fading") {
-    slider = new FadingSlider(baseSlider);
+    component = new FadingSlider(baseSlider);
   }
-  slider.build();
-  return slider;
+  component.build();
+  return component;
 }
 // -------------------------------------------------------------------------------------------------
 export abstract class Slider {

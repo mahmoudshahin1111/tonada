@@ -10,20 +10,25 @@ import { createBaseElement } from "../utils/common";
 import { PREFIX } from "../utils/defaults";
 
 export function create(element: HTMLDivElement) {
-  return new Accordion(createBaseElement(element));
+  const component = new Accordion(createBaseElement(element));
+  component.build();
+  return component;
 }
 export class Accordion extends Component {
   private _sections = new Array<AccordionSection>();
   constructor(element: BaseElement) {
     super(element);
+   
+  }
+  build(): void {
     this.element
-      .querySelector(`:scope > .${PREFIX}-accordion-section`)
-      .forEach((section) => {
-        const accordionSection = new AccordionSection(section);
-        accordionSection.onToggled = () =>
-          this.closeTheOthersExcept(accordionSection);
-        this._sections.push(accordionSection);
-      });
+    .querySelector(`:scope > .${PREFIX}-accordion-section`)
+    .forEach((section) => {
+      const accordionSection = new AccordionSection(section);
+      accordionSection.onToggled = () =>
+        this.closeTheOthersExcept(accordionSection);
+      this._sections.push(accordionSection);
+    });
   }
   private closeTheOthersExcept(accordionSection: AccordionSection) {
     this._sections.forEach((section: AccordionSection) => {
