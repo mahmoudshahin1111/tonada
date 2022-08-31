@@ -3,7 +3,9 @@ import { BaseElement } from "./base-element";
 import { Component } from "./component";
 
 export function create(element: HTMLDivElement) {
-    return new Select(createBaseElement(element));
+    const component = new Select(createBaseElement(element));
+    component.build();
+    return component;
   }
 
 export class Select extends Component {
@@ -11,7 +13,16 @@ export class Select extends Component {
   constructor(element: BaseElement) {
     super(element);
   }
+  build(): void {
+    console.log("select builded");
+    
+  }
 }
-export class SelectItem {
+export class SelectHeader {
+    constructor(element:BaseElement){
+
+    }
+}
+export class SelectOption {
   constructor(element: BaseElement) {}
 }

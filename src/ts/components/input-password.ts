@@ -4,7 +4,9 @@ import { PREFIX } from "../utils/defaults";
 import { Component } from "./component";
 
 export function create(element: HTMLDivElement) {
-  return new InputPassword(createBaseElement(element));
+  const component = new InputPassword(createBaseElement(element));
+  component.build();
+  return component;
 }
 
 export class InputPassword extends Component {
@@ -13,6 +15,9 @@ export class InputPassword extends Component {
   private _label: BaseElement;
   constructor(element: BaseElement) {
     super(element);
+    
+  }
+  build(): void {
     this._toggler = this.element
       .querySelector(`:scope > .${PREFIX}-password-toggle`)
       .at(0);
@@ -23,7 +28,6 @@ export class InputPassword extends Component {
       this._label.onEvent('click',()=>this._input.element.focus());
     }
   }
-
   toggle() {
     if (this.isToggled()) {
       this.hidden();

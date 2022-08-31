@@ -7,205 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/css/tornada.css">
     <title>Tonada</title>
+    <link rel="stylesheet" href="./assets/css/_layout.css">
 </head>
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .inputs {
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 50%;
-    }
-
-    .float-password {
-        display: flex;
-        flex-direction: row;
-    }
-</style>
 
 <body>
     <h1>Tonada</h1>
     <p>Tonada is a free UI library build with 💖 and it has many odd components from the simplest one to the complex
         and our mainly focus on the performance and ease</p>
-    <div class="inputs">
-        <h1>Inputs</h1>
-        <h3>Default</h3>
-        <div class="tonada-control">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-        </div>
-        <h3>Floating Label</h3>
-        <div class="tonada-control floating-label ">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <h3>Input with sections</h3>
-        <div class="tonada-control tonada-input-group">
-            <span>$</span>
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <span>.00</span>
-        </div>
-        <h3>Input with sections Floating</h3>
-        <div class="tonada-control tonada-input-group">
-            <span>$</span>
-            <div class="tonada-control floating-label ">
-                <input class="tonada-input" type="text" name="name" placeholder="Name">
-                <label for="">Name</label>
-            </div>
-            <span>.00</span>
-        </div>
-        <h3>Input Sizes</h3>
-        <div class="tonada-control floating-label tonada-sm">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <div class="tonada-control floating-label">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <div class="tonada-control floating-label tonada-lg">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <div class="tonada-control floating-label tonada-xl">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <h4>Invalid Input</h4>
-        <div class="tonada-control floating-label tonada-invalid ">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
-        <h4>Password</h4>
-        <div class="tonada-control tonada-password">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <i class="tonada-password-toggle tonada-ic-show"></i>
-        </div>
-
-        <h4>Float Password</h4>
-        <div class="tonada-control tonada-password floating-label">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <label for="">Password</label>
-            <i class="tonada-password-toggle tonada-ic-show"></i>
-        </div>
-
-        <h4>Password Sizes</h4>
-        <div class="tonada-control tonada-password floating-label tonada-sm">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <label for="">Password</label>
-            <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
-        </div>
-        <div class="tonada-control tonada-password floating-label">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <label for="">Password</label>
-            <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
-        </div>
-        <div class="tonada-control tonada-password floating-label tonada-lg">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <label for="">Password</label>
-            <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
-        </div>
-        <div class="tonada-control tonada-password floating-label tonada-xl">
-            <input type="password" class="tonada-input" name="password" placeholder="password">
-            <label for="">Password</label>
-            <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
-        </div>
-
-    </div>
-    <div class="accordion">
-        <h1>Accordion</h1>
-
-        <div class="tonada-accordion">
-            <div class="tonada-accordion-section">
-                <div class="tonada-accordion-header">
-                    <h4>This is panel header 1</h4>
-                </div>
-                <div class="tonada-accordion-content">
-                    <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found
-                        as a
-                        welcome guest in many households across the world.</p>
-                </div>
-            </div>
-            <div class="tonada-accordion-section">
-                <div class="tonada-accordion-header">
-                    <h4>This is panel header 2</h4>
-                </div>
-                <div class="tonada-accordion-content">
-                    <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found
-                        as a
-                        welcome guest in many households across the world.</p>
-                </div>
-            </div>
-        </div>
-        <h4>Nested</h4>
-        <div class="tonada-accordion">
-            <div class="tonada-accordion-section">
-                <div class="tonada-accordion-header">
-                    <h4>This is panel header 1</h4>
-                </div>
-                <div class="tonada-accordion-content">
-                    <div class="tonada-accordion">
-                        <div class="tonada-accordion-section">
-                            <div class="tonada-accordion-header">
-                                <h4>This is panel header 1</h4>
-                            </div>
-                            <div class="tonada-accordion-content">
-                                <div class="tonada-accordion">
-                                    <div class="tonada-accordion-section">
-                                        <div class="tonada-accordion-header">
-                                            <h4>This is panel header 1</h4>
-                                        </div>
-                                        <div class="tonada-accordion-content">
-                                            <p>A dog is a type of domesticated animal. Known for its loyalty and
-                                                faithfulness, it can be found as a welcome guest in many households
-                                                across
-                                                the world.</p>
-                                        </div>
-                                    </div>
-                                    <div class="tonada-accordion-section">
-                                        <div class="tonada-accordion-header">
-                                            <h4>This is panel header 2</h4>
-                                        </div>
-                                        <div class="tonada-accordion-content">
-                                            <p>A dog is a type of domesticated animal. Known for its loyalty and
-                                                faithfulness, it can be found as a welcome guest in many households
-                                                across
-                                                the world.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tonada-accordion-section">
-                            <div class="tonada-accordion-header">
-                                <h4>This is panel header 2</h4>
-                            </div>
-                            <div class="tonada-accordion-content">
-                                <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it
-                                    can be
-                                    found as a welcome guest in many households across the world.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tonada-accordion-section">
-                <div class="tonada-accordion-header">
-                    <h4>This is panel header 2</h4>
-                </div>
-                <div class="tonada-accordion-content">
-                    <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found
-                        as a
-                        welcome guest in many households across the world.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sliders">
         <h1>Slider</h1>
         <h3>Slides Moving</h3>
         <div id="tonada-slider-moving" class="tonada-slider">
@@ -242,10 +50,7 @@
             </button>
             <div class="tonada-slider-paginator"></div>
         </div>
-    </div>
 </body>
-<script src="../dist/js/accordion.js"></script>
-<script src="../dist/js/input-password.js"></script>
 <script src="../dist/js/slider.js"></script>
 <script src="../dist/js/index.js"></script>
 <script>
