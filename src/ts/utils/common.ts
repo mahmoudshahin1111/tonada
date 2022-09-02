@@ -1,4 +1,5 @@
 import { BaseElement } from "../components/base-element";
+import _ from 'lodash';
 
 function querySelector(element: HTMLElement, query: string): BaseElement[] {
   const elements: BaseElement[] = [];
@@ -19,4 +20,11 @@ function extendObject<T>(base: any, mixin: any): T {
   return base;
 }
 
-export { querySelector, createBaseElement, extendObject };
+function clone(obj:any){
+  return _.clone(obj);
+}
+function generateUniqueId(){
+  return _.uniqueId();
+}
+
+export { querySelector, createBaseElement, extendObject,clone,generateUniqueId };

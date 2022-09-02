@@ -14,7 +14,6 @@ export class Input extends Component {
   label: BaseElement;
   constructor(element: BaseElement) {
     super(element);
-  
   }
   build(): void {
     this.input = this.element.querySelector(`:scope > .${PREFIX}-input`).at(0);
