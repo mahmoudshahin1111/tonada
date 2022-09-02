@@ -45,7 +45,7 @@
             <input class="tonada-input" type="text" name="name" placeholder="Name">
             <label for="">Name</label>
         </div>
-        <div class="tonada-control floating-label tonada-inputs" >
+        <div class="tonada-control floating-label tonada-inputs">
             <input class="tonada-input" type="text" name="name" placeholder="Name">
             <label for="">Name</label>
         </div>
@@ -104,26 +104,22 @@
         </div>
 
     </div>
- 
+
 </body>
 <script src="../dist/js/input.js"></script>
 <script src="../dist/js/input-password.js"></script>
 <script src="../dist/js/index.js"></script>
 <script>
     window.document.addEventListener('DOMContentLoaded', () => {
-        console.log(window.TonadaInput);
         document.querySelectorAll('.tonada-control.tonada-inputs').forEach(element => {
-            console.log(element);
             const input = Tonada.create('input', element);
-
         });
         // PASSWORD
         document.querySelectorAll('.tonada-control.tonada-password').forEach(element => {
             const inputPassword = Tonada.create('input-password', element);
-
         });
         // END INPUT PASSWORD
-       
+
     })
 
 </script>

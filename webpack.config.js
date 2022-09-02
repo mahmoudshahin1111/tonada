@@ -14,20 +14,20 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  devtool: 'source-map'
+  devtool: "source-map",
 };
 
 module.exports = [
-  ...package.components.map((component) => {
+  ...package.packages.map((pack) => {
     return {
       ...sharedConfig,
       entry: {
-        [component.name]: path.resolve(__dirname, component.path),
+        [pack.name]: path.resolve(__dirname, pack.path),
       },
       output: {
         path: path.resolve(__dirname, "dist", "js"),
         library: {
-          name: component.className,
+          name: pack.className,
           type: "window",
         },
       },
@@ -36,7 +36,7 @@ module.exports = [
   {
     ...sharedConfig,
     entry: {
-      index: path.resolve(__dirname, "src/ts", "index.ts"),
+      index: path.resolve(__dirname, "src", "index.ts"),
     },
     output: {
       path: path.resolve(__dirname, "dist", "js"),
