@@ -27,4 +27,4 @@ function generateUniqueId(){
   return _.uniqueId();
 }
 
-export { querySelector, createBaseElement, extendObject,clone,generateUniqueId };
+export { querySelector, createBaseElement, extendObject,clone,generateUniqueId};

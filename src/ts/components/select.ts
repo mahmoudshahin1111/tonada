@@ -1,7 +1,11 @@
-import { clone, createBaseElement } from "../utils/common";
+import _ from "lodash";
+import { createBaseElement } from "../utils/common";
 import { PREFIX } from "../utils/defaults";
 import { BaseElement } from "./base-element";
 import { Component } from "./component";
+
+
+
 export function getDefaultSelectOptions(): SelectOptions {
   return {
     search: false,
@@ -18,6 +22,8 @@ export class Select extends Component {
   private select: BaseElement;
   private selectHeader: SelectHeader;
   private selectMenu: SelectMenu;
+  onOptionSelected: (optionValue: string) => void;
+  onOptionRemoved: (optionValue: string) => void;
   constructor(element: BaseElement, public options?: SelectOptions) {
     super(element);
   }
@@ -28,92 +34,102 @@ export class Select extends Component {
     this.element.addClass(`${PREFIX}-select`);
     this.select.hide();
     this.selectHeader = new SelectHeader(
-      createBaseElement(document.createElement("div")),
-      this.options
+      createBaseElement(document.createElement("div"))
     );
     this.selectHeader.build();
-    this.element.element.appendChild(this.selectHeader.getElement());
+    this.element.element.appendChild(this.selectHeader.element.element);
     this.selectMenu = new SelectMenu(
       createBaseElement(document.createElement("div")),
       (this.select.element as HTMLSelectElement).options
     );
     this.selectMenu.build();
-    this.element.element.appendChild(this.selectMenu.getElement());
+    this.element.element.appendChild(this.selectMenu.element.element);
+    const selectOptions = this.select.querySelector(":scope > option");
     this.selectMenu.onSelect = (selectedOption: SelectOption) => {
-      this.selectHeader.setOption(selectedOption);
-      this.select.querySelector(":scope > option").forEach((option) => {
-        if (this.options.multiple) {
-          if (
-            (option.element as HTMLOptionElement).value ===
-              selectedOption.value &&
-            !(option.element as HTMLOptionElement).selected
-          ) {
-            (option.element as HTMLOptionElement).setAttribute("selected", "");
-          } else if (
-            (option.element as HTMLOptionElement).value ===
-              selectedOption.value &&
-            (option.element as HTMLOptionElement).selected
-          ) {
-            (option.element as HTMLOptionElement).removeAttribute("selected");
+      this.onOptionSelected(selectedOption.value);
+      if (this.options.multiple) {
+        selectOptions.forEach((option) => {
+          const optionElement = option.element as HTMLOptionElement;
+          if (!optionElement.selected) {
+            optionElement.setAttribute("selected", "");
+            this.selectHeader.setOption(selectedOption, this.options.multiple);
+            selectedOption.disable();
+          } else {
+            optionElement.removeAttribute("selected");
+            this.selectHeader.removeOption(
+              selectedOption,
+              this.options.multiple
+            );
+            selectedOption.enable();
           }
-        }else{
-          if (
-            (option.element as HTMLOptionElement).value === selectedOption.value
-          ) {
-            (option.element as HTMLOptionElement).setAttribute("selected", "");
-          }else{
-            (option.element as HTMLOptionElement).removeAttribute("selected");
+        });
+      } else {
+        selectOptions.forEach((option) => {
+          const optionElement = option.element as HTMLOptionElement;
+          if (!optionElement.selected) {
+            optionElement.setAttribute("selected", "");
+            this.selectHeader.setOption(selectedOption, false);
+            selectedOption.disable();
+          } else {
+            optionElement.removeAttribute("selected");
+            this.selectHeader.removeOption(selectedOption, false);
+            selectedOption.enable();
           }
-        }
-
-      });
+        });
+      }
     };
   }
 }
+
+
 export class SelectHeader extends Component {
-  private options: SelectOption[] = [];
-  constructor(element: BaseElement, private selectOptions: SelectOptions) {
+  private options: ISelectHeaderOption[] = [];
+  constructor(element: BaseElement) {
     super(element);
   }
   build(): void {
     this.element.addClass(`${PREFIX}-select-header`);
   }
-  getElement() {
-    return this.element.element;
-  }
-  setOption(option: SelectOption) {
-    if (this.selectOptions.multiple) {
-      const selectedOption = this.options.find(o=>o.value === option.value); 
-      if(!selectedOption){
-        this.options.push(clone(option));
-        const selectHeaderTag = new SelectHeaderTag(option);
-        this.element.element.appendChild(selectHeaderTag.baseElement.element);
-        option.disable();
-      }else{
-        this.options = this.options.filter(o=>o.value!==o.value);
-        option.enable();
-        this.element.element.removeChild(option.baseElement.element);
-      }
- 
+  removeOption(option: SelectOption, multi?: boolean) {
+    if (multi && this.options.length > 1) {
+      const existsOptionIndex = this.options.findIndex(
+        (o) => o.selectOption.baseElement.key === option.baseElement.key
+      );
+      this.options[existsOptionIndex].baseElement.element.remove();
+      this.options.splice(existsOptionIndex, 1);
     } else {
       this.element.element.innerHTML = "";
-      this.options = [option];
-      const selectHeaderOption = new SelectHeaderOption(option);
-      this.element.element.appendChild(selectHeaderOption.baseElement.element);
+      this.options = [];
     }
   }
+  setOption(option: SelectOption, multi?: boolean) {
+    let headerOption: ISelectHeaderOption;
+    if (multi) {
+      headerOption = new SelectHeaderTag(option);
+      this.options.push(headerOption);
+    } else {
+      this.removeOption(option);
+      headerOption = new SelectHeaderItem(option);
+      this.options = [headerOption];
+    }
+    this.element.appendChild(headerOption.baseElement);
+  }
 }
-export class SelectHeaderTag {
+export interface ISelectHeaderOption {
+  selectOption: SelectOption;
   baseElement: BaseElement;
-  constructor(selectOption: SelectOption) {
+}
+export class SelectHeaderTag implements ISelectHeaderOption {
+  baseElement: BaseElement;
+  constructor(public selectOption: SelectOption) {
     this.baseElement = createBaseElement(document.createElement("button"));
     this.baseElement.addClass(`${PREFIX}-select-header-tag`);
     this.baseElement.element.innerText = selectOption.label;
   }
 }
-export class SelectHeaderOption {
+export class SelectHeaderItem implements ISelectHeaderOption {
   baseElement: BaseElement;
-  constructor(selectOption: SelectOption) {
+  constructor(public selectOption: SelectOption) {
     this.baseElement = createBaseElement(document.createElement("div"));
     this.baseElement.addClass(`${PREFIX}-select-header-option`);
     this.baseElement.element.innerText = selectOption.label;
@@ -127,10 +143,10 @@ export class SelectMenu extends Component {
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
       const selectOption = new SelectOption(option);
+      this.options.push(selectOption);
       selectOption.baseElement.onEvent("click", () => {
         this.onSelect(selectOption);
       });
-      this.options.push(selectOption);
     }
   }
   build(): void {
@@ -138,9 +154,6 @@ export class SelectMenu extends Component {
     this.options.forEach((option) => {
       this.element.element.appendChild(option.baseElement.element);
     });
-  }
-  getElement() {
-    return this.element.element;
   }
 }
 export class SelectOption {
@@ -153,11 +166,12 @@ export class SelectOption {
     this.label = option.innerHTML;
     this.value = option.value;
     this.baseElement.element.innerHTML = this.label;
+    this.baseElement.setAttribute(`data-${PREFIX}-value`, option.value);
   }
-  disable(){
+  disable() {
     this.baseElement.addClass(`${PREFIX}-select-option-disabled`);
   }
-  enable(){
+  enable() {
     this.baseElement.removeClass(`${PREFIX}-select-option-disabled`);
   }
 }

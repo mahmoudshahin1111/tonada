@@ -1,10 +1,17 @@
-import { generateUniqueId, querySelector } from "../utils/common";
-import { PREFIX } from "../utils/defaults";
+import {
+  generateUniqueId,
+  querySelector,
+} from "../utils/common";
+import { KEY_ATTRIBUTE_NAME } from "../utils/defaults";
 
 export class BaseElement {
   key: string;
   constructor(public element: HTMLElement) {
-    this.element.setAttribute(`data-${PREFIX}-key`, generateUniqueId());
+    this.key = generateUniqueId();
+    this.element.setAttribute(KEY_ATTRIBUTE_NAME, this.key);
+  }
+  appendChild(baseElement:BaseElement){
+    this.element.appendChild(baseElement.element);
   }
   getAttributes(): { name: string; value: string }[] {
     return this.element.getAttributeNames().map((name) => {
