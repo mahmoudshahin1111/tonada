@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
   "main": "index.js",
-  "repository": {
-    "url": "https://github.com/mahmoudshahin1111/tonada"
-  },
   "scripts": {
     "build": "node scripts/build.js",
     "serve": "node scripts/serve.js"
