@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dist/css/tornada.css">
+    <link rel="stylesheet" href="../dist/css/icons.css">
+    <link rel="stylesheet" href="../dist/css/select.css">
     <title>Tonada</title>
     <link rel="stylesheet" href="./assets/css/_layout.css">
 </head>
 
 <body>
     <div id="tonada-default-select">
+        <select>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+    </div>
+    <div id="tonada-multiselect-select">
         <select multiple="multiple">
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
@@ -23,10 +31,9 @@
 <script src="../dist/js/select.js"></script>
 <script src="../dist/js/index.js"></script>
 <script>
-    console.log(Tonada);
     window.document.addEventListener('DOMContentLoaded', () => {
-        const element = document.querySelector('#tonada-default-select');
-        const slider = Tonada.create('select', element);
+        Tonada.create('select', document.querySelector('#tonada-default-select'));
+        Tonada.create('select', document.querySelector('#tonada-multiselect-select'));
     })
 
 </script>

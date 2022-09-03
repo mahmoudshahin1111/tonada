@@ -1,23 +1,2 @@
-$prefix: "tonada";
-$font-size: 16px !default;
-$colors: (
-  primary: #1c3879,
-  secondary: #607eaa,
-  success: #30dd78,
-  danger: #ff004c,
-  black: #000000,
-) !default;
-$breakpoints: (
-  sm: 480px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1200px,
-) !default;
-$font-family: "Courier New", Courier, monospace !default;
-$border-radius: 6px !default;
-$input-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
-$input-invalid-text-color: map-get($colors, "danger") !default;
-$input-invalid-shadow-box: 0px 0px 1px 1px map-get($colors, "danger") !default;
-$input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($colors, "primary"), 1) !default;
-$input-border-radius: $border-radius !default;
-$form-control-height: 40px !default;
+@import "./variables";
+@import "./mixins";

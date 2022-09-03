@@ -1,0 +1,48 @@
+@import "./core.scss";
+.#{$prefix}-select {
+  --#{$prefix}-background-color: #{map-get($colors, "primary")};
+  --#{$prefix}-active-page: #{map-get($colors, "primary")};
+  --#{$prefix}-page: #{map-get($colors, "secondary")};
+}
+
+.#{$prefix}-select {
+  @include border-radius;
+  @include flex-column;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+  height: 45px;
+  border: 1px solid black;
+  position: relative;
+  &-header {
+    @include flex-row;
+    align-items: center;
+    border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 4px;
+    gap: 8px;
+    &-option {
+      border: 1px solid darkcyan;
+    }
+    &-tag {
+      border: 1px solid goldenrod;
+    }
+  }
+  &-option {
+  }
+  &-menu {
+    @include border-radius;
+    @include flex-column;
+    @include padding;
+    border: 1px solid green;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    gap: 10px;
+  }
+}

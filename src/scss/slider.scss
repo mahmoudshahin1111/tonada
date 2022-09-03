@@ -1,3 +1,4 @@
+@import "./core.scss";
 .#{$prefix}-slider {
   --#{$prefix}-background-color: #{map-get($colors, "primary")};
   --#{$prefix}-active-page: #{map-get($colors, "primary")};
