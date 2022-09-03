@@ -4,12 +4,11 @@
   "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
   "main": "index.js",
   "scripts": {
-    "build:ts": "webpack",
-    "build:sass": "sass --no-source-map ./src/scss/index.scss ./dist/css/tornada.css",
-    "build": "npm run build:ts && npm run build:sass",
-    "serve:ts": "webpack --watch",
-    "serve:sass": "sass --no-source-map --watch ./src/scss/_index.scss ./dist/css/tornada.css",
-    "serve": "npx concurrently \"npm:serve:ts\" \"npm:serve:sass\""
+    "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js"
+  },
+  "repository": {
+    "url": "https://github.com/mahmoudshahin1111/tonada"
   },
   "keywords": [
     "ui-kit"
@@ -17,37 +16,45 @@
   "author": "codexline",
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash": "^4.14.184",
     "concurrently": "^7.3.0",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "components":[
+  "packages": [
     {
-      "name":"slider",
-      "className":"TonadaSlider",
-      "path":"src/ts/components/slider.ts"
+      "name": "slider",
+      "className": "TonadaSlider",
+      "path": "src/packages/slider/index.ts"
     },
     {
-      "name":"input",
-      "className":"TonadaInput",
-      "path":"src/ts/components/input.ts"
+      "name": "input",
+      "className": "TonadaInput",
+      "path": "src/packages/input/index.ts"
     },
     {
-      "name":"input-password",
-      "className":"TonadaInputPassword",
-      "path":"src/ts/components/input-password.ts"
+      "name": "input-password",
+      "className": "TonadaInputPassword",
+      "path": "src/packages/input-password/index.ts"
     },
     {
-      "name":"accordion",
-      "className":"TonadaAccordion",
-      "path":"src/ts/components/accordion.ts"
+      "name": "accordion",
+      "className": "TonadaAccordion",
+      "path": "src/packages/accordion/index.ts"
     },
     {
-      "name":"select",
-      "className":"TonadaSelect",
-      "path":"src/ts/components/select.ts"
+      "name": "select",
+      "className": "TonadaSelect",
+      "path": "src/packages/select/index.ts"
     }
+  ],
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "lodash": "^4.17.21"
+  },
+  "workspaces": [
+    "src/packages/*"
   ]
 }

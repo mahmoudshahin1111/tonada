@@ -14,7 +14,6 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  devtool: "source-map",
 };
 
 module.exports = [

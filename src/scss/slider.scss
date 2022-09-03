@@ -1,0 +1,69 @@
+@import "./core.scss";
+.#{$prefix}-slider {
+  --#{$prefix}-background-color: #{map-get($colors, "primary")};
+  --#{$prefix}-active-page: #{map-get($colors, "primary")};
+  --#{$prefix}-page: #{map-get($colors, "secondary")};
+}
+.#{$prefix}-slider {
+  @include border-radius;
+  @include flex-column;
+  background-color: var(--#{$prefix}-background-color);
+  position: relative;
+  justify-content: center;
+  & > .#{$prefix}-list {
+    @include flex-row;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+    overflow-x: hidden;
+    height: 200px;
+    & > .#{$prefix}-list-item {
+      @include flex-column;
+      position: absolute;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      color: #ffffff;
+    }
+  }
+  & > .#{$prefix}-slider-button {
+    @include border-radius;
+    @include clickable;
+    position: absolute;
+    outline: 0;
+    border: 0;
+    background: transparent;
+    z-index: 2;
+    &.#{$prefix}-next {
+      right: 1em;
+    }
+    &.#{$prefix}-prev {
+      left: 1em;
+    }
+  }
+  & > .#{$prefix}-slider-paginator {
+    @include flex-row;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0.5em;
+    gap: 0.5em;
+    z-index: 2;
+    & > .#{$prefix}-slider-paginator-page {
+      @include border-radius;
+      @include clickable;
+      background-color: var(--#{$prefix}-page);
+      width: 2em;
+      height: 0.5em;
+      opacity: 0.5;
+      transition: all 0.3s ease-in-out;
+      &.#{$prefix}-active {
+        background-color: white;
+        opacity: 1;
+        width: 2.5em;
+      }
+    }
+  }
+}

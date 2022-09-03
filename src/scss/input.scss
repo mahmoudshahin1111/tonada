@@ -1,0 +1,134 @@
+@import "./core.scss";
+$input-prefix: #{$prefix}-control;
+.#{$input-prefix} {
+  --#{$prefix}-shadow-box: #{$input-shadow-box};
+  --#{$prefix}-invalid-shadow-box: #{$input-invalid-shadow-box};
+  --#{$prefix}-invalid-text-color: #{$input-invalid-text-color};
+  --#{$prefix}-height: #{$form-control-height};
+  --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
+}
+.#{$input-prefix} {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--#{$prefix}-height);
+  font-size: var(--#{$prefix}-font-size);
+  * {
+    box-sizing: border-box;
+    font-size: var(--#{$prefix}-shadow-box);
+  }
+  & > .#{$prefix}-input {
+    border: 0;
+    box-shadow: var(--#{$prefix}-shadow-box);
+    padding: 0 1em;
+    width: 100%;
+    transition: all 0.1s;
+    outline: none;
+    border-radius: $border-radius;
+    height: 100%;
+    &:focus {
+      outline: none;
+      box-shadow: $input-focused-shadow-box;
+    }
+  }
+  &.#{$prefix}-invalid {
+    & > .#{$prefix}-input {
+      box-shadow: var(--#{$prefix}-invalid-shadow-box);
+      &:focus {
+        box-shadow: var(--#{$prefix}-invalid-shadow-box);
+      }
+    }
+    & > label {
+      color: var(--#{$prefix}-invalid-text-color);
+    }
+  }
+
+  &.#{$prefix}-sm {
+    font-size: calc(var(--#{$prefix}-font-size) - 0.2em);
+  }
+  &.#{$prefix}-lg {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.2em);
+  }
+  &.#{$prefix}-xl {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.4em);
+  }
+
+  &.floating-label {
+    & > label {
+      position: absolute;
+      font-size: 1em;
+      transition: all 0.1s ease-in-out;
+      background-color: #ffffff;
+      transform: translateX(12px);
+      height: 0.8em;
+      left: 0;
+    }
+    & > .#{$prefix}-input::placeholder {
+      opacity: 0;
+    }
+    & > .#{$prefix}-input:not(:placeholder-shown) + label {
+      transform: translate(
+        calc(var(--#{$prefix}-height) / 3),
+        calc(var(--#{$prefix}-height) / -1.7)
+      );
+      font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
+    }
+    & > .#{$prefix}-input:placeholder-shown + label {
+      transform: translate(calc(var(--#{$prefix}-height) / 3), -5px);
+      background-color: transparent;
+    }
+    & > .#{$prefix}-input:placeholder-shown:focus + label {
+      transform: translate(
+        calc(var(--#{$prefix}-height) / 3),
+        calc(var(--#{$prefix}-height) / -1.7)
+      );
+      background-color: #ffffff;
+    }
+    & > .#{$prefix}-input:focus + label {
+      font-size: calc(var(--#{$prefix}-font-size) - 0.5em);
+    }
+  }
+
+  &.#{$prefix}-input-group {
+    box-shadow: $input-shadow-box;
+    box-shadow: $input-focused-shadow-box;
+    display: flex;
+    flex-direction: row;
+    background-color: map-get($colors, "secondary");
+    border-radius: $border-radius;
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2em;
+      color: #ffffff;
+      user-select: none;
+      padding: 0 1em;
+    }
+    & > .#{$prefix}-control {
+      flex: 1;
+    }
+    & > .#{$prefix}-control > .#{$prefix}-input,
+    & > .#{$prefix}-input {
+      border: 0;
+      box-shadow: none;
+
+      outline: none;
+      border-radius: 0px;
+      &:focus {
+        outline: none;
+        box-shadow: $input-focused-shadow-box;
+      }
+    }
+  }
+}
+
+.#{$prefix}-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #{$input-invalid-text-color};
+}
