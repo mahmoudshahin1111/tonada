@@ -1,0 +1,48 @@
+.tonada-select {
+  --tonada-background-color: #1c3879;
+  --tonada-active-page: #1c3879;
+  --tonada-page: #607eaa;
+}
+
+.tonada-select {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 45px;
+  border: 1px solid black;
+  position: relative;
+}
+.tonada-select * {
+  box-sizing: border-box;
+}
+.tonada-select-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 4px;
+  gap: 8px;
+}
+.tonada-select-header-option {
+  border: 1px solid darkcyan;
+}
+.tonada-select-header-tag {
+  border: 1px solid goldenrod;
+}
+.tonada-select-menu {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.2em 0.9em;
+  border: 1px solid green;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  gap: 10px;
+}

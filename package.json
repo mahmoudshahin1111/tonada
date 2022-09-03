@@ -3,16 +3,12 @@
   "version": "1.0.0",
   "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
   "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js"
+  },
   "repository": {
     "url": "https://github.com/mahmoudshahin1111/tonada"
-  },
-  "scripts": {
-    "build:ts": "webpack",
-    "build:sass": "sass --no-source-map ./src/scss/index.scss ./dist/css/tornada.css",
-    "build": "npm run build:ts && npm run build:sass",
-    "serve:ts": "webpack --watch",
-    "serve:sass": "sass --no-source-map --watch ./src/scss/_index.scss ./dist/css/tornada.css",
-    "serve": "npx concurrently \"npm:serve:ts\" \"npm:serve:sass\""
   },
   "keywords": [
     "ui-kit"
@@ -55,6 +51,7 @@
     }
   ],
   "dependencies": {
+    "chalk": "^3.0.0",
     "lodash": "^4.17.21"
   },
   "workspaces": [

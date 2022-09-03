@@ -1,3 +1,4 @@
+@import "./core.scss";
 $accordion-prefix: #{$prefix}-accordion;
 .#{$accordion-prefix} {
   --#{$prefix}-primary-color: #{map-get($colors, "primary")};
