@@ -11,13 +11,13 @@ export function create(element: HTMLDivElement) {
 }
 export class Accordion extends Component {
   private _sections = new Array<AccordionSection>();
-  constructor(element: BaseElement) {
+  constructor(element: BaseElement<HTMLDivElement>) {
     super(element);
   }
   build(): void {
     this.element
       .querySelector(`:scope > .${PREFIX}-accordion-section`)
-      .forEach((section) => {
+      .forEach((section:BaseElement<HTMLDivElement>) => {
         const accordionSection = new AccordionSection(section);
         accordionSection.onToggled = () =>
           this.closeTheOthersExcept(accordionSection);
@@ -37,11 +37,11 @@ export class Accordion extends Component {
 }
 
 class AccordionSection {
-  private _header: BaseElement;
-  private _content: BaseElement;
+  private _header: BaseElement<HTMLElement>;
+  private _content: BaseElement<HTMLElement>;
   private _contentHeight: number;
   onToggled: () => void;
-  constructor(private element: BaseElement) {
+  constructor(private element: BaseElement<HTMLDivElement>) {
     this._header = this.element
       .querySelector(`.${PREFIX}-accordion-header`)
       .at(0);

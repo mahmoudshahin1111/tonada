@@ -3,6 +3,7 @@
   --#{$prefix}-background-color: #{map-get($colors, "primary")};
   --#{$prefix}-active-page: #{map-get($colors, "primary")};
   --#{$prefix}-page: #{map-get($colors, "secondary")};
+  --#{$prefix}-shadow: #{$select-shadow-box};
 }
 
 .#{$prefix}-select {
@@ -38,11 +39,11 @@
     @include border-radius;
     @include flex-column;
     @include padding;
-    border: 1px solid green;
     position: absolute;
     top: 45px;
     left: 0;
     width: 100%;
     gap: 10px;
+    border: 1px solid green;
   }
 }

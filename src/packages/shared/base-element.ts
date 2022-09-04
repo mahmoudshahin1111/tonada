@@ -1,16 +1,13 @@
-import {
-  generateUniqueId,
-  querySelector,
-} from "./common";
+import { generateUniqueId, querySelector } from "./common";
 import { KEY_ATTRIBUTE_NAME } from "./defaults";
 
-export class BaseElement {
+export class BaseElement<T extends HTMLElement = any> {
   key: string;
-  constructor(public element: HTMLElement) {
+  constructor(public element: T) {
     this.key = generateUniqueId();
     this.element.setAttribute(KEY_ATTRIBUTE_NAME, this.key);
   }
-  appendChild(baseElement:BaseElement){
+  appendChild<T extends HTMLElement>(baseElement: BaseElement<T>) {
     this.element.appendChild(baseElement.element);
   }
   getAttributes(): { name: string; value: string }[] {
@@ -21,8 +18,8 @@ export class BaseElement {
       };
     });
   }
-  querySelector(query: string) {
-    return querySelector(this.element, query);
+  querySelector<S extends HTMLElement = any>(query: string):BaseElement<S>[] {
+    return querySelector<T,S>(this.element, query);
   }
   onEvent(eventKey: string, callback: (e: Event) => void) {
     this.element.addEventListener(eventKey, callback);

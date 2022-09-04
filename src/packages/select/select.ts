@@ -18,63 +18,72 @@ export function create(element: HTMLDivElement, config?: SelectOptions) {
 }
 
 export class Select extends Component {
-  private select: BaseElement;
+  private select: BaseElement<HTMLSelectElement>;
   private selectHeader: SelectHeader;
   private selectMenu: SelectMenu;
   onOptionSelected: (optionValue: string) => void;
   onOptionRemoved: (optionValue: string) => void;
-  constructor(element: BaseElement, public options?: SelectOptions) {
+  constructor(element: BaseElement<HTMLSelectElement>, public options?: SelectOptions) {
     super(element);
   }
   build(): void {
     this.options = Object.assign(getDefaultSelectOptions(), this.options);
-    this.select = this.element.querySelector(":scope > select").at(0);
+    this.select = this.element.querySelector<HTMLSelectElement>(":scope > select").at(0);
     this.options.multiple = !!this.select.getAttribute("multiple");
     this.element.addClass(`${PREFIX}-select`);
     this.select.hide();
+    // create header
     this.selectHeader = new SelectHeader(
       createBaseElement(document.createElement("div"))
     );
     this.selectHeader.build();
     this.element.element.appendChild(this.selectHeader.element.element);
+    // create menu
+    const selectOptions = this.select.querySelector<HTMLOptionElement>(":scope > option");
     this.selectMenu = new SelectMenu(
       createBaseElement(document.createElement("div")),
-      (this.select.element as HTMLSelectElement).options
+      selectOptions
     );
     this.selectMenu.build();
     this.element.element.appendChild(this.selectMenu.element.element);
-    const selectOptions = this.select.querySelector(":scope > option");
+    // on option selected disable the unselected and enable the selected options
     this.selectMenu.onSelect = (selectedOption: SelectOption) => {
       if (this.options.multiple) {
-        const option = selectOptions.find(s=>(s.element as HTMLOptionElement).value === selectedOption.value);
-        const optionElement = (option.element as HTMLOptionElement)
+        const option = selectOptions.find(
+          (s) => (s.element as HTMLOptionElement).value === selectedOption.value
+        );
+        const optionElement = option.element as HTMLOptionElement;
         if (!optionElement.selected) {
           optionElement.setAttribute("selected", "");
           this.selectHeader.setOption(selectedOption, this.options.multiple);
           selectedOption.disable();
-          this.onOptionSelected ? this.onOptionSelected(selectedOption.value) : null;
+          this.onOptionSelected
+            ? this.onOptionSelected(selectedOption.value)
+            : null;
         } else {
           optionElement.removeAttribute("selected");
-          this.selectHeader.removeOption(
-            selectedOption,
-            this.options.multiple
-          );
+          this.selectHeader.removeOption(selectedOption, this.options.multiple);
           selectedOption.enable();
-          this.onOptionRemoved ? this.onOptionRemoved(selectedOption.value) : null;
+          this.onOptionRemoved
+            ? this.onOptionRemoved(selectedOption.value)
+            : null;
         }
       } else {
         selectOptions.forEach((option) => {
           const optionElement = option.element as HTMLOptionElement;
-          if (optionElement.value === selectedOption.value && !optionElement.selected) {
+          if (optionElement.value === selectedOption.value) {
             optionElement.setAttribute("selected", "");
             this.selectHeader.setOption(selectedOption, false);
             selectedOption.disable();
-            this.onOptionSelected ? this.onOptionSelected(selectedOption.value) : null;
+            this.onOptionSelected
+              ? this.onOptionSelected(selectedOption.value)
+              : null;
           } else {
             optionElement.removeAttribute("selected");
-            this.selectHeader.removeOption(selectedOption, false);
             selectedOption.enable();
-            this.onOptionRemoved ? this.onOptionRemoved(selectedOption.value) : null;
+            this.onOptionRemoved
+              ? this.onOptionRemoved(selectedOption.value)
+              : null;
           }
         });
       }
@@ -83,8 +92,8 @@ export class Select extends Component {
 }
 
 export class SelectHeader extends Component {
-  private options: ISelectHeaderOption[] = [];
-  constructor(element: BaseElement) {
+  private options: ISelectHeaderOption<HTMLDivElement>[] = [];
+  constructor(element: BaseElement<HTMLDivElement>) {
     super(element);
   }
   build(): void {
@@ -103,7 +112,7 @@ export class SelectHeader extends Component {
     }
   }
   setOption(option: SelectOption, multi?: boolean) {
-    let headerOption: ISelectHeaderOption;
+    let headerOption: ISelectHeaderOption<HTMLDivElement>;
     if (multi) {
       headerOption = new SelectHeaderTag(option);
       this.options.push(headerOption);
@@ -115,20 +124,20 @@ export class SelectHeader extends Component {
     this.element.appendChild(headerOption.baseElement);
   }
 }
-export interface ISelectHeaderOption {
+export interface ISelectHeaderOption<T extends HTMLElement> {
   selectOption: SelectOption;
-  baseElement: BaseElement;
+  baseElement: BaseElement<T>;
 }
-export class SelectHeaderTag implements ISelectHeaderOption {
-  baseElement: BaseElement;
+export class SelectHeaderTag implements ISelectHeaderOption<HTMLDivElement> {
+  baseElement: BaseElement<HTMLDivElement>;
   constructor(public selectOption: SelectOption) {
     this.baseElement = createBaseElement(document.createElement("button"));
     this.baseElement.addClass(`${PREFIX}-select-header-tag`);
     this.baseElement.element.innerText = selectOption.label;
   }
 }
-export class SelectHeaderItem implements ISelectHeaderOption {
-  baseElement: BaseElement;
+export class SelectHeaderItem implements ISelectHeaderOption<HTMLDivElement> {
+  baseElement: BaseElement<HTMLDivElement>;
   constructor(public selectOption: SelectOption) {
     this.baseElement = createBaseElement(document.createElement("div"));
     this.baseElement.addClass(`${PREFIX}-select-header-option`);
@@ -138,13 +147,15 @@ export class SelectHeaderItem implements ISelectHeaderOption {
 export class SelectMenu extends Component {
   private options: SelectOption[] = [];
   onSelect: (option: SelectOption) => void;
-  constructor(element: BaseElement, options: HTMLOptionsCollection) {
+  constructor(element: BaseElement<HTMLDivElement>, options: BaseElement<HTMLOptionElement>[]) {
     super(element);
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
       const selectOption = new SelectOption(option);
       this.options.push(selectOption);
       selectOption.baseElement.onEvent("click", () => {
+        console.log(selectOption, "clicked");
+
         this.onSelect(selectOption);
       });
     }
@@ -157,16 +168,19 @@ export class SelectMenu extends Component {
   }
 }
 export class SelectOption {
-  baseElement: BaseElement;
+  baseElement: BaseElement<HTMLOptionElement>;
   value: string;
   label: string;
-  constructor(option: HTMLOptionElement) {
+  constructor(option: BaseElement<HTMLOptionElement>) {
+    this.label = option.element.innerHTML;
+    this.value = (option.element as HTMLOptionElement).value;
     this.baseElement = createBaseElement(document.createElement("button"));
     this.baseElement.addClass(`${PREFIX}-select-option`);
-    this.label = option.innerHTML;
-    this.value = option.value;
     this.baseElement.element.innerHTML = this.label;
-    this.baseElement.setAttribute(`data-${PREFIX}-value`, option.value);
+    this.baseElement.setAttribute(
+      `data-${PREFIX}-value`,
+      (option.element as HTMLOptionElement).value
+    );
   }
   disable() {
     this.baseElement.addClass(`${PREFIX}-select-option-disabled`);

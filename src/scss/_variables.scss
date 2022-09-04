@@ -21,3 +21,5 @@ $input-invalid-shadow-box: 0px 0px 1px 1px map-get($colors, "danger") !default;
 $input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($colors, "primary"), 1) !default;
 $input-border-radius: $border-radius !default;
 $form-control-height: 40px !default;
+
+$select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
