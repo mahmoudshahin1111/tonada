@@ -17312,6 +17312,9 @@ var BaseElement = /** @class */ (function () {
     BaseElement.prototype.toggleClass = function (className) {
         this.element.classList.toggle(className);
     };
+    BaseElement.prototype.removeAttribute = function (name) {
+        this.element.removeAttribute(name);
+    };
     BaseElement.prototype.setAttribute = function (name, value) {
         this.element.setAttribute(name, value);
     };

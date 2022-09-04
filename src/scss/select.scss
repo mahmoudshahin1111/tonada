@@ -4,6 +4,7 @@
   --#{$prefix}-active-page: #{map-get($colors, "primary")};
   --#{$prefix}-page: #{map-get($colors, "secondary")};
   --#{$prefix}-shadow: #{$select-shadow-box};
+  --#{$prefix}-selected-option: rgba(0, 0, 0, 0.2);
 }
 
 .#{$prefix}-select {
@@ -14,26 +15,32 @@
     box-sizing: border-box;
   }
   height: 45px;
-  border: 1px solid black;
   position: relative;
+  box-shadow: var(--#{$prefix}-shadow);
   &-header {
     @include flex-row;
     align-items: center;
-    border: 1px solid red;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     padding: 4px;
-    gap: 8px;
+    gap: 4px;
     &-option {
-      border: 1px solid darkcyan;
+      box-shadow: var(--#{$prefix}-shadow);
     }
     &-tag {
-      border: 1px solid goldenrod;
+      box-shadow: var(--#{$prefix}-shadow);
     }
   }
   &-option {
+    outline: 0;
+    border:0;
+    background: transparent;
+    text-align: start;
+    &-selected{
+      background-color: var(--#{$prefix}-selected-option);
+    }
   }
   &-menu {
     @include border-radius;
@@ -43,7 +50,10 @@
     top: 45px;
     left: 0;
     width: 100%;
-    gap: 10px;
-    border: 1px solid green;
+    gap: 4px;
+    box-shadow: var(--#{$prefix}-shadow);
+    margin-top: 1px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 }

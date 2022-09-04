@@ -33,6 +33,9 @@ export class BaseElement<T extends HTMLElement = any> {
   toggleClass(className: string) {
     this.element.classList.toggle(className);
   }
+  removeAttribute(name: string) {
+    this.element.removeAttribute(name);
+  }
   setAttribute(name: string, value: string) {
     this.element.setAttribute(name, value);
   }

@@ -4,7 +4,7 @@ const { execSync, exec, spawn } = require("child_process");
 const chalk = require("chalk");
 const { srcPath, distPath, webpackConfig } = require("./utils/config");
 let lastChangeTimeout;
-execSync("npm run build");
+// execSync("npm run build");
 fs.watch(path.join(srcPath, "scss"), (changeType, fileName) => {
   if (lastChangeTimeout) return;
   lastChangeTimeout = setTimeout(() => {

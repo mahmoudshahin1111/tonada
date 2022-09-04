@@ -17237,7 +17237,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SelectOption = exports.SelectMenu = exports.SelectHeaderItem = exports.SelectHeaderTag = exports.SelectHeader = exports.Select = exports.create = exports.getDefaultSelectOptions = void 0;
+exports.MenuItem = exports.SelectMenu = exports.SelectHeaderItem = exports.SelectHeaderTag = exports.SelectHeader = exports.Select = exports.create = exports.getDefaultSelectOptions = void 0;
 var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
 function getDefaultSelectOptions() {
     return {
@@ -17254,16 +17254,18 @@ function create(element, config) {
 exports.create = create;
 var Select = /** @class */ (function (_super) {
     __extends(Select, _super);
-    function Select(element, options) {
+    function Select(element, selectConfig) {
         var _this = _super.call(this, element) || this;
-        _this.options = options;
+        _this.selectConfig = selectConfig;
         return _this;
     }
     Select.prototype.build = function () {
         var _this = this;
-        this.options = Object.assign(getDefaultSelectOptions(), this.options);
-        this.select = this.element.querySelector(":scope > select").at(0);
-        this.options.multiple = !!this.select.getAttribute("multiple");
+        this.selectConfig = Object.assign(getDefaultSelectOptions(), this.selectConfig);
+        this.select = this.element
+            .querySelector(":scope > select")
+            .at(0);
+        this.selectConfig.multiple = !!this.select.getAttribute("multiple");
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
         this.select.hide();
         // create header
@@ -17272,50 +17274,21 @@ var Select = /** @class */ (function (_super) {
         this.element.element.appendChild(this.selectHeader.element.element);
         // create menu
         var selectOptions = this.select.querySelector(":scope > option");
-        this.selectMenu = new SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), selectOptions);
+        this.selectMenu = new SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), selectOptions, this.selectConfig);
         this.selectMenu.build();
         this.element.element.appendChild(this.selectMenu.element.element);
         // on option selected disable the unselected and enable the selected options
         this.selectMenu.onSelect = function (selectedOption) {
-            if (_this.options.multiple) {
-                var option = selectOptions.find(function (s) { return s.element.value === selectedOption.value; });
-                var optionElement = option.element;
-                if (!optionElement.selected) {
-                    optionElement.setAttribute("selected", "");
-                    _this.selectHeader.setOption(selectedOption, _this.options.multiple);
-                    selectedOption.disable();
-                    _this.onOptionSelected
-                        ? _this.onOptionSelected(selectedOption.value)
-                        : null;
-                }
-                else {
-                    optionElement.removeAttribute("selected");
-                    _this.selectHeader.removeOption(selectedOption, _this.options.multiple);
-                    selectedOption.enable();
-                    _this.onOptionRemoved
-                        ? _this.onOptionRemoved(selectedOption.value)
-                        : null;
-                }
+            if (_this.selectConfig.multiple) {
+                _this.selectHeader.setOption(selectedOption, _this.selectConfig.multiple);
             }
             else {
-                selectOptions.forEach(function (option) {
-                    var optionElement = option.element;
-                    if (optionElement.value === selectedOption.value) {
-                        optionElement.setAttribute("selected", "");
-                        _this.selectHeader.setOption(selectedOption, false);
-                        selectedOption.disable();
-                        _this.onOptionSelected
-                            ? _this.onOptionSelected(selectedOption.value)
-                            : null;
-                    }
-                    else {
-                        optionElement.removeAttribute("selected");
-                        selectedOption.enable();
-                        _this.onOptionRemoved
-                            ? _this.onOptionRemoved(selectedOption.value)
-                            : null;
-                    }
-                });
+                _this.selectHeader.setOption(selectedOption, _this.selectConfig.multiple);
+            }
+        };
+        this.selectMenu.onDeSelect = function (selectedOption) {
+            if (_this.selectConfig.multiple) {
+                _this.selectHeader.removeOption(selectedOption, _this.selectConfig.multiple);
             }
         };
     };
@@ -17334,7 +17307,7 @@ var SelectHeader = /** @class */ (function (_super) {
     };
     SelectHeader.prototype.removeOption = function (option, multi) {
         if (multi && this.options.length > 1) {
-            var existsOptionIndex = this.options.findIndex(function (o) { return o.selectOption.baseElement.key === option.baseElement.key; });
+            var existsOptionIndex = this.options.findIndex(function (o) { return o.menuItem.baseElement.key === option.baseElement.key; });
             this.options[existsOptionIndex].baseElement.element.remove();
             this.options.splice(existsOptionIndex, 1);
         }
@@ -17360,37 +17333,58 @@ var SelectHeader = /** @class */ (function (_super) {
 }(tonada_shared_1.Component));
 exports.SelectHeader = SelectHeader;
 var SelectHeaderTag = /** @class */ (function () {
-    function SelectHeaderTag(selectOption) {
-        this.selectOption = selectOption;
+    function SelectHeaderTag(menuItem) {
+        this.menuItem = menuItem;
         this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
         this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-header-tag"));
-        this.baseElement.element.innerText = selectOption.label;
+        this.baseElement.element.innerText = menuItem.label;
     }
     return SelectHeaderTag;
 }());
 exports.SelectHeaderTag = SelectHeaderTag;
 var SelectHeaderItem = /** @class */ (function () {
-    function SelectHeaderItem(selectOption) {
-        this.selectOption = selectOption;
+    function SelectHeaderItem(menuItem) {
+        this.menuItem = menuItem;
         this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("div"));
         this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-header-option"));
-        this.baseElement.element.innerText = selectOption.label;
+        this.baseElement.element.innerText = menuItem.label;
     }
     return SelectHeaderItem;
 }());
 exports.SelectHeaderItem = SelectHeaderItem;
 var SelectMenu = /** @class */ (function (_super) {
     __extends(SelectMenu, _super);
-    function SelectMenu(element, options) {
+    function SelectMenu(element, options, selectConfig) {
         var _this = _super.call(this, element) || this;
-        _this.options = [];
+        _this.items = [];
         var _loop_1 = function (i) {
             var option = options[i];
-            var selectOption = new SelectOption(option);
-            this_1.options.push(selectOption);
-            selectOption.baseElement.onEvent("click", function () {
-                console.log(selectOption, "clicked");
-                _this.onSelect(selectOption);
+            var menuItem = new MenuItem(option);
+            this_1.items.push(menuItem);
+            menuItem.baseElement.onEvent("click", function () {
+                if (selectConfig.multiple) {
+                    if (!menuItem.selected) {
+                        menuItem.select();
+                        _this.onSelect(menuItem);
+                    }
+                    else if (menuItem.selected) {
+                        menuItem.deselect();
+                        _this.onDeSelect(menuItem);
+                    }
+                }
+                else {
+                    _this.items.forEach(function (item) {
+                        if (item.value === option.element.value) {
+                            if (item.selected)
+                                return;
+                            menuItem.select();
+                            _this.onSelect(menuItem);
+                        }
+                        else {
+                            item.deselect();
+                        }
+                    });
+                }
             });
         };
         var this_1 = this;
@@ -17402,15 +17396,16 @@ var SelectMenu = /** @class */ (function (_super) {
     SelectMenu.prototype.build = function () {
         var _this = this;
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select-menu"));
-        this.options.forEach(function (option) {
+        this.items.forEach(function (option) {
             _this.element.element.appendChild(option.baseElement.element);
         });
     };
     return SelectMenu;
 }(tonada_shared_1.Component));
 exports.SelectMenu = SelectMenu;
-var SelectOption = /** @class */ (function () {
-    function SelectOption(option) {
+var MenuItem = /** @class */ (function () {
+    function MenuItem(option) {
+        this.option = option;
         this.label = option.element.innerHTML;
         this.value = option.element.value;
         this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
@@ -17418,15 +17413,30 @@ var SelectOption = /** @class */ (function () {
         this.baseElement.element.innerHTML = this.label;
         this.baseElement.setAttribute("data-".concat(tonada_shared_1.PREFIX, "-value"), option.element.value);
     }
-    SelectOption.prototype.disable = function () {
-        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option-disabled"));
+    MenuItem.prototype.toggleSelect = function () {
+        this.selected ? this.deselect() : this.select();
     };
-    SelectOption.prototype.enable = function () {
-        this.baseElement.removeClass("".concat(tonada_shared_1.PREFIX, "-select-option-disabled"));
+    MenuItem.prototype.select = function () {
+        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
+        this.option.setAttribute("selected", "");
+        this.selected = true;
     };
-    return SelectOption;
+    MenuItem.prototype.deselect = function () {
+        this.baseElement.removeClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
+        this.option.removeAttribute("selected");
+        this.selected = false;
+    };
+    MenuItem.prototype.disable = function () {
+        this.baseElement.element.disabled = true;
+        this.option.element.disabled = true;
+    };
+    MenuItem.prototype.enable = function () {
+        this.baseElement.element.disabled = false;
+        this.option.element.disabled = false;
+    };
+    return MenuItem;
 }());
-exports.SelectOption = SelectOption;
+exports.MenuItem = MenuItem;
 
 
 /***/ }),
@@ -17475,6 +17485,9 @@ var BaseElement = /** @class */ (function () {
     };
     BaseElement.prototype.toggleClass = function (className) {
         this.element.classList.toggle(className);
+    };
+    BaseElement.prototype.removeAttribute = function (name) {
+        this.element.removeAttribute(name);
     };
     BaseElement.prototype.setAttribute = function (name, value) {
         this.element.setAttribute(name, value);
