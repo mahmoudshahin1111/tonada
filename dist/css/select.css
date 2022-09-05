@@ -1,9 +1,36 @@
+.tonada-ic, .tonada-select-header-tag .tonada-remove-button {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.tonada-ic-arrow {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+
+.tonada-ic-arrow-left {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+}
+
+.tonada-ic-arrow-right {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+  transform: rotate(180deg);
+}
+
+.tonada-ic-close, .tonada-select-header-tag .tonada-remove-button {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+}
+
 .tonada-select {
-  --tonada-background-color: #1c3879;
-  --tonada-active-page: #1c3879;
-  --tonada-page: #607eaa;
-  --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-header-tag-background-color: #1c3879;
+  --tonada-header-tag-color: #ffffff;
+  --tonada-menu-background: #ffffff;
+  --tonada-selected-option-background-color: #1c3879;
+  --tonada-selected-option-color: #ffffff;
   --tonada-selected-option: rgba(0, 0, 0, 0.2);
+  --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .tonada-select {
@@ -11,46 +38,92 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: 45px;
+  height: fit-content;
+  min-height: 45px;
   position: relative;
   box-shadow: var(--tonada-shadow);
 }
 .tonada-select * {
   box-sizing: border-box;
 }
+.tonada-select-expand-icon {
+  position: absolute;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  right: 8px;
+  top: 35%;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+.tonada-select-expand-icon.tonada-expanded {
+  transform: rotate(-180deg);
+}
 .tonada-select-header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 4px;
-  gap: 4px;
+  min-height: 45px;
+  width: 100%;
+  padding: 6px;
+  gap: 8px;
 }
 .tonada-select-header-option {
-  box-shadow: var(--tonada-shadow);
+  user-select: none;
 }
 .tonada-select-header-tag {
-  box-shadow: var(--tonada-shadow);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  user-select: none;
+  height: 40px;
+  padding: 6px 10px;
+  background-color: var(--tonada-header-tag-background-color);
+  color: var(--tonada-header-tag-color);
+  outline: 0;
+  border: 0;
+  font-size: 0.9em;
+}
+.tonada-select-header-tag .tonada-remove-button {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-color: var(--tonada-header-tag-color);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--tonada-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
 }
 .tonada-select-option {
+  padding: 6px 14px;
+  cursor: pointer;
+  user-select: none;
   outline: 0;
   border: 0;
   background: transparent;
   text-align: start;
 }
 .tonada-select-option-selected {
-  background-color: var(--tonada-selected-option);
+  background-color: var(--tonada-selected-option-background-color);
+  color: var(--tonada-selected-option-color);
+}
+.tonada-select-option:not(.tonada-select-option-selected):hover {
+  background-color: #d2ddf5;
+  color: black;
 }
 .tonada-select-menu {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  padding: 0.2em 0.9em;
+  z-index: 1000;
   position: absolute;
-  top: 45px;
   left: 0;
   width: 100%;
   gap: 4px;
@@ -58,4 +131,8 @@
   margin-top: 1px;
   padding-top: 4px;
   padding-bottom: 4px;
+  background-color: var(--tonada-menu-background);
+}
+.tonada-select-menu.tonada-hide {
+  display: none;
 }

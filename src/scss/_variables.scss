@@ -6,6 +6,7 @@ $colors: (
   success: #30dd78,
   danger: #ff004c,
   black: #000000,
+  "white":#ffffff,
 ) !default;
 $breakpoints: (
   sm: 480px,
@@ -15,6 +16,7 @@ $breakpoints: (
 ) !default;
 $font-family: "Courier New", Courier, monospace !default;
 $border-radius: 6px !default;
+$menu-index:1000 !default;
 $input-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
 $input-invalid-text-color: map-get($colors, "danger") !default;
 $input-invalid-shadow-box: 0px 0px 1px 1px map-get($colors, "danger") !default;
@@ -23,3 +25,4 @@ $input-border-radius: $border-radius !default;
 $form-control-height: 40px !default;
 
 $select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
+$select-menu-z-index:$menu-index !default;

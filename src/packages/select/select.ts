@@ -21,6 +21,7 @@ export class Select extends Component {
   private select: BaseElement<HTMLSelectElement>;
   private selectHeader: SelectHeader;
   private selectMenu: SelectMenu;
+  private menuIcon: BaseElement<HTMLSpanElement>;
   onOptionSelected: (optionValue: string) => void;
   onOptionRemoved: (optionValue: string) => void;
   constructor(
@@ -40,22 +41,40 @@ export class Select extends Component {
     this.selectConfig.multiple = !!this.select.getAttribute("multiple");
     this.element.addClass(`${PREFIX}-select`);
     this.select.hide();
+    // create expand icon
+    this.menuIcon = createBaseElement(document.createElement("span"));
+    this.menuIcon.addClass(`${PREFIX}-select-expand-icon`);
+    this.element.element.appendChild(this.menuIcon.element);
     // create header
     this.selectHeader = new SelectHeader(
       createBaseElement(document.createElement("div"))
     );
+    this.selectHeader.element.onEvent("click", (e) => {
+      if (
+        this.selectConfig.multiple &&
+        e.target !== this.selectHeader.element.element
+      )
+        return;
+      if (!this.selectMenu.opened) {
+        this.openMenu();
+      } else {
+        this.closeMenu();
+      }
+    });
     this.selectHeader.build();
-    this.element.element.appendChild(this.selectHeader.element.element);
+    this.element.appendChild(this.selectHeader.element);
     // create menu
     const selectOptions =
       this.select.querySelector<HTMLOptionElement>(":scope > option");
     this.selectMenu = new SelectMenu(
       createBaseElement(document.createElement("div")),
+      this,
       selectOptions,
+      this.menuIcon,
       this.selectConfig
     );
     this.selectMenu.build();
-    this.element.element.appendChild(this.selectMenu.element.element);
+    this.element.appendChild(this.selectMenu.element);
     // on option selected disable the unselected and enable the selected options
     this.selectMenu.onSelect = (selectedOption: MenuItem) => {
       if (this.selectConfig.multiple) {
@@ -72,6 +91,12 @@ export class Select extends Component {
         );
       }
     };
+  }
+  openMenu() {
+    this.selectMenu.open();
+  }
+  closeMenu() {
+    this.selectMenu.close();
   }
 }
 
@@ -112,12 +137,18 @@ export interface ISelectHeaderOption<T extends HTMLElement> {
   menuItem: MenuItem;
   baseElement: BaseElement<T>;
 }
+
 export class SelectHeaderTag implements ISelectHeaderOption<HTMLDivElement> {
   baseElement: BaseElement<HTMLDivElement>;
+  removeButton: BaseElement<HTMLButtonElement>;
   constructor(public menuItem: MenuItem) {
-    this.baseElement = createBaseElement(document.createElement("button"));
+    this.baseElement = createBaseElement(document.createElement("div"));
     this.baseElement.addClass(`${PREFIX}-select-header-tag`);
     this.baseElement.element.innerText = menuItem.label;
+    // create remove button
+    this.removeButton = createBaseElement(document.createElement("button"));
+    this.removeButton.addClass(`${PREFIX}-remove-button`);
+    this.baseElement.appendChild(this.removeButton);
   }
 }
 export class SelectHeaderItem implements ISelectHeaderOption<HTMLDivElement> {
@@ -129,13 +160,16 @@ export class SelectHeaderItem implements ISelectHeaderOption<HTMLDivElement> {
   }
 }
 export class SelectMenu extends Component {
+  opened: boolean = false;
   private items: MenuItem[] = [];
   onSelect: (option: MenuItem) => void;
   onDeSelect: (option: MenuItem) => void;
   constructor(
     element: BaseElement<HTMLDivElement>,
+    private select: Select,
     options: BaseElement<HTMLOptionElement>[],
-    selectConfig: SelectConfig
+    public menuIcon: BaseElement,
+    private selectConfig: SelectConfig
   ) {
     super(element);
     for (let i = 0; i < options.length; i++) {
@@ -162,14 +196,46 @@ export class SelectMenu extends Component {
             }
           });
         }
+        this.toggleMenuIcon();
+        if (!this.selectConfig.multiple) {
+          this.close();
+        }else{
+          this.recalculatePosition();
+        }
+
       });
     }
   }
   build(): void {
     this.element.addClass(`${PREFIX}-select-menu`);
+    this.element.addClass(`${PREFIX}-hide`);
     this.items.forEach((option) => {
       this.element.element.appendChild(option.baseElement.element);
     });
+  }
+  open(): void {
+    this.recalculatePosition();
+    this.element.removeClass(`${PREFIX}-hide`);
+    this.toggleMenuIcon();
+    this.opened = true;
+  }
+  close(): void {
+    this.element.addClass(`${PREFIX}-hide`);
+    this.toggleMenuIcon();
+    this.opened = false;
+  }
+  toggleMenuIcon() {
+    if (this.opened) {
+      this.menuIcon.removeClass(`${PREFIX}-expanded`);
+    } else {
+      this.menuIcon.addClass(`${PREFIX}-expanded`);
+    }
+  }
+  recalculatePosition() {
+    this.element.setStyle(
+      "top",
+      `${this.select.element.getHeight().toString()}px`
+    );
   }
 }
 export class MenuItem {

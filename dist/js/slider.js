@@ -17270,6 +17270,9 @@ var BaseElement = /** @class */ (function () {
     BaseElement.prototype.getHeight = function () {
         return this.element.getBoundingClientRect().height;
     };
+    BaseElement.prototype.getBottom = function () {
+        return this.getTop() + this.getHeight();
+    };
     BaseElement.prototype.getWidth = function () {
         return this.element.getBoundingClientRect().width;
     };

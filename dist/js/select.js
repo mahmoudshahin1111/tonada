@@ -17268,15 +17268,30 @@ var Select = /** @class */ (function (_super) {
         this.selectConfig.multiple = !!this.select.getAttribute("multiple");
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
         this.select.hide();
+        // create expand icon
+        this.menuIcon = (0, tonada_shared_1.createBaseElement)(document.createElement("span"));
+        this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-expand-icon"));
+        this.element.element.appendChild(this.menuIcon.element);
         // create header
         this.selectHeader = new SelectHeader((0, tonada_shared_1.createBaseElement)(document.createElement("div")));
+        this.selectHeader.element.onEvent("click", function (e) {
+            if (_this.selectConfig.multiple &&
+                e.target !== _this.selectHeader.element.element)
+                return;
+            if (!_this.selectMenu.opened) {
+                _this.openMenu();
+            }
+            else {
+                _this.closeMenu();
+            }
+        });
         this.selectHeader.build();
-        this.element.element.appendChild(this.selectHeader.element.element);
+        this.element.appendChild(this.selectHeader.element);
         // create menu
         var selectOptions = this.select.querySelector(":scope > option");
-        this.selectMenu = new SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), selectOptions, this.selectConfig);
+        this.selectMenu = new SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), this, selectOptions, this.menuIcon, this.selectConfig);
         this.selectMenu.build();
-        this.element.element.appendChild(this.selectMenu.element.element);
+        this.element.appendChild(this.selectMenu.element);
         // on option selected disable the unselected and enable the selected options
         this.selectMenu.onSelect = function (selectedOption) {
             if (_this.selectConfig.multiple) {
@@ -17291,6 +17306,12 @@ var Select = /** @class */ (function (_super) {
                 _this.selectHeader.removeOption(selectedOption, _this.selectConfig.multiple);
             }
         };
+    };
+    Select.prototype.openMenu = function () {
+        this.selectMenu.open();
+    };
+    Select.prototype.closeMenu = function () {
+        this.selectMenu.close();
     };
     return Select;
 }(tonada_shared_1.Component));
@@ -17335,9 +17356,13 @@ exports.SelectHeader = SelectHeader;
 var SelectHeaderTag = /** @class */ (function () {
     function SelectHeaderTag(menuItem) {
         this.menuItem = menuItem;
-        this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
+        this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("div"));
         this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-header-tag"));
         this.baseElement.element.innerText = menuItem.label;
+        // create remove button
+        this.removeButton = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
+        this.removeButton.addClass("".concat(tonada_shared_1.PREFIX, "-remove-button"));
+        this.baseElement.appendChild(this.removeButton);
     }
     return SelectHeaderTag;
 }());
@@ -17354,8 +17379,12 @@ var SelectHeaderItem = /** @class */ (function () {
 exports.SelectHeaderItem = SelectHeaderItem;
 var SelectMenu = /** @class */ (function (_super) {
     __extends(SelectMenu, _super);
-    function SelectMenu(element, options, selectConfig) {
+    function SelectMenu(element, select, options, menuIcon, selectConfig) {
         var _this = _super.call(this, element) || this;
+        _this.select = select;
+        _this.menuIcon = menuIcon;
+        _this.selectConfig = selectConfig;
+        _this.opened = false;
         _this.items = [];
         var _loop_1 = function (i) {
             var option = options[i];
@@ -17385,6 +17414,13 @@ var SelectMenu = /** @class */ (function (_super) {
                         }
                     });
                 }
+                _this.toggleMenuIcon();
+                if (!_this.selectConfig.multiple) {
+                    _this.close();
+                }
+                else {
+                    _this.recalculatePosition();
+                }
             });
         };
         var this_1 = this;
@@ -17396,9 +17432,32 @@ var SelectMenu = /** @class */ (function (_super) {
     SelectMenu.prototype.build = function () {
         var _this = this;
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select-menu"));
+        this.element.addClass("".concat(tonada_shared_1.PREFIX, "-hide"));
         this.items.forEach(function (option) {
             _this.element.element.appendChild(option.baseElement.element);
         });
+    };
+    SelectMenu.prototype.open = function () {
+        this.recalculatePosition();
+        this.element.removeClass("".concat(tonada_shared_1.PREFIX, "-hide"));
+        this.toggleMenuIcon();
+        this.opened = true;
+    };
+    SelectMenu.prototype.close = function () {
+        this.element.addClass("".concat(tonada_shared_1.PREFIX, "-hide"));
+        this.toggleMenuIcon();
+        this.opened = false;
+    };
+    SelectMenu.prototype.toggleMenuIcon = function () {
+        if (this.opened) {
+            this.menuIcon.removeClass("".concat(tonada_shared_1.PREFIX, "-expanded"));
+        }
+        else {
+            this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-expanded"));
+        }
+    };
+    SelectMenu.prototype.recalculatePosition = function () {
+        this.element.setStyle("top", "".concat(this.select.element.getHeight().toString(), "px"));
     };
     return SelectMenu;
 }(tonada_shared_1.Component));
@@ -17497,6 +17556,9 @@ var BaseElement = /** @class */ (function () {
     };
     BaseElement.prototype.getHeight = function () {
         return this.element.getBoundingClientRect().height;
+    };
+    BaseElement.prototype.getBottom = function () {
+        return this.getTop() + this.getHeight();
     };
     BaseElement.prototype.getWidth = function () {
         return this.element.getBoundingClientRect().width;

@@ -14,7 +14,9 @@ fs.watch(path.join(srcPath, "scss"), (changeType, fileName) => {
       "css",
       fileName.replace("scss", "css")
     );
-    execSync(`sass --no-source-map  ${absSrcPath} ${absDistPath}`);
+    exec(`sass --no-source-map  ${absSrcPath} ${absDistPath}`).stdout.on('data',(data=>{
+      console.log(data.toString('utf8'));
+    }))
     console.log(chalk.green(`${absSrcPath} ${changeType}`));
     console.log("----------------------------");
     lastChangeTimeout = null;

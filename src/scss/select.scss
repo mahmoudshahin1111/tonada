@@ -1,10 +1,14 @@
 @import "./core.scss";
+@import "./icons.scss";
 .#{$prefix}-select {
-  --#{$prefix}-background-color: #{map-get($colors, "primary")};
-  --#{$prefix}-active-page: #{map-get($colors, "primary")};
-  --#{$prefix}-page: #{map-get($colors, "secondary")};
-  --#{$prefix}-shadow: #{$select-shadow-box};
+  --#{$prefix}-header-tag-background-color: #{map-get($colors, "primary")};
+  --#{$prefix}-header-tag-color: #{map-get($colors, "white")};
+  --#{$prefix}-menu-background: #{map-get($colors, "white")};
+  --#{$prefix}-selected-option-background-color: #{map-get($colors, "primary")};
+  --#{$prefix}-selected-option-color: #{map-get($colors, "white")};
   --#{$prefix}-selected-option: rgba(0, 0, 0, 0.2);
+  --#{$prefix}-shadow: #{$select-shadow-box};
+
 }
 
 .#{$prefix}-select {
@@ -14,40 +18,88 @@
   * {
     box-sizing: border-box;
   }
-  height: 45px;
+  height: fit-content;
+  min-height: 45px;
   position: relative;
   box-shadow: var(--#{$prefix}-shadow);
+  &-expand-icon {
+    position: absolute;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    right: 8px;
+    top: 35%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+    &.#{$prefix}-expanded {
+      transform: rotate(-180deg);
+    }
+  }
   &-header {
     @include flex-row;
+    flex-wrap: wrap;
+    cursor: pointer;
     align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    padding: 4px;
-    gap: 4px;
+    min-height: 45px;
+    width: 100%;
+    padding: 6px;
+    gap: 8px;
     &-option {
-      box-shadow: var(--#{$prefix}-shadow);
+      user-select: none;
     }
     &-tag {
-      box-shadow: var(--#{$prefix}-shadow);
+      @include border-radius;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      user-select: none;
+      height: 40px;
+      padding: 6px 10px;
+      background-color: var(--#{$prefix}-header-tag-background-color);
+      color: var(--#{$prefix}-header-tag-color);
+      outline:0;
+      border: 0;
+      font-size: 0.9em;
+      .#{$prefix}-remove-button{
+        @extend .#{$prefix}-ic;
+        @extend .#{$prefix}-ic-close;
+        cursor: pointer;
+        display: inline-block;
+        outline:0;
+        border: 0;
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+        border-radius: 50%;
+        background-color: var(--#{$prefix}-header-tag-color);
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--#{$prefix}-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+      }
     }
   }
   &-option {
+    padding: 6px 14px;
+    cursor: pointer;
+    user-select: none;
     outline: 0;
-    border:0;
+    border: 0;
     background: transparent;
     text-align: start;
-    &-selected{
-      background-color: var(--#{$prefix}-selected-option);
+    &-selected {
+      background-color: var(--#{$prefix}-selected-option-background-color);
+      color: var(--#{$prefix}-selected-option-color);
+    }
+    &:not(&-selected):hover{
+      background-color: lighten(map-get($colors, "primary"), 60%);
+      color: black;
     }
   }
   &-menu {
     @include border-radius;
     @include flex-column;
-    @include padding;
+    z-index: $select-menu-z-index;
     position: absolute;
-    top: 45px;
     left: 0;
     width: 100%;
     gap: 4px;
@@ -55,5 +107,9 @@
     margin-top: 1px;
     padding-top: 4px;
     padding-bottom: 4px;
+    background-color: var(--#{$prefix}-menu-background);
+    &.#{$prefix}-hide {
+      display: none;
+    }
   }
 }

@@ -45,6 +45,9 @@ export class BaseElement<T extends HTMLElement = any> {
   getHeight(): number {
     return this.element.getBoundingClientRect().height;
   }
+  getBottom(): number {
+    return this.getTop() + this.getHeight();
+  }
   getWidth(): number {
     return this.element.getBoundingClientRect().width;
   }
