@@ -11,16 +11,16 @@
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Tonada = void 0;
-var tonada_1 = __webpack_require__(/*! ./tonada */ "./src/packages/tonada-core/tonada.ts");
+var tonada_1 = __webpack_require__(/*! ./src/tonada */ "./src/packages/tonada-core/src/tonada.ts");
 Object.defineProperty(exports, "Tonada", ({ enumerable: true, get: function () { return tonada_1.Tonada; } }));
 
 
 /***/ }),
 
-/***/ "./src/packages/tonada-core/tonada.ts":
-/*!********************************************!*\
-  !*** ./src/packages/tonada-core/tonada.ts ***!
-  \********************************************/
+/***/ "./src/packages/tonada-core/src/tonada.ts":
+/*!************************************************!*\
+  !*** ./src/packages/tonada-core/src/tonada.ts ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 

@@ -17213,18 +17213,47 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./src/packages/shared/base-element.ts":
-/*!*********************************************!*\
-  !*** ./src/packages/shared/base-element.ts ***!
-  \*********************************************/
+/***/ "./src/packages/shared/index.ts":
+/*!**************************************!*\
+  !*** ./src/packages/shared/index.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.querySelector = exports.generateUniqueId = exports.extendObject = exports.createBaseElement = exports.clone = exports.VERSION = exports.PREFIX = exports.KEY_ATTRIBUTE_NAME = exports.ATTRIBUTE_PREFIX = exports.Component = exports.BaseElement = void 0;
+var base_element_1 = __webpack_require__(/*! ./src/base-element */ "./src/packages/shared/src/base-element.ts");
+Object.defineProperty(exports, "BaseElement", ({ enumerable: true, get: function () { return base_element_1.BaseElement; } }));
+var component_1 = __webpack_require__(/*! ./src/component */ "./src/packages/shared/src/component.ts");
+Object.defineProperty(exports, "Component", ({ enumerable: true, get: function () { return component_1.Component; } }));
+var defaults_1 = __webpack_require__(/*! ./src/defaults */ "./src/packages/shared/src/defaults.ts");
+Object.defineProperty(exports, "ATTRIBUTE_PREFIX", ({ enumerable: true, get: function () { return defaults_1.ATTRIBUTE_PREFIX; } }));
+Object.defineProperty(exports, "KEY_ATTRIBUTE_NAME", ({ enumerable: true, get: function () { return defaults_1.KEY_ATTRIBUTE_NAME; } }));
+Object.defineProperty(exports, "PREFIX", ({ enumerable: true, get: function () { return defaults_1.PREFIX; } }));
+Object.defineProperty(exports, "VERSION", ({ enumerable: true, get: function () { return defaults_1.VERSION; } }));
+var common_1 = __webpack_require__(/*! ./src/common */ "./src/packages/shared/src/common.ts");
+Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return common_1.clone; } }));
+Object.defineProperty(exports, "createBaseElement", ({ enumerable: true, get: function () { return common_1.createBaseElement; } }));
+Object.defineProperty(exports, "extendObject", ({ enumerable: true, get: function () { return common_1.extendObject; } }));
+Object.defineProperty(exports, "generateUniqueId", ({ enumerable: true, get: function () { return common_1.generateUniqueId; } }));
+Object.defineProperty(exports, "querySelector", ({ enumerable: true, get: function () { return common_1.querySelector; } }));
+
+
+/***/ }),
+
+/***/ "./src/packages/shared/src/base-element.ts":
+/*!*************************************************!*\
+  !*** ./src/packages/shared/src/base-element.ts ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BaseElement = void 0;
-var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/common.ts");
-var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/defaults.ts");
+var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/src/common.ts");
+var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/src/defaults.ts");
 var BaseElement = /** @class */ (function () {
     function BaseElement(element) {
         this.element = element;
@@ -17291,6 +17320,9 @@ var BaseElement = /** @class */ (function () {
     BaseElement.prototype.hide = function () {
         this.setStyle("display", "none");
     };
+    BaseElement.prototype.remove = function () {
+        this.element.remove();
+    };
     return BaseElement;
 }());
 exports.BaseElement = BaseElement;
@@ -17298,10 +17330,10 @@ exports.BaseElement = BaseElement;
 
 /***/ }),
 
-/***/ "./src/packages/shared/common.ts":
-/*!***************************************!*\
-  !*** ./src/packages/shared/common.ts ***!
-  \***************************************/
+/***/ "./src/packages/shared/src/common.ts":
+/*!*******************************************!*\
+  !*** ./src/packages/shared/src/common.ts ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -17311,7 +17343,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generateUniqueId = exports.clone = exports.extendObject = exports.createBaseElement = exports.querySelector = void 0;
-var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/base-element.ts");
+var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/src/base-element.ts");
 var lodash_1 = __importDefault(__webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"));
 function querySelector(element, query) {
     var elements = [];
@@ -17344,10 +17376,10 @@ exports.generateUniqueId = generateUniqueId;
 
 /***/ }),
 
-/***/ "./src/packages/shared/component.ts":
-/*!******************************************!*\
-  !*** ./src/packages/shared/component.ts ***!
-  \******************************************/
+/***/ "./src/packages/shared/src/component.ts":
+/*!**********************************************!*\
+  !*** ./src/packages/shared/src/component.ts ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -17365,10 +17397,10 @@ exports.Component = Component;
 
 /***/ }),
 
-/***/ "./src/packages/shared/defaults.ts":
-/*!*****************************************!*\
-  !*** ./src/packages/shared/defaults.ts ***!
-  \*****************************************/
+/***/ "./src/packages/shared/src/defaults.ts":
+/*!*********************************************!*\
+  !*** ./src/packages/shared/src/defaults.ts ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -17383,39 +17415,10 @@ exports.KEY_ATTRIBUTE_NAME = "".concat(exports.ATTRIBUTE_PREFIX, "-key");
 
 /***/ }),
 
-/***/ "./src/packages/shared/index.ts":
-/*!**************************************!*\
-  !*** ./src/packages/shared/index.ts ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.querySelector = exports.generateUniqueId = exports.extendObject = exports.createBaseElement = exports.clone = exports.VERSION = exports.PREFIX = exports.KEY_ATTRIBUTE_NAME = exports.ATTRIBUTE_PREFIX = exports.Component = exports.BaseElement = void 0;
-var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/base-element.ts");
-Object.defineProperty(exports, "BaseElement", ({ enumerable: true, get: function () { return base_element_1.BaseElement; } }));
-var component_1 = __webpack_require__(/*! ./component */ "./src/packages/shared/component.ts");
-Object.defineProperty(exports, "Component", ({ enumerable: true, get: function () { return component_1.Component; } }));
-var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/defaults.ts");
-Object.defineProperty(exports, "ATTRIBUTE_PREFIX", ({ enumerable: true, get: function () { return defaults_1.ATTRIBUTE_PREFIX; } }));
-Object.defineProperty(exports, "KEY_ATTRIBUTE_NAME", ({ enumerable: true, get: function () { return defaults_1.KEY_ATTRIBUTE_NAME; } }));
-Object.defineProperty(exports, "PREFIX", ({ enumerable: true, get: function () { return defaults_1.PREFIX; } }));
-Object.defineProperty(exports, "VERSION", ({ enumerable: true, get: function () { return defaults_1.VERSION; } }));
-var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/common.ts");
-Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return common_1.clone; } }));
-Object.defineProperty(exports, "createBaseElement", ({ enumerable: true, get: function () { return common_1.createBaseElement; } }));
-Object.defineProperty(exports, "extendObject", ({ enumerable: true, get: function () { return common_1.extendObject; } }));
-Object.defineProperty(exports, "generateUniqueId", ({ enumerable: true, get: function () { return common_1.generateUniqueId; } }));
-Object.defineProperty(exports, "querySelector", ({ enumerable: true, get: function () { return common_1.querySelector; } }));
-
-
-/***/ }),
-
-/***/ "./src/packages/slider/slider.ts":
-/*!***************************************!*\
-  !*** ./src/packages/slider/slider.ts ***!
-  \***************************************/
+/***/ "./src/packages/slider/src/slider.ts":
+/*!*******************************************!*\
+  !*** ./src/packages/slider/src/slider.ts ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -17779,7 +17782,7 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.create = exports.Slider = void 0;
-var slider_1 = __webpack_require__(/*! ./slider */ "./src/packages/slider/slider.ts");
+var slider_1 = __webpack_require__(/*! ./src/slider */ "./src/packages/slider/src/slider.ts");
 Object.defineProperty(exports, "Slider", ({ enumerable: true, get: function () { return slider_1.Slider; } }));
 Object.defineProperty(exports, "create", ({ enumerable: true, get: function () { return slider_1.create; } }));
 

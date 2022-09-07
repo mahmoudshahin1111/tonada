@@ -1,4 +1,4 @@
-import { Accordion, create } from "./accordion";
+import { Accordion, create } from "./src/accordion";
 
 export { Accordion, create };
   

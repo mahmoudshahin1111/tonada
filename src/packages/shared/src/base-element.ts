@@ -66,4 +66,7 @@ export class BaseElement<T extends HTMLElement = any> {
   hide() {
     this.setStyle("display", "none");
   }
+  remove(){
+    this.element.remove();
+  }
 }

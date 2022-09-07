@@ -17213,10 +17213,80 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./src/packages/select/select.ts":
-/*!***************************************!*\
-  !*** ./src/packages/select/select.ts ***!
-  \***************************************/
+/***/ "./src/packages/select/src/_common.ts":
+/*!********************************************!*\
+  !*** ./src/packages/select/src/_common.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getDefaultSelectOptions = void 0;
+function getDefaultSelectOptions() {
+    return {
+        search: false,
+        multiple: false,
+    };
+}
+exports.getDefaultSelectOptions = getDefaultSelectOptions;
+
+
+/***/ }),
+
+/***/ "./src/packages/select/src/menu-item.ts":
+/*!**********************************************!*\
+  !*** ./src/packages/select/src/menu-item.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.MenuItem = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var MenuItem = /** @class */ (function () {
+    function MenuItem(option) {
+        this.option = option;
+        this.label = option.element.innerHTML;
+        this.value = option.element.value;
+        this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
+        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option"));
+        this.baseElement.element.innerHTML = this.label;
+        this.baseElement.setAttribute("data-".concat(tonada_shared_1.PREFIX, "-value"), option.element.value);
+    }
+    MenuItem.prototype.toggleSelect = function () {
+        this.selected ? this.deselect() : this.select();
+    };
+    MenuItem.prototype.select = function () {
+        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
+        this.option.setAttribute("selected", "");
+        this.selected = true;
+    };
+    MenuItem.prototype.deselect = function () {
+        this.baseElement.removeClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
+        this.option.removeAttribute("selected");
+        this.selected = false;
+    };
+    MenuItem.prototype.disable = function () {
+        this.baseElement.element.disabled = true;
+        this.option.element.disabled = true;
+    };
+    MenuItem.prototype.enable = function () {
+        this.baseElement.element.disabled = false;
+        this.option.element.disabled = false;
+    };
+    return MenuItem;
+}());
+exports.MenuItem = MenuItem;
+
+
+/***/ }),
+
+/***/ "./src/packages/select/src/select-header.ts":
+/*!**************************************************!*\
+  !*** ./src/packages/select/src/select-header.ts ***!
+  \**************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -17237,85 +17307,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.MenuItem = exports.SelectMenu = exports.SelectHeaderItem = exports.SelectHeaderTag = exports.SelectHeader = exports.Select = exports.create = exports.getDefaultSelectOptions = void 0;
+exports.SelectHeaderItem = exports.SelectHeaderTag = exports.SelectHeader = void 0;
 var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
-function getDefaultSelectOptions() {
-    return {
-        search: false,
-        multiple: false,
-    };
-}
-exports.getDefaultSelectOptions = getDefaultSelectOptions;
-function create(element, config) {
-    var component = new Select((0, tonada_shared_1.createBaseElement)(element), config);
-    component.build();
-    return component;
-}
-exports.create = create;
-var Select = /** @class */ (function (_super) {
-    __extends(Select, _super);
-    function Select(element, selectConfig) {
-        var _this = _super.call(this, element) || this;
-        _this.selectConfig = selectConfig;
-        return _this;
-    }
-    Select.prototype.build = function () {
-        var _this = this;
-        this.selectConfig = Object.assign(getDefaultSelectOptions(), this.selectConfig);
-        this.select = this.element
-            .querySelector(":scope > select")
-            .at(0);
-        this.selectConfig.multiple = !!this.select.getAttribute("multiple");
-        this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
-        this.select.hide();
-        // create expand icon
-        this.menuIcon = (0, tonada_shared_1.createBaseElement)(document.createElement("span"));
-        this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-expand-icon"));
-        this.element.element.appendChild(this.menuIcon.element);
-        // create header
-        this.selectHeader = new SelectHeader((0, tonada_shared_1.createBaseElement)(document.createElement("div")));
-        this.selectHeader.element.onEvent("click", function (e) {
-            if (_this.selectConfig.multiple &&
-                e.target !== _this.selectHeader.element.element)
-                return;
-            if (!_this.selectMenu.opened) {
-                _this.openMenu();
-            }
-            else {
-                _this.closeMenu();
-            }
-        });
-        this.selectHeader.build();
-        this.element.appendChild(this.selectHeader.element);
-        // create menu
-        var selectOptions = this.select.querySelector(":scope > option");
-        this.selectMenu = new SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), this, selectOptions, this.menuIcon, this.selectConfig);
-        this.selectMenu.build();
-        this.element.appendChild(this.selectMenu.element);
-        // on option selected disable the unselected and enable the selected options
-        this.selectMenu.onSelect = function (selectedOption) {
-            if (_this.selectConfig.multiple) {
-                _this.selectHeader.setOption(selectedOption, _this.selectConfig.multiple);
-            }
-            else {
-                _this.selectHeader.setOption(selectedOption, _this.selectConfig.multiple);
-            }
-        };
-        this.selectMenu.onDeSelect = function (selectedOption) {
-            if (_this.selectConfig.multiple) {
-                _this.selectHeader.removeOption(selectedOption, _this.selectConfig.multiple);
-            }
-        };
-    };
-    Select.prototype.openMenu = function () {
-        this.selectMenu.open();
-    };
-    Select.prototype.closeMenu = function () {
-        this.selectMenu.close();
-    };
-    return Select;
-}(tonada_shared_1.Component));
-exports.Select = Select;
 var SelectHeader = /** @class */ (function (_super) {
     __extends(SelectHeader, _super);
     function SelectHeader(element) {
@@ -17350,6 +17343,12 @@ var SelectHeader = /** @class */ (function (_super) {
         }
         this.element.appendChild(headerOption.baseElement);
     };
+    SelectHeader.prototype.clear = function () {
+        this.options.forEach(function (option) {
+            option.baseElement.remove();
+        });
+        this.options = [];
+    };
     return SelectHeader;
 }(tonada_shared_1.Component));
 exports.SelectHeader = SelectHeader;
@@ -17377,6 +17376,37 @@ var SelectHeaderItem = /** @class */ (function () {
     return SelectHeaderItem;
 }());
 exports.SelectHeaderItem = SelectHeaderItem;
+
+
+/***/ }),
+
+/***/ "./src/packages/select/src/select-menu.ts":
+/*!************************************************!*\
+  !*** ./src/packages/select/src/select-menu.ts ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SelectMenu = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var menu_item_1 = __webpack_require__(/*! ./menu-item */ "./src/packages/select/src/menu-item.ts");
 var SelectMenu = /** @class */ (function (_super) {
     __extends(SelectMenu, _super);
     function SelectMenu(element, select, options, menuIcon, selectConfig) {
@@ -17388,7 +17418,7 @@ var SelectMenu = /** @class */ (function (_super) {
         _this.items = [];
         var _loop_1 = function (i) {
             var option = options[i];
-            var menuItem = new MenuItem(option);
+            var menuItem = new menu_item_1.MenuItem(option);
             this_1.items.push(menuItem);
             menuItem.baseElement.onEvent("click", function () {
                 if (selectConfig.multiple) {
@@ -17456,62 +17486,172 @@ var SelectMenu = /** @class */ (function (_super) {
             this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-expanded"));
         }
     };
+    SelectMenu.prototype.clear = function () {
+        this.items.forEach(function (item) {
+            item.deselect();
+        });
+    };
     SelectMenu.prototype.recalculatePosition = function () {
         this.element.setStyle("top", "".concat(this.select.element.getHeight().toString(), "px"));
     };
     return SelectMenu;
 }(tonada_shared_1.Component));
 exports.SelectMenu = SelectMenu;
-var MenuItem = /** @class */ (function () {
-    function MenuItem(option) {
-        this.option = option;
-        this.label = option.element.innerHTML;
-        this.value = option.element.value;
-        this.baseElement = (0, tonada_shared_1.createBaseElement)(document.createElement("button"));
-        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option"));
-        this.baseElement.element.innerHTML = this.label;
-        this.baseElement.setAttribute("data-".concat(tonada_shared_1.PREFIX, "-value"), option.element.value);
-    }
-    MenuItem.prototype.toggleSelect = function () {
-        this.selected ? this.deselect() : this.select();
-    };
-    MenuItem.prototype.select = function () {
-        this.baseElement.addClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
-        this.option.setAttribute("selected", "");
-        this.selected = true;
-    };
-    MenuItem.prototype.deselect = function () {
-        this.baseElement.removeClass("".concat(tonada_shared_1.PREFIX, "-select-option-selected"));
-        this.option.removeAttribute("selected");
-        this.selected = false;
-    };
-    MenuItem.prototype.disable = function () {
-        this.baseElement.element.disabled = true;
-        this.option.element.disabled = true;
-    };
-    MenuItem.prototype.enable = function () {
-        this.baseElement.element.disabled = false;
-        this.option.element.disabled = false;
-    };
-    return MenuItem;
-}());
-exports.MenuItem = MenuItem;
 
 
 /***/ }),
 
-/***/ "./src/packages/shared/base-element.ts":
-/*!*********************************************!*\
-  !*** ./src/packages/shared/base-element.ts ***!
-  \*********************************************/
+/***/ "./src/packages/select/src/select.ts":
+/*!*******************************************!*\
+  !*** ./src/packages/select/src/select.ts ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Select = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var select_header_1 = __webpack_require__(/*! ./select-header */ "./src/packages/select/src/select-header.ts");
+var select_menu_1 = __webpack_require__(/*! ./select-menu */ "./src/packages/select/src/select-menu.ts");
+var _common_1 = __webpack_require__(/*! ./_common */ "./src/packages/select/src/_common.ts");
+var Select = /** @class */ (function (_super) {
+    __extends(Select, _super);
+    function Select(element, selectConfig) {
+        var _this = _super.call(this, element) || this;
+        _this.selectConfig = selectConfig;
+        return _this;
+    }
+    Select.prototype.build = function () {
+        var _this = this;
+        this.selectConfig = Object.assign((0, _common_1.getDefaultSelectOptions)(), this.selectConfig);
+        this.select = this.element
+            .querySelector(":scope > select")
+            .at(0);
+        this.selectConfig.multiple = !!this.select.getAttribute("multiple");
+        this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
+        this.select.hide();
+        // create expand icon
+        this.menuIcon = (0, tonada_shared_1.createBaseElement)(document.createElement("span"));
+        if (this.selectConfig.multiple) {
+            this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-close-icon"));
+            this.menuIcon.onEvent("click", function () { return _this.clear(); });
+        }
+        else {
+            this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-expand-icon"));
+            this.menuIcon.onEvent("click", function () { return _this.toggleMenu(); });
+        }
+        this.element.element.appendChild(this.menuIcon.element);
+        // create header
+        this.selectHeader = new select_header_1.SelectHeader((0, tonada_shared_1.createBaseElement)(document.createElement("div")));
+        this.selectHeader.element.onEvent("click", function (e) {
+            if (_this.selectConfig.multiple &&
+                e.target !== _this.selectHeader.element.element)
+                return;
+            _this.toggleMenu();
+        });
+        this.selectHeader.build();
+        this.element.appendChild(this.selectHeader.element);
+        // create menu
+        var selectOptions = this.select.querySelector(":scope > option");
+        this.selectMenu = new select_menu_1.SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), this, selectOptions, this.menuIcon, this.selectConfig);
+        this.selectMenu.build();
+        this.element.appendChild(this.selectMenu.element);
+        // on option selected disable the unselected and enable the selected options
+        this.selectMenu.onSelect = function (selectedOption) {
+            _this.selectOption(selectedOption);
+        };
+        this.selectMenu.onDeSelect = function (selectedOption) {
+            _this.deselectOption(selectedOption);
+        };
+    };
+    Select.prototype.toggleMenu = function () {
+        if (this.selectMenu.opened) {
+            return this.selectMenu.close();
+        }
+        return this.selectMenu.open();
+    };
+    Select.prototype.selectOption = function (selectedOption) {
+        if (this.selectConfig.multiple) {
+            this.selectHeader.setOption(selectedOption, this.selectConfig.multiple);
+        }
+        else {
+            this.selectHeader.setOption(selectedOption, this.selectConfig.multiple);
+        }
+    };
+    Select.prototype.deselectOption = function (selectedOption) {
+        if (this.selectConfig.multiple) {
+            this.selectHeader.removeOption(selectedOption, this.selectConfig.multiple);
+        }
+    };
+    Select.prototype.clear = function () {
+        this.selectMenu.clear();
+        this.selectHeader.clear();
+        this.selectMenu.close();
+    };
+    return Select;
+}(tonada_shared_1.Component));
+exports.Select = Select;
+
+
+/***/ }),
+
+/***/ "./src/packages/shared/index.ts":
+/*!**************************************!*\
+  !*** ./src/packages/shared/index.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.querySelector = exports.generateUniqueId = exports.extendObject = exports.createBaseElement = exports.clone = exports.VERSION = exports.PREFIX = exports.KEY_ATTRIBUTE_NAME = exports.ATTRIBUTE_PREFIX = exports.Component = exports.BaseElement = void 0;
+var base_element_1 = __webpack_require__(/*! ./src/base-element */ "./src/packages/shared/src/base-element.ts");
+Object.defineProperty(exports, "BaseElement", ({ enumerable: true, get: function () { return base_element_1.BaseElement; } }));
+var component_1 = __webpack_require__(/*! ./src/component */ "./src/packages/shared/src/component.ts");
+Object.defineProperty(exports, "Component", ({ enumerable: true, get: function () { return component_1.Component; } }));
+var defaults_1 = __webpack_require__(/*! ./src/defaults */ "./src/packages/shared/src/defaults.ts");
+Object.defineProperty(exports, "ATTRIBUTE_PREFIX", ({ enumerable: true, get: function () { return defaults_1.ATTRIBUTE_PREFIX; } }));
+Object.defineProperty(exports, "KEY_ATTRIBUTE_NAME", ({ enumerable: true, get: function () { return defaults_1.KEY_ATTRIBUTE_NAME; } }));
+Object.defineProperty(exports, "PREFIX", ({ enumerable: true, get: function () { return defaults_1.PREFIX; } }));
+Object.defineProperty(exports, "VERSION", ({ enumerable: true, get: function () { return defaults_1.VERSION; } }));
+var common_1 = __webpack_require__(/*! ./src/common */ "./src/packages/shared/src/common.ts");
+Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return common_1.clone; } }));
+Object.defineProperty(exports, "createBaseElement", ({ enumerable: true, get: function () { return common_1.createBaseElement; } }));
+Object.defineProperty(exports, "extendObject", ({ enumerable: true, get: function () { return common_1.extendObject; } }));
+Object.defineProperty(exports, "generateUniqueId", ({ enumerable: true, get: function () { return common_1.generateUniqueId; } }));
+Object.defineProperty(exports, "querySelector", ({ enumerable: true, get: function () { return common_1.querySelector; } }));
+
+
+/***/ }),
+
+/***/ "./src/packages/shared/src/base-element.ts":
+/*!*************************************************!*\
+  !*** ./src/packages/shared/src/base-element.ts ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BaseElement = void 0;
-var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/common.ts");
-var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/defaults.ts");
+var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/src/common.ts");
+var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/src/defaults.ts");
 var BaseElement = /** @class */ (function () {
     function BaseElement(element) {
         this.element = element;
@@ -17578,6 +17718,9 @@ var BaseElement = /** @class */ (function () {
     BaseElement.prototype.hide = function () {
         this.setStyle("display", "none");
     };
+    BaseElement.prototype.remove = function () {
+        this.element.remove();
+    };
     return BaseElement;
 }());
 exports.BaseElement = BaseElement;
@@ -17585,10 +17728,10 @@ exports.BaseElement = BaseElement;
 
 /***/ }),
 
-/***/ "./src/packages/shared/common.ts":
-/*!***************************************!*\
-  !*** ./src/packages/shared/common.ts ***!
-  \***************************************/
+/***/ "./src/packages/shared/src/common.ts":
+/*!*******************************************!*\
+  !*** ./src/packages/shared/src/common.ts ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -17598,7 +17741,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generateUniqueId = exports.clone = exports.extendObject = exports.createBaseElement = exports.querySelector = void 0;
-var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/base-element.ts");
+var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/src/base-element.ts");
 var lodash_1 = __importDefault(__webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"));
 function querySelector(element, query) {
     var elements = [];
@@ -17631,10 +17774,10 @@ exports.generateUniqueId = generateUniqueId;
 
 /***/ }),
 
-/***/ "./src/packages/shared/component.ts":
-/*!******************************************!*\
-  !*** ./src/packages/shared/component.ts ***!
-  \******************************************/
+/***/ "./src/packages/shared/src/component.ts":
+/*!**********************************************!*\
+  !*** ./src/packages/shared/src/component.ts ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -17652,10 +17795,10 @@ exports.Component = Component;
 
 /***/ }),
 
-/***/ "./src/packages/shared/defaults.ts":
-/*!*****************************************!*\
-  !*** ./src/packages/shared/defaults.ts ***!
-  \*****************************************/
+/***/ "./src/packages/shared/src/defaults.ts":
+/*!*********************************************!*\
+  !*** ./src/packages/shared/src/defaults.ts ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -17666,35 +17809,6 @@ exports.VERSION = "1.0.0";
 exports.PREFIX = "tonada";
 exports.ATTRIBUTE_PREFIX = "data-".concat(exports.PREFIX);
 exports.KEY_ATTRIBUTE_NAME = "".concat(exports.ATTRIBUTE_PREFIX, "-key");
-
-
-/***/ }),
-
-/***/ "./src/packages/shared/index.ts":
-/*!**************************************!*\
-  !*** ./src/packages/shared/index.ts ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.querySelector = exports.generateUniqueId = exports.extendObject = exports.createBaseElement = exports.clone = exports.VERSION = exports.PREFIX = exports.KEY_ATTRIBUTE_NAME = exports.ATTRIBUTE_PREFIX = exports.Component = exports.BaseElement = void 0;
-var base_element_1 = __webpack_require__(/*! ./base-element */ "./src/packages/shared/base-element.ts");
-Object.defineProperty(exports, "BaseElement", ({ enumerable: true, get: function () { return base_element_1.BaseElement; } }));
-var component_1 = __webpack_require__(/*! ./component */ "./src/packages/shared/component.ts");
-Object.defineProperty(exports, "Component", ({ enumerable: true, get: function () { return component_1.Component; } }));
-var defaults_1 = __webpack_require__(/*! ./defaults */ "./src/packages/shared/defaults.ts");
-Object.defineProperty(exports, "ATTRIBUTE_PREFIX", ({ enumerable: true, get: function () { return defaults_1.ATTRIBUTE_PREFIX; } }));
-Object.defineProperty(exports, "KEY_ATTRIBUTE_NAME", ({ enumerable: true, get: function () { return defaults_1.KEY_ATTRIBUTE_NAME; } }));
-Object.defineProperty(exports, "PREFIX", ({ enumerable: true, get: function () { return defaults_1.PREFIX; } }));
-Object.defineProperty(exports, "VERSION", ({ enumerable: true, get: function () { return defaults_1.VERSION; } }));
-var common_1 = __webpack_require__(/*! ./common */ "./src/packages/shared/common.ts");
-Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return common_1.clone; } }));
-Object.defineProperty(exports, "createBaseElement", ({ enumerable: true, get: function () { return common_1.createBaseElement; } }));
-Object.defineProperty(exports, "extendObject", ({ enumerable: true, get: function () { return common_1.extendObject; } }));
-Object.defineProperty(exports, "generateUniqueId", ({ enumerable: true, get: function () { return common_1.generateUniqueId; } }));
-Object.defineProperty(exports, "querySelector", ({ enumerable: true, get: function () { return common_1.querySelector; } }));
 
 
 /***/ })
@@ -17762,9 +17876,15 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.create = exports.Select = void 0;
-var select_1 = __webpack_require__(/*! ./select */ "./src/packages/select/select.ts");
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var select_1 = __webpack_require__(/*! ./src/select */ "./src/packages/select/src/select.ts");
 Object.defineProperty(exports, "Select", ({ enumerable: true, get: function () { return select_1.Select; } }));
-Object.defineProperty(exports, "create", ({ enumerable: true, get: function () { return select_1.create; } }));
+function create(element, config) {
+    var component = new select_1.Select((0, tonada_shared_1.createBaseElement)(element), config);
+    component.build();
+    return component;
+}
+exports.create = create;
 
 })();
 

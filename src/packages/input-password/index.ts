@@ -1,3 +1,3 @@
-import { InputPassword, create } from "./input-password";
+import { InputPassword, create } from "./src/input-password";
 
 export { InputPassword, create };

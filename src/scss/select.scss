@@ -19,16 +19,26 @@
     box-sizing: border-box;
   }
   height: fit-content;
-  min-height: 45px;
+  min-height: 50px;
   position: relative;
   box-shadow: var(--#{$prefix}-shadow);
-  &-expand-icon {
+  &-close-icon {
+    @extend .#{$prefix}-ic;
+    cursor: pointer;
     position: absolute;
-    background-size: contain;
     width: 20px;
     height: 20px;
-    background-repeat: no-repeat;
-    display: inline-block;
+    right: 8px;
+    top: 35%;
+    border-radius: 50%;
+    background-color: var(--#{$prefix}-header-tag-color);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--#{$prefix}-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  }
+  &-expand-icon {
+    @extend .#{$prefix}-ic;
+    position: absolute;
+    width: 20px;
+    height: 20px;
     right: 8px;
     top: 35%;
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
@@ -41,10 +51,10 @@
     flex-wrap: wrap;
     cursor: pointer;
     align-items: center;
-    min-height: 45px;
     width: 100%;
     padding: 6px;
     gap: 8px;
+    min-height: 50px;
     &-option {
       user-select: none;
     }
@@ -108,6 +118,8 @@
     padding-top: 4px;
     padding-bottom: 4px;
     background-color: var(--#{$prefix}-menu-background);
+    min-height: 50px;
+    overflow-y: auto;
     &.#{$prefix}-hide {
       display: none;
     }
