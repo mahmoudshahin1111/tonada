@@ -30,6 +30,10 @@ export class SelectHeader extends Component {
       let headerOption: ISelectHeaderOption<HTMLDivElement>;
       if (multi) {
         headerOption = new SelectHeaderTag(option);
+        (headerOption as SelectHeaderTag).removeButton.onEvent('click',()=>{
+          this.removeOption(option,true);
+          option.deselect();
+        });
         this.options.push(headerOption);
       } else {
         this.removeOption(option);

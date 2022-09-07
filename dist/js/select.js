@@ -17227,6 +17227,7 @@ function getDefaultSelectOptions() {
     return {
         search: false,
         multiple: false,
+        disabled: false,
     };
 }
 exports.getDefaultSelectOptions = getDefaultSelectOptions;
@@ -17331,9 +17332,14 @@ var SelectHeader = /** @class */ (function (_super) {
         }
     };
     SelectHeader.prototype.setOption = function (option, multi) {
+        var _this = this;
         var headerOption;
         if (multi) {
             headerOption = new SelectHeaderTag(option);
+            headerOption.removeButton.onEvent('click', function () {
+                _this.removeOption(option, true);
+                option.deselect();
+            });
             this.options.push(headerOption);
         }
         else {

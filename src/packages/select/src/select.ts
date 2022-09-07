@@ -5,7 +5,7 @@ import {
   PREFIX,
 } from "tonada-shared";
 import { MenuItem } from "./menu-item";
-import { SelectHeader } from "./select-header";
+import { ISelectHeaderOption, SelectHeader } from "./select-header";
 import { SelectMenu } from "./select-menu";
 import { SelectConfig, getDefaultSelectOptions } from "./_common";
 
