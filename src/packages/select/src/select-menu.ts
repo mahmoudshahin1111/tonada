@@ -43,7 +43,7 @@ export class SelectMenu extends Component {
         if (!this.selectConfig.multiple) {
           this.close();
         } else {
-          this.recalculatePosition();
+          this.rePosition();
         }
       });
       return menuItem;
@@ -61,7 +61,7 @@ export class SelectMenu extends Component {
     });
   }
   open(): void {
-    this.recalculatePosition();
+    this.rePosition();
     this.element.removeClass(`${PREFIX}-hide`);
     this.toggleMenuIcon();
     this.opened = true;
@@ -83,7 +83,7 @@ export class SelectMenu extends Component {
       item.deselect();
     });
   }
-  recalculatePosition() {
+  rePosition() {
     this.element.setStyle(
       "top",
       `${this.select.element.getHeight().toString()}px`

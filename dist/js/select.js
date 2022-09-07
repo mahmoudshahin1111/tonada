@@ -17454,7 +17454,7 @@ var SelectMenu = /** @class */ (function (_super) {
                     _this.close();
                 }
                 else {
-                    _this.recalculatePosition();
+                    _this.rePosition();
                 }
             });
             return menuItem;
@@ -17474,7 +17474,7 @@ var SelectMenu = /** @class */ (function (_super) {
         });
     };
     SelectMenu.prototype.open = function () {
-        this.recalculatePosition();
+        this.rePosition();
         this.element.removeClass("".concat(tonada_shared_1.PREFIX, "-hide"));
         this.toggleMenuIcon();
         this.opened = true;
@@ -17497,7 +17497,7 @@ var SelectMenu = /** @class */ (function (_super) {
             item.deselect();
         });
     };
-    SelectMenu.prototype.recalculatePosition = function () {
+    SelectMenu.prototype.rePosition = function () {
         this.element.setStyle("top", "".concat(this.select.element.getHeight().toString(), "px"));
     };
     return SelectMenu;
