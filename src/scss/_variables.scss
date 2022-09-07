@@ -26,3 +26,4 @@ $form-control-height: 40px !default;
 
 $select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
 $select-menu-z-index:$menu-index !default;
+$select-disabled-bg-color: darken(map-get($colors,'white'),2) !default;

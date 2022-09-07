@@ -16,8 +16,7 @@ export class SelectMenu extends Component {
     private selectConfig: SelectConfig
   ) {
     super(element);
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    this.items = options.map((option) => {
       const menuItem = new MenuItem(option);
       this.items.push(menuItem);
       menuItem.baseElement.onEvent("click", () => {
@@ -47,13 +46,18 @@ export class SelectMenu extends Component {
           this.recalculatePosition();
         }
       });
-    }
+      return menuItem;
+    });
   }
   build(): void {
     this.element.addClass(`${PREFIX}-select-menu`);
     this.element.addClass(`${PREFIX}-hide`);
-    this.items.forEach((option) => {
-      this.element.element.appendChild(option.baseElement.element);
+    this.items.forEach((item) => {
+      if (item.option.element.hasAttribute("selected")) {
+        item.select();
+        this.onSelect ? this.onSelect(item) : null;
+      }
+      this.element.appendChild(item.baseElement);
     });
   }
   open(): void {

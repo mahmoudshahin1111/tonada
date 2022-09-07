@@ -24,6 +24,7 @@
 }
 
 .tonada-select {
+  --tonada-font-size: calc(1em + calc(var(--tonada-height) / 10));
   --tonada-header-tag-background-color: #1c3879;
   --tonada-header-tag-color: #ffffff;
   --tonada-menu-background: #ffffff;
@@ -31,6 +32,7 @@
   --tonada-selected-option-color: #ffffff;
   --tonada-selected-option: rgba(0, 0, 0, 0.2);
   --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-disabled-bg-color:#fafafa;
 }
 
 .tonada-select {
@@ -144,5 +146,23 @@
   overflow-y: auto;
 }
 .tonada-select-menu.tonada-hide {
+  display: none;
+}
+.tonada-select.tonada-sm {
+  font-size: calc(var(--tonada-font-size) - 0.2em);
+}
+.tonada-select.tonada-lg {
+  font-size: calc(var(--tonada-font-size) + 0.2em);
+}
+.tonada-select.tonada-xl {
+  font-size: calc(var(--tonada-font-size) + 0.4em);
+}
+.tonada-select-disabled {
+  background-color: var(--tonada-disabled-bg-color);
+}
+.tonada-select-disabled-header-option {
+  display: none;
+}
+.tonada-select-disabled-header-tag {
   display: none;
 }

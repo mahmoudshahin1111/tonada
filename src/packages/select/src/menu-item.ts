@@ -5,7 +5,7 @@ export class MenuItem {
     value: string;
     label: string;
     selected: boolean;
-    constructor(private option: BaseElement<HTMLOptionElement>) {
+    constructor(public option: BaseElement<HTMLOptionElement>) {
       this.label = option.element.innerHTML;
       this.value = (option.element as HTMLOptionElement).value;
       this.baseElement = createBaseElement(document.createElement("button"));

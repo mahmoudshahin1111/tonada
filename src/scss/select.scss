@@ -1,6 +1,7 @@
 @import "./core.scss";
 @import "./icons.scss";
 .#{$prefix}-select {
+  --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
   --#{$prefix}-header-tag-background-color: #{map-get($colors, "primary")};
   --#{$prefix}-header-tag-color: #{map-get($colors, "white")};
   --#{$prefix}-menu-background: #{map-get($colors, "white")};
@@ -8,7 +9,7 @@
   --#{$prefix}-selected-option-color: #{map-get($colors, "white")};
   --#{$prefix}-selected-option: rgba(0, 0, 0, 0.2);
   --#{$prefix}-shadow: #{$select-shadow-box};
-
+  --#{$prefix}-disabled-bg-color:#{$select-disabled-bg-color};
 }
 
 .#{$prefix}-select {
@@ -69,15 +70,15 @@
       padding: 6px 10px;
       background-color: var(--#{$prefix}-header-tag-background-color);
       color: var(--#{$prefix}-header-tag-color);
-      outline:0;
+      outline: 0;
       border: 0;
       font-size: 0.9em;
-      .#{$prefix}-remove-button{
+      .#{$prefix}-remove-button {
         @extend .#{$prefix}-ic;
         @extend .#{$prefix}-ic-close;
         cursor: pointer;
         display: inline-block;
-        outline:0;
+        outline: 0;
         border: 0;
         width: 20px;
         height: 20px;
@@ -100,7 +101,7 @@
       background-color: var(--#{$prefix}-selected-option-background-color);
       color: var(--#{$prefix}-selected-option-color);
     }
-    &:not(&-selected):hover{
+    &:not(&-selected):hover {
       background-color: lighten(map-get($colors, "primary"), 60%);
       color: black;
     }
@@ -122,6 +123,26 @@
     overflow-y: auto;
     &.#{$prefix}-hide {
       display: none;
+    }
+  }
+  &.#{$prefix}-sm {
+    font-size: calc(var(--#{$prefix}-font-size) - 0.2em);
+  }
+  &.#{$prefix}-lg {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.2em);
+  }
+  &.#{$prefix}-xl {
+    font-size: calc(var(--#{$prefix}-font-size) + 0.4em);
+  }
+  &-disabled {
+    background-color: var(--#{$prefix}-disabled-bg-color);
+    &-header {
+      &-option {
+        display: none;
+      }
+      &-tag {
+        display: none;
+      }
     }
   }
 }

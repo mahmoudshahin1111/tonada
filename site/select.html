@@ -15,14 +15,14 @@
     <div id="tonada-default-select">
         <select>
             <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
+            <option selected value="2">Option 2</option>
             <option value="3">Option 3</option>
         </select>
     </div>
     <div id="tonada-multiselect-select">
         <select multiple="multiple">
             <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
+            <option selected value="2">Option 2</option>
             <option value="3">Option 3</option>
             <option value="4">Option 1</option>
             <option value="5">Option 2</option>
@@ -41,6 +41,13 @@
             <option value="18">Option 3</option>
         </select>
     </div>
+    <div id="tonada-select-disabled">
+        <select disabled>
+            <option value="1">Option 1</option>
+            <option selected value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+    </div>
 </body>
 <script src="../dist/js/select.js"></script>
 <script src="../dist/js/index.js"></script>
@@ -48,6 +55,9 @@
     window.document.addEventListener('DOMContentLoaded', () => {
         Tonada.create('select', document.querySelector('#tonada-default-select'));
         Tonada.create('select', document.querySelector('#tonada-multiselect-select'));
+        Tonada.create('select', document.querySelector('#tonada-select-disabled'),{
+            disabled:false
+        });
     })
 
 </script>

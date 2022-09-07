@@ -17422,10 +17422,9 @@ var SelectMenu = /** @class */ (function (_super) {
         _this.selectConfig = selectConfig;
         _this.opened = false;
         _this.items = [];
-        var _loop_1 = function (i) {
-            var option = options[i];
+        _this.items = options.map(function (option) {
             var menuItem = new menu_item_1.MenuItem(option);
-            this_1.items.push(menuItem);
+            _this.items.push(menuItem);
             menuItem.baseElement.onEvent("click", function () {
                 if (selectConfig.multiple) {
                     if (!menuItem.selected) {
@@ -17458,19 +17457,20 @@ var SelectMenu = /** @class */ (function (_super) {
                     _this.recalculatePosition();
                 }
             });
-        };
-        var this_1 = this;
-        for (var i = 0; i < options.length; i++) {
-            _loop_1(i);
-        }
+            return menuItem;
+        });
         return _this;
     }
     SelectMenu.prototype.build = function () {
         var _this = this;
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select-menu"));
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-hide"));
-        this.items.forEach(function (option) {
-            _this.element.element.appendChild(option.baseElement.element);
+        this.items.forEach(function (item) {
+            if (item.option.element.hasAttribute("selected")) {
+                item.select();
+                _this.onSelect ? _this.onSelect(item) : null;
+            }
+            _this.element.appendChild(item.baseElement);
         });
     };
     SelectMenu.prototype.open = function () {
@@ -17538,46 +17538,53 @@ var select_menu_1 = __webpack_require__(/*! ./select-menu */ "./src/packages/sel
 var _common_1 = __webpack_require__(/*! ./_common */ "./src/packages/select/src/_common.ts");
 var Select = /** @class */ (function (_super) {
     __extends(Select, _super);
-    function Select(element, selectConfig) {
+    function Select(element, config) {
         var _this = _super.call(this, element) || this;
-        _this.selectConfig = selectConfig;
+        _this.selectConfig = (0, _common_1.getDefaultSelectOptions)();
+        _this.selectConfig = (0, _common_1.getDefaultSelectOptions)();
+        _this.select = _this.element
+            .querySelector(":scope > select")
+            .at(0);
+        _this.select.hide();
+        _this.selectConfig.disabled = _this.select.element.hasAttribute("disabled");
+        _this.selectConfig.multiple = _this.select.element.hasAttribute("multiple");
+        _this.selectConfig = Object.assign(_this.selectConfig, config);
         return _this;
     }
     Select.prototype.build = function () {
         var _this = this;
-        this.selectConfig = Object.assign((0, _common_1.getDefaultSelectOptions)(), this.selectConfig);
-        this.select = this.element
-            .querySelector(":scope > select")
-            .at(0);
-        this.selectConfig.multiple = !!this.select.getAttribute("multiple");
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
-        this.select.hide();
         // create expand icon
         this.menuIcon = (0, tonada_shared_1.createBaseElement)(document.createElement("span"));
         if (this.selectConfig.multiple) {
             this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-close-icon"));
-            this.menuIcon.onEvent("click", function () { return _this.clear(); });
+            this.menuIcon.onEvent("click", function () {
+                if (_this.selectConfig.disabled)
+                    return;
+                _this.clear();
+            });
         }
         else {
             this.menuIcon.addClass("".concat(tonada_shared_1.PREFIX, "-select-expand-icon"));
-            this.menuIcon.onEvent("click", function () { return _this.toggleMenu(); });
+            this.menuIcon.onEvent("click", function () {
+                if (_this.selectConfig.disabled)
+                    return;
+                _this.toggleMenu();
+            });
         }
-        this.element.element.appendChild(this.menuIcon.element);
         // create header
         this.selectHeader = new select_header_1.SelectHeader((0, tonada_shared_1.createBaseElement)(document.createElement("div")));
         this.selectHeader.element.onEvent("click", function (e) {
+            if (_this.selectConfig.disabled)
+                return;
             if (_this.selectConfig.multiple &&
                 e.target !== _this.selectHeader.element.element)
                 return;
             _this.toggleMenu();
         });
-        this.selectHeader.build();
-        this.element.appendChild(this.selectHeader.element);
         // create menu
         var selectOptions = this.select.querySelector(":scope > option");
         this.selectMenu = new select_menu_1.SelectMenu((0, tonada_shared_1.createBaseElement)(document.createElement("div")), this, selectOptions, this.menuIcon, this.selectConfig);
-        this.selectMenu.build();
-        this.element.appendChild(this.selectMenu.element);
         // on option selected disable the unselected and enable the selected options
         this.selectMenu.onSelect = function (selectedOption) {
             _this.selectOption(selectedOption);
@@ -17585,6 +17592,14 @@ var Select = /** @class */ (function (_super) {
         this.selectMenu.onDeSelect = function (selectedOption) {
             _this.deselectOption(selectedOption);
         };
+        if (this.selectConfig.disabled) {
+            this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select-disabled"));
+        }
+        this.element.element.appendChild(this.menuIcon.element);
+        this.element.appendChild(this.selectHeader.element);
+        this.element.appendChild(this.selectMenu.element);
+        this.selectHeader.build();
+        this.selectMenu.build();
     };
     Select.prototype.toggleMenu = function () {
         if (this.selectMenu.opened) {

@@ -14,40 +14,49 @@ export class Select extends Component {
   private selectHeader: SelectHeader;
   private selectMenu: SelectMenu;
   private menuIcon: BaseElement<HTMLSpanElement>;
+  private selectConfig:SelectConfig = getDefaultSelectOptions();
   onOptionSelected: (optionValue: string) => void;
   onOptionRemoved: (optionValue: string) => void;
   constructor(
     element: BaseElement<HTMLSelectElement>,
-    public selectConfig?: SelectConfig
+    config?: SelectConfig
   ) {
     super(element);
+    this.selectConfig = getDefaultSelectOptions();
+    this.select = this.element
+    .querySelector<HTMLSelectElement>(":scope > select")
+    .at(0);
+    this.select.hide();
+    this.selectConfig.disabled = this.select.element.hasAttribute("disabled");
+    this.selectConfig.multiple = this.select.element.hasAttribute("multiple");
+    this.selectConfig = Object.assign(
+      this.selectConfig,
+      config
+    );
   }
   build(): void {
-    this.selectConfig = Object.assign(
-      getDefaultSelectOptions(),
-      this.selectConfig
-    );
-    this.select = this.element
-      .querySelector<HTMLSelectElement>(":scope > select")
-      .at(0);
-    this.selectConfig.multiple = !!this.select.getAttribute("multiple");
     this.element.addClass(`${PREFIX}-select`);
-    this.select.hide();
     // create expand icon
     this.menuIcon = createBaseElement(document.createElement("span"));
     if (this.selectConfig.multiple) {
       this.menuIcon.addClass(`${PREFIX}-select-close-icon`);
-      this.menuIcon.onEvent("click", () => this.clear());
+      this.menuIcon.onEvent("click", () => {
+        if (this.selectConfig.disabled) return;
+        this.clear();
+      });
     } else {
       this.menuIcon.addClass(`${PREFIX}-select-expand-icon`);
-      this.menuIcon.onEvent("click", () => this.toggleMenu());
+      this.menuIcon.onEvent("click", () => {
+        if (this.selectConfig.disabled) return;
+        this.toggleMenu();
+      });
     }
-    this.element.element.appendChild(this.menuIcon.element);
     // create header
     this.selectHeader = new SelectHeader(
       createBaseElement(document.createElement("div"))
     );
     this.selectHeader.element.onEvent("click", (e) => {
+      if (this.selectConfig.disabled) return;
       if (
         this.selectConfig.multiple &&
         e.target !== this.selectHeader.element.element
@@ -55,8 +64,6 @@ export class Select extends Component {
         return;
       this.toggleMenu();
     });
-    this.selectHeader.build();
-    this.element.appendChild(this.selectHeader.element);
     // create menu
     const selectOptions =
       this.select.querySelector<HTMLOptionElement>(":scope > option");
@@ -67,8 +74,6 @@ export class Select extends Component {
       this.menuIcon,
       this.selectConfig
     );
-    this.selectMenu.build();
-    this.element.appendChild(this.selectMenu.element);
     // on option selected disable the unselected and enable the selected options
     this.selectMenu.onSelect = (selectedOption: MenuItem) => {
       this.selectOption(selectedOption);
@@ -76,6 +81,14 @@ export class Select extends Component {
     this.selectMenu.onDeSelect = (selectedOption: MenuItem) => {
       this.deselectOption(selectedOption);
     };
+    if (this.selectConfig.disabled) {
+      this.element.addClass(`${PREFIX}-select-disabled`);
+    }
+    this.element.element.appendChild(this.menuIcon.element);
+    this.element.appendChild(this.selectHeader.element);
+    this.element.appendChild(this.selectMenu.element);
+    this.selectHeader.build();
+    this.selectMenu.build();
   }
   toggleMenu() {
     if (this.selectMenu.opened) {
