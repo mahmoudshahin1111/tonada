@@ -8,10 +8,4 @@ export function getDefaultSelectOptions(): SelectConfig {
   export type SelectConfig = {
     multiple?: boolean;
     disabled?:boolean;
-    options?: SelectConfigOption[];
   };
-  export type SelectConfigOption = {
-    label: string;
-    value: string;
-  };
-  
