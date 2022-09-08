@@ -4,11 +4,7 @@ import {
   createBaseElement,
   PREFIX,
 } from "tonada-shared";
-export function create(element: HTMLDivElement) {
-  const component = new Accordion(createBaseElement(element));
-  component.build();
-  return component;
-}
+
 export class Accordion extends Component {
   private _sections = new Array<AccordionSection>();
   constructor(element: BaseElement<HTMLDivElement>) {

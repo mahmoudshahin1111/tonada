@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/css/icons.css">
+    <link rel="stylesheet" href="../dist/css/select.css">
+    <title>Tonada</title>
+    <link rel="stylesheet" href="./assets/css/_layout.css">
+</head>
+
+<body>
+    <h3>Default</h3>
+    <div id="tonada-default-checkbox">
+        <label for="">Test 1</label>
+       <input type="checkbox" value="10">
+    </div>
+</body>
+<script src="../dist/js/checkbox.js"></script>
+<script src="../dist/js/index.js"></script>
+<script>
+    window.document.addEventListener('DOMContentLoaded', () => {
+        Tonada.create('checkbox', document.querySelector('#tonada-default-checkbox'));
+
+    })
+
+</script>
+
+</html>

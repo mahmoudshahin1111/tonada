@@ -5,11 +5,6 @@ import {
   PREFIX,
 } from "tonada-shared";
 
-export function create(element: HTMLDivElement) {
-  const component = new InputPassword(createBaseElement(element));
-  component.build();
-  return component;
-}
 
 export class InputPassword extends Component {
   private _toggler: BaseElement<HTMLElement>;

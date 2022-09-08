@@ -40,6 +40,11 @@
       "path": "src/packages/input-password/index.ts"
     },
     {
+      "name": "input-checkbox",
+      "className": "TonadaInputCheckbox",
+      "path": "src/packages/checkbox/index.ts"
+    },
+    {
       "name": "accordion",
       "className": "TonadaAccordion",
       "path": "src/packages/accordion/index.ts"
