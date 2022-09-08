@@ -1,3 +1,3 @@
-import { Input, create } from "./input";
+import { Input, create } from "./src/input";
 
 export { Input, create };

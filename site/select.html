@@ -12,20 +12,46 @@
 </head>
 
 <body>
+    <h3>Default</h3>
     <div id="tonada-default-select">
         <select>
             <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
+            <option selected value="2">Option 2</option>
             <option value="3">Option 3</option>
         </select>
     </div>
+    <h3>Multi Select</h3>
     <div id="tonada-multiselect-select">
         <select multiple="multiple">
             <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
+            <option selected value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 1</option>
+            <option value="5">Option 2</option>
+            <option value="6">Option 3</option>
+            <option value="7">Option 1</option>
+            <option value="8">Option 2</option>
+            <option value="9">Option 3</option>
+            <option value="10">Option 1</option>
+            <option value="11">Option 2</option>
+            <option value="12">Option 3</option>
+            <option value="13">Option 1</option>
+            <option value="14">Option 2</option>
+            <option value="15">Option 3</option>
+            <option value="16">Option 1</option>
+            <option value="17">Option 2</option>
+            <option value="18">Option 3</option>
+        </select>
+    </div>
+    <h3>Disabled</h3>
+    <div id="tonada-select-disabled">
+        <select disabled>
+            <option value="1">Option 1</option>
+            <option selected value="2">Option 2</option>
             <option value="3">Option 3</option>
         </select>
     </div>
+
 </body>
 <script src="../dist/js/select.js"></script>
 <script src="../dist/js/index.js"></script>
@@ -33,6 +59,11 @@
     window.document.addEventListener('DOMContentLoaded', () => {
         Tonada.create('select', document.querySelector('#tonada-default-select'));
         Tonada.create('select', document.querySelector('#tonada-multiselect-select'));
+        Tonada.create('select', document.querySelector('#tonada-select-disabled'));
+        document.querySelectorAll('.tonada-select-sizes').forEach(element=>{
+            Tonada.create('select', element);
+        })
+       
     })
 
 </script>

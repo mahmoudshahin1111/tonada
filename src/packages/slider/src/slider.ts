@@ -40,13 +40,13 @@ export abstract class Slider {
 // -------------------------------------------------------------------------------------------------
 
 export class BaseSlider extends Component implements Slider {
-  list: BaseElement;
+  list: BaseElement<HTMLElement>;
   sliderItems: SliderItem[] = [];
-  prevButton: BaseElement;
-  nextButton: BaseElement;
+  prevButton: BaseElement<HTMLElement>;
+  nextButton: BaseElement<HTMLElement>;
   sliderPaginator: SliderPaginator;
   page: number = 0;
-  constructor(element: BaseElement, public options?: SliderOptions) {
+  constructor(element: BaseElement<HTMLElement>, public options?: SliderOptions) {
     super(element);
   }
   build(): void {
@@ -254,15 +254,15 @@ export class FadingSlider extends Slider {
 }
 // -------------------------------------------------------------------------------------------------
 export class SliderItem {
-  constructor(public element: BaseElement, options: { width: number }) {
+  constructor(public element: BaseElement<HTMLElement>, options: { width: number }) {
     this.element.setStyle("width", `${options.width}px`);
   }
 }
 // -------------------------------------------------------------------------------------------------
 export class SliderPaginator {
   onPageClicked: (page: number) => void;
-  private _pages: BaseElement[] = [];
-  constructor(public element: BaseElement, pages: number) {
+  private _pages: BaseElement<HTMLElement>[] = [];
+  constructor(public element: BaseElement<HTMLElement>, pages: number) {
     for (let page = 0; page < pages; page++) {
       this.createPage(page);
     }

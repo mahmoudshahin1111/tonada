@@ -12,10 +12,10 @@ export function create(element: HTMLDivElement) {
 }
 
 export class InputPassword extends Component {
-  private _toggler: BaseElement;
-  private _input: BaseElement;
-  private _label: BaseElement;
-  constructor(element: BaseElement) {
+  private _toggler: BaseElement<HTMLElement>;
+  private _input: BaseElement<HTMLElement>;
+  private _label: BaseElement<HTMLElement>;
+  constructor(element: BaseElement<HTMLElement>) {
     super(element);
   }
   build(): void {
@@ -47,8 +47,6 @@ export class InputPassword extends Component {
     this._toggler.addClass(`${PREFIX}-ic-show`);
   }
   isToggled() {
-    console.log(this._input.getAttribute("type"));
-
     return this._input.getAttribute("type") == "text";
   }
 }

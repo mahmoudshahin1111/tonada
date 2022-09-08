@@ -12,9 +12,9 @@ export function create(element: HTMLDivElement) {
 }
 
 export class Input extends Component {
-  input: BaseElement;
-  label: BaseElement;
-  constructor(element: BaseElement) {
+  input: BaseElement<HTMLElement>;
+  label: BaseElement<HTMLElement>;
+  constructor(element: BaseElement<HTMLElement>) {
     super(element);
   }
   build(): void {
