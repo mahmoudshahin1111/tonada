@@ -5,7 +5,7 @@ import {
   PREFIX,
 } from "tonada-shared";
 import { MenuItem } from "./menu-item";
-import { ISelectHeaderOption, SelectHeader } from "./select-header";
+import { SelectHeader } from "./select-header";
 import { SelectMenu } from "./select-menu";
 import { SelectConfig, getDefaultSelectOptions } from "./_common";
 
@@ -35,6 +35,7 @@ export class Select extends Component {
     );
   }
   build(): void {
+    const fragment = document.createDocumentFragment();
     this.element.addClass(`${PREFIX}-select`);
     // create expand icon
     this.menuIcon = createBaseElement(document.createElement("span"));
@@ -84,11 +85,12 @@ export class Select extends Component {
     if (this.selectConfig.disabled) {
       this.element.addClass(`${PREFIX}-select-disabled`);
     }
-    this.element.element.appendChild(this.menuIcon.element);
-    this.element.appendChild(this.selectHeader.element);
-    this.element.appendChild(this.selectMenu.element);
+    fragment.appendChild(this.menuIcon.element);
+    fragment.appendChild(this.selectHeader.element.element);
+    fragment.appendChild(this.selectMenu.element.element);
     this.selectHeader.build();
     this.selectMenu.build();
+    this.element.element.appendChild(fragment);
   }
   toggleMenu() {
     if (this.selectMenu.opened) {

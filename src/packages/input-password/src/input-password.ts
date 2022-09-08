@@ -47,8 +47,6 @@ export class InputPassword extends Component {
     this._toggler.addClass(`${PREFIX}-ic-show`);
   }
   isToggled() {
-    console.log(this._input.getAttribute("type"));
-
     return this._input.getAttribute("type") == "text";
   }
 }

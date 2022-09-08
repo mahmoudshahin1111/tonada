@@ -17225,7 +17225,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getDefaultSelectOptions = void 0;
 function getDefaultSelectOptions() {
     return {
-        search: false,
         multiple: false,
         disabled: false,
     };
@@ -17553,6 +17552,7 @@ var Select = /** @class */ (function (_super) {
     }
     Select.prototype.build = function () {
         var _this = this;
+        var fragment = document.createDocumentFragment();
         this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select"));
         // create expand icon
         this.menuIcon = (0, tonada_shared_1.createBaseElement)(document.createElement("span"));
@@ -17595,11 +17595,12 @@ var Select = /** @class */ (function (_super) {
         if (this.selectConfig.disabled) {
             this.element.addClass("".concat(tonada_shared_1.PREFIX, "-select-disabled"));
         }
-        this.element.element.appendChild(this.menuIcon.element);
-        this.element.appendChild(this.selectHeader.element);
-        this.element.appendChild(this.selectMenu.element);
+        fragment.appendChild(this.menuIcon.element);
+        fragment.appendChild(this.selectHeader.element.element);
+        fragment.appendChild(this.selectMenu.element.element);
         this.selectHeader.build();
         this.selectMenu.build();
+        this.element.element.appendChild(fragment);
     };
     Select.prototype.toggleMenu = function () {
         if (this.selectMenu.opened) {

@@ -17281,7 +17281,6 @@ var InputPassword = /** @class */ (function (_super) {
         this._toggler.addClass("".concat(tonada_shared_1.PREFIX, "-ic-show"));
     };
     InputPassword.prototype.isToggled = function () {
-        console.log(this._input.getAttribute("type"));
         return this._input.getAttribute("type") == "text";
     };
     return InputPassword;
