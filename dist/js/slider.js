@@ -17415,10 +17415,56 @@ exports.KEY_ATTRIBUTE_NAME = "".concat(exports.ATTRIBUTE_PREFIX, "-key");
 
 /***/ }),
 
-/***/ "./src/packages/slider/src/slider.ts":
-/*!*******************************************!*\
-  !*** ./src/packages/slider/src/slider.ts ***!
-  \*******************************************/
+/***/ "./src/packages/slider/src/_common/getDefaultSliderOptions.ts":
+/*!********************************************************************!*\
+  !*** ./src/packages/slider/src/_common/getDefaultSliderOptions.ts ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getDefaultSliderOptions = void 0;
+function getDefaultSliderOptions() {
+    return {
+        itemsPerPage: 1,
+        slideAnimation: "moving",
+        spaceBetween: 0,
+        paginator: true,
+        navigators: true,
+        infinite: false,
+        infiniteSlidingDuration: 2000,
+    };
+}
+exports.getDefaultSliderOptions = getDefaultSliderOptions;
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/_common/types.ts":
+/*!**************************************************!*\
+  !*** ./src/packages/slider/src/_common/types.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Slider = void 0;
+var Slider = /** @class */ (function () {
+    function Slider() {
+    }
+    return Slider;
+}());
+exports.Slider = Slider;
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/default-slider.ts":
+/*!***************************************************!*\
+  !*** ./src/packages/slider/src/default-slider.ts ***!
+  \***************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -17439,82 +17485,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SliderPaginator = exports.SliderItem = exports.FadingSlider = exports.DefaultSlider = exports.BaseSlider = exports.Slider = exports.create = exports.getDefaultSliderOptions = void 0;
-var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
-function getDefaultSliderOptions() {
-    return {
-        itemsPerPage: 1,
-        slideAnimation: "moving",
-        spaceBetween: 0,
-        paginator: true,
-        navigators: true,
-        infinite: false,
-        infiniteSlidingDuration: 2000,
-    };
-}
-exports.getDefaultSliderOptions = getDefaultSliderOptions;
-// -------------------------------------------------------------------------------------------------
-function create(element, options) {
-    var baseSlider = new BaseSlider((0, tonada_shared_1.createBaseElement)(element), options);
-    var component = new DefaultSlider(baseSlider);
-    if (options.slideAnimation === "fading") {
-        component = new FadingSlider(baseSlider);
-    }
-    component.build();
-    return component;
-}
-exports.create = create;
-// -------------------------------------------------------------------------------------------------
-var Slider = /** @class */ (function () {
-    function Slider() {
-    }
-    return Slider;
-}());
-exports.Slider = Slider;
-// -------------------------------------------------------------------------------------------------
-var BaseSlider = /** @class */ (function (_super) {
-    __extends(BaseSlider, _super);
-    function BaseSlider(element, options) {
-        var _this = _super.call(this, element) || this;
-        _this.options = options;
-        _this.sliderItems = [];
-        _this.page = 0;
-        return _this;
-    }
-    BaseSlider.prototype.build = function () {
-        var _this = this;
-        this.options = Object.assign(getDefaultSliderOptions(), this.options);
-        this.list = this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-list")).at(0);
-        this.list
-            .querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-list-item"))
-            .forEach(function (element) {
-            var _a;
-            var calculatedWidth = _this.list.getWidth() / ((_a = _this.options) === null || _a === void 0 ? void 0 : _a.itemsPerPage) -
-                _this.options.spaceBetween / 2;
-            _this.sliderItems.push(new SliderItem(element, { width: calculatedWidth }));
-        });
-        this.sliderPaginator = new SliderPaginator(this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-slider-paginator")).at(0), this.getPagesCount());
-        var sliderButtons = this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-slider-button"));
-        this.prevButton = sliderButtons.at(0);
-        this.nextButton = sliderButtons.at(1);
-        if (!this.options.navigators) {
-            this.nextButton.hide();
-            this.prevButton.hide();
-        }
-        if (!this.options.paginator) {
-            this.sliderPaginator.element.hide();
-        }
-    };
-    BaseSlider.prototype.getPagesCount = function () {
-        return Math.ceil(this.sliderItems.length / this.options.itemsPerPage);
-    };
-    BaseSlider.prototype.prevSlider = function () { };
-    BaseSlider.prototype.nextSlider = function () { };
-    BaseSlider.prototype.goToPage = function (page) { };
-    return BaseSlider;
-}(tonada_shared_1.Component));
-exports.BaseSlider = BaseSlider;
-// -------------------------------------------------------------------------------------------------
+exports.DefaultSlider = void 0;
+var types_1 = __webpack_require__(/*! ./_common/types */ "./src/packages/slider/src/_common/types.ts");
 var DefaultSlider = /** @class */ (function (_super) {
     __extends(DefaultSlider, _super);
     function DefaultSlider(_baseSlider) {
@@ -17586,62 +17558,91 @@ var DefaultSlider = /** @class */ (function (_super) {
         });
     };
     return DefaultSlider;
-}(Slider));
+}(types_1.Slider));
 exports.DefaultSlider = DefaultSlider;
-// -------------------------------------------------------------------------------------------------
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/fading-slider.ts":
+/*!**************************************************!*\
+  !*** ./src/packages/slider/src/fading-slider.ts ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.FadingSlider = void 0;
+var types_1 = __webpack_require__(/*! ./_common/types */ "./src/packages/slider/src/_common/types.ts");
 var FadingSlider = /** @class */ (function (_super) {
     __extends(FadingSlider, _super);
-    function FadingSlider(_baseSlider) {
+    function FadingSlider(_slider) {
         var _this = _super.call(this) || this;
-        _this._baseSlider = _baseSlider;
+        _this._slider = _slider;
         return _this;
     }
     FadingSlider.prototype.build = function () {
         var _this = this;
-        this._baseSlider.options.itemsPerPage = 1;
-        this._baseSlider.build();
-        this._baseSlider.prevButton.onEvent("click", function () {
+        this._slider.options.itemsPerPage = 1;
+        this._slider.build();
+        this._slider.prevButton.onEvent("click", function () {
             _this.prevSlider();
         });
-        this._baseSlider.nextButton.onEvent("click", function () {
+        this._slider.nextButton.onEvent("click", function () {
             _this.nextSlider();
         });
-        this._baseSlider.sliderPaginator.onPageClicked = function (page) {
+        this._slider.sliderPaginator.onPageClicked = function (page) {
             _this.goToPage(page);
         };
-        this._baseSlider.sliderItems.forEach(function (sliderItem, i) {
+        this._slider.sliderItems.forEach(function (sliderItem, i) {
             sliderItem.element.setStyle("opacity", "0");
             sliderItem.element.setStyle("left", "0px");
             sliderItem.element.setStyle("width", "100%");
         });
-        this.sliderToPage(this._baseSlider.page);
-        this._baseSlider.sliderPaginator.setActivePage(this._baseSlider.page);
-        if (this._baseSlider.options.infinite) {
+        this.sliderToPage(this._slider.page);
+        this._slider.sliderPaginator.setActivePage(this._slider.page);
+        if (this._slider.options.infinite) {
             this.enableAutoSliding();
         }
     };
     FadingSlider.prototype.prevSlider = function () {
-        if (this._baseSlider.page === 0)
+        if (this._slider.page === 0)
             return;
-        this._baseSlider.page -= 1;
-        this.sliderToPage(this._baseSlider.page);
+        this._slider.page -= 1;
+        this.sliderToPage(this._slider.page);
     };
     FadingSlider.prototype.nextSlider = function () {
-        if (this._baseSlider.page === this._baseSlider.sliderItems.length - 1)
+        if (this._slider.page === this._slider.sliderItems.length - 1)
             return;
-        this._baseSlider.page += 1;
-        this.sliderToPage(this._baseSlider.page);
+        this._slider.page += 1;
+        this.sliderToPage(this._slider.page);
     };
     FadingSlider.prototype.goToPage = function (page) {
         this.sliderToPage(page);
     };
     FadingSlider.prototype.getPagesCount = function () {
-        return this._baseSlider.getPagesCount();
+        return this._slider.getPagesCount();
     };
     FadingSlider.prototype.sliderToPage = function (page) {
-        this._baseSlider.page = page;
-        this._baseSlider.sliderPaginator.setActivePage(page);
-        this._baseSlider.sliderItems.forEach(function (sliderItem, i) {
+        this._slider.page = page;
+        this._slider.sliderPaginator.setActivePage(page);
+        this._slider.sliderItems.forEach(function (sliderItem, i) {
             if (i === page) {
                 sliderItem.element.setStyle("opacity", "1");
             }
@@ -17658,20 +17659,33 @@ var FadingSlider = /** @class */ (function (_super) {
         this._autoSlidingIntervalId = setInterval(function () {
             if (_this.isLastPage()) {
                 _this.sliderToPage(0);
-                _this._baseSlider.sliderPaginator.setActivePage(0);
+                _this._slider.sliderPaginator.setActivePage(0);
             }
             else {
                 _this.nextSlider();
             }
-        }, this._baseSlider.options.infiniteSlidingDuration);
+        }, this._slider.options.infiniteSlidingDuration);
     };
     FadingSlider.prototype.isLastPage = function () {
-        return this._baseSlider.page === this.getPagesCount() - 1;
+        return this._slider.page === this.getPagesCount() - 1;
     };
     return FadingSlider;
-}(Slider));
+}(types_1.Slider));
 exports.FadingSlider = FadingSlider;
-// -------------------------------------------------------------------------------------------------
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/slider-item.ts":
+/*!************************************************!*\
+  !*** ./src/packages/slider/src/slider-item.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SliderItem = void 0;
 var SliderItem = /** @class */ (function () {
     function SliderItem(element, options) {
         this.element = element;
@@ -17680,7 +17694,21 @@ var SliderItem = /** @class */ (function () {
     return SliderItem;
 }());
 exports.SliderItem = SliderItem;
-// -------------------------------------------------------------------------------------------------
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/slider-paginator.ts":
+/*!*****************************************************!*\
+  !*** ./src/packages/slider/src/slider-paginator.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SliderPaginator = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
 var SliderPaginator = /** @class */ (function () {
     function SliderPaginator(element, pages) {
         this.element = element;
@@ -17714,7 +17742,81 @@ var SliderPaginator = /** @class */ (function () {
     return SliderPaginator;
 }());
 exports.SliderPaginator = SliderPaginator;
-// -------------------------------------------------------------------------------------------------
+
+
+/***/ }),
+
+/***/ "./src/packages/slider/src/slider.ts":
+/*!*******************************************!*\
+  !*** ./src/packages/slider/src/slider.ts ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Slider = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var slider_item_1 = __webpack_require__(/*! ./slider-item */ "./src/packages/slider/src/slider-item.ts");
+var slider_paginator_1 = __webpack_require__(/*! ./slider-paginator */ "./src/packages/slider/src/slider-paginator.ts");
+var getDefaultSliderOptions_1 = __webpack_require__(/*! ./_common/getDefaultSliderOptions */ "./src/packages/slider/src/_common/getDefaultSliderOptions.ts");
+var Slider = /** @class */ (function (_super) {
+    __extends(Slider, _super);
+    function Slider(element, options) {
+        var _this = _super.call(this, element) || this;
+        _this.options = options;
+        _this.sliderItems = [];
+        _this.page = 0;
+        return _this;
+    }
+    Slider.prototype.build = function () {
+        var _this = this;
+        this.options = Object.assign((0, getDefaultSliderOptions_1.getDefaultSliderOptions)(), this.options);
+        this.list = this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-list")).at(0);
+        this.list
+            .querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-list-item"))
+            .forEach(function (element) {
+            var _a;
+            var calculatedWidth = _this.list.getWidth() / ((_a = _this.options) === null || _a === void 0 ? void 0 : _a.itemsPerPage) -
+                _this.options.spaceBetween / 2;
+            _this.sliderItems.push(new slider_item_1.SliderItem(element, { width: calculatedWidth }));
+        });
+        this.sliderPaginator = new slider_paginator_1.SliderPaginator(this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-slider-paginator")).at(0), this.getPagesCount());
+        var sliderButtons = this.element.querySelector(":scope > .".concat(tonada_shared_1.PREFIX, "-slider-button"));
+        this.prevButton = sliderButtons.at(0);
+        this.nextButton = sliderButtons.at(1);
+        if (!this.options.navigators) {
+            this.nextButton.hide();
+            this.prevButton.hide();
+        }
+        if (!this.options.paginator) {
+            this.sliderPaginator.element.hide();
+        }
+    };
+    Slider.prototype.getPagesCount = function () {
+        return Math.ceil(this.sliderItems.length / this.options.itemsPerPage);
+    };
+    Slider.prototype.prevSlider = function () { };
+    Slider.prototype.nextSlider = function () { };
+    Slider.prototype.goToPage = function (page) { };
+    return Slider;
+}(tonada_shared_1.Component));
+exports.Slider = Slider;
 
 
 /***/ })
@@ -17782,9 +17884,21 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.create = exports.Slider = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
+var default_slider_1 = __webpack_require__(/*! ./src/default-slider */ "./src/packages/slider/src/default-slider.ts");
+var fading_slider_1 = __webpack_require__(/*! ./src/fading-slider */ "./src/packages/slider/src/fading-slider.ts");
 var slider_1 = __webpack_require__(/*! ./src/slider */ "./src/packages/slider/src/slider.ts");
 Object.defineProperty(exports, "Slider", ({ enumerable: true, get: function () { return slider_1.Slider; } }));
-Object.defineProperty(exports, "create", ({ enumerable: true, get: function () { return slider_1.create; } }));
+function create(element, options) {
+    var slider = new slider_1.Slider((0, tonada_shared_1.createBaseElement)(element), options);
+    var component = new default_slider_1.DefaultSlider(slider);
+    if (options.slideAnimation === "fading") {
+        component = new fading_slider_1.FadingSlider(slider);
+    }
+    component.build();
+    return component;
+}
+exports.create = create;
 
 })();
 

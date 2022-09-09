@@ -17237,14 +17237,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Accordion = exports.create = void 0;
+exports.Accordion = void 0;
 var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
-function create(element) {
-    var component = new Accordion((0, tonada_shared_1.createBaseElement)(element));
-    component.build();
-    return component;
-}
-exports.create = create;
 var Accordion = /** @class */ (function (_super) {
     __extends(Accordion, _super);
     function Accordion(element) {
@@ -17579,9 +17573,15 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.create = exports.Accordion = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
 var accordion_1 = __webpack_require__(/*! ./src/accordion */ "./src/packages/accordion/src/accordion.ts");
 Object.defineProperty(exports, "Accordion", ({ enumerable: true, get: function () { return accordion_1.Accordion; } }));
-Object.defineProperty(exports, "create", ({ enumerable: true, get: function () { return accordion_1.create; } }));
+function create(element) {
+    var component = new accordion_1.Accordion((0, tonada_shared_1.createBaseElement)(element));
+    component.build();
+    return component;
+}
+exports.create = create;
 
 })();
 

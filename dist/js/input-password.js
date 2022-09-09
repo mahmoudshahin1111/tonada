@@ -17237,14 +17237,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.InputPassword = exports.create = void 0;
+exports.InputPassword = void 0;
 var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
-function create(element) {
-    var component = new InputPassword((0, tonada_shared_1.createBaseElement)(element));
-    component.build();
-    return component;
-}
-exports.create = create;
 var InputPassword = /** @class */ (function (_super) {
     __extends(InputPassword, _super);
     function InputPassword(element) {
@@ -17555,9 +17549,15 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.create = exports.InputPassword = void 0;
+var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
 var input_password_1 = __webpack_require__(/*! ./src/input-password */ "./src/packages/input-password/src/input-password.ts");
 Object.defineProperty(exports, "InputPassword", ({ enumerable: true, get: function () { return input_password_1.InputPassword; } }));
-Object.defineProperty(exports, "create", ({ enumerable: true, get: function () { return input_password_1.create; } }));
+function create(element) {
+    var component = new input_password_1.InputPassword((0, tonada_shared_1.createBaseElement)(element));
+    component.build();
+    return component;
+}
+exports.create = create;
 
 })();
 
