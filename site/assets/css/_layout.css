@@ -1,3 +1,6 @@
+html,body{
+    font-family: 'Roboto', sans-serif;
+}
 .layout {
     display: flex;
     flex-direction: column;
@@ -16,8 +19,7 @@
     color: white;
     box-sizing: border-box;
     height: fit-content;
-    padding: 0 15px;
-    flex: 0.4;
+    padding: 20px 15px;
 }
 
 .nav {
@@ -28,6 +30,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    flex-wrap: wrap;
 
 }
 
@@ -35,8 +38,9 @@
     color: white;
     text-decoration: none;
     padding: 0.4em 0.8em;
-    background-color: #30dd78;
+    background-color: #607eaa;
     box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .inputs {
