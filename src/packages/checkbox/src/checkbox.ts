@@ -8,6 +8,7 @@ export class Checkbox  extends Component<HTMLDivElement>{
   value:string;
   checkbox:BaseElement<HTMLDivElement>;
   input:BaseElement<HTMLInputElement>;
+  onChanged:(checked:boolean)=>void;
   constructor(element:BaseElement<HTMLDivElement>, config?:Config){
     console.log(config);
     
@@ -40,24 +41,25 @@ export class Checkbox  extends Component<HTMLDivElement>{
       if(this.config.disabled) return;
       e.preventDefault()
       this.toggle();
+      this.onChanged ? this.onChanged(this.checked) : null;
     });
     fragment.appendChild(this.checkbox.element);
     this.element.element.appendChild(fragment);
   }
   toggle(){
-    if(this.checked){
+    if(this.checked && !this.config.alwaysEnabled){
       return this.uncheck();
     }
     return this.check();
   }
   check(){
     this.element.addClass(`${PREFIX}-input-checkbox-checked`);
-    this.input.setAttribute('checked','true');
+    this.input.element.setAttribute('checked','true');
     this.checked = true;
   }
   uncheck(){
     this.element.removeClass(`${PREFIX}-input-checkbox-checked`);
-    this.input.removeAttribute('checked');
+    this.input.element.removeAttribute('checked');
     this.checked = false;
   }
 
