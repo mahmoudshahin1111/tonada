@@ -22,23 +22,26 @@
         <input id="test2" type="checkbox" value="10" disabled>
     </div>
     <h3>Option Group</h3>
-    <div id="tonada-group-checkbox">
+    <div id="tonada-checkbox-group">
         <div>
             <label for="test3">Option 1</label>
-            <input id="test3" type="checkbox" name="test" value="1">
+            <input id="test3" type="radio" name="test" value="1">
         </div>
         <div>
             <label for="test4">Option 2</label>
-            <input id="test4" type="checkbox" name="test" value="2">
+            <input id="test4" type="radio" name="test" value="2">
         </div>
         <div>
             <label for="test5">Option 3</label>
-            <input id="test5" type="checkbox" name="test" value="3">
+            <input id="test5" type="radio" name="test" value="3">
         </div>
     </div>
-    <div id="tonada-default-checkbox">
-        <label for="test6">Test 1</label>
-        <input id="test6" type="checkbox" value="10" disabled>
+    <h3>Development</h3>
+    <div class="tonada-input-checkbox tonada-input-checkbox-checked tonada-input-checkbox-disabled">
+        <label>Test 1</label>
+        <div class="tonada-input-checkbox-box ">
+            <i class="tonada-ic tonada-ic-check"></i>
+        </div>
     </div>
     <div class="tonada-input-checkbox tonada-input-checkbox-checked">
         <label>Test 1</label>
@@ -53,12 +56,14 @@
         </div>
     </div>
 </body>
-<script src="../dist/js/checkbox.js"></script>
+<script src="../dist/js/input-checkbox.js"></script>
+<script src="../dist/js/input-checkbox-group.js"></script>
 <script src="../dist/js/index.js"></script>
 <script>
     window.document.addEventListener('DOMContentLoaded', () => {
-        Tonada.create('checkbox', document.querySelector('#tonada-default-checkbox'));
-
+        Tonada.create('input-checkbox', document.querySelector('#tonada-default-checkbox'),{});
+        Tonada.create('input-checkbox', document.querySelector('#tonada-disabled-checkbox'),{});
+        Tonada.create('input-checkbox-group', document.querySelector('#tonada-checkbox-group'),{});
     })
 
 </script>

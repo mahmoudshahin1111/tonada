@@ -17213,23 +17213,23 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./src/packages/select/src/_common.ts":
-/*!********************************************!*\
-  !*** ./src/packages/select/src/_common.ts ***!
-  \********************************************/
+/***/ "./src/packages/select/src/_common/getDefaultConfig.ts":
+/*!*************************************************************!*\
+  !*** ./src/packages/select/src/_common/getDefaultConfig.ts ***!
+  \*************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getDefaultSelectOptions = void 0;
-function getDefaultSelectOptions() {
+exports.getDefaultConfig = void 0;
+function getDefaultConfig() {
     return {
         multiple: false,
         disabled: false,
     };
 }
-exports.getDefaultSelectOptions = getDefaultSelectOptions;
+exports.getDefaultConfig = getDefaultConfig;
 
 
 /***/ }),
@@ -17534,13 +17534,13 @@ exports.Select = void 0;
 var tonada_shared_1 = __webpack_require__(/*! tonada-shared */ "./src/packages/shared/index.ts");
 var select_header_1 = __webpack_require__(/*! ./select-header */ "./src/packages/select/src/select-header.ts");
 var select_menu_1 = __webpack_require__(/*! ./select-menu */ "./src/packages/select/src/select-menu.ts");
-var _common_1 = __webpack_require__(/*! ./_common */ "./src/packages/select/src/_common.ts");
+var getDefaultConfig_1 = __webpack_require__(/*! ./_common/getDefaultConfig */ "./src/packages/select/src/_common/getDefaultConfig.ts");
 var Select = /** @class */ (function (_super) {
     __extends(Select, _super);
     function Select(element, config) {
         var _this = _super.call(this, element) || this;
-        _this.selectConfig = (0, _common_1.getDefaultSelectOptions)();
-        _this.selectConfig = (0, _common_1.getDefaultSelectOptions)();
+        _this.selectConfig = (0, getDefaultConfig_1.getDefaultConfig)();
+        _this.selectConfig = (0, getDefaultConfig_1.getDefaultConfig)();
         _this.select = _this.element
             .querySelector(":scope > select")
             .at(0);
@@ -17739,6 +17739,9 @@ var BaseElement = /** @class */ (function () {
     };
     BaseElement.prototype.hide = function () {
         this.setStyle("display", "none");
+    };
+    BaseElement.prototype.show = function () {
+        this.setStyle("display", "inline-block");
     };
     BaseElement.prototype.remove = function () {
         this.element.remove();

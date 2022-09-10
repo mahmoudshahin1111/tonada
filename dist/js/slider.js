@@ -17320,6 +17320,9 @@ var BaseElement = /** @class */ (function () {
     BaseElement.prototype.hide = function () {
         this.setStyle("display", "none");
     };
+    BaseElement.prototype.show = function () {
+        this.setStyle("display", "inline-block");
+    };
     BaseElement.prototype.remove = function () {
         this.element.remove();
     };

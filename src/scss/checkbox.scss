@@ -10,8 +10,12 @@ $checkboxPrefix: #{$prefix}-input-checkbox;
   * {
     box-sizing: border-box;
   }
+  cursor: pointer;
   align-items: center;
-  & > label {
+  user-select: none;
+  width: fit-content;
+  &>label{
+    cursor: pointer;
   }
   &-box {
     @include flex-row;
@@ -34,5 +38,11 @@ $checkboxPrefix: #{$prefix}-input-checkbox;
       display: block;
       background-image: var(--#{$prefix}-checkbox-icon);
     }
+  }
+}
+
+.#{$checkboxPrefix}.#{$checkboxPrefix}-disabled {
+  .#{$checkboxPrefix}-box {
+    background-color: #f5f5f5;
   }
 }

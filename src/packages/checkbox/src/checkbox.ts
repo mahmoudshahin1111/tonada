@@ -1,13 +1,47 @@
 import { BaseElement, Component, createBaseElement, PREFIX } from "tonada-shared";
+import { getDefaultConfig } from "./_common/getDefaultConfig";
 import { Config } from "./_common/types";
 
-export class Checkbox  extends Component{
+export class Checkbox  extends Component<HTMLDivElement>{
   checked:boolean;
-  constructor(element:BaseElement,public config:Config){
+  config:Config;
+  value:string;
+  checkbox:BaseElement<HTMLDivElement>;
+  input:BaseElement<HTMLInputElement>;
+  constructor(element:BaseElement<HTMLDivElement>, config?:Config){
+    console.log(config);
+    
       super(element);
+      this.config = Object.assign(getDefaultConfig(),config);
   }
   build(): void {
+    this.element.addClass(`${PREFIX}-input-checkbox`);
     const fragment = document.createDocumentFragment();
+    this.input = this.element.querySelector<HTMLInputElement>(':scope > input').at(0);
+    this.input.hide();
+    if(this.input.element.hasAttribute('disabled')){
+      this.config.disabled = true;
+    }
+   if(this.input.element.hasAttribute('checked')){
+    this.config.checked = true;
+   }
+    this.config.checked = this.input.element.hasAttribute('checked');
+    this.value = this.input.element.getAttribute('value');
+    this.checkbox = createBaseElement(document.createElement('div'));
+    this.checkbox.addClass(`${PREFIX}-input-checkbox-box`);
+    this.checkbox.element.innerHTML = `<i class="${PREFIX}-ic ${PREFIX}-ic-check"> </i>`;
+    if(this.config.disabled){
+      this.element.addClass(`${PREFIX}-input-checkbox-disabled`);
+    }
+    if(this.config.checked){
+      this.check();
+    }
+    this.element.onEvent('click',(e)=>{
+      if(this.config.disabled) return;
+      e.preventDefault()
+      this.toggle();
+    });
+    fragment.appendChild(this.checkbox.element);
     this.element.element.appendChild(fragment);
   }
   toggle(){
@@ -18,10 +52,12 @@ export class Checkbox  extends Component{
   }
   check(){
     this.element.addClass(`${PREFIX}-input-checkbox-checked`);
+    this.input.setAttribute('checked','true');
     this.checked = true;
   }
   uncheck(){
     this.element.removeClass(`${PREFIX}-input-checkbox-checked`);
+    this.input.removeAttribute('checked');
     this.checked = false;
   }
 

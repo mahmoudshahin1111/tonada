@@ -66,6 +66,9 @@ export class BaseElement<T extends HTMLElement = any> {
   hide() {
     this.setStyle("display", "none");
   }
+  show(){
+    this.setStyle("display","inline-block");
+  }
   remove(){
     this.element.remove();
   }
