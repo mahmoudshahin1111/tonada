@@ -11,34 +11,67 @@ html,body{
     box-sizing: border-box;
     font-size: 1.2rem;
 }
+.logo{
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .header {
     display: flex;
     flex-direction: column;
-    background-color: #1c3879;
+    align-items: center;
+    justify-content: center;
+    background-color: #607eaa;
     color: white;
     box-sizing: border-box;
     height: fit-content;
     padding: 20px 15px;
+    gap: 5px;
+   
+}
+.main-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+.main-header > h1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header  p{
+    padding: 0;
+    margin: 0;
 }
 
 .nav {
+ 
     display: flex;
     flex-direction: row;
     list-style: none;
     gap: 10px;
     padding: 0;
-    margin: 0;
     box-sizing: border-box;
     flex-wrap: wrap;
-
+    margin-top: 20px;
 }
 
 .nav a {
     color: white;
     text-decoration: none;
     padding: 0.4em 0.8em;
-    background-color: #607eaa;
+    background-color: #1c3879;
     box-sizing: border-box;
     border-radius: 8px;
 }
