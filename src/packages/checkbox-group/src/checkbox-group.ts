@@ -13,7 +13,6 @@ export class CheckboxGroup  extends Component<HTMLDivElement>{
   }
   build(): void {
     this.element.addClass(`${PREFIX}-input-checkbox-group`);
-    // const fragment = document.createDocumentFragment();
     const checkboxesElements = this.element.querySelector(':scope > div');
     checkboxesElements.forEach(checkboxesElement=>{
       const checkbox = create(checkboxesElement.element,{alwaysEnabled:true});
@@ -25,7 +24,6 @@ export class CheckboxGroup  extends Component<HTMLDivElement>{
         }
       };
     });
-    // this.element.element.appendChild(fragment);
   }
   deselectAllExcept(checkbox:Checkbox){
     this.checkboxes.forEach(c=>{

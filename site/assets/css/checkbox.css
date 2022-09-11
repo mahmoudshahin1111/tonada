@@ -2,12 +2,22 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px;
 }
-.form-data{
+.inputs{
     display: flex;
     flex-direction: column;
-    background-color: black;
-    color: green;
-    height: 100%;
-    flex: 0.4;
+    gap: 10px;
+}
+.form-data{
+
+    flex: 0.5;
+}
+
+@media screen and (max-width:1200px){
+    .layout{
+        flex-direction: column;
+    }
 }

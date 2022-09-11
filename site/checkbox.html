@@ -17,9 +17,9 @@
     <!-- END LIBRARY CSS -->
 </head>
 
-<body class="layout">
-    <div>
-        <form id="form" action="">
+<body >
+    <div class="layout">
+        <form id="form" action="" class="inputs">
             <h3>Default</h3>
             <div id="tonada-default-checkbox">
                 <label for="test1">Test 1</label>
@@ -27,14 +27,14 @@
             </div>
             <h3>Disabled</h3>
             <div id="tonada-disabled-checkbox">
-                <label for="test2">Test 1</label>
+                <label for="test2">Test 2</label>
                 <input id="test2" type="checkbox" name="tonada-disabled-checkbox" value="10" disabled>
             </div>
             <h3>Option Group</h3>
             <div id="tonada-checkbox-group">
                 <div>
                     <label for="test3">Option 1</label>
-                    <input id="test3" type="radio" name="tonada-checkbox-group" name="test" value="1">
+                    <input id="test3" type="radio" name="tonada-checkbox-group"  value="1">
                 </div>
                 <div>
                     <label for="test4">Option 2</label>
@@ -45,12 +45,13 @@
                     <input id="test5" type="radio" name="tonada-checkbox-group" value="3">
                 </div>
             </div>
-            <button class="tonada-button" type="submit">Submit</button>
+            <button class="tonada-button tonada-button-primary" type="submit" >Submit</button>
         </form>
+        <div class="form-result-code form-data">
+            <code id="checkboxesData"></code>
+        </div>
     </div>
-    <div class="form-data">
-
-    </div>
+   
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
@@ -67,7 +68,7 @@
         const form = document.getElementById('form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log($(e.target).serializeArray());
+            document.getElementById('checkboxesData').innerHTML = getFormValuesFormatted(e.target);
         });
     })
 

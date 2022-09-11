@@ -54,12 +54,12 @@ export class Checkbox  extends Component<HTMLDivElement>{
   }
   check(){
     this.element.addClass(`${PREFIX}-input-checkbox-checked`);
-    this.input.element.setAttribute('checked','true');
+    this.input.element.checked = true;
     this.checked = true;
   }
   uncheck(){
     this.element.removeClass(`${PREFIX}-input-checkbox-checked`);
-    this.input.element.removeAttribute('checked');
+    this.input.element.checked = false;
     this.checked = false;
   }
 
