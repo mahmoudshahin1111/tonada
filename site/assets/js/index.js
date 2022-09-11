@@ -1,4 +1,5 @@
-const frame = document.getElementById("frame");
+document.addEventListener('DOMContentLoaded',()=>{
+  const frame = document.getElementById("frame");
 document.querySelectorAll("header a").forEach((e) => {
   e.addEventListener("click", (e) => {
     e.preventDefault();
@@ -6,3 +7,5 @@ document.querySelectorAll("header a").forEach((e) => {
     frame.setAttribute("src", url);
   });
 });
+})
+

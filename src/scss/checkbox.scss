@@ -20,6 +20,8 @@ $checkboxPrefix: #{$prefix}-input-checkbox;
   &-box {
     @include flex-row;
     @include border-radius;
+    align-items: center;
+    justify-content: center;
     margin-left: 8px;
     box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
     width: 24px;

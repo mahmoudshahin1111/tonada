@@ -1,0 +1,13 @@
+.layout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.form-data{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: green;
+    height: 100%;
+    flex: 0.4;
+}
