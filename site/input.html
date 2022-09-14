@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./assets/css/_layout.css">
     <link rel="stylesheet" href="./assets/css/inputs.css">
     <!-- LIBRARY CSS -->
+    <link rel="stylesheet" href="../dist/css/button.css">
     <link rel="stylesheet" href="../dist/css/icons.css">
     <link rel="stylesheet" href="../dist/css/input.css">
     <link rel="stylesheet" href="../dist/css/input-group.css">
@@ -19,16 +20,25 @@
 
 <body>
     <div class="layout">
+       <div class="inputs-containers">
         <h1>Inputs</h1>
-        <h3>Default</h3>
-        <div class="tonada-inputs">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
+       <div class="input-container">
+        <form id="form1">
+            <h3>Default</h3>
+            <div class="tonada-inputs">
+                <input class="tonada-input" type="text" name="name" placeholder="Name">
+            </div>
+            <h3>Floating Label</h3>
+            <div class="floating-label tonada-inputs ">
+                <input class="tonada-input" type="text" name="floating-name" placeholder="Name">
+                <label for="">Name</label>
+            </div>
+            <button class="tonada-button tonada-button-primary" type="submit">Submit</button>
+        </form>
+        <div class="form-result-code form-data">
+            <code id="formData1"></code>
         </div>
-        <h3>Floating Label</h3>
-        <div class="floating-label tonada-inputs ">
-            <input class="tonada-input" type="text" name="name" placeholder="Name">
-            <label for="">Name</label>
-        </div>
+       </div>
         <h3>Input with sections</h3>
         <div class="tonada-inputs-groups tonada-inputs">
             <span>$</span>
@@ -106,10 +116,14 @@
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
         </div>
-
+       </div>
+   
     </div>
-
+   
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="./assets/js/index.js"></script>
 <script src="../dist/js/input.js"></script>
 <script src="../dist/js/input-group.js"></script>
 <script src="../dist/js/input-password.js"></script>
@@ -131,7 +145,11 @@
             const inputPassword = Tonada.create('input-password', element);
         });
         // END INPUT PASSWORD
-
+        const form1 = document.getElementById('form1');
+        form1.addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('formData1').innerHTML = getFormValuesFormatted(e.target);
+        });
     })
 
 </script>

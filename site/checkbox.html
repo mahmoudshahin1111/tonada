@@ -17,7 +17,7 @@
     <!-- END LIBRARY CSS -->
 </head>
 
-<body >
+<body>
     <div class="layout">
         <form id="form" action="" class="inputs">
             <h3>Default</h3>
@@ -34,7 +34,7 @@
             <div id="tonada-checkbox-group">
                 <div>
                     <label for="test3">Option 1</label>
-                    <input id="test3" type="radio" name="tonada-checkbox-group"  value="1">
+                    <input id="test3" type="radio" name="tonada-checkbox-group" value="1">
                 </div>
                 <div>
                     <label for="test4">Option 2</label>
@@ -45,21 +45,22 @@
                     <input id="test5" type="radio" name="tonada-checkbox-group" value="3">
                 </div>
             </div>
-            <button class="tonada-button tonada-button-primary" type="submit" >Submit</button>
+            <button class="tonada-button tonada-button-primary" type="submit">Submit</button>
         </form>
         <div class="form-result-code form-data">
             <code id="checkboxesData"></code>
         </div>
     </div>
-   
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
     integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+<script src="./assets/js/index.js"></script>
 <script src="../dist/js/input-checkbox.js"></script>
 <script src="../dist/js/input-checkbox-group.js"></script>
 <script src="../dist/js/index.js"></script>
-<script src="./assets/js/index.js"></script>
+
 <script>
     window.document.addEventListener('DOMContentLoaded', () => {
         Tonada.create('input-checkbox', document.querySelector('#tonada-default-checkbox'), {});
