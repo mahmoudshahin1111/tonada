@@ -30,13 +30,13 @@
             <label for="">Name</label>
         </div>
         <h3>Input with sections</h3>
-        <div class="tonada-group-inputs tonada-inputs">
+        <div class="tonada-inputs-groups tonada-inputs">
             <span>$</span>
             <input class="tonada-input" type="text" name="name" placeholder="Name">
             <span>.00</span>
         </div>
         <h3>Input with sections Floating</h3>
-        <div class="tonada-group-inputs">
+        <div class="tonada-inputs-groups">
             <span>$</span>
             <div class="floating-label tonada-inputs">
                 <input class="tonada-input" type="text" name="name" placeholder="Name">
@@ -73,35 +73,35 @@
             </ul>
         </div>
         <h4>Password</h4>
-        <div class="tonada-password">
+        <div class="tonada-passwords">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <i class="tonada-password-toggle tonada-ic-show"></i>
         </div>
 
         <h4>Float Password</h4>
-        <div class="tonada-password floating-label">
+        <div class="tonada-passwords floating-label">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic-show"></i>
         </div>
 
         <h4>Password Sizes</h4>
-        <div class="tonada-password floating-label tonada-sm">
+        <div class="tonada-passwords floating-label tonada-sm">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
         </div>
-        <div class=" tonada-password floating-label">
+        <div class="tonada-passwords floating-label">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
         </div>
-        <div class=" tonada-password floating-label tonada-lg">
+        <div class="tonada-passwords floating-label tonada-lg">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
         </div>
-        <div class=" tonada-password floating-label tonada-xl">
+        <div class="tonada-passwords floating-label tonada-xl">
             <input type="password" class="tonada-input" name="password" placeholder="password">
             <label for="">Password</label>
             <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
@@ -122,12 +122,12 @@
         });
         // END DEFAULT INPUT
         // INPUT GROUP
-        document.querySelectorAll('.tonada-group-inputs').forEach(element => {
-            const input = Tonada.create('input', element);
+        document.querySelectorAll('.tonada-inputs-groups').forEach(element => {
+            const input = Tonada.create('input-group', element);
         });
         // END INPUT GROUP
         // PASSWORD
-        document.querySelectorAll('.tonada-password').forEach(element => {
+        document.querySelectorAll('.tonada-passwords').forEach(element => {
             const inputPassword = Tonada.create('input-password', element);
         });
         // END INPUT PASSWORD
