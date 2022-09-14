@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dist/css/icons.css">
-    <link rel="stylesheet" href="../dist/css/select.css">
+
     <title>Tonada</title>
     <link rel="stylesheet" href="./assets/css/_layout.css">
+    <!-- LIBRARY CSS -->
+    <link rel="stylesheet" href="../dist/css/icons.css">
+    <link rel="stylesheet" href="../dist/css/select.css">
+    <!-- END LIBRARY CSS -->
 </head>
 
 <body>
@@ -51,6 +54,27 @@
             <option value="3">Option 3</option>
         </select>
     </div>
+    <h3 id="select-">How to use it ?</h3>
+    <pre><code class="lang-html">&lt;<span class="hljs-built-in">div</span> id=<span class="hljs-string">"select"</span>&gt;
+        &lt;select&gt;
+          &lt;<span class="hljs-keyword">option</span> value=<span class="hljs-string">"1"</span>&gt;<span class="hljs-keyword">Option</span> <span class="hljs-number">1</span>&lt;/<span class="hljs-keyword">option</span>&gt;
+          &lt;<span class="hljs-keyword">option</span> selected value=<span class="hljs-string">"2"</span>&gt;<span class="hljs-keyword">Option</span> <span class="hljs-number">2</span>&lt;/<span class="hljs-keyword">option</span>&gt;
+          &lt;<span class="hljs-keyword">option</span> value=<span class="hljs-string">"3"</span>&gt;<span class="hljs-keyword">Option</span> <span class="hljs-number">3</span>&lt;/<span class="hljs-keyword">option</span>&gt;
+        &lt;/select&gt;
+      &lt;/<span class="hljs-built-in">div</span>&gt;
+      </code></pre>
+    <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">"#select"</span>);
+      Tonada.create(<span class="hljs-string">"select"</span>, element, {
+        multiple: <span class="hljs-keyword">true</span>,
+        disabled: <span class="hljs-keyword">true</span>,
+      });
+      </code></pre>
+    <h4 id="api">API</h4>
+    <p>Options:</p>
+    <ul>
+        <li>multiple: number of items per page.</li>
+        <li>disabled: boolean for disabled or enable.</li>
+    </ul>
 
 </body>
 <script src="../dist/js/select.js"></script>
@@ -60,10 +84,10 @@
         Tonada.create('select', document.querySelector('#tonada-default-select'));
         Tonada.create('select', document.querySelector('#tonada-multiselect-select'));
         Tonada.create('select', document.querySelector('#tonada-select-disabled'));
-        document.querySelectorAll('.tonada-select-sizes').forEach(element=>{
+        document.querySelectorAll('.tonada-select-sizes').forEach(element => {
             Tonada.create('select', element);
         })
-       
+
     })
 
 </script>

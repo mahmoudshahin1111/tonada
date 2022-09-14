@@ -25,10 +25,12 @@ CDN:
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/icons.css" />
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/select.css" />
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/input.css" />
-<link rel="stylesheet" href="https://unpkg.com/tonada/dist/input-password.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/input-password.css"
+/>
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/slider.css" />
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/accordion.css" />
-
 ```
 
 ## Usage
@@ -45,9 +47,39 @@ to reduce the bundle size and make the page load faster import only the componen
 <script src="tonada/dist/js/index.js"></script>
 ```
 
-## API
+### Inputs:
+
+```html
+<div class="tonada-control">
+  <input class="tonada-input" type="text" name="name" placeholder="Name" />
+</div>
+```
+
+```javascript
+document
+  .querySelectorAll(".tonada-control.tonada-inputs")
+  .forEach((element) => {
+    const input = Tonada.create("input", element);
+  });
+```
 
 ### Slider:
+
+```html
+<div id="slider" class="tonada-slider">
+  <ul class="tonada-list">
+    <li class="tonada-list-item">1</li>
+    <li class="tonada-list-item">2</li>
+  </ul>
+  <button class="tonada-slider-button tonada-prev">
+    <i class="tonada-ic tonada-ic-arrow-left"></i>
+  </button>
+  <button class="tonada-slider-button tonada-next">
+    <i class="tonada-ic tonada-ic-arrow-right"></i>
+  </button>
+  <div class="tonada-slider-paginator"></div>
+</div>
+```
 
 ```javascript
 const element = document.querySelector("#slider");
@@ -74,7 +106,7 @@ Options:
 <div id="select">
   <select>
     <option value="1">Option 1</option>
-    <option selected value="2">Option 2</option>
+    <option value="2">Option 2</option>
     <option value="3">Option 3</option>
   </select>
 </div>

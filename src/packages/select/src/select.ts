@@ -7,22 +7,23 @@ import {
 import { MenuItem } from "./menu-item";
 import { SelectHeader } from "./select-header";
 import { SelectMenu } from "./select-menu";
-import { SelectConfig, getDefaultSelectOptions } from "./_common";
+import { getDefaultConfig } from "./_common/getDefaultConfig";
+import { Config } from "./_common/types";
 
 export class Select extends Component {
   private select: BaseElement<HTMLSelectElement>;
   private selectHeader: SelectHeader;
   private selectMenu: SelectMenu;
   private menuIcon: BaseElement<HTMLSpanElement>;
-  private selectConfig:SelectConfig = getDefaultSelectOptions();
+  private selectConfig:Config = getDefaultConfig();
   onOptionSelected: (optionValue: string) => void;
   onOptionRemoved: (optionValue: string) => void;
   constructor(
     element: BaseElement<HTMLSelectElement>,
-    config?: SelectConfig
+    config?: Config
   ) {
     super(element);
-    this.selectConfig = getDefaultSelectOptions();
+    this.selectConfig = getDefaultConfig();
     this.select = this.element
     .querySelector<HTMLSelectElement>(":scope > select")
     .at(0);

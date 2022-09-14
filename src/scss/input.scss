@@ -91,38 +91,7 @@ $input-prefix: #{$prefix}-control;
     }
   }
 
-  &.#{$prefix}-input-group {
-    box-shadow: $input-shadow-box;
-    box-shadow: $input-focused-shadow-box;
-    display: flex;
-    flex-direction: row;
-    background-color: map-get($colors, "secondary");
-    border-radius: $border-radius;
-    & > span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 2em;
-      color: #ffffff;
-      user-select: none;
-      padding: 0 1em;
-    }
-    & > .#{$prefix}-control {
-      flex: 1;
-    }
-    & > .#{$prefix}-control > .#{$prefix}-input,
-    & > .#{$prefix}-input {
-      border: 0;
-      box-shadow: none;
 
-      outline: none;
-      border-radius: 0px;
-      &:focus {
-        outline: none;
-        box-shadow: $input-focused-shadow-box;
-      }
-    }
-  }
 }
 
 .#{$prefix}-errors {

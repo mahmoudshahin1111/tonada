@@ -1,12 +1,22 @@
+:root{
+    --tonada-primary-color:#1c3879;
+}
+html,
 body {
-    display: flex;
-    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+*{
+    box-sizing: border-box;
 }
 
-.inputs {
-    padding: 1rem;
+.form-result-code{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    width: 50%;
+    background-color: var(--tonada-primary-color);
+    color: white;
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    padding: 10px;
 }

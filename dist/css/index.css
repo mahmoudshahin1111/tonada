@@ -23,6 +23,10 @@
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
 }
 
+.tonada-ic-check {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
+}
+
 .tonada-control {
   --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   --tonada-invalid-shadow-box: 0px 0px 1px 1px #ff004c;
@@ -102,36 +106,6 @@
 }
 .tonada-control.floating-label > .tonada-input:focus + label {
   font-size: calc(var(--tonada-font-size) - 0.5em);
-}
-.tonada-control.tonada-input-group {
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 1px 1px #1c3879;
-  display: flex;
-  flex-direction: row;
-  background-color: #607eaa;
-  border-radius: 6px;
-}
-.tonada-control.tonada-input-group > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2em;
-  color: #ffffff;
-  user-select: none;
-  padding: 0 1em;
-}
-.tonada-control.tonada-input-group > .tonada-control {
-  flex: 1;
-}
-.tonada-control.tonada-input-group > .tonada-control > .tonada-input, .tonada-control.tonada-input-group > .tonada-input {
-  border: 0;
-  box-shadow: none;
-  outline: none;
-  border-radius: 0px;
-}
-.tonada-control.tonada-input-group > .tonada-control > .tonada-input:focus, .tonada-control.tonada-input-group > .tonada-input:focus {
-  outline: none;
-  box-shadow: 0px 0px 1px 1px #1c3879;
 }
 
 .tonada-errors {
@@ -221,36 +195,6 @@
 }
 .tonada-control.floating-label > .tonada-input:focus + label {
   font-size: calc(var(--tonada-font-size) - 0.5em);
-}
-.tonada-control.tonada-input-group {
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 1px 1px #1c3879;
-  display: flex;
-  flex-direction: row;
-  background-color: #607eaa;
-  border-radius: 6px;
-}
-.tonada-control.tonada-input-group > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2em;
-  color: #ffffff;
-  user-select: none;
-  padding: 0 1em;
-}
-.tonada-control.tonada-input-group > .tonada-control {
-  flex: 1;
-}
-.tonada-control.tonada-input-group > .tonada-control > .tonada-input, .tonada-control.tonada-input-group > .tonada-input {
-  border: 0;
-  box-shadow: none;
-  outline: none;
-  border-radius: 0px;
-}
-.tonada-control.tonada-input-group > .tonada-control > .tonada-input:focus, .tonada-control.tonada-input-group > .tonada-input:focus {
-  outline: none;
-  box-shadow: 0px 0px 1px 1px #1c3879;
 }
 
 .tonada-errors {
@@ -459,6 +403,10 @@
 
 .tonada-ic-close, .tonada-select-header-tag .tonada-remove-button {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+}
+
+.tonada-ic-check {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
 }
 
 .tonada-select {

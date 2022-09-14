@@ -1,7 +1,7 @@
 import { Component, BaseElement, PREFIX } from "tonada-shared";
 import { MenuItem } from "./menu-item";
 import { Select } from "./select";
-import { SelectConfig } from "./_common";
+import { Config } from "./_common/types";
 
 export class SelectMenu extends Component {
   opened: boolean = false;
@@ -13,7 +13,7 @@ export class SelectMenu extends Component {
     private select: Select,
     options: BaseElement<HTMLOptionElement>[],
     public menuIcon: BaseElement,
-    private selectConfig: SelectConfig
+    private selectConfig: Config
   ) {
     super(element);
     this.items = options.map((option) => {

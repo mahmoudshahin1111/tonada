@@ -14,6 +14,8 @@ export class InputPassword extends Component {
     super(element);
   }
   build(): void {
+    this.element.addClass(`${PREFIX}-control`);
+    this.element.addClass(`${PREFIX}-input-password`);
     this._toggler = this.element
       .querySelector(`:scope > .${PREFIX}-password-toggle`)
       .at(0);
