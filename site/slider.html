@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <h1>Slider</h1>
+
     <h3>Slides Moving</h3>
     <div id="tonada-slider-moving" class="tonada-slider">
         <ul class="tonada-list">
@@ -51,6 +51,24 @@
         </button>
         <div class="tonada-slider-paginator"></div>
     </div>
+
+    <h3 id="slider-">How to use it ?</h3>
+    <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">"#slider"</span>);
+Tonada.create(<span class="hljs-string">"slider"</span>, element, {
+  itemsPerPage: <span class="hljs-number">4</span>,
+  slideAnimation: <span class="hljs-string">"moving"</span>,
+});
+</code></pre>
+    <h4 id="api">API</h4>
+    <p>Options:</p>
+    <ul>
+        <li>itemsPerPage: number of items per page.</li>
+        <li>slideAnimation: <code>moving</code> or <code>fading</code>.</li>
+        <li>infinite: boolean for auto sliding.</li>
+        <li>infiniteSlidingDuration: number for the duration to sliding between items.</li>
+        <li>paginator: boolean for show or hide the pages buttons.</li>
+        <li>navigators: boolean for show or hide the next and previous buttons.</li>
+    </ul>
 </body>
 <script src="../dist/js/slider.js"></script>
 <script src="../dist/js/index.js"></script>

@@ -1,17 +1,12 @@
 import {
   BaseElement,
   Component,
-  createBaseElement,
   PREFIX,
 } from "tonada-shared";
 
-export function create(element: HTMLDivElement) {
-  const component = new Input(createBaseElement(element));
-  component.build();
-  return component;
-}
 
-export class Input extends Component {
+
+export class InputGroup extends Component {
   input: BaseElement<HTMLElement>;
   label: BaseElement<HTMLElement>;
   constructor(element: BaseElement<HTMLElement>) {

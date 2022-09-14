@@ -35,6 +35,11 @@
       "path": "src/packages/input/index.ts"
     },
     {
+      "name": "input-group",
+      "className": "TonadaInputGroup",
+      "path": "src/packages/input-group/index.ts"
+    },
+    {
       "name": "input-password",
       "className": "TonadaInputPassword",
       "path": "src/packages/input-password/index.ts"
