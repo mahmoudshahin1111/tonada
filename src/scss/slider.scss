@@ -7,9 +7,13 @@
 .#{$prefix}-slider {
   @include border-radius;
   @include flex-column;
+  box-sizing: border-box;
   background-color: var(--#{$prefix}-background-color);
   position: relative;
   justify-content: center;
+  * {
+    box-sizing: border-box;
+  }
   & > .#{$prefix}-list {
     @include flex-row;
     margin: 0;

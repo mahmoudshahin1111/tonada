@@ -13,6 +13,10 @@ $input-group-prefix: #{$input-prefix + "." + #{$prefix}-input-group};
   flex-direction: row;
   background-color: map-get($colors, "secondary");
   border-radius: $border-radius;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   & > span {
     display: flex;
     align-items: center;

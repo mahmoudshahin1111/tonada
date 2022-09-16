@@ -1,3 +1,5 @@
+@import url("./_layout.css");
+
 .layout {
     display: flex;
     flex-direction: column;
@@ -7,14 +9,73 @@
     overflow-y: auto;
     padding: 15px;
 }
-.input-container{
+
+.input-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
+
+
+
 }
-.input-container > form{
-    display: flex; 
+
+@media only screen and (max-width:1000px) {
+
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.input-container>form {
+    display: flex;
     flex-direction: column;
     padding: 15px;
     gap: 10px;
+    border: 1px solid var(--tonada-tn-secondary-color);
+    border-radius: 4px;
+    margin: 0 10px;
+}
+
+@media only screen and (max-width:1000px) {
+
+
+    .input-container>form {
+        margin: 10px 0;
+    }
+}
+
+.input-container .submission-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-boxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+
+.input-boxes .box {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 10px;
+}
+
+
+@media only screen and (max-width:1000px) {
+    .input-boxes {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-boxes .box {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        gap: 10px;
+    }
 }

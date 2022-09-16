@@ -8,17 +8,16 @@ $buttonPrefix: #{$prefix}-button;
 .#{$buttonPrefix} {
   @include flex-row;
   @include border-radius;
-  * {
-    box-sizing: border-box;
-  }
   cursor: pointer;
-
   outline: 0;
   border: 0;
-
   padding: 0.4em 0.8em;
   font-size: 1em;
   width: fit-content;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   &-sm {
     font-size: 0.8em;
   }

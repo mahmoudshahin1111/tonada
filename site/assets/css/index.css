@@ -1,3 +1,4 @@
+@import url("./_layout.css");
 .layout {
     display: flex;
     flex-direction: column;
@@ -9,7 +10,7 @@
     font-size: 1.2rem;
 }
 
-@media screen and (max-width:1200px) {
+@media only screen and (max-width:1000px) {
     .layout {
         font-size: 1rem;
     }
@@ -32,7 +33,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #607eaa;
+    background-color: var(--tonada-tn-secondary-color);
     color: white;
     box-sizing: border-box;
     height: fit-content;
@@ -41,7 +42,7 @@
 
 }
 
-@media screen and (max-width:1200px) {
+@media only screen and (max-width:1000px) {
     .header {
         padding: 10px 10px;
     }
@@ -81,7 +82,7 @@
     gap: 10px;
 }
 
-@media screen and (max-width:1200px) {
+@media only screen and (max-width:1000px) {
     .nav {
         margin-top: 0;
     }
@@ -91,9 +92,12 @@
     color: white;
     text-decoration: none;
     padding: 0.4em 0.8em;
-    background-color: var(--tonada-primary-color);
+    background-color: var(--tonada-tn-secondary-color);
     box-sizing: border-box;
     border-radius: 8px;
+}
+.nav a.active{
+    background-color: var(--tonada-tn-primary-color);
 }
 
 

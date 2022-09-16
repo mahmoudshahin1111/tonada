@@ -1,10 +1,21 @@
 document.addEventListener('DOMContentLoaded',()=>{
   const frame = document.getElementById("frame");
-document.querySelectorAll("header a").forEach((e) => {
+  const navLinks = document.querySelectorAll("header a");
+  navLinks.forEach((e) => {
   e.addEventListener("click", (e) => {
     e.preventDefault();
-    const url = e.target.getAttribute("href");
-    frame.setAttribute("src", url);
+    navLinks.forEach(navLink=>{
+      if(e.currentTarget === navLink ){
+        const url = navLink.getAttribute("href");
+        frame.setAttribute("src", url);
+        console.log(navLink);
+        navLink.classList.add('active');
+      }else{
+        navLink.classList.remove('active');
+      }
+    })
+
+
   });
 });
 })

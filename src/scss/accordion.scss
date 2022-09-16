@@ -11,6 +11,10 @@ $accordion-prefix: #{$prefix}-accordion;
   @include box-sizing;
   overflow-y: hidden;
   padding: 2px;
+  box-sizing: border-box;
+  *{
+    box-sizing: border-box;
+  }
   & > &-section {
     @include flex-column;
     overflow: hidden;

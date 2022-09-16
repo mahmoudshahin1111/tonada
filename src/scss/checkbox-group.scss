@@ -3,7 +3,6 @@
 @import "./checkbox.scss";
 $checkboxGroupPrefix: #{$prefix}-input-checkbox-group;
 .#{$checkboxGroupPrefix} {
-
 }
 .#{$checkboxGroupPrefix} {
   @include flex-column;

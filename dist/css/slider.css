@@ -8,9 +8,13 @@
   border-radius: 6px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   background-color: var(--tonada-background-color);
   position: relative;
   justify-content: center;
+}
+.tonada-slider * {
+  box-sizing: border-box;
 }
 .tonada-slider > .tonada-list {
   display: flex;

@@ -7,13 +7,14 @@ $checkboxPrefix: #{$prefix}-input-checkbox;
 }
 .#{$checkboxPrefix} {
   @include flex-row;
-  * {
-    box-sizing: border-box;
-  }
   cursor: pointer;
   align-items: center;
   user-select: none;
   width: fit-content;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   &>label{
     cursor: pointer;
   }

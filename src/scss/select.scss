@@ -17,13 +17,12 @@
   @include border-radius;
   @include flex-column;
   box-sizing: border-box;
-  * {
-    box-sizing: border-box;
-  }
   min-height: var(--#{$prefix}-select-height);
   position: relative;
   box-shadow: var(--#{$prefix}-shadow);
-
+  * {
+    box-sizing: border-box;
+  }
   &-close-icon {
     @extend .#{$prefix}-ic;
     cursor: pointer;
