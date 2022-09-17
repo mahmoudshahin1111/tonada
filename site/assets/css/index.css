@@ -1,4 +1,5 @@
 @import url("./_layout.css");
+
 .layout {
     display: flex;
     flex-direction: column;
@@ -31,15 +32,11 @@
 .header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: var(--tonada-tn-secondary-color);
     color: white;
     box-sizing: border-box;
     height: fit-content;
     padding: 20px 15px;
-    gap: 5px;
-
 }
 
 @media only screen and (max-width:1000px) {
@@ -54,18 +51,15 @@
     align-items: center;
     gap: 15px;
 }
-
-.main-header>h1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.more-details h3{
     margin: 0;
     padding: 0;
 }
 
-.main-header p {
+.more-details p {
     padding: 0;
     margin: 0;
+    font-size: 0.9em;
 }
 
 .nav {
@@ -96,7 +90,8 @@
     box-sizing: border-box;
     border-radius: 8px;
 }
-.nav a.active{
+
+.nav a.active {
     background-color: var(--tonada-tn-primary-color);
 }
 

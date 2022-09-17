@@ -6,11 +6,11 @@ export class MenuItem {
     label: string;
     selected: boolean;
     constructor(public option: BaseElement<HTMLOptionElement>) {
-      this.label = option.element.innerHTML;
+      this.label = option.element.innerText;
       this.value = (option.element as HTMLOptionElement).value;
       this.baseElement = createBaseElement(document.createElement("button"));
       this.baseElement.addClass(`${PREFIX}-select-option`);
-      this.baseElement.element.innerHTML = this.label;
+      this.baseElement.element.innerText = this.label;
       this.baseElement.setAttribute(
         `data-${PREFIX}-value`,
         (option.element as HTMLOptionElement).value
