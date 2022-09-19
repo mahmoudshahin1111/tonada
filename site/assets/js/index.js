@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded',()=>{
-  const frame = document.getElementById("frame");
   const navLinks = document.querySelectorAll("header a");
   navLinks.forEach((e) => {
   e.addEventListener("click", (e) => {
-    e.preventDefault();
     navLinks.forEach(navLink=>{
       if(e.currentTarget === navLink ){
         const url = navLink.getAttribute("href");
-        frame.setAttribute("src", url);
-        console.log(navLink);
         navLink.classList.add('active');
       }else{
         navLink.classList.remove('active');

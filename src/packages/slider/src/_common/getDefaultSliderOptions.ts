@@ -7,8 +7,8 @@ export function getDefaultSliderOptions(): SliderOptions {
       spaceBetween: 0,
       paginator: true,
       navigators: true,
-      infinite: false,
-      infiniteSlidingDuration: 2000,
+      autoSliding: false,
+      autoSlidingDuration: 2000,
     } as SliderOptions;
   }
 

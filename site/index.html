@@ -13,6 +13,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/index.css" />
+        <!-- LIBRARY CSS -->
+        <link rel="stylesheet" href="../dist/css/button.css" />
+        <link rel="stylesheet" href="../dist/css/icons.css" />
+        <link rel="stylesheet" href="../dist/css/input.css" />
+        <link rel="stylesheet" href="../dist/css/input-group.css" />
+        <link rel="stylesheet" href="../dist/css/input-password.css" />
+        <link rel="stylesheet" href="../dist/css/select.css">
+        <link rel="stylesheet" href="../dist/css/slider.css">
+        <!-- END LIBRARY CSS -->
   </head>
 
   <body class="layout">
@@ -32,18 +41,624 @@
       </div>
 
       <div class="nav">
-        <a href="./home.html" class="active" rel="noopener noreferrer">Home</a>
-        <a href="./accordion.html" rel="noopener noreferrer">Accordion</a>
-        <a href="./slider.html" rel="noopener noreferrer">Slider</a>
-        <a href="./checkbox.html" rel="noopener noreferrer">Checkbox</a>
-        <a href="./buttons.html" rel="noopener noreferrer">Buttons</a>
+        <a href="#get-started-section" class="active" >Get Started</a>
+        <a href="#inputs-section"  >Inputs</a>
+        <a href="#select-section">Select</a>
+        <a href="#accordion-section" >Accordion</a>
+        <a href="#slider-section" >Slider</a>
+        <a href="#checkbox-section" >Checkbox</a>
+        <a href="#buttons-section" >Buttons</a>
       </div>
     </header>
 
-    <div class="frame-container">
+    <!-- <div class="frame-container">
       <iframe id="frame" src="http://127.0.0.1:5500/site/home.html"></iframe>
-    </div>
+    </div> -->
 
-    <script src="./assets/js/index.js"></script>
+    <div id="get-started-section" class="container">
+      <div>
+        <h2>How to install ?</h2>
+        <p>
+          because tonada focus on the performance and seo friendly then we should
+          reduce it's size so you can use only single component or use them all<br />
+          so you need to import only what you going to use
+        </p>
+        <h3>
+          CDN: 
+        </h3>
+        <p>
+          input:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+        <p>
+          input group:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-group.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-group.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+        <p>
+          input password:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-password.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-password.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+
+        <p>
+          checkbox:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checkbox.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checkbox.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+        <p>
+          checkbox-group:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checbox-group.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checkbox-group.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+         <p>
+          <span>this line should be at the end of your scripting tags  &#9940;</span>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/index.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+         </p>
+       
+        <h3>
+          Or Npm:
+         
+        </h3>
+        <pre><code>npm i tonada</code></pre>
+        <div class="inputs-containers">
+          <h2>Let's start 🎉</h2>
+          <p>On of our library advance is about if you need to send the data directly by submitting the forms without using ajax <br/> so you don't need to write more javascript code to handle this and collect the data just submit your form and see the magic happen 💨</p>
+          <hr />
+          <br />
+          <div class="input-container">
+            <form id="form1">
+              <div class="tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="tonada-passwords">
+                <input
+                  type="password"
+                  class="tonada-input"
+                  name="password"
+                  placeholder="password"
+                />
+                <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
+              </div>
+              <div class="submission-button">
+                <button class="tonada-button tonada-button-primary" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div class="form-result-code form-data">
+              <code id="formData1"></code>
+            </div>
+          </div>
+          <br />
+          <hr />
+          <p>
+            To apply your first tonada element and let's select the Input then copy this HTML 
+          </p>
+          <pre>
+                  <code>
+                      <div>&lt;div id="element"&gt;</div>
+                      <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="email" placeholder="Email"&gt;</div>
+                      <div>&lt;/div&gt;</div>
+                  </code>
+              </pre>
+          <p>
+            Then call <code><strong class="class-name">Tonada</strong></code> to do the work on this element.
+          </p>
+          <pre>
+                  <code>
+                    <div>&lt;script src="../dist/js/input.js"&gt;&lt;/script&gt;</div>
+                    <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
+                    <div>&lt;script&gt;</div>
+                    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
+                    <div>&lt;/script&gt;</div>
+                  </code>
+              </pre>
+          <h1>And many more ... 👇🏻</h1>
+      
+        </div>
+  
+        
+      </div>
+      <div id="inputs-section">
+        <h2>Inputs</h2>
+        <hr />
+        <div class="input-boxes">
+    
+          <div>
+            <div class="box">
+              <h3>Floating Label</h3>
+              <div class="floating-label tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="floating-name"
+                  placeholder="Name"
+                />
+                <label for="">Name</label>
+              </div>
+              <pre>
+                <code>
+                    <div>&lt;div id="element" class="floating-label"&gt;</div>
+                    <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="floating-name" placeholder="Name"&gt;</div>
+                    <div>&nbsp; &nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
+                    <div>&lt;/div&gt;</div>
+                    <div>&lt;script src="../dist/js/input.js"&gt;&lt;/script&gt;</div>
+                    <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
+                    <div>&lt;script&gt;</div>
+                    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
+                    <div>&lt;/script&gt;</div>
+                </code>
+              </pre>
+    
+              <h3>Input with sections Floating</h3>
+              <div class="tonada-inputs-groups">
+                <span>$</span>
+                <div class="floating-label tonada-inputs">
+                  <input
+                    class="tonada-input"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                  />
+                  <label for="">Name</label>
+                </div>
+                <span>.00</span>
+              </div>
+              <pre>
+                  <code>
+                      <div>&lt;div id="element"&gt;</div>
+    <div>&nbsp; &lt;span&gt;$&lt;/span&gt;</div>
+    <div>&nbsp; &lt;div class="<span class="class-name">floating-label</span>"&gt;</div>
+    <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="name" placeholder="Name" /&gt;</div>
+    <div>&nbsp; &nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
+    <div>&nbsp; &lt;/div&gt;</div>
+    <div>&nbsp; &lt;span&gt;.00&lt;/span&gt;</div>
+    <div>&lt;/div&gt;</div>
+    <div>&lt;script&gt;</div>
+    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input-group', document.getElementById('element'));</div>
+    <div>&lt;/script&gt;</div>
+                  </code>
+              </pre>
+            </div>
+            <div class="box">
+              <h3>Input with sections</h3>
+              <div class="tonada-inputs-groups tonada-inputs">
+                <span>$</span>
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                />
+                <span>.00</span>
+              </div>
+              <pre>
+                          <code>
+                              <div>&lt;div id="element"&gt;</div>
+                              <div>&nbsp; &nbsp; &lt;span&gt;$&lt;/span&gt;</div>
+                              <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="name" placeholder="Name"&gt;</div>
+                              <div>&nbsp; &nbsp; &lt;span&gt;.00&lt;/span&gt;</div>
+                              <div>&lt;/div&gt;</div>
+    
+                              <div>&lt;script&gt;</div>
+                              <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input-group', document.getElementById('element'));</div>
+                              <div>&lt;/script&gt;</div>
+                          </code>
+                      </pre>
+            </div>
+          </div>
+    
+          <div>
+            <div class="box">
+              <h3>Invalid Input</h3>
+              <p>
+                apply the error state by add <code>tonada-invalid</code> class on
+                the input container <br />
+                and use <code>tonada-errors</code> class on the list.
+              </p>
+              <div>
+                <div class="floating-label tonada-invalid tonada-inputs">
+                  <input
+                    class="tonada-input"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                  />
+                  <label for="">Name</label>
+                </div>
+                <ul class="tonada-errors">
+                  <li>Name is required</li>
+                  <li>Should be character [A-Z a-z]</li>
+                </ul>
+              </div>
+              <pre>
+      <code>
+        <div>&lt;div id="element" class="floating-label <span class="class-name">tonada-invalid</span>"&gt;</div>
+        <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="name" placeholder="Name" /&gt;</div>
+        <div>&nbsp; &nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
+        <div>&lt;/div&gt;</div>
+        <div>&lt;ul class="<span class="class-name">tonada-errors</span>"&gt;</div>
+        <div>&nbsp; &nbsp; &lt;li&gt;Name is required&lt;/li&gt;</div>
+        <div>&nbsp; &nbsp; &lt;li&gt;Should be character [A-Z a-z]&lt;/li&gt;</div>
+        <div>&lt;/ul&gt;</div>
+      </code>
+    </pre>
+            </div>
+            <div class="box">
+              <h3>Password</h3>
+              <hr />
+              <div class="tonada-passwords">
+                <input
+                  type="password"
+                  class="tonada-input"
+                  name="password"
+                  placeholder="password"
+                />
+                <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
+              </div>
+              <pre>
+        <code>
+          <div>&lt;div id="element"&gt;</div>
+    <div>&nbsp; &lt;input</div>
+    <div>&nbsp; &nbsp; type="password"</div>
+    <div>&nbsp; &nbsp; class="tonada-input"</div>
+    <div>&nbsp; &nbsp; name="password"</div>
+    <div>&nbsp; &nbsp; placeholder="password"</div>
+    <div>&nbsp; /&gt;</div>
+    <div>&nbsp; &lt;label for=""&gt;Password&lt;/label&gt;</div>
+    <div>&nbsp; &lt;i class="tonada-password-toggle tonada-ic tonada-ic-show"&gt;&lt;/i&gt;</div>
+    <div>&lt;/div&gt;</div>
+    <div>&lt;script&gt;</div>
+    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input-password', document.getElementById('element'));</div>
+    <div>&lt;/script&gt;</div>
+        </code>
+      </pre>
+              <h3>Float Password</h3>
+              <hr />
+              <div class="tonada-passwords floating-label">
+                <input
+                  type="password"
+                  class="tonada-input"
+                  name="password"
+                  placeholder="password"
+                />
+                <label for="">Password</label>
+                <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
+              </div>
+              <pre>
+        <code>
+          <div>&lt;div id="element" class="floating-label"&gt;</div>
+    <div>&nbsp; &lt;input</div>
+    <div>&nbsp; &nbsp; type="password"</div>
+    <div>&nbsp; &nbsp; class="tonada-input"</div>
+    <div>&nbsp; &nbsp; name="password"</div>
+    <div>&nbsp; &nbsp; placeholder="password"</div>
+    <div>&nbsp; /&gt;</div>
+    <div>&nbsp; &lt;label for=""&gt;Password&lt;/label&gt;</div>
+    <div>&nbsp; &lt;i class="tonada-password-toggle tonada-ic tonada-ic-show"&gt;&lt;/i&gt;</div>
+    <div>&lt;/div&gt;</div>
+    <div>&lt;script&gt;</div>
+    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input-password', document.getElementById('element'));</div>
+    <div>&lt;/script&gt;</div>
+        </code>
+      </pre>
+            </div>
+          </div>
+          <div>
+            <div class="box">
+              <h3>Input Sizes</h3>
+              <p>The classes sizes Tonada support are</p>
+              <ul>
+                <li><code>tonada-sm</code></li>
+                <li><code>tonada-lg</code></li>
+                <li><code>tonada-xl</code></li>
+              </ul>
+              <div class="floating-label tonada-sm tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                />
+                <label for="">Name</label>
+              </div>
+              <pre>
+          <code>
+              <div>&lt;div id="element" class="floating-label <span class="class-name">tonada-sm</span>"&gt;</div>
+    <div>&nbsp; &lt;input class="tonada-input" type="text" name="name" placeholder="Name" /&gt;</div>
+    <div>&nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
+    <div>&lt;/div&gt;</div>
+    <div>&lt;script&gt;</div>
+    <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
+    <div>&lt;/script&gt;</div>
+          </code>
+      </pre>
+              <div class="floating-label tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                />
+                <label for="">Name</label>
+              </div>
+              <div class="floating-label tonada-lg tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                />
+                <label for="">Name</label>
+              </div>
+              <div class="floating-label tonada-xl tonada-inputs">
+                <input
+                  class="tonada-input"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                />
+                <label for="">Name</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="select-section">
+        <h2>Select</h2>
+        <hr>
+        <p>
+          select:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/select.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/select.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+        <div>
+          There are two ways to config the select element by add them in the dom and Tonada is so inelegance enough to figure out them or while creating the select element by javascript.
+          <p>Options:</p>
+          <ul>
+              <li>multiple: number of items per page.</li>
+              <li>disabled: boolean for disabled or enable.</li>
+          </ul>
+        </div>
+        <div class="input-boxes">
+          <div class="box">
+            <h3>Default</h3>
+            <div id="tonada-default-select">
+              <select>
+                  <option value="1">Option 1</option>
+                  <option selected value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+              </select>
+          </div>
+          <pre>
+            <code>
+              <div>&lt;div id="element"&gt;</div>
+  <div>&nbsp; &nbsp; &lt;select&gt;</div>
+  <div>&nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="1"&gt;Option 1&lt;/option&gt;</div>
+  <div>&nbsp; &nbsp; &nbsp; &nbsp; &lt;option selected value="2"&gt;Option 2&lt;/option&gt;</div>
+  <div>&nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="3"&gt;Option 3&lt;/option&gt;</div>
+  <div>&nbsp; &nbsp; &lt;/select&gt;</div>
+  <div>&lt;/div&gt;</div>
+  <p>&lt;script&gt;</p>
+  <p>Tonada.create('select', document.getElementById('#element'));</p>
+  <p>&lt;/script&gt;</p>
+            </code>
+          </pre>
+          </div>
+          <div class="box">
+            <h3>Multi Select</h3>
+            <div id="tonada-multiselect-select">
+                <select multiple="multiple">
+                    <option value="1">Option 1</option>
+                    <option selected value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4 </option>
+                    <option value="5">Option 5</option>
+                    <option value="6">Option 6</option>
+                    <option value="7">Option 7</option>
+                </select>
+            </div>
+            <pre>
+              <code>
+                <div>&lt;div id="element"&gt;</div>
+<div>&nbsp; &lt;select multiple="multiple"&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="1"&gt;Option 1&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option selected value="2"&gt;Option 2&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="3"&gt;Option 3&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="4"&gt;Option 4&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="5"&gt;Option 5&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="6"&gt;Option 6&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="7"&gt;Option 7&lt;/option&gt;</div>
+<div>&nbsp; &lt;/select&gt;</div>
+<div>&lt;/div&gt;</div>
+<br />
+<div>&lt;script&gt;</div>
+<div>&nbsp; Tonada.create("select", document.querySelector("#element"));</div>
+<div>&lt;/script&gt;</div>
+              </code>
+            </pre>
+          </div>
+          <div class="box">
+            <h3>Disabled</h3>
+            <div id="tonada-select-disabled">
+                <select disabled>
+                    <option value="1">Option 1</option>
+                    <option selected value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+            <pre>
+              <code>
+                <div>&lt;div id="element"&gt;</div>
+<div>&nbsp; &lt;select <span class="class-name">disabled</span>&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="1"&gt;Option 1&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option selected value="2"&gt;Option 2&lt;/option&gt;</div>
+<div>&nbsp; &nbsp; &lt;option value="3"&gt;Option 3&lt;/option&gt;</div>
+<div>&nbsp; &lt;/select&gt;</div>
+<div>&lt;/div&gt;</div>
+<div>&lt;script&gt;</div>
+<div>&nbsp; &nbsp; Tonada.create('select', document.querySelector('#element'));</div>
+<div>&lt;/script&gt;</div>
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div id="slider-section">
+        <h2>Slider</h2>
+        <hr/>
+        <p>
+          Slider:
+          <pre><div>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/slider.css" /&gt;</div></pre>
+          <pre><span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/slider.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span></pre>
+        </p>
+       <pre>
+        <code>
+          <div>&lt;div id="element"&gt;&lt;/div&gt;</div>
+<div>&lt;script&gt;</div>
+<div>&nbsp; Tonada.create("<span class="class-name">slider</span>", document.querySelector("#element"), {</div>
+<div>&nbsp; &nbsp; itemsPerPage: 4,</div>
+<div>&nbsp; &nbsp; slideAnimation: "moving",</div>
+<div>&nbsp; });</div>
+<div>&lt;/script&gt;</div>
+        </code>
+       </pre>
+          
+        <p>Options:</p>
+        <ul>
+            <li>itemsPerPage: number of items per page.</li>
+            <li>slideAnimation: <code>moving</code> or <code>fading</code>.</li>
+            <li>autoSliding: boolean for auto sliding.</li>
+            <li>autoSlidingDuration: number for the duration to sliding between items only works with slideAnimation=fading ⛔.</li>
+            <li>paginator: boolean for show or hide the pages buttons.</li>
+            <li>navigators: boolean for show or hide the next and previous buttons.</li>
+        </ul>
+    <h3>Slides Moving</h3>
+    <div id="tonada-slider-moving" class="tonada-slider">
+        <ul class="tonada-list">
+            <li class="tonada-list-item">1</li>
+            <li class="tonada-list-item">2</li>
+            <li class="tonada-list-item">3</li>
+            <li class="tonada-list-item">4</li>
+            <li class="tonada-list-item">5</li>
+            <li class="tonada-list-item">6</li>
+        </ul>
+        <button class="tonada-slider-button tonada-prev">
+            <i class="tonada-ic tonada-ic-arrow-left"></i>
+        </button>
+        <button class="tonada-slider-button tonada-next">
+            <i class="tonada-ic tonada-ic-arrow-right"></i>
+        </button>
+        <div class="tonada-slider-paginator"></div>
+    </div>
+    <pre>
+      <code>
+        <div>&lt;div id="element" class="tonada-slider"&gt;</div>
+<div>&nbsp; &lt;ul class="tonada-list"&gt;</div>
+<div>&nbsp; &nbsp; &lt;li class="tonada-list-item"&gt;1&lt;/li&gt;</div>
+<div>&nbsp; &nbsp; &lt;li class="tonada-list-item"&gt;2&lt;/li&gt;</div>
+<div> &nbsp; &nbsp; ....</div>
+<div>&nbsp; &lt;/ul&gt;</div>
+<div>&nbsp; &lt;button class="tonada-slider-button tonada-prev"&gt;</div>
+<div>&nbsp; &nbsp; &lt;i class="tonada-ic tonada-ic-arrow-left"&gt;&lt;/i&gt;</div>
+<div>&nbsp; &lt;/button&gt;</div>
+<div>&nbsp; &lt;button class="tonada-slider-button tonada-next"&gt;</div>
+<div>&nbsp; &nbsp; &lt;i class="tonada-ic tonada-ic-arrow-right"&gt;&lt;/i&gt;</div>
+<div>&nbsp; &lt;/button&gt;</div>
+<div>&nbsp; &lt;div class="tonada-slider-paginator"&gt;&lt;/div&gt;</div>
+<div>&lt;/div&gt;</div>
+<div>&lt;script&gt;</div>
+<div>&nbsp; Tonada.create("<span class="class-name">slider</span>", document.getElementById("element"), {</div>
+<div>&nbsp; &nbsp; itemsPerPage: 4,</div>
+<div>&nbsp; &nbsp; slideAnimation: "moving",</div>
+<div>&nbsp; });</div>
+<div>&lt;/script&gt;</div>
+      </code>
+    </pre>
+    <h3>Slides Fading</h3>
+    <div id="tonada-slider-fading" class="tonada-slider">
+        <ul class="tonada-list">
+            <li class="tonada-list-item">1</li>
+            <li class="tonada-list-item">2</li>
+            <li class="tonada-list-item">3</li>
+            <li class="tonada-list-item">4</li>
+            <li class="tonada-list-item">5</li>
+        </ul>
+        <button class="tonada-slider-button tonada-prev">
+            <i class="tonada-ic tonada-ic-arrow-left"></i>
+        </button>
+        <button class="tonada-slider-button tonada-next">
+            <i class="tonada-ic tonada-ic-arrow-right"></i>
+        </button>
+        <div class="tonada-slider-paginator"></div>
+    </div>
+      </div>
+  
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA="
+    crossorigin="anonymous"
+  ></script>
+  <script src="./assets/js/index.js"></script>
+  <script src="../dist/js/input.js"></script>
+  <script src="../dist/js/input-group.js"></script>
+  <script src="../dist/js/input-password.js"></script>
+  <script src="../dist/js/select.js"></script>
+  <script src="../dist/js/slider.js"></script>
+  <script src="../dist/js/index.js"></script>
+  <script>
+    window.document.addEventListener("DOMContentLoaded", () => {
+      // DEFAULT INPUT
+      document.querySelectorAll(".tonada-inputs").forEach((element) => {
+        const input = Tonada.create("input", element);
+      });
+      // END DEFAULT INPUT
+      // INPUT GROUP
+      document.querySelectorAll(".tonada-inputs-groups").forEach((element) => {
+        const input = Tonada.create("input-group", element);
+      });
+      // END INPUT GROUP
+      // PASSWORD
+      document.querySelectorAll(".tonada-passwords").forEach((element) => {
+        const inputPassword = Tonada.create("input-password", element);
+      });
+      // END INPUT PASSWORD
+      // SELECT
+      Tonada.create('select', document.querySelector('#tonada-default-select'));
+        Tonada.create('select', document.querySelector('#tonada-multiselect-select'));
+        Tonada.create('select', document.querySelector('#tonada-select-disabled'));
+        document.querySelectorAll('.tonada-select-sizes').forEach(element => {
+            Tonada.create('select', element);
+        })
+      // END SELECT
+              // SLIDER
+              Tonada.create('slider', document.getElementById('tonada-slider-moving'), {
+                itemsPerPage: 4,
+                slideAnimation: 'moving',
+            });
+        document.querySelectorAll('#tonada-slider-fading').forEach(element => {
+            const slider = Tonada.create('slider', element, {
+                slideAnimation: 'fading',
+                autoSliding:true
+            });
+        });
+        // END SLIDER
+      const form1 = document.getElementById("form1");
+      form1.addEventListener("submit", (e) => {
+        e.preventDefault();
+        document.getElementById("formData1").innerHTML = getFormValuesFormatted(
+          e.target
+        );
+      });
+    });
+  </script>
   </body>
 </html>
