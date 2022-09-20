@@ -63,6 +63,12 @@ pre code {
     min-width: 200px;
     min-height: 200px;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 10px;
+}
+
+@media only screen and (max-width:1000px) {
+    .form-result-code {
+        font-size: 1rem;
+    }
 }

@@ -16,7 +16,7 @@
     }
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -63,6 +63,14 @@
     gap: 15px;
 }
 
+@media only screen and (max-width:1000px) {
+    .main-header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 .more-details h3 {
     margin: 0;
     padding: 0;
@@ -73,6 +81,8 @@
     margin: 0;
     font-size: 0.9em;
 }
+
+
 
 .nav {
     display: flex;
@@ -88,9 +98,10 @@
     gap: 10px;
 }
 
+
 @media only screen and (max-width:1000px) {
     .nav {
-        margin-top: 0;
+        margin-top: 15px;
     }
 }
 
@@ -109,26 +120,27 @@
 
 
 
-.frame-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px;
-    flex: 1;
-}
 
-#frame {
-    position: relative;
-    border: 0;
+button.scroll-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--tonada-tn-secondary-color);
+    color: white;
     outline: 0;
-    flex: 1;
-    width: 100%;
-    box-sizing: border-box;
-
+    border: 0;
+    border-radius: 8px;
+    z-index: 100;
 }
 
+button.scroll-top svg {
+    fill: white;
+    width: 35px;
 
-/* Home */
-
+}
 
 .input-container {
     display: flex;
@@ -144,6 +156,8 @@
     border-radius: 4px;
     margin: 10px 0;
 }
+
+
 
 .input-container .submission-button {
     display: flex;
@@ -176,4 +190,27 @@
         margin: 10px;
         gap: 10px;
     }
+}
+
+
+#buttons-section>div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+#checkbox-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#checkbox-section button {
+    margin-top: 15px;
+}
+
+#checkbox-section>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
