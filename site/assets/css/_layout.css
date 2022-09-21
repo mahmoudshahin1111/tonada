@@ -1,74 +1,62 @@
 :root {
-    --tonada-tn-primary-color: #1c3879;
-    --tonada-tn-secondary-color: #607eaa;
-    --tonada-tn-success-color: #5eff00;
-    --tonada-tn-black: #3a3a3a;
-    --tonada-tn-white: #ffffff;
+  --tonada-tn-primary-color: #1c3879;
+  --tonada-tn-secondary-color: #607eaa;
+  --tonada-tn-success-color: #5eff00;
+  --tonada-tn-black: #3a3a3a;
+  --tonada-tn-white: #ffffff;
 }
 
 html,
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 ul {
-    margin: 0;
-    margin-top: 5px;
-
+  margin: 0;
+  margin-top: 5px;
 }
 
-
-
-
 hr {
-    width: 100%;
+  width: 100%;
 }
 
 code.snippet {
-    color: var(--tonada-tn-primary-color);
-    background-color: var(--tonada-tn-black);
+  color: white;
+  background-color: var(--tonada-tn-black);
 }
 
 code .class-name {
-    color: var(--tonada-tn-success-color);
+  color: var(--tonada-tn-success-color);
 }
-
-pre {
-    font-family: monospace;
-    padding: 8px;
-    background-color: var(--tonada-tn-black);
-    color: var(--tonada-tn-white);
-    overflow-x: auto;
-    overflow-y: auto;
-    max-height: 350px;
-}
-
-pre code {
-    font-family: monospace;
-    background-color: var(--tonada-tn-black);
-    color: var(--tonada-tn-white);
-}
-
 
 .form-result-code {
-    font-family: monospace;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--tonada-tn-primary-color);
-    color: white;
-    min-width: 200px;
-    min-height: 200px;
-    border-radius: 4px;
-    font-size: 1.2rem;
-    padding: 10px;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tonada-tn-primary-color);
+  color: white;
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
-@media only screen and (max-width:1000px) {
-    .form-result-code {
-        font-size: 1rem;
-    }
+@media only screen and (max-width: 1000px) {
+  .form-result-code {
+    font-size: 1rem;
+  }
+}
+
+.api-table {
+  width: 100%;
+}
+.api-table th,
+td {
+  border: 1px solid black;
+  padding: 10px;
 }

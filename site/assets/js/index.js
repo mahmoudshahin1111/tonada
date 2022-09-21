@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.querySelectorAll('button.scroll-top').forEach(e=>{
-    e.addEventListener('click',()=>{
-      window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll("button.scroll-top").forEach((e) => {
+    e.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 });
