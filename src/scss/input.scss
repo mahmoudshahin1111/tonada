@@ -1,10 +1,10 @@
 @import "./core.scss";
 $input-prefix: #{$prefix}-control;
 .#{$input-prefix} {
-  --#{$prefix}-shadow-box: #{$input-shadow-box};
-  --#{$prefix}-invalid-shadow-box: #{$input-invalid-shadow-box};
-  --#{$prefix}-invalid-text-color: #{$input-invalid-text-color};
-  --#{$prefix}-height: #{$form-control-height};
+  --#{$prefix}-shadow-box: #{$tn-input-shadow-box};
+  --#{$prefix}-invalid-shadow-box: #{$tn-input-invalid-shadow-box};
+  --#{$prefix}-invalid-text-color: #{$tn-input-invalid-text-color};
+  --#{$prefix}-height: #{$tn-form-control-height};
   --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
 }
 .#{$input-prefix} {
@@ -26,11 +26,11 @@ $input-prefix: #{$prefix}-control;
     width: 100%;
     transition: all 0.1s;
     outline: none;
-    border-radius: $border-radius;
+    border-radius: $tn-border-radius;
     height: 100%;
     &:focus {
       outline: none;
-      box-shadow: $input-focused-shadow-box;
+      box-shadow: $tn-input-focused-shadow-box;
     }
   }
   &.#{$prefix}-invalid {
@@ -99,5 +99,5 @@ $input-prefix: #{$prefix}-control;
   padding: 0;
   display: flex;
   flex-direction: column;
-  color: #{$input-invalid-text-color};
+  color: #{$tn-input-invalid-text-color};
 }

@@ -1,3 +1,17 @@
+:root {
+  --tonada-color-primary: $value;
+  --tonada-color-secondary: $value;
+  --tonada-color-success: $value;
+  --tonada-color-danger: $value;
+  --tonada-color-black: $value;
+  --tonada-color-white: $value;
+  --tonada-font-family: $font-family;
+  --tonada-font-size: $font-size;
+  --tonada-border-radius: $border-radius;
+  --tonada-input-shadow-box: $input-shadow-box;
+  --tonada-input-shadow-box: $input-shadow-box;
+}
+
 .tonada-ic {
   display: inline-block;
   width: 1.5em;

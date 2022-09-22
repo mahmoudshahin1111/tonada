@@ -2,8 +2,8 @@
 @import "./icons.scss";
 $buttonPrefix: #{$prefix}-button;
 .#{$buttonPrefix} {
-  --#{$prefix}-button-primary-color: #{map-get($map: $colors, $key: primary)};
-  --#{$prefix}-button-secondary-color: #{map-get($map: $colors, $key: secondary)};
+  --#{$prefix}-button-primary-color: #{map-get($map: $tn-colors, $key: primary)};
+  --#{$prefix}-button-secondary-color: #{map-get($map: $tn-colors, $key: secondary)};
 }
 .#{$buttonPrefix} {
   @include flex-row;
@@ -33,7 +33,7 @@ $buttonPrefix: #{$prefix}-button;
   }
   &:hover {
     box-shadow: 0px 0px 2px 2px
-      lighten($color: map-get($map: $colors, $key: primary), $amount: 50%);
+      lighten($color: map-get($map: $tn-colors, $key: primary), $amount: 50%);
   }
 
   &[disabled] {
@@ -46,12 +46,12 @@ $buttonPrefix: #{$prefix}-button;
 .#{$buttonPrefix}-primary {
   background-color: var(--#{$prefix}-button-primary-color);
   box-shadow: 0px 0px 1px 1px
-    lighten($color: map-get($map: $colors, $key: primary), $amount: 50%);
+    lighten($color: map-get($map: $tn-colors, $key: primary), $amount: 50%);
   color: white;
 }
 .#{$buttonPrefix}-secondary {
   background-color: var(--#{$prefix}-button-secondary-color);
   box-shadow: 0px 0px 1px 1px
-    lighten($color: map-get($map: $colors, $key: primary), $amount: 50%);
+    lighten($color: map-get($map: $tn-colors, $key: primary), $amount: 50%);
   color: white;
 }

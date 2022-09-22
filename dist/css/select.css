@@ -1,3 +1,45 @@
+:root {
+  --tonada-color-primary: $value;
+  --tonada-color-secondary: $value;
+  --tonada-color-success: $value;
+  --tonada-color-danger: $value;
+  --tonada-color-black: $value;
+  --tonada-color-white: $value;
+  --tonada-font-family: $tn-font-family;
+  --tonada-font-size: $tn-font-size;
+  --tonada-border-radius: $tn-border-radius;
+  --tonada-input-shadow-box: $tn-input-shadow-box;
+  --tonada-input-invalid-text-color: $tn-input-invalid-text-color;
+  --tonada-input-invalid-shadow-box: $tn-input-invalid-shadow-box;
+  --tonada-input-focused-shadow-box: $tn-input-focused-shadow-box;
+  --tonada-input-border-radius: $tn-input-border-radius;
+  --tonada-form-control-height: $tn-form-control-height;
+  --tonada-select-shadow-box: $tn-select-shadow-box;
+  --tonada-select-menu-z-index: $tn-select-menu-z-index;
+  --tonada-select-disabled-bg-color: $select-disabled-bg-color;
+}
+
+:root {
+  --tonada-color-primary: $value;
+  --tonada-color-secondary: $value;
+  --tonada-color-success: $value;
+  --tonada-color-danger: $value;
+  --tonada-color-black: $value;
+  --tonada-color-white: $value;
+  --tonada-font-family: $tn-font-family;
+  --tonada-font-size: $tn-font-size;
+  --tonada-border-radius: $tn-border-radius;
+  --tonada-input-shadow-box: $tn-input-shadow-box;
+  --tonada-input-invalid-text-color: $tn-input-invalid-text-color;
+  --tonada-input-invalid-shadow-box: $tn-input-invalid-shadow-box;
+  --tonada-input-focused-shadow-box: $tn-input-focused-shadow-box;
+  --tonada-input-border-radius: $tn-input-border-radius;
+  --tonada-form-control-height: $tn-form-control-height;
+  --tonada-select-shadow-box: $tn-select-shadow-box;
+  --tonada-select-menu-z-index: $tn-select-menu-z-index;
+  --tonada-select-disabled-bg-color: $select-disabled-bg-color;
+}
+
 .tonada-ic, .tonada-select-header-tag .tonada-remove-button, .tonada-select-expand-icon, .tonada-select-close-icon {
   display: inline-block;
   width: 1.5em;

@@ -1,3 +1,24 @@
+:root {
+  --tonada-color-primary: $value;
+  --tonada-color-secondary: $value;
+  --tonada-color-success: $value;
+  --tonada-color-danger: $value;
+  --tonada-color-black: $value;
+  --tonada-color-white: $value;
+  --tonada-font-family: $tn-font-family;
+  --tonada-font-size: $tn-font-size;
+  --tonada-border-radius: $tn-border-radius;
+  --tonada-input-shadow-box: $tn-input-shadow-box;
+  --tonada-input-invalid-text-color: $tn-input-invalid-text-color;
+  --tonada-input-invalid-shadow-box: $input-invalid-shadow-box;
+  --tonada-input-focused-shadow-box: $input-focused-shadow-box;
+  --tonada-input-border-radius: $input-border-radius;
+  --tonada-form-control-height: $tn-form-control-height;
+  --tonada-select-shadow-box: $select-shadow-box;
+  --tonada-select-menu-z-index: $select-menu-z-index;
+  --tonada-select-disabled-bg-color: $select-disabled-bg-color;
+}
+
 .tonada-control {
   --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   --tonada-invalid-shadow-box: 0px 0px 1px 1px #ff004c;
