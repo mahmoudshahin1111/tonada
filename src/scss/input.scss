@@ -6,6 +6,7 @@ $input-prefix: #{$prefix}-control;
   --#{$prefix}-invalid-text-color: #{$tn-input-invalid-text-color};
   --#{$prefix}-height: #{$tn-form-control-height};
   --#{$prefix}-font-size: calc(1em + calc(var(--#{$prefix}-height) / 10));
+  --#{$prefix}-border-radius: #{$tn-border-radius};
 }
 .#{$input-prefix} {
   box-sizing: border-box;
@@ -26,7 +27,7 @@ $input-prefix: #{$prefix}-control;
     width: 100%;
     transition: all 0.1s;
     outline: none;
-    border-radius: $tn-border-radius;
+    border-radius: var(--#{$prefix}-border-radius);
     height: 100%;
     &:focus {
       outline: none;

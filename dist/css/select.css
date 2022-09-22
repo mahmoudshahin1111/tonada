@@ -1,74 +1,50 @@
 :root {
-  --tonada-color-primary: $value;
-  --tonada-color-secondary: $value;
-  --tonada-color-success: $value;
-  --tonada-color-danger: $value;
-  --tonada-color-black: $value;
-  --tonada-color-white: $value;
-  --tonada-font-family: $tn-font-family;
-  --tonada-font-size: $tn-font-size;
-  --tonada-border-radius: $tn-border-radius;
-  --tonada-input-shadow-box: $tn-input-shadow-box;
-  --tonada-input-invalid-text-color: $tn-input-invalid-text-color;
-  --tonada-input-invalid-shadow-box: $tn-input-invalid-shadow-box;
-  --tonada-input-focused-shadow-box: $tn-input-focused-shadow-box;
-  --tonada-input-border-radius: $tn-input-border-radius;
-  --tonada-form-control-height: $tn-form-control-height;
-  --tonada-select-shadow-box: $tn-select-shadow-box;
-  --tonada-select-menu-z-index: $tn-select-menu-z-index;
-  --tonada-select-disabled-bg-color: $select-disabled-bg-color;
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
 }
-
 :root {
-  --tonada-color-primary: $value;
-  --tonada-color-secondary: $value;
-  --tonada-color-success: $value;
-  --tonada-color-danger: $value;
-  --tonada-color-black: $value;
-  --tonada-color-white: $value;
-  --tonada-font-family: $tn-font-family;
-  --tonada-font-size: $tn-font-size;
-  --tonada-border-radius: $tn-border-radius;
-  --tonada-input-shadow-box: $tn-input-shadow-box;
-  --tonada-input-invalid-text-color: $tn-input-invalid-text-color;
-  --tonada-input-invalid-shadow-box: $tn-input-invalid-shadow-box;
-  --tonada-input-focused-shadow-box: $tn-input-focused-shadow-box;
-  --tonada-input-border-radius: $tn-input-border-radius;
-  --tonada-form-control-height: $tn-form-control-height;
-  --tonada-select-shadow-box: $tn-select-shadow-box;
-  --tonada-select-menu-z-index: $tn-select-menu-z-index;
-  --tonada-select-disabled-bg-color: $select-disabled-bg-color;
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
 }
-
-.tonada-ic, .tonada-select-header-tag .tonada-remove-button, .tonada-select-expand-icon, .tonada-select-close-icon {
+.tonada-ic,
+.tonada-select-header-tag .tonada-remove-button,
+.tonada-select-expand-icon,
+.tonada-select-close-icon {
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 .tonada-ic-arrow {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
 }
-
 .tonada-ic-arrow-left {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
 }
-
 .tonada-ic-arrow-right {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
   transform: rotate(180deg);
 }
-
-.tonada-ic-close, .tonada-select-header-tag .tonada-remove-button {
+.tonada-ic-close,
+.tonada-select-header-tag .tonada-remove-button {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
 }
-
 .tonada-ic-check {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
 }
-
 .tonada-select {
   --tonada-font-size: 1rem;
   --tonada-header-tag-background-color: #1c3879;
@@ -78,10 +54,9 @@
   --tonada-selected-option-color: #ffffff;
   --tonada-selected-option: rgba(0, 0, 0, 0.2);
   --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
-  --tonada-disabled-bg-color:#fafafa;
+  --tonada-disabled-bg-color: #fafafa;
   --tonada-select-height: 3em;
 }
-
 .tonada-select {
   border-radius: 6px;
   display: flex;
@@ -164,7 +139,7 @@
   user-select: none;
   outline: 0;
   border: 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   text-align: start;
 }
 .tonada-select-option-selected {
@@ -173,7 +148,7 @@
 }
 .tonada-select-option:not(.tonada-select-option-selected):hover {
   background-color: #d2ddf5;
-  color: black;
+  color: #000;
 }
 .tonada-select-menu {
   border-radius: 6px;

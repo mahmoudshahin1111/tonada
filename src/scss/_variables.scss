@@ -1,11 +1,11 @@
 $prefix: "tonada";
-$tn-font-size: 16px !default;
+
+
 $tn-colors: (
   primary: #1c3879,
   secondary: #607eaa,
   success: #30dd78,
   danger: #ff004c,
-  black: #000000,
   "white":#ffffff,
 ) !default;
 $tn-breakpoints: (
@@ -14,7 +14,10 @@ $tn-breakpoints: (
   lg: 1024px,
   xl: 1200px,
 ) !default;
+
+$tn-font-size: 16px !default;
 $tn-font-family: "Courier New", Courier, monospace !default;
+
 $tn-border-radius: 6px !default;
 $tn-menu-index:1000 !default;
 $tn-form-control-height: 40px !default;
@@ -23,7 +26,6 @@ $tn-input-invalid-text-color: map-get($tn-colors, "danger") !default;
 $tn-input-invalid-shadow-box: 0px 0px 1px 1px map-get($tn-colors, "danger") !default;
 $tn-input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($tn-colors, "primary"), 1) !default;
 $tn-input-border-radius: $tn-border-radius !default;
-
 
 $tn-select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
 $tn-select-menu-z-index:$tn-menu-index !default;

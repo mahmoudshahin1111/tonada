@@ -3,21 +3,16 @@
   --tonada-color-secondary: $value;
   --tonada-color-success: $value;
   --tonada-color-danger: $value;
-  --tonada-color-black: $value;
   --tonada-color-white: $value;
-  --tonada-font-family: $font-family;
-  --tonada-font-size: $font-size;
-  --tonada-border-radius: $border-radius;
-  --tonada-input-shadow-box: $input-shadow-box;
-  --tonada-input-shadow-box: $input-shadow-box;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
 }
-
 .tonada-accordion {
   --tonada-primary-color: #1c3879;
   --tonada-border-width: 1px;
   --tonada-border-color: #264ba2;
 }
-
 .tonada-accordion {
   display: flex;
   flex-direction: column;
@@ -49,7 +44,9 @@
   border-left: 1px solid var(--tonada-border-color);
   border-right: 1px solid var(--tonada-border-color);
 }
-.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header::after {
+.tonada-accordion
+  > .tonada-accordion-section
+  > .tonada-accordion-header::after {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -63,14 +60,20 @@
   overflow-y: hidden;
   transition: all 300ms ease-in-out;
 }
-.tonada-accordion > .tonada-accordion-section.tonada-closed > .tonada-accordion-content {
+.tonada-accordion
+  > .tonada-accordion-section.tonada-closed
+  > .tonada-accordion-content {
   border-top: 0;
   padding-top: 0;
   padding-bottom: 0;
 }
-.tonada-accordion > .tonada-accordion-section:last-child > .tonada-accordion-content {
+.tonada-accordion
+  > .tonada-accordion-section:last-child
+  > .tonada-accordion-content {
   border-bottom: var(--tonada-border-width) solid var(--tonada-border-color);
 }
-.tonada-accordion > .tonada-accordion-section:last-child.tonada-closed > .tonada-accordion-header {
+.tonada-accordion
+  > .tonada-accordion-section:last-child.tonada-closed
+  > .tonada-accordion-header {
   border-bottom: 0;
 }
