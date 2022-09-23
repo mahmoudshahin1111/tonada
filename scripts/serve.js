@@ -3,7 +3,8 @@ const fs = require("fs");
 const { execSync, exec, spawn } = require("child_process");
 const chalk = require("chalk");
 const sass = require("sass");
-const { srcPath, distPath, webpackConfig } = require("./utils/config");
+const { srcPath, distPath, webpackConfig, appPath } = require("./utils/config");
+
 let lastChangeTimeout;
 execSync("npm run build");
 fs.watch(path.join(srcPath, "scss"), (changeType, fileName) => {
@@ -35,6 +36,12 @@ spawn(
   console.log("----------------------------");
 });
 console.log(chalk.green("watching 🧐 ..."));
+
+exec(
+  `npx http-server ${path.join(appPath)} -o ./site`
+).stdout.on("data", (data) => {
+  console.log(data);
+});
 
 function compileStyleFile(fileName, changeType) {
   const absSrcPath = path.join(srcPath, "scss", fileName);

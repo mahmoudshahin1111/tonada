@@ -95,8 +95,8 @@
       <iframe id="frame" src="http://127.0.0.1:5500/site/home.html"></iframe>
     </div> -->
 
-  <div id="get-started-section" class="container">
-    <div>
+  <div class="container">
+    <div id="get-started-section">
       <h2>How to install ?</h2>
       <p>
         because tonada focus on the performance and seo friendly then we should
@@ -113,34 +113,6 @@
           &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js"&gt;&lt;/script&gt;
         </code>
       </pre>
-      <p>Input group:</p>
-      <pre>
-        <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-group.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-group.js"&gt;&lt;/script&gt;
-        </code>
-      </pre>
-      <p>Input password:</p>
-      <pre>
-        <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-password.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-password.js"&gt;&lt;/script&gt;
-        </code>
-      </pre>
-      <p>Checkbox:</p>
-      <pre>
-        <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checkbox.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checkbox.js"&gt;&lt;/script&gt;
-        </code>
-      </pre>
-      <p>Checkbox Group:</p>
-      <pre>
-        <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checbox-group.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checbox-group.js"&gt;&lt;/script&gt;
-        </code>
-      </pre>
       <p>This line should be at the end of your scripting tags &#9940;</p>
       <pre>
         <code>
@@ -155,7 +127,8 @@
         <h2>Let's start 🎉</h2>
         <p>On of our library advance is about if you need to send the data directly by submitting the forms without
           using ajax <br /> so you don't need to write more javascript code to handle this and collect the data just
-          submit your form and see the magic happen 💨</p>
+          submit your form and see the magic happen 💨 than can be good for PHP developers and building the static web
+          pages much faster</p>
         <hr />
         <br />
         <div class="input-container">
@@ -210,6 +183,26 @@
     <div id="inputs-section">
       <h2>Inputs</h2>
       <hr />
+      <pre>
+        <code>
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input.css"/&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
+      <p>Input group:</p>
+      <pre>
+        <code>
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-group.css"/&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-group.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
+      <p>Input password:</p>
+      <pre>
+        <code>
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-password.css"/&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-password.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
       <div class="input-boxes">
 
         <div>
@@ -503,6 +496,31 @@
             </pre>
         </div>
       </div>
+      <p>Api:</p>
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>multiple</td>
+              <td>enable select many options
+              </td>
+              <td>number</td>
+            </tr>
+            <tr>
+              <td>disabled</td>
+              <td>disabled or enable select</td>
+              <td>boolean</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div id="slider-section">
       <h2>Slider</h2>
@@ -513,61 +531,7 @@
           &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/slider.js"&gt;&lt;/script&gt;
         </code>
       </pre>
-      <pre>
-        <code>
-          <div>&lt;div id="element"&gt;&lt;/div&gt;</div>
-          <div>&lt;script&gt;</div>
-          <div>&nbsp; Tonada.create("<span class="class-name">slider</span>", document.querySelector("#element"), {</div>
-          <div>&nbsp; &nbsp; itemsPerPage: 4,</div>
-          <div>&nbsp; &nbsp; slideAnimation: "moving",</div>
-          <div>&nbsp; });</div>
-          <div>&lt;/script&gt;</div>
-        </code>
-       </pre>
 
-      <p>Options:</p>
-      <table class="api-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>itemsPerPage</td>
-            <td>number of items per page.</td>
-            <td>number</td>
-          </tr>
-          <tr>
-            <td>slideAnimation</td>
-            <td>how the slider going to slide between pages"</td>
-            <td>"moving" or "fading"</td>
-          </tr>
-          <tr>
-            <td>autoSliding</td>
-            <td>Enable auto sliding.</td>
-            <td>boolean</td>
-          </tr>
-          <tr>
-            <td>autoSlidingDuration</td>
-            <td>The duration for sliding between items only works with slideAnimation=fading
-              ⛔.</td>
-            <td>number</td>
-          </tr>
-          <tr>
-            <td>paginator</td>
-            <td>Show or hide the pages buttons.</td>
-            <td>boolean</td>
-          </tr>
-          <tr>
-            <td>navigators</td>
-            <td>Show or hide the next and previous buttons.</td>
-            <td>boolean</td>
-          </tr>
-        </tbody>
-      </table>
       <h3>Slides Moving</h3>
       <div id="tonada-slider-moving">
         <ul class="tonada-list">
@@ -653,6 +617,53 @@
             <div>&lt;/script&gt;</div>
         </code>
       </pre>
+
+      <p>Api:</p>
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>itemsPerPage</td>
+              <td>number of items per page.</td>
+              <td>number</td>
+            </tr>
+            <tr>
+              <td>slideAnimation</td>
+              <td>how the slider going to slide between pages"</td>
+              <td>"moving" or "fading"</td>
+            </tr>
+            <tr>
+              <td>autoSliding</td>
+              <td>Enable auto sliding.</td>
+              <td>boolean</td>
+            </tr>
+            <tr>
+              <td>autoSlidingDuration</td>
+              <td>The duration for sliding between items only works with slideAnimation=fading
+                ⛔.</td>
+              <td>number</td>
+            </tr>
+            <tr>
+              <td>paginator</td>
+              <td>Show or hide the pages buttons.</td>
+              <td>boolean</td>
+            </tr>
+            <tr>
+              <td>navigators</td>
+              <td>Show or hide the next and previous buttons.</td>
+              <td>boolean</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
     <div id="buttons-section">
@@ -674,6 +685,19 @@
     <div id="checkbox-section">
       <h2>Checkbox</h2>
       <hr>
+      <pre>
+        <code>
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checkbox.css"/&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checkbox.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
+      <p>Checkbox Group:</p>
+      <pre>
+        <code>
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checbox-group.css"/&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checbox-group.js"&gt;&lt;/script&gt;
+        </code>
+      </pre>
       <div>
         <form id="form" action="" class="inputs">
           <h3>Default</h3>
@@ -884,6 +908,39 @@
           <div>&lt;/script&gt;</div>
         </code>
       </pre>
+      <p>Api:</p>
+      <div class="api-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>open</td>
+              <td>open the accordion
+              </td>
+              <td>function(void)</td>
+            </tr>
+            <tr>
+              <td>close</td>
+              <td>close the accordion
+              </td>
+              <td>function(void)</td>
+            </tr>
+            <tr>
+              <td>toggle</td>
+              <td>toggle the accordion
+              </td>
+              <td>function(void)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"

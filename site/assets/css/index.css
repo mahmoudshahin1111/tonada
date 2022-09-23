@@ -19,7 +19,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 50px 200px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    padding: 25px 50px;
+  }
 }
 
 .logo {
@@ -60,7 +66,7 @@
 
 @media only screen and (max-width: 1000px) {
   .header {
-    padding: 10px 10px;
+    padding: 10px;
   }
 }
 

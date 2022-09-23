@@ -5,10 +5,12 @@
   --tonada-tn-black: #3a3a3a;
   --tonada-tn-white: #ffffff;
 }
-
 html,
 body {
   font-family: "Roboto", sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -33,6 +35,10 @@ code .class-name {
   color: var(--tonada-tn-success-color);
 }
 
+pre > code{
+  border-radius: 8px;
+}
+
 .form-result-code {
   font-family: monospace;
   display: flex;
@@ -51,11 +57,14 @@ code .class-name {
     font-size: 1rem;
   }
 }
-
 .api-table {
+  overflow-x: auto;
   width: 100%;
 }
-.api-table th,
+.api-table > table {
+  width: 100%;
+}
+.api-table > table th,
 td {
   border: 1px solid black;
   padding: 10px;
