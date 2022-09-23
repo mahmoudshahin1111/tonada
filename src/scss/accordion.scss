@@ -1,9 +1,9 @@
 @import "./core.scss";
 $accordion-prefix: #{$prefix}-accordion;
 .#{$accordion-prefix} {
-  --#{$prefix}-primary-color: #{map-get($colors, "primary")};
+  --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
   --#{$prefix}-border-width: 1px;
-  --#{$prefix}-border-color: #{lighten(map-get($colors, "primary"), 10%)};
+  --#{$prefix}-border-color: #{lighten(map-get($tn-colors, "primary"), 10%)};
 }
 .#{$accordion-prefix} {
   @include flex-column;
@@ -11,6 +11,10 @@ $accordion-prefix: #{$prefix}-accordion;
   @include box-sizing;
   overflow-y: hidden;
   padding: 2px;
+  box-sizing: border-box;
+  *{
+    box-sizing: border-box;
+  }
   & > &-section {
     @include flex-column;
     overflow: hidden;
@@ -20,7 +24,7 @@ $accordion-prefix: #{$prefix}-accordion;
       @include clickable;
       align-items: center;
       width: 100%;
-      background-color: lighten(map-get($colors, "primary"), 60%);
+      background-color: lighten(map-get($tn-colors, "primary"), 60%);
       border-top: 1px solid var(--#{$prefix}-border-color);
       border-left: 1px solid var(--#{$prefix}-border-color);
       border-right: 1px solid var(--#{$prefix}-border-color);

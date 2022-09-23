@@ -1,29 +1,32 @@
 $prefix: "tonada";
-$font-size: 16px !default;
-$colors: (
+
+
+$tn-colors: (
   primary: #1c3879,
   secondary: #607eaa,
   success: #30dd78,
   danger: #ff004c,
-  black: #000000,
   "white":#ffffff,
 ) !default;
-$breakpoints: (
+$tn-breakpoints: (
   sm: 480px,
   md: 768px,
   lg: 1024px,
   xl: 1200px,
 ) !default;
-$font-family: "Courier New", Courier, monospace !default;
-$border-radius: 6px !default;
-$menu-index:1000 !default;
-$input-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
-$input-invalid-text-color: map-get($colors, "danger") !default;
-$input-invalid-shadow-box: 0px 0px 1px 1px map-get($colors, "danger") !default;
-$input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($colors, "primary"), 1) !default;
-$input-border-radius: $border-radius !default;
-$form-control-height: 40px !default;
 
-$select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
-$select-menu-z-index:$menu-index !default;
-$select-disabled-bg-color: darken(map-get($colors,'white'),2) !default;
+$tn-font-size: 16px !default;
+$tn-font-family: "Courier New", Courier, monospace !default;
+
+$tn-border-radius: 6px !default;
+$tn-menu-index:1000 !default;
+$tn-form-control-height: 40px !default;
+$tn-input-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
+$tn-input-invalid-text-color: map-get($tn-colors, "danger") !default;
+$tn-input-invalid-shadow-box: 0px 0px 1px 1px map-get($tn-colors, "danger") !default;
+$tn-input-focused-shadow-box: 0px 0px 1px 1px rgba(map-get($tn-colors, "primary"), 1) !default;
+$tn-input-border-radius: $tn-border-radius !default;
+
+$tn-select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
+$tn-select-menu-z-index:$tn-menu-index !default;
+$tn-select-disabled-bg-color: darken(map-get($tn-colors,'white'),2) !default;

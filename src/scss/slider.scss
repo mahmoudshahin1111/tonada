@@ -1,15 +1,19 @@
 @import "./core.scss";
 .#{$prefix}-slider {
-  --#{$prefix}-background-color: #{map-get($colors, "primary")};
-  --#{$prefix}-active-page: #{map-get($colors, "primary")};
-  --#{$prefix}-page: #{map-get($colors, "secondary")};
+  --#{$prefix}-background-color: #{map-get($tn-colors, "primary")};
+  --#{$prefix}-active-page: #{map-get($tn-colors, "primary")};
+  --#{$prefix}-page: #{map-get($tn-colors, "secondary")};
 }
 .#{$prefix}-slider {
   @include border-radius;
   @include flex-column;
+  box-sizing: border-box;
   background-color: var(--#{$prefix}-background-color);
   position: relative;
   justify-content: center;
+  * {
+    box-sizing: border-box;
+  }
   & > .#{$prefix}-list {
     @include flex-row;
     margin: 0;

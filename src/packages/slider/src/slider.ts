@@ -21,6 +21,7 @@ export class Slider extends Component implements SliderType {
     super(element);
   }
   build(): void {
+    this.element.addClass(`${PREFIX}-slider`);
     this.options = Object.assign(getDefaultSliderOptions(), this.options);
     this.list = this.element.querySelector(`:scope > .${PREFIX}-list`).at(0);
     this.list

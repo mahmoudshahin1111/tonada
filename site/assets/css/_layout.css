@@ -1,22 +1,71 @@
-:root{
-    --tonada-primary-color:#1c3879;
+:root {
+  --tonada-tn-primary-color: #1c3879;
+  --tonada-tn-secondary-color: #607eaa;
+  --tonada-tn-success-color: #5eff00;
+  --tonada-tn-black: #3a3a3a;
+  --tonada-tn-white: #ffffff;
 }
 html,
 body {
-    font-family: 'Roboto', sans-serif;
-}
-*{
-    box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.form-result-code{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--tonada-primary-color);
-    color: white;
-    min-width: 200px;
-    min-height: 200px;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    padding: 10px;
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  margin-top: 5px;
+}
+
+hr {
+  width: 100%;
+}
+
+code.snippet {
+  color: white;
+  background-color: var(--tonada-tn-black);
+}
+
+code .class-name {
+  color: var(--tonada-tn-success-color);
+}
+
+pre > code{
+  border-radius: 8px;
+}
+
+.form-result-code {
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tonada-tn-primary-color);
+  color: white;
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .form-result-code {
+    font-size: 1rem;
+  }
+}
+.api-table {
+  overflow-x: auto;
+  width: 100%;
+}
+.api-table > table {
+  width: 100%;
+}
+.api-table > table th,
+td {
+  border: 1px solid black;
+  padding: 10px;
 }

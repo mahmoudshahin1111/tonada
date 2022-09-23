@@ -10,8 +10,8 @@ export abstract class Slider {
     itemsPerPage?: number;
     spaceBetween?: number;
     slideAnimation?: "moving" | "fading";
-    infinite?: boolean;
+    autoSliding?: boolean;
     paginator?: boolean;
     navigators?: boolean;
-    infiniteSlidingDuration?: number;
+    autoSlidingDuration?: number;
   };

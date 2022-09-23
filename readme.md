@@ -50,17 +50,128 @@ to reduce the bundle size and make the page load faster import only the componen
 ### Inputs:
 
 ```html
-<div class="tonada-control">
+<div id="input">
   <input class="tonada-input" type="text" name="name" placeholder="Name" />
 </div>
 ```
 
 ```javascript
-document
-  .querySelectorAll(".tonada-control.tonada-inputs")
-  .forEach((element) => {
-    const input = Tonada.create("input", element);
-  });
+const element = document.querySelector("#input");
+const input = Tonada.create("input", element);
+```
+
+##### Floating Label
+
+Enable floating label by add `floating-label` class and it work on the password inputs and input groups the same way.
+
+```html
+<div class="floating-label">
+  <input class="tonada-input" type="text" name="name" placeholder="Name" />
+  <label for="">Name</label>
+</div>
+```
+
+##### Error State
+
+```html
+<div>
+  <div class="floating-label tonada-invalid">
+    <input class="tonada-input" type="text" name="name" placeholder="Name" />
+    <label for="">Name</label>
+  </div>
+  <ul class="tonada-errors">
+    <li>Name is required</li>
+    <!-- <= Add all the errors as a list -->
+    <li>Should be character [A-Z a-z]</li>
+  </ul>
+</div>
+```
+
+##### Sizes
+The available sizes are `tonada-`(`sm`-`lg`-`xl`)
+```html
+<div class="tonada-sm">
+  <input class="tonada-input" type="text" name="name" placeholder="Name" />
+  <label for="">Name</label>
+</div>
+```
+
+#### Input Group:
+
+```html
+<div id="input">
+  <span>$</span>
+  <input class="tonada-input" type="text" name="name" placeholder="Name" />
+  <span>.00</span>
+</div>
+```
+
+```javascript
+const element = document.querySelector("#input");
+const input = Tonada.create("input-group", element);
+```
+
+##### Floating Label
+
+```html
+<div>
+  <span>$</span>
+  <div class="floating-label tonada-inputs">
+    <!-- <= add "floating-label class" -->
+    <input class="tonada-input" type="text" name="name" placeholder="Name" />
+    <label for="">Name</label>
+  </div>
+  <span>.00</span>
+</div>
+```
+
+#### Password:
+
+```html
+<div id="input">
+  <input
+    type="password"
+    class="tonada-input"
+    name="password"
+    placeholder="password"
+  />
+  <i class="tonada-password-toggle tonada-ic-show"></i>
+</div>
+```
+
+```javascript
+const element = document.querySelector("#input");
+const input = Tonada.create("input-password", element);
+```
+
+##### Floating Label
+
+```html
+<div class="floating-label">
+  <input
+    type="password"
+    class="tonada-input"
+    name="password"
+    placeholder="password"
+  />
+  <label for="">Password</label>
+  <i class="tonada-password-toggle tonada-ic-show"></i>
+</div>
+```
+
+##### Sizes
+The available sizes are `tonada-`(`sm`-`lg`-`xl`)
+```html
+<div class="tonada-sm">
+  <input
+    type="password"
+    class="tonada-input"
+    name="password"
+    placeholder="password"
+  />
+  <label for="">Password</label>
+  <i class="tonada-password-toggle tonada-ic tonada-ic-show"></i>
+</div>
 ```
 
 ### Slider:

@@ -7,12 +7,16 @@ $input-group-prefix: #{$input-prefix + "." + #{$prefix}-input-group};
 }
 
 .#{$input-group-prefix} {
-  box-shadow: $input-shadow-box;
-  box-shadow: $input-focused-shadow-box;
+  box-shadow: $tn-input-shadow-box;
+  box-shadow: $tn-input-focused-shadow-box;
   display: flex;
   flex-direction: row;
-  background-color: map-get($colors, "secondary");
-  border-radius: $border-radius;
+  background-color: map-get($tn-colors, "secondary");
+  border-radius: $tn-border-radius;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   & > span {
     display: flex;
     align-items: center;
@@ -34,7 +38,7 @@ $input-group-prefix: #{$input-prefix + "." + #{$prefix}-input-group};
     border-radius: 0px;
     &:focus {
       outline: none;
-      box-shadow: $input-focused-shadow-box;
+      box-shadow: $tn-input-focused-shadow-box;
     }
   }
 }

@@ -3,9 +3,9 @@
 @import "./checkbox.scss";
 $checkboxGroupPrefix: #{$prefix}-input-checkbox-group;
 .#{$checkboxGroupPrefix} {
-
+  --#{$prefix}-checkbox-space: 8px;
 }
 .#{$checkboxGroupPrefix} {
   @include flex-column;
-  gap: 8px;
+  gap: var(#{--#{$prefix}-checkbox-space});
 }

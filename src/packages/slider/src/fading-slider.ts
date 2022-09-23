@@ -27,7 +27,7 @@ export class FadingSlider extends SliderType {
       });
       this.sliderToPage(this._slider.page);
       this._slider.sliderPaginator.setActivePage(this._slider.page);
-      if (this._slider.options.infinite) {
+      if (this._slider.options.autoSliding) {
         this.enableAutoSliding();
       }
     }
@@ -70,7 +70,7 @@ export class FadingSlider extends SliderType {
         } else {
           this.nextSlider();
         }
-      }, this._slider.options.infiniteSlidingDuration);
+      }, this._slider.options.autoSlidingDuration);
     }
     isLastPage(): boolean {
       return this._slider.page === this.getPagesCount() - 1;
