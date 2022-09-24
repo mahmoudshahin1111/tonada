@@ -1,5 +1,7 @@
 const path = require("path");
 const package = require("./package.json");
+require("dotenv").config();
+const process = require("process");
 
 const sharedConfig = {
   module: {
@@ -14,7 +16,7 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  devtool: "source-map",
+  ...(process.env.debug ? { devtool: "source-map" } : {}),
 };
 
 module.exports = [

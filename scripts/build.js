@@ -5,11 +5,11 @@ const chalk = require("chalk");
 const appPath = path.resolve(__dirname, "../");
 const distPath = path.join(appPath, "dist");
 const srcPath = path.join(appPath, "src");
-const webpackConfig = path.join(appPath, "webpack.config.prod.js");
+const webpackConfig = path.join(appPath, "webpack.config.js");
 console.log(chalk.white("cleaning ..."));
 const isExists = fs.existsSync(distPath);
 if (isExists) {
-  fs.rmSync(distPath, {recursive:true});
+  fs.rmSync(distPath, { recursive: true });
 }
 fs.mkdirSync(distPath, { recursive: true });
 console.log(chalk.white("building .... 👇🏻"));
