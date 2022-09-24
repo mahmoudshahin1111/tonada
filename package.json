@@ -17,48 +17,33 @@
   "license": "MIT",
   "packages": [
     {
-      "name": "slider",
-      "className": "TonadaSlider",
-      "path": "src/packages/slider/index.ts"
+      "name": "slider"
     },
     {
-      "name": "input",
-      "className": "TonadaInput",
-      "path": "src/packages/input/index.ts"
+      "name": "input"
     },
     {
-      "name": "input-group",
-      "className": "TonadaInputGroup",
-      "path": "src/packages/input-group/index.ts"
+      "name": "input-group"
     },
     {
-      "name": "input-password",
-      "className": "TonadaInputPassword",
-      "path": "src/packages/input-password/index.ts"
+      "name": "input-password"
     },
     {
-      "name": "input-checkbox",
-      "className": "TonadaInputCheckbox",
-      "path": "src/packages/checkbox/index.ts"
+      "name": "input-checkbox"
     },
     {
-      "name": "input-checkbox-group",
-      "className": "TonadaInputCheckboxGroup",
-      "path": "src/packages/checkbox-group/index.ts"
+      "name": "input-checkbox-group"
     },
     {
-      "name": "accordion",
-      "className": "TonadaAccordion",
-      "path": "src/packages/accordion/index.ts"
+      "name": "accordion"
     },
     {
-      "name": "select",
-      "className": "TonadaSelect",
-      "path": "src/packages/select/index.ts"
+      "name": "select"
     }
   ],
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "sass-loader": "^13.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.184",

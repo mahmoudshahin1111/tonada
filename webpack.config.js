@@ -2,6 +2,14 @@ const path = require("path");
 const package = require("./package.json");
 require("dotenv").config();
 const process = require("process");
+const _ = require("lodash");
+
+const resolvePackInfoFromName = (name) => {
+  const nameSlices = String(name)
+    .split("-")
+    .map((nameSlice) => _.capitalize(nameSlice));
+  return [_.capitalize(package.name), ...nameSlices].join("");
+};
 
 const sharedConfig = {
   module: {
@@ -10,6 +18,17 @@ const sharedConfig = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          {
+            loader: "sass-loader",
+            options: {
+              includePaths: ["src/scss"],
+            },
+          },
+        ],
       },
     ],
   },
@@ -24,12 +43,12 @@ module.exports = [
     return {
       ...sharedConfig,
       entry: {
-        [pack.name]: path.resolve(__dirname, pack.path),
+        [pack.name]:path.resolve(__dirname, "src", "packages", pack.name, "index.ts"),
       },
       output: {
         path: path.resolve(__dirname, "dist", "js"),
         library: {
-          name: pack.className,
+          name: resolvePackInfoFromName(pack.name),
           type: "window",
         },
       },
