@@ -1,11 +1,17 @@
-// CONFIGURATION
-@import "./core.scss";
+// CONFIGURATION (Required)
+@import "./variables";
+@import "./mixins";
+@import "./root";
 // END CONFIGURATION
 
-// COMPONENTS
-@import "./icons.scss";
-@import "./input.scss";
+// COMPONENTS (Optional)
+@import "./icons";
+@import "./input";
+@import "./input-group";
 @import "./input-password";
+@import "./checkbox";
+@import "./checkbox-group";
+@import "./button";
 @import "./accordion";
 @import "./slider";
 @import "./select";

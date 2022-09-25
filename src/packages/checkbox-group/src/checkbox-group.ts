@@ -1,5 +1,5 @@
 import { BaseElement, Component, createBaseElement, PREFIX } from "tonada-shared";
-import {create,Checkbox} from 'tonada-input-checkbox';
+import {create,Checkbox} from 'tonada-checkbox';
 import { getDefaultConfig } from "./_common/getDefaultConfig";
 import { Config } from "./_common/types";
 
@@ -12,7 +12,7 @@ export class CheckboxGroup  extends Component<HTMLDivElement>{
       this.config = Object.assign(getDefaultConfig(),config);
   }
   build(): void {
-    this.element.addClass(`${PREFIX}-input-checkbox-group`);
+    this.element.addClass(`${PREFIX}-checkbox-group`);
     const checkboxesElements = this.element.querySelector(':scope > div');
     checkboxesElements.forEach(checkboxesElement=>{
       const checkbox = create(checkboxesElement.element,{alwaysEnabled:true});

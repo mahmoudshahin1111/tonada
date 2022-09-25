@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "tornada"
-    ]
+    ],
+    "prettier.printWidth": 80
 }

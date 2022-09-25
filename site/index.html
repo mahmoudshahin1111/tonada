@@ -5,6 +5,18 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight and seo friendly To make the web development more interesting and easiest 🙌.">
+  <meta name=”robots” content=”index, follow”>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Tonada" />
+  <meta property="og:description"
+    content="Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight and seo friendly To make the web development more interesting and easiest 🙌." />
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/mahmoudshahin1111/tonada/master/site/assets/images/logo.png" />
+  <meta property="og:url" content="https://github.com/mahmoudshahin1111/tonada" />
+  <meta property="og:site_name" content="Tonada" />
+  <link rel="canonical" href="https://github.com/mahmoudshahin1111/tonada" />
   <link rel="icon" type="image/x-icon" href="./favicon.ico" />
   <title>Tonada</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,15 +32,18 @@
   <link rel="stylesheet" href="../dist/css/input-password.css" />
   <link rel="stylesheet" href="../dist/css/select.css">
   <link rel="stylesheet" href="../dist/css/slider.css">
+  <link rel="stylesheet" href="../dist/css/accordion.css">
   <link rel="stylesheet" href="../dist/css/button.css">
   <link rel="stylesheet" href="../dist/css/checkbox.css">
   <link rel="stylesheet" href="../dist/css/checkbox-group.css">
-  <link rel="stylesheet" href="../dist/css/accordion.css">
+  <!-- Or -->
+  <!-- <link rel="stylesheet" href="../dist/css/index.css"> -->
   <!-- END LIBRARY CSS -->
 </head>
 
 <body class="layout">
   <header class="header">
+
     <div class="main-header">
       <span class="logo"><img width="100%" alt="logo" src="./assets/images/logo.png" /></span>
       <div class="more-details">
@@ -39,6 +54,7 @@
           To make the web development more interesting and easiest 🙌.
         </p>
       </div>
+
     </div>
 
     <div class="nav">
@@ -49,52 +65,20 @@
       <a href="#slider-section">Slider</a>
       <a href="#checkbox-section">Checkbox</a>
       <a href="#buttons-section">Buttons</a>
+      <a href="#customize-section">Customize</a>
+    </div>
+    <div class="social-links">
+      <a href="https://twitter.com/Mahmoud81529121" target="_blank" rel="noopener noreferrer">
+        <img src="./assets/icons/twitter.svg" width="28px" alt="twitter">
+      </a>
+      <a href="https://github.com/mahmoudshahin1111/tonada" target="_blank" rel="noopener noreferrer">
+        <img src="./assets/icons/github.svg" width="28px" alt="github">
+      </a>
     </div>
   </header>
   <button class="scroll-top">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
-      <path id="XMLID_224_"
-        d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
-    l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393
-    C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z" />
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-      <g>
-      </g>
-    </svg>
-
+    <img src="./assets/icons/top.svg" width="32px" alt="">
   </button>
-  <!-- <div class="frame-container">
-      <iframe id="frame" src="http://127.0.0.1:5500/site/home.html"></iframe>
-    </div> -->
-
   <div class="container">
     <div id="get-started-section">
       <h2>How to install ?</h2>
@@ -106,17 +90,11 @@
       <h3>
         CDN:
       </h3>
-      <p>Input:</p>
       <pre>
         <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input.css"/&gt;
+          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/index.css"/&gt;
           &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js"&gt;&lt;/script&gt;
-        </code>
-      </pre>
-      <p>This line should be at the end of your scripting tags &#9940;</p>
-      <pre>
-        <code>
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/index.js"&gt;&lt;/script&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/index.js"&gt;&lt;/script&gt; &#9940; This line should be always at the end
         </code>
       </pre>
       <h3>
@@ -942,6 +920,89 @@
       </div>
 
     </div>
+    <div id="customize-section">
+      <h2>Customize Style</h2>
+      <hr>
+      this is our project file structure and you have 2 options :
+      <ol>
+        <li>
+          Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value
+          in your own Sass without modifying Tonada’s source code. (Recommended)
+          <pre>
+            <code>
+              // Default variable overrides
+              $tn-font-size: 16px;
+              $tn-border-radius: 8px;
+
+              // Required
+              @import "../node_modules/tonada/src/scss/variables";
+              @import "../node_modules/tonada/src/scss/mixins";
+              @import "../node_modules/tonada/src/scss/root";
+              
+              // Optional Tonada components here
+              @import "../node_modules/tonada/src/scss/input";
+              @import "../node_modules/tonada/src/scss/slider";
+              // etc
+            </code>
+          </pre>
+          <pre>
+            <code>
+              Tonada
+              ┣ 📂src
+              ┃ ┣ 📂scss
+              ┃ ┃ ┃ ┣ 📜index.scss # It import all the component or you can import only your needs 
+              ┃ ┃ ┃ ┣ 📜accordion.scss
+              ┃ ┃ ┃ ┣ 📜button.scss
+              ┃ ┃ ┃ ┣ 📜checkbox-group.scss
+              ┃ ┃ ┃ ┣ 📜checkbox.scss
+              ┃ ┃ ┃ ┗ 📜input-group.scss
+              ┃ ┃ ┃ ┗ 📜input-group.scss
+              ...
+            </code>
+          </pre>
+        </li>
+        <li>
+          Or by override <code>css</code> root variables or write our classes and you should do that after importing the
+          styles files
+
+          <pre>
+            <code>
+              <div>&lt;link rel="stylesheet" href="../dist/css/button.css" /&gt;</div>
+              <div>&lt;link rel="stylesheet" href="../dist/css/icons.css" /&gt;</div>
+              <div>&lt;link rel="stylesheet" href="../dist/css/input.css" /&gt;</div>
+              <div>&lt;style&gt;</div>
+              <div>&nbsp; &nbsp; :root {</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; --tonada-color-primary: #1c3879;</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; --tonada-color-secondary: #607eaa;</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; --tonada-color-success: #30dd78;</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; --tonada-color-danger: #ff004c;</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; --tonada-color-white: #ffffff;</div>
+              <div>&nbsp; &nbsp; &nbsp; &nbsp; /* etc */</div>
+              <div>&nbsp; &nbsp; }</div>
+              
+              <div>&nbsp; &nbsp; .tonada-checkbox {</div>
+                <div>&nbsp; &nbsp;  /* etc */</div>
+              <div>&nbsp; &nbsp; }</div>
+              <div>&lt;/style&gt;</div>
+          </pre>
+          <pre>
+            <code>
+              Tonada
+              ┣ 📂dist
+              ┃ ┣ 📂css
+              ┃ ┃ ┃ ┣ 📜index.css # Import this or only the components you need
+              ┃ ┃ ┃ ┣ 📜accordion.css
+              ┃ ┃ ┃ ┣ 📜button.css
+              ┃ ┃ ┃ ┣ 📜checkbox-group.css
+              ┃ ┃ ┃ ┣ 📜checkbox.css
+              ┃ ┃ ┃ ┗ 📜input-group.css
+              ...
+            </code>
+          </pre>
+        </li>
+      </ol>
+
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
     integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
@@ -952,8 +1013,8 @@
   <script src="../dist/js/input-password.js"></script>
   <script src="../dist/js/select.js"></script>
   <script src="../dist/js/slider.js"></script>
-  <script src="../dist/js/input-checkbox.js"></script>
-  <script src="../dist/js/input-checkbox-group.js"></script>
+  <script src="../dist/js/checkbox.js"></script>
+  <script src="../dist/js/checkbox-group.js"></script>
   <script src="../dist/js/accordion.js"></script>
   <script src="../dist/js/index.js"></script>
   <script>
@@ -992,9 +1053,9 @@
       })
       // END SLIDER
       // CHECKBOX
-      Tonada.create('input-checkbox', document.querySelector('#tonada-default-checkbox'), {});
-      Tonada.create('input-checkbox', document.querySelector('#tonada-disabled-checkbox'), {});
-      Tonada.create('input-checkbox-group', document.querySelector('#tonada-checkbox-group'), {});
+      Tonada.create('checkbox', document.querySelector('#tonada-default-checkbox'), {});
+      Tonada.create('checkbox', document.querySelector('#tonada-disabled-checkbox'), {});
+      Tonada.create('checkbox-group', document.querySelector('#tonada-checkbox-group'), {});
       // END CHECKBOX
       // ACCORDION
       document.querySelectorAll('#accordion-section .tonada-accordion').forEach(element => {
