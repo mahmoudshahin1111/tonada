@@ -237,3 +237,8 @@ Options:
 
 - multiple: number of items per page.
 - disabled: boolean for disabled or enable.
+
+
+## License
+
+Please read [License](https://github.com/mahmoudshahin1111/tonada/blob/master/LICENSE.md) for more information
