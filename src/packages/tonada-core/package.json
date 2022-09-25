@@ -1,9 +1,0 @@
-{
-    "name": "tonada-core",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.ts",
-    "dependencies": {
-        "chalk": "^5.0.1"
-    }
-}

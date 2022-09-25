@@ -1,7 +1,7 @@
 @import "./core.scss";
 @import "./icons.scss";
 @import "./checkbox.scss";
-$checkboxGroupPrefix: #{$prefix}-input-checkbox-group;
+$checkboxGroupPrefix: #{$prefix}-checkbox-group;
 .#{$checkboxGroupPrefix} {
   --#{$prefix}-checkbox-space: 8px;
 }

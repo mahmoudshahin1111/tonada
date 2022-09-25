@@ -29,10 +29,10 @@
       "name": "input-password"
     },
     {
-      "name": "input-checkbox"
+      "name": "checkbox"
     },
     {
-      "name": "input-checkbox-group"
+      "name": "checkbox-group"
     },
     {
       "name": "accordion"
@@ -49,8 +49,10 @@
     "@types/lodash": "^4.14.184",
     "chalk": "^3.0.0",
     "concurrently": "^7.3.0",
+    "css-loader": "^6.7.1",
     "dotenv": "^16.0.2",
     "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.6.1",
     "sass": "^1.55.0",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",

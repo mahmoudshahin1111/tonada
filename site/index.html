@@ -23,7 +23,8 @@
   <link rel="stylesheet" href="../dist/css/button.css">
   <link rel="stylesheet" href="../dist/css/checkbox.css">
   <link rel="stylesheet" href="../dist/css/checkbox-group.css">
-  <link rel="stylesheet" href="../dist/css/accordion.css">
+  <!-- Or -->
+  <!-- <link rel="stylesheet" href="../dist/css/index.css"> -->
   <!-- END LIBRARY CSS -->
 </head>
 
@@ -942,6 +943,58 @@
       </div>
 
     </div>
+    <div id="Customize">
+      <h2>Customize Style</h2>
+      <hr>
+      this is our project file structure and you have 2 options :
+      <ol>
+        <li>
+          Import <code>scss</code> files into you style files and override the variables because our variables have a !default. (Recommended)
+          <pre>
+            <code>
+              $tn-colors: (
+                primary: #1c3879,
+                secondary: #607eaa,
+                success: #30dd78,
+                danger: #ff004c,
+                "white":#ffffff,
+              ) !default;
+              ...
+            </code>
+          </pre>
+          <pre>
+            Tonada
+            ┣ 📂src
+            ┃ ┣ 📂scss
+            ┃ ┃ ┃ ┣ 📜index.scss # It import all the component or you can import only your needs 
+            ┃ ┃ ┃ ┣ 📜accordion.scss
+            ┃ ┃ ┃ ┣ 📜button.scss
+            ┃ ┃ ┃ ┣ 📜checkbox-group.scss
+            ┃ ┃ ┃ ┣ 📜checkbox.scss
+            ┃ ┃ ┃ ┗ 📜input-group.scss
+            ┃ ┃ ┃ ┗ 📜input-group.scss
+            ...
+          </pre>
+        </li>
+        <li>
+          Or by override <code>css</code> classes 
+          <pre>
+            Tonada
+            ┣ 📂dist
+            ┃ ┣ 📂css
+            ┃ ┃ ┃ ┣ 📜index.css # Import this or only the components you need
+            ┃ ┃ ┃ ┣ 📜accordion.css
+            ┃ ┃ ┃ ┣ 📜button.css
+            ┃ ┃ ┃ ┣ 📜checkbox-group.css
+            ┃ ┃ ┃ ┣ 📜checkbox.css
+            ┃ ┃ ┃ ┗ 📜input-group.css
+            ┃ ┃ ┃ ┗ 📜input-group.css
+            ...
+          </pre>
+        </li>
+      </ol>
+      
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
     integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
@@ -952,8 +1005,8 @@
   <script src="../dist/js/input-password.js"></script>
   <script src="../dist/js/select.js"></script>
   <script src="../dist/js/slider.js"></script>
-  <script src="../dist/js/input-checkbox.js"></script>
-  <script src="../dist/js/input-checkbox-group.js"></script>
+  <script src="../dist/js/checkbox.js"></script>
+  <script src="../dist/js/checkbox-group.js"></script>
   <script src="../dist/js/accordion.js"></script>
   <script src="../dist/js/index.js"></script>
   <script>
@@ -992,9 +1045,9 @@
       })
       // END SLIDER
       // CHECKBOX
-      Tonada.create('input-checkbox', document.querySelector('#tonada-default-checkbox'), {});
-      Tonada.create('input-checkbox', document.querySelector('#tonada-disabled-checkbox'), {});
-      Tonada.create('input-checkbox-group', document.querySelector('#tonada-checkbox-group'), {});
+      Tonada.create('checkbox', document.querySelector('#tonada-default-checkbox'), {});
+      Tonada.create('checkbox', document.querySelector('#tonada-disabled-checkbox'), {});
+      Tonada.create('checkbox-group', document.querySelector('#tonada-checkbox-group'), {});
       // END CHECKBOX
       // ACCORDION
       document.querySelectorAll('#accordion-section .tonada-accordion').forEach(element => {

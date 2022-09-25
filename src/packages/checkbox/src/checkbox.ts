@@ -16,7 +16,7 @@ export class Checkbox  extends Component<HTMLDivElement>{
       this.config = Object.assign(getDefaultConfig(),config);
   }
   build(): void {
-    this.element.addClass(`${PREFIX}-input-checkbox`);
+    this.element.addClass(`${PREFIX}-checkbox`);
     const fragment = document.createDocumentFragment();
     this.input = this.element.querySelector<HTMLInputElement>(':scope > input').at(0);
     this.input.hide();
@@ -29,10 +29,10 @@ export class Checkbox  extends Component<HTMLDivElement>{
     this.config.checked = this.input.element.hasAttribute('checked');
     this.value = this.input.element.getAttribute('value');
     this.checkbox = createBaseElement(document.createElement('div'));
-    this.checkbox.addClass(`${PREFIX}-input-checkbox-box`);
+    this.checkbox.addClass(`${PREFIX}-checkbox-box`);
     this.checkbox.element.innerHTML = `<i class="${PREFIX}-ic ${PREFIX}-ic-check"> </i>`;
     if(this.config.disabled){
-      this.element.addClass(`${PREFIX}-input-checkbox-disabled`);
+      this.element.addClass(`${PREFIX}-checkbox-disabled`);
     }
     if(this.config.checked){
       this.check();
@@ -53,12 +53,12 @@ export class Checkbox  extends Component<HTMLDivElement>{
     return this.check();
   }
   check(){
-    this.element.addClass(`${PREFIX}-input-checkbox-checked`);
+    this.element.addClass(`${PREFIX}-checkbox-checked`);
     this.input.element.checked = true;
     this.checked = true;
   }
   uncheck(){
-    this.element.removeClass(`${PREFIX}-input-checkbox-checked`);
+    this.element.removeClass(`${PREFIX}-checkbox-checked`);
     this.input.element.checked = false;
     this.checked = false;
   }
