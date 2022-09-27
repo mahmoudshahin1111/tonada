@@ -1,16 +1,13 @@
-const path = require("path");
 const fs = require("fs");
-const { execSync, spawnSync, spawn } = require("child_process");
+const { execSync, spawn } = require("child_process");
 const chalk = require("chalk");
-const appPath = path.resolve(__dirname, "../");
-const distPath = path.join(appPath, "dist");
-const webpackConfig = path.join(appPath, "webpack.config.js");
+const { webpackConfig, distPath } = require("./utils/config");
 const process = require("process");
 require("dotenv").config();
 
-execSync("npm run build");
 const webpackArguments = [`--config ${webpackConfig}`];
-if (process.env.debug) {
+
+if (process.env.debug === "false") {
   webpackArguments.push("--mode development");
 }
 console.log(chalk.white("cleaning ..."));
@@ -20,8 +17,14 @@ if (isExists) {
 }
 fs.mkdirSync(distPath, { recursive: true });
 console.log(chalk.white("building .... 👇🏻"));
-spawn("webpack", webpackArguments).stdout.on("data", (e) => {
-  console.log(e.toString("utf8"));
-  console.log("----------------------------");
-});
-console.log(chalk.green("congratulation! 🎉"));
+spawn("webpack", webpackArguments, { shell: true })
+  .stdout.on("data", (e) => {
+    console.log(e.toString("utf8"));
+    console.log("----------------------------");
+  })
+  .on("end", () => {
+    console.log(chalk.green("congratulation! 🎉"));
+  })
+  .on("error", (e) => {
+    console.log(chalk.red(e));
+  });

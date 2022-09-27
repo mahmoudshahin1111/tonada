@@ -1,7 +1,7 @@
 {
   "name": "tonada",
   "version": "1.0.0",
-  "description": "it is a ui kit have what you need to build a fast and quick dashboards and web apps without effort",
+  "description": "Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight and seo friendly To make the web development more interesting and easiest 🙌.",
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
@@ -14,36 +14,12 @@
     "ui-kit"
   ],
   "author": "codexline",
+  "bugs": {
+    "url": "https://github.com/mahmoudshahin1111/tonada/issues"
+  },
   "license": "MIT",
-  "packages": [
-    {
-      "name": "slider"
-    },
-    {
-      "name": "input"
-    },
-    {
-      "name": "input-group"
-    },
-    {
-      "name": "input-password"
-    },
-    {
-      "name": "checkbox"
-    },
-    {
-      "name": "checkbox-group"
-    },
-    {
-      "name": "accordion"
-    },
-    {
-      "name": "select"
-    }
-  ],
   "dependencies": {
-    "lodash": "^4.17.21",
-
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.184",

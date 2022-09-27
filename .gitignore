@@ -2,3 +2,7 @@ node_modules
 .vscode
 dist
 files
+site
+scripts
+webpack.config.js
+.npmignore
