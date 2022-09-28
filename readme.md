@@ -406,12 +406,23 @@ const accordion = Tonada.create(
 ---
 
 ### Changelog
+v1.0.3 (2022-9-30)
+- docs updates.
+- fixing issues.
 
-v1.0.0 (2022-12-01) - Release
+v1.0.2 (2022-9-29)
+- docs updates.
+- fixing issues.
+
+v1.0.1 (2022-9-28)
+- docs updates.
+- fixing issues.
+
+v1.0.0 (2022-8-1) - Release
 
 ### Contributions
 
-Contributions are welcome, please open an issue and preferrably file a pull request. check [Pull-Request-Guidelines](https://github.com/mahmoudshahin1111/tonada/wiki/Pull-Request-Guidelines)
+Contributions are welcome, please open an issue and preferably file a pull request. check [Pull-Request-Guidelines](https://github.com/mahmoudshahin1111/tonada/wiki/Pull-Request-Guidelines)
 
 ### Development
 
