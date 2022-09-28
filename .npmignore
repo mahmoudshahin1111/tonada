@@ -6,3 +6,4 @@ files
 .vscode
 .env
 scripts
+tsconfig.json
