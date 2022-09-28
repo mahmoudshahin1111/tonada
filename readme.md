@@ -1,4 +1,4 @@
-# Tonada 
+# Tonada
 
 Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌.
 
@@ -36,6 +36,17 @@ CDN:
   rel="stylesheet"
   href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
 />
+<!--  -->
+
+<script src="https://unpkg.com/tonada/dist/js/input.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/select.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
+<!-- This should be added at the end 🚫 👇🏻 -->
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
 ```
 
 ## Getting Start
@@ -43,29 +54,34 @@ CDN:
 We going to import the style files for the components we will use and let's assume we will use all the components then import the index style file
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" />
-</head>
-<body>
-  ...
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/icons.js" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/input.js" />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/tonada/dist/js/input-group.js"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/tonada/dist/js/input-password.js"
-  />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/select.js" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/slider.js" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/accordion.js" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/button.js" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/js/checkbox.js" />
-  <!-- This should be added at the end 🚫 👇🏻 -->
-  <script src="tonada/dist/js/index.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ... -->
+    <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" />
+    <!-- ... -->
+  </head>
+  <body>
+    <!-- ... -->
+    <div id="element" class="floating-label">
+      <input class="tonada-input" type="text" name="name" placeholder="Name" />
+      <label for="">Name</label>
+    </div>
+    <!-- ... -->
+    <script src="https://unpkg.com/tonada/dist/js/input.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/select.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
+    <!-- This should be added at the end 🚫 👇🏻 -->
+    <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+    <script>
+      const input = Tonada.create("input", document.querySelector("#element"));
+    </script>
+  </body>
+</html>
 ```
 
 Then choose which component you going to use for examples [Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
@@ -386,6 +402,7 @@ const accordion = Tonada.create(
   document.querySelector("#element")
 );
 ```
+
 ---
 
 ### Changelog
@@ -393,18 +410,23 @@ const accordion = Tonada.create(
 v1.00 (2022-12-01) - Release
 
 ### Contributions
+
 Contributions are welcome, please open an issue and preferrably file a pull request. check [Pull-Request-Guidelines](https://github.com/mahmoudshahin1111/tonada/wiki/Pull-Request-Guidelines)
+
 ### Development
-This project build using 
-- [Typescript](https://www.typescriptlang.org/) 
+
+This project build using
+
+- [Typescript](https://www.typescriptlang.org/)
 - [Webpack](https://webpack.js.org/)
 - [Sass](https://sass-lang.com/)
+
 ### Issues
+
 please let us know more about your issues and suggestions to make tonada better [Report about issue](https://github.com/mahmoudshahin1111/tonada/issues)
 
-
 ---
+
 ### License
+
 Please read [License](https://github.com/mahmoudshahin1111/tonada/blob/master/LICENSE.md) for more information
-
-
