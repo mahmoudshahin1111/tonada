@@ -66,7 +66,7 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  ...(process.env.debug ? { devtool: "source-map" } : {}),
+  ...(process.env.debug === 'true' ? { devtool: "source-map" } : {}),
 };
 
 const config = [];

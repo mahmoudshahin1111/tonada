@@ -1,3 +1,8 @@
 src
 site
 webpack.config.js
+files
+.github
+.vscode
+.env
+scripts

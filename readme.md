@@ -407,7 +407,7 @@ const accordion = Tonada.create(
 
 ### Changelog
 
-v1.00 (2022-12-01) - Release
+v1.0.0 (2022-12-01) - Release
 
 ### Contributions
 
