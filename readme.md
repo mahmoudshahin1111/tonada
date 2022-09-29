@@ -84,7 +84,7 @@ We going to import the style files for the components we will use and let's assu
   </body>
 </html>
 ```
-
+For more [Documentation](https://mahmoudshahin1111.github.io/tonada)
 Then choose which component you going to use for examples [Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
 
 ---
