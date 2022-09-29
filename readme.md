@@ -49,7 +49,7 @@ CDN:
 <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
 ```
 
-## Getting Start
+## Getting Started
 
 We going to import the style files for the components we will use and let's assume we will use all the components then import the index style file
 
