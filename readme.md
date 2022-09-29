@@ -85,8 +85,17 @@ We going to import the style files for the components we will use and let's assu
 </html>
 ```
 For more [Documentation](https://mahmoudshahin1111.github.io/tonada)
-Then choose which component you going to use for examples [Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
 
+You can Choose from tonada various components
+[Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
+[Input Group](https://github.com/mahmoudshahin1111/tonada#input-group)
+[Password](https://github.com/mahmoudshahin1111/tonada#password)
+[Select](https://github.com/mahmoudshahin1111/tonada#select)
+[Slider](https://github.com/mahmoudshahin1111/tonada#slider)
+[Accordion](https://github.com/mahmoudshahin1111/tonada#accordion)
+[Checkbox](https://github.com/mahmoudshahin1111/tonada#checkbox)
+[Checkbox Group](https://github.com/mahmoudshahin1111/tonada#checkbox-group)
+<!-- And more Comming Soon -->
 ---
 
 ### Inputs:
@@ -139,7 +148,7 @@ The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 
 ---
 
-#### Input Group:
+### Input Group:
 
 ```html
 <div id="element">
@@ -169,7 +178,7 @@ const input = Tonada.create("input-group", document.querySelector("#element"));
 
 ---
 
-#### Password:
+### Password:
 
 ```html
 <div id="element">
@@ -416,10 +425,9 @@ v1.0.2 (2022-9-29)
 - fixing issues.
 
 v1.0.1 (2022-9-28)
-- docs updates.
-- fixing issues.
+- Release
 
-v1.0.0 (2022-8-1) - Release
+v1.0.0 (2022-8-1) - Pre-V1
 
 ### Contributions
 
