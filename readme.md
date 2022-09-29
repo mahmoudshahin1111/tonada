@@ -87,7 +87,8 @@ We going to import the style files for the components we will use and let's assu
 For more [Documentation](https://mahmoudshahin1111.github.io/tonada)
 
 You can Choose from tonada various components and features
-Table of Contents:
+
+## Table of Contents:
 - [Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
 - [Input Group](https://github.com/mahmoudshahin1111/tonada#input-group)
 - [Password](https://github.com/mahmoudshahin1111/tonada#password)
