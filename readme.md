@@ -45,6 +45,7 @@ CDN:
 <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
 <!-- This should be added at the end 🚫 👇🏻 -->
 <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
 ```
