@@ -1,16 +1,21 @@
 @import "./core.scss";
-@import "./icons.scss";
 .#{$prefix}-select {
   --#{$prefix}-font-size: 1rem;
   --#{$prefix}-header-tag-background-color: #{map-get($tn-colors, "primary")};
   --#{$prefix}-header-tag-color: #{map-get($tn-colors, "white")};
   --#{$prefix}-menu-background: #{map-get($tn-colors, "white")};
-  --#{$prefix}-selected-option-background-color: #{map-get($tn-colors, "primary")};
+  --#{$prefix}-selected-option-background-color: #{map-get(
+      $tn-colors,
+      "primary"
+    )};
   --#{$prefix}-selected-option-color: #{map-get($tn-colors, "white")};
   --#{$prefix}-selected-option: rgba(0, 0, 0, 0.2);
   --#{$prefix}-shadow: #{$tn-select-shadow-box};
-  --#{$prefix}-disabled-bg-color:#{$tn-select-disabled-bg-color};
+  --#{$prefix}-disabled-bg-color: #{$tn-select-disabled-bg-color};
   --#{$prefix}-select-height: 3em;
+  --#{$prefix}-remove-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --#{$prefix}-close-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--#{$prefix}-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --#{$prefix}-expand-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
 }
 
 .#{$prefix}-select {
@@ -24,25 +29,33 @@
     box-sizing: border-box;
   }
   &-close-icon {
-    @extend .#{$prefix}-ic;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
     cursor: pointer;
     position: absolute;
     width: 20px;
     height: 20px;
     right: 8px;
-    top: calc(-0.1em +  35%);
+    top: calc(-0.1em + 35%);
     border-radius: 50%;
     background-color: var(--#{$prefix}-header-tag-color);
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--#{$prefix}-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+    background-image: var(--#{$prefix}-close-icon);
   }
   &-expand-icon {
-    @extend .#{$prefix}-ic;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     width: 20px;
     height: 20px;
     right: 8px;
-    top: calc(-0.1em +  34%);
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+    top: calc(-0.1em + 34%);
+    background-image: var(--#{$prefix}-expand-icon);
     &.#{$prefix}-expanded {
       transform: rotate(-180deg);
     }
@@ -75,8 +88,12 @@
       border: 0;
       font-size: 0.9em;
       .#{$prefix}-remove-button {
-        @extend .#{$prefix}-ic;
-        @extend .#{$prefix}-ic-close;
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: var(--#{$prefix}-remove-button-icon);
         cursor: pointer;
         display: inline-block;
         outline: 0;

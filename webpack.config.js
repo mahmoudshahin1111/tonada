@@ -57,7 +57,7 @@ const sharedConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
@@ -65,6 +65,9 @@ const sharedConfig = {
   },
   resolve: {
     extensions: [".ts", ".js"],
+  },
+  optimization: {
+    chunkIds: 'named',
   },
   ...(process.env.debug === 'true' ? { devtool: "source-map" } : {}),
 };
