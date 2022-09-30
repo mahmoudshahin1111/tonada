@@ -1,6 +1,6 @@
 {
   "name": "tonada",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight and seo friendly To make the web development more interesting and easiest 🙌.",
   "main": "index.js",
   "scripts": {

@@ -7,8 +7,10 @@ require("dotenv").config();
 
 const webpackArguments = [`--config ${webpackConfig}`];
 
-if (process.env.debug === "false") {
+if (process.env.debug === "true") {
   webpackArguments.push("--mode development");
+}else{
+  webpackArguments.push("--mode production");
 }
 console.log(chalk.white("cleaning ..."));
 const isExists = fs.existsSync(distPath);

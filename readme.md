@@ -395,22 +395,26 @@ const accordion = Tonada.create(
 ---
 
 ### Changelog
-v1.0.4 (2022-9-30)
+v1.0.5 
+- optimized bundle size
+- fix issues
+
+v1.0.4 
 - optimized bundle size
 - update docs
 
-v1.0.3 (2022-9-30)
+v1.0.3 
 - docs updates.
 - fixing issues.
 
-v1.0.2 (2022-9-29)
+v1.0.2 
 - docs updates.
 - fixing issues.
 
-v1.0.1 (2022-9-28)
+v1.0.1
 - Release
 
-v1.0.0 (2022-8-1) - Pre-V1
+v1.0.0 - Pre-V1
 
 ### Contributions
 
