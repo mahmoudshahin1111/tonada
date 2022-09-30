@@ -6,3 +6,4 @@ site
 scripts
 webpack.config.js
 .npmignore
+site
