@@ -1,3 +1,6 @@
 import { Tonada } from "./src/tonada";
 
-export { Tonada };
+
+const tonada: Tonada = new Tonada();
+
+export default tonada;

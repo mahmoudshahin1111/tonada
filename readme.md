@@ -1,23 +1,16 @@
 # Tonada
-
 Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌.
-
 ## Install
-
 NPM:
-
 ```bash
 npm install --save tonada
 ```
-
 CDN:
-
 ```html
 <!-- Import all the tonada component styles -->
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" />
 <!-- Or you can import the component style you going to use-->
-
-<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/icons.css" />
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/icons.css" /> <!--👈🏻 You can change the icons later -->
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input.css" />
 <link
   rel="stylesheet"
@@ -37,16 +30,6 @@ CDN:
   href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
 />
 <!--  -->
-
-<script src="https://unpkg.com/tonada/dist/js/input.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/select.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
-<script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
-<!-- This should be added at the end 🚫 👇🏻 -->
 <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
 ```
 
@@ -69,14 +52,6 @@ We going to import the style files for the components we will use and let's assu
       <label for="">Name</label>
     </div>
     <!-- ... -->
-    <script src="https://unpkg.com/tonada/dist/js/input.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/select.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
-    <script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
-    <!-- This should be added at the end 🚫 👇🏻 -->
     <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
     <script>
       const input = Tonada.create("input", document.querySelector("#element"));

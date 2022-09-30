@@ -1,5 +1,4 @@
 const path = require("path");
-const packageJson = require("./package.json");
 require("dotenv").config();
 const process = require("process");
 const _ = require("lodash");
@@ -39,19 +38,6 @@ class CleanUpAfterMiniPlugin {
   }
 }
 
-const resolvePackInfoFromName = (name) => {
-  const nameSlices = String(name)
-    .split("-")
-    .map((nameSlice) => _.capitalize(nameSlice));
-  return [_.capitalize(packageJson.name), ...nameSlices].join("");
-};
-
-const getPackagesNames = () => {
-  const filesNames = fs
-    .readdirSync(packageJson.workspaces.at(0).replace("*", ""))
-    .filter((fileName) => fileName.charAt(0) !== "_");
-  return filesNames;
-};
 
 const sharedConfig = {
   module: {
@@ -66,37 +52,12 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  optimization: {
-    chunkIds: 'named',
-  },
   ...(process.env.debug === 'true' ? { devtool: "source-map" } : {}),
 };
 
 const config = [];
 
-config.push(
-  ...getPackagesNames().map((packageName) => {
-    return {
-      ...sharedConfig,
-      entry: {
-        [packageName]: path.resolve(
-          __dirname,
-          "src",
-          "packages",
-          packageName,
-          "index.ts"
-        ),
-      },
-      output: {
-        path: path.resolve(__dirname, "dist", "js"),
-        library: {
-          name: resolvePackInfoFromName(packageName),
-          type: "window",
-        },
-      },
-    };
-  })
-);
+
 
 config.push(
   ...fs.readdirSync(path.resolve(__dirname, "src", "scss")).filter(fileName=>fileName.match(/^(?!_).*\.scss$/i)).map((fileName) => {
@@ -145,4 +106,5 @@ config.push({
     },
   },
 });
+
 module.exports = config;

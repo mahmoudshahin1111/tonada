@@ -6,6 +6,7 @@ export {
   PREFIX,
   VERSION,
 } from "./src/defaults";
+
 export {
   clone,
   createBaseElement,
