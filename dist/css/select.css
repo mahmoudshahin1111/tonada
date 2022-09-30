@@ -1,0 +1,169 @@
+/*!*******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/scss/select.scss ***!
+  \*******************************************************************************************************************************************/
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-select {
+  --tonada-font-size: 1rem;
+  --tonada-header-tag-background-color: #1c3879;
+  --tonada-header-tag-color: #ffffff;
+  --tonada-menu-background: #ffffff;
+  --tonada-selected-option-background-color: #1c3879;
+  --tonada-selected-option-color: #ffffff;
+  --tonada-selected-option: rgba(0, 0, 0, 0.2);
+  --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-disabled-bg-color: #fafafa;
+  --tonada-select-height: 3em;
+  --tonada-remove-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --tonada-close-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--tonada-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --tonada-expand-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+
+.tonada-select {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: var(--tonada-select-height);
+  position: relative;
+  box-shadow: var(--tonada-shadow);
+}
+.tonada-select * {
+  box-sizing: border-box;
+}
+.tonada-select-close-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 8px;
+  top: calc(-0.1em + 35%);
+  border-radius: 50%;
+  background-color: var(--tonada-header-tag-color);
+  background-image: var(--tonada-close-icon);
+}
+.tonada-select-expand-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 8px;
+  top: calc(-0.1em + 34%);
+  background-image: var(--tonada-expand-icon);
+}
+.tonada-select-expand-icon.tonada-expanded {
+  transform: rotate(-180deg);
+}
+.tonada-select-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 6px;
+  padding-right: 5em;
+  gap: 8px;
+  min-height: var(--tonada-select-height);
+}
+.tonada-select-header-option {
+  user-select: none;
+}
+.tonada-select-header-tag {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  user-select: none;
+  height: 2.5em;
+  padding: 6px 10px;
+  background-color: var(--tonada-header-tag-background-color);
+  color: var(--tonada-header-tag-color);
+  outline: 0;
+  border: 0;
+  font-size: 0.9em;
+}
+.tonada-select-header-tag .tonada-remove-button {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: var(--tonada-remove-button-icon);
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  width: 1.2em;
+  height: 1.2em;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-color: var(--tonada-header-tag-color);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--tonada-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+}
+.tonada-select-option {
+  padding: 6px 14px;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  text-align: start;
+}
+.tonada-select-option-selected {
+  background-color: var(--tonada-selected-option-background-color);
+  color: var(--tonada-selected-option-color);
+}
+.tonada-select-option:not(.tonada-select-option-selected):hover {
+  background-color: #d2ddf5;
+  color: black;
+}
+.tonada-select-menu {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  gap: 4px;
+  box-shadow: var(--tonada-shadow);
+  margin-top: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: var(--tonada-menu-background);
+  min-height: 50px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.tonada-select-menu.tonada-hide {
+  display: none;
+}
+.tonada-select-disabled {
+  background-color: var(--tonada-disabled-bg-color);
+}
+.tonada-select-disabled-header-option {
+  display: none;
+}
+.tonada-select-disabled-header-tag {
+  display: none;
+}

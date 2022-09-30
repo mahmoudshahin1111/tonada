@@ -81,19 +81,13 @@
   <div class="container">
     <div id="get-started-section">
       <h2>How to install ?</h2>
-      <p>
-        because tonada focus on the performance and seo friendly then we should
-        reduce it's size so you can use only single component or use them all<br />
-        so you need to import only what you going to use
-      </p>
       <h3>
         CDN:
       </h3>
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/index.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js"&gt;&lt;/script&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/index.js"&gt;&lt;/script&gt; &#9940; This line should be always at the end
+          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/index.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <h3>
@@ -144,7 +138,6 @@
         </p>
         <pre>
             <code>
-              <div>&lt;script src="../dist/js/input.js"&gt;&lt;/script&gt;</div>
               <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
               <div>&lt;script&gt;</div>
               <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
@@ -163,21 +156,18 @@
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <p>Input group:</p>
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-group.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-group.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <p>Input password:</p>
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/input-password.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/input-password.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <div class="input-boxes">
@@ -195,7 +185,6 @@
                     <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="floating-name" placeholder="Name"&gt;</div>
                     <div>&nbsp; &nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
                     <div>&lt;/div&gt;</div>
-                    <div>&lt;script src="../dist/js/input.js"&gt;&lt;/script&gt;</div>
                     <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
                     <div>&lt;script&gt;</div>
                     <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
@@ -382,7 +371,6 @@
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/select.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/select.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <div>
@@ -505,7 +493,6 @@
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/slider.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/slider.js"&gt;&lt;/script&gt;
         </code>
       </pre>
 
@@ -665,14 +652,12 @@
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checkbox.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checkbox.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <p>Checkbox Group:</p>
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checbox-group.css"/&gt;
-          &lt;script src="https://cdn.jsdelivr.net/npm/tonada@latest/dist/js/checbox-group.js"&gt;&lt;/script&gt;
         </code>
       </pre>
       <div>
@@ -1007,15 +992,6 @@
     integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
   <script src="./assets/js/index.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/input.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/select.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
-  <!-- This should be added at the end 🚫 👇🏻 -->
   <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
   <script>
     window.document.addEventListener("DOMContentLoaded", () => {

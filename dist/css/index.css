@@ -1,0 +1,969 @@
+/*!******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/scss/index.scss ***!
+  \******************************************************************************************************************************************/
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-ic {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.tonada-ic-arrow {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+
+.tonada-ic-arrow-left {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+}
+
+.tonada-ic-arrow-right {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white" ><path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z"/></svg>');
+  transform: rotate(180deg);
+}
+
+.tonada-ic-close {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+}
+
+.tonada-ic-check {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-invalid-shadow-box: 0px 0px 1px 1px #ff004c;
+  --tonada-invalid-text-color: #ff004c;
+  --tonada-height: 40px;
+  --tonada-font-size: calc(1em + calc(var(--tonada-height) / 10));
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--tonada-height);
+  font-size: var(--tonada-font-size);
+}
+.tonada-control * {
+  box-sizing: border-box;
+  font-size: var(--tonada-shadow-box);
+}
+.tonada-control > .tonada-input {
+  border: 0;
+  box-shadow: var(--tonada-shadow-box);
+  padding: 0 1em;
+  width: 100%;
+  transition: all 0.1s;
+  outline: none;
+  border-radius: var(--tonada-border-radius);
+  height: 100%;
+}
+.tonada-control > .tonada-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #1c3879;
+}
+.tonada-control.tonada-invalid > .tonada-input {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > .tonada-input:focus {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > label {
+  color: var(--tonada-invalid-text-color);
+}
+.tonada-control.tonada-sm {
+  font-size: calc(var(--tonada-font-size) - 0.2em);
+}
+.tonada-control.tonada-lg {
+  font-size: calc(var(--tonada-font-size) + 0.2em);
+}
+.tonada-control.tonada-xl {
+  font-size: calc(var(--tonada-font-size) + 0.4em);
+}
+.tonada-control.floating-label > label {
+  position: absolute;
+  font-size: 1em;
+  transition: all 0.1s ease-in-out;
+  background-color: #ffffff;
+  transform: translateX(12px);
+  height: 0.8em;
+  left: 0;
+}
+.tonada-control.floating-label > .tonada-input::placeholder {
+  opacity: 0;
+}
+.tonada-control.floating-label > .tonada-input:not(:placeholder-shown) + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown + label {
+  transform: translate(calc(var(--tonada-height) / 3), -5px);
+  background-color: transparent;
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown:focus + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  background-color: #ffffff;
+}
+.tonada-control.floating-label > .tonada-input:focus + label {
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+
+.tonada-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #ff004c;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-invalid-shadow-box: 0px 0px 1px 1px #ff004c;
+  --tonada-invalid-text-color: #ff004c;
+  --tonada-height: 40px;
+  --tonada-font-size: calc(1em + calc(var(--tonada-height) / 10));
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--tonada-height);
+  font-size: var(--tonada-font-size);
+}
+.tonada-control * {
+  box-sizing: border-box;
+  font-size: var(--tonada-shadow-box);
+}
+.tonada-control > .tonada-input {
+  border: 0;
+  box-shadow: var(--tonada-shadow-box);
+  padding: 0 1em;
+  width: 100%;
+  transition: all 0.1s;
+  outline: none;
+  border-radius: var(--tonada-border-radius);
+  height: 100%;
+}
+.tonada-control > .tonada-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #1c3879;
+}
+.tonada-control.tonada-invalid > .tonada-input {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > .tonada-input:focus {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > label {
+  color: var(--tonada-invalid-text-color);
+}
+.tonada-control.tonada-sm {
+  font-size: calc(var(--tonada-font-size) - 0.2em);
+}
+.tonada-control.tonada-lg {
+  font-size: calc(var(--tonada-font-size) + 0.2em);
+}
+.tonada-control.tonada-xl {
+  font-size: calc(var(--tonada-font-size) + 0.4em);
+}
+.tonada-control.floating-label > label {
+  position: absolute;
+  font-size: 1em;
+  transition: all 0.1s ease-in-out;
+  background-color: #ffffff;
+  transform: translateX(12px);
+  height: 0.8em;
+  left: 0;
+}
+.tonada-control.floating-label > .tonada-input::placeholder {
+  opacity: 0;
+}
+.tonada-control.floating-label > .tonada-input:not(:placeholder-shown) + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown + label {
+  transform: translate(calc(var(--tonada-height) / 3), -5px);
+  background-color: transparent;
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown:focus + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  background-color: #ffffff;
+}
+.tonada-control.floating-label > .tonada-input:focus + label {
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+
+.tonada-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #ff004c;
+}
+
+.tonada-control.tonada-input-group {
+  --tonada-show-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 31.5q3.55 0 6.025-2.475Q32.5 26.55 32.5 23q0-3.55-2.475-6.025Q27.55 14.5 24 14.5q-3.55 0-6.025 2.475Q15.5 19.45 15.5 23q0 3.55 2.475 6.025Q20.45 31.5 24 31.5Zm0-2.9q-2.35 0-3.975-1.625T18.4 23q0-2.35 1.625-3.975T24 17.4q2.35 0 3.975 1.625T29.6 23q0 2.35-1.625 3.975T24 28.6Zm0 9.4q-7.3 0-13.2-4.15Q4.9 29.7 2 23q2.9-6.7 8.8-10.85Q16.7 8 24 8q7.3 0 13.2 4.15Q43.1 16.3 46 23q-2.9 6.7-8.8 10.85Q31.3 38 24 38Zm0-15Zm0 12q6.05 0 11.125-3.275T42.85 23q-2.65-5.45-7.725-8.725Q30.05 11 24 11t-11.125 3.275Q7.8 17.55 5.1 23q2.7 5.45 7.775 8.725Q17.95 35 24 35Z"/></svg>');
+  --tonada-hidden-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m31.45 27.05-2.2-2.2q1.3-3.55-1.35-5.9-2.65-2.35-5.75-1.2l-2.2-2.2q.85-.55 1.9-.8 1.05-.25 2.15-.25 3.55 0 6.025 2.475Q32.5 19.45 32.5 23q0 1.1-.275 2.175-.275 1.075-.775 1.875Zm6.45 6.45-2-2q2.45-1.8 4.275-4.025Q42 25.25 42.85 23q-2.5-5.55-7.5-8.775Q30.35 11 24.5 11q-2.1 0-4.3.4-2.2.4-3.45.95L14.45 10q1.75-.8 4.475-1.4Q21.65 8 24.25 8q7.15 0 13.075 4.075Q43.25 16.15 46 23q-1.3 3.2-3.35 5.85-2.05 2.65-4.75 4.65Zm2.9 11.3-8.4-8.25q-1.75.7-3.95 1.075T24 38q-7.3 0-13.25-4.075T2 23q1-2.6 2.775-5.075T9.1 13.2L2.8 6.9l2.1-2.15L42.75 42.6ZM11.15 15.3q-1.85 1.35-3.575 3.55Q5.85 21.05 5.1 23q2.55 5.55 7.675 8.775Q17.9 35 24.4 35q1.65 0 3.25-.2t2.4-.6l-3.2-3.2q-.55.25-1.35.375T24 31.5q-3.5 0-6-2.45T15.5 23q0-.75.125-1.5T16 20.15Zm15.25 7.1Zm-5.8 2.9Z"/></svg>');
+}
+
+.tonada-control.tonada-input-group {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px 1px #1c3879;
+  display: flex;
+  flex-direction: row;
+  background-color: #607eaa;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.tonada-control.tonada-input-group * {
+  box-sizing: border-box;
+}
+.tonada-control.tonada-input-group > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  color: #ffffff;
+  user-select: none;
+  padding: 0 1em;
+}
+.tonada-control.tonada-input-group > .tonada-control {
+  flex: 1;
+}
+.tonada-control.tonada-input-group > .tonada-control > .tonada-input, .tonada-control.tonada-input-group > .tonada-input {
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  border-radius: 0px;
+}
+.tonada-control.tonada-input-group > .tonada-control > .tonada-input:focus, .tonada-control.tonada-input-group > .tonada-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #1c3879;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  --tonada-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-invalid-shadow-box: 0px 0px 1px 1px #ff004c;
+  --tonada-invalid-text-color: #ff004c;
+  --tonada-height: 40px;
+  --tonada-font-size: calc(1em + calc(var(--tonada-height) / 10));
+  --tonada-border-radius: 6px;
+}
+
+.tonada-control {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--tonada-height);
+  font-size: var(--tonada-font-size);
+}
+.tonada-control * {
+  box-sizing: border-box;
+  font-size: var(--tonada-shadow-box);
+}
+.tonada-control > .tonada-input {
+  border: 0;
+  box-shadow: var(--tonada-shadow-box);
+  padding: 0 1em;
+  width: 100%;
+  transition: all 0.1s;
+  outline: none;
+  border-radius: var(--tonada-border-radius);
+  height: 100%;
+}
+.tonada-control > .tonada-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #1c3879;
+}
+.tonada-control.tonada-invalid > .tonada-input {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > .tonada-input:focus {
+  box-shadow: var(--tonada-invalid-shadow-box);
+}
+.tonada-control.tonada-invalid > label {
+  color: var(--tonada-invalid-text-color);
+}
+.tonada-control.tonada-sm {
+  font-size: calc(var(--tonada-font-size) - 0.2em);
+}
+.tonada-control.tonada-lg {
+  font-size: calc(var(--tonada-font-size) + 0.2em);
+}
+.tonada-control.tonada-xl {
+  font-size: calc(var(--tonada-font-size) + 0.4em);
+}
+.tonada-control.floating-label > label {
+  position: absolute;
+  font-size: 1em;
+  transition: all 0.1s ease-in-out;
+  background-color: #ffffff;
+  transform: translateX(12px);
+  height: 0.8em;
+  left: 0;
+}
+.tonada-control.floating-label > .tonada-input::placeholder {
+  opacity: 0;
+}
+.tonada-control.floating-label > .tonada-input:not(:placeholder-shown) + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown + label {
+  transform: translate(calc(var(--tonada-height) / 3), -5px);
+  background-color: transparent;
+}
+.tonada-control.floating-label > .tonada-input:placeholder-shown:focus + label {
+  transform: translate(calc(var(--tonada-height) / 3), calc(var(--tonada-height) / -1.7));
+  background-color: #ffffff;
+}
+.tonada-control.floating-label > .tonada-input:focus + label {
+  font-size: calc(var(--tonada-font-size) - 0.5em);
+}
+
+.tonada-errors {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #ff004c;
+}
+
+.tonada-control.tonada-control.tonada-input-password {
+  --tonada-show-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 31.5q3.55 0 6.025-2.475Q32.5 26.55 32.5 23q0-3.55-2.475-6.025Q27.55 14.5 24 14.5q-3.55 0-6.025 2.475Q15.5 19.45 15.5 23q0 3.55 2.475 6.025Q20.45 31.5 24 31.5Zm0-2.9q-2.35 0-3.975-1.625T18.4 23q0-2.35 1.625-3.975T24 17.4q2.35 0 3.975 1.625T29.6 23q0 2.35-1.625 3.975T24 28.6Zm0 9.4q-7.3 0-13.2-4.15Q4.9 29.7 2 23q2.9-6.7 8.8-10.85Q16.7 8 24 8q7.3 0 13.2 4.15Q43.1 16.3 46 23q-2.9 6.7-8.8 10.85Q31.3 38 24 38Zm0-15Zm0 12q6.05 0 11.125-3.275T42.85 23q-2.65-5.45-7.725-8.725Q30.05 11 24 11t-11.125 3.275Q7.8 17.55 5.1 23q2.7 5.45 7.775 8.725Q17.95 35 24 35Z"/></svg>');
+  --tonada-hidden-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m31.45 27.05-2.2-2.2q1.3-3.55-1.35-5.9-2.65-2.35-5.75-1.2l-2.2-2.2q.85-.55 1.9-.8 1.05-.25 2.15-.25 3.55 0 6.025 2.475Q32.5 19.45 32.5 23q0 1.1-.275 2.175-.275 1.075-.775 1.875Zm6.45 6.45-2-2q2.45-1.8 4.275-4.025Q42 25.25 42.85 23q-2.5-5.55-7.5-8.775Q30.35 11 24.5 11q-2.1 0-4.3.4-2.2.4-3.45.95L14.45 10q1.75-.8 4.475-1.4Q21.65 8 24.25 8q7.15 0 13.075 4.075Q43.25 16.15 46 23q-1.3 3.2-3.35 5.85-2.05 2.65-4.75 4.65Zm2.9 11.3-8.4-8.25q-1.75.7-3.95 1.075T24 38q-7.3 0-13.25-4.075T2 23q1-2.6 2.775-5.075T9.1 13.2L2.8 6.9l2.1-2.15L42.75 42.6ZM11.15 15.3q-1.85 1.35-3.575 3.55Q5.85 21.05 5.1 23q2.55 5.55 7.675 8.775Q17.9 35 24.4 35q1.65 0 3.25-.2t2.4-.6l-3.2-3.2q-.55.25-1.35.375T24 31.5q-3.5 0-6-2.45T15.5 23q0-.75.125-1.5T16 20.15Zm15.25 7.1Zm-5.8 2.9Z"/></svg>');
+}
+
+.tonada-control.tonada-control.tonada-input-password {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+}
+.tonada-control.tonada-control.tonada-input-password * {
+  box-sizing: border-box;
+}
+.tonada-control.tonada-control.tonada-input-password > .tonada-input + i {
+  position: absolute;
+  right: 0.5em;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.tonada-control.tonada-control.tonada-input-password > .tonada-input + i:hover {
+  opacity: 1;
+}
+.tonada-control.tonada-control.tonada-input-password > .tonada-input:focus:not(.tonada-input:placeholder-shown) + i {
+  opacity: 1;
+}
+.tonada-control.tonada-control.tonada-input-password > .tonada-ic-show {
+  background-image: var(--tonada-show-icon);
+}
+.tonada-control.tonada-control.tonada-input-password > .tonada-ic-hidden {
+  background-image: var(--tonada-hidden-icon);
+}
+.tonada-control.tonada-control.tonada-input-password.floating-label > .tonada-input + label + i {
+  position: absolute;
+  right: 0.5em;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.tonada-control.tonada-control.tonada-input-password.floating-label > .tonada-input + label + i:hover {
+  opacity: 1;
+}
+.tonada-control.tonada-control.tonada-input-password.floating-label > .tonada-input:focus:not(.tonada-input:placeholder-shown) + label + i {
+  opacity: 1;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-checkbox {
+  --tonada-checkbox-primary-color: #1c3879;
+  --tonada-checkbox-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
+}
+
+.tonada-checkbox {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+  user-select: none;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.tonada-checkbox * {
+  box-sizing: border-box;
+}
+.tonada-checkbox > label {
+  cursor: pointer;
+}
+.tonada-checkbox-box {
+  display: flex;
+  flex-direction: row;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+  width: 24px;
+  height: 24px;
+  background-color: white;
+}
+.tonada-checkbox-box > i {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.tonada-checkbox.tonada-checkbox-checked .tonada-checkbox-box {
+  background-color: var(--tonada-checkbox-primary-color);
+}
+.tonada-checkbox.tonada-checkbox-checked .tonada-checkbox-box > i {
+  display: block;
+  background-image: var(--tonada-checkbox-icon);
+}
+
+.tonada-checkbox.tonada-checkbox-disabled .tonada-checkbox-box {
+  background-color: #f5f5f5;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-checkbox {
+  --tonada-checkbox-primary-color: #1c3879;
+  --tonada-checkbox-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="white"><path d="M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z"/></svg>');
+}
+
+.tonada-checkbox {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+  user-select: none;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.tonada-checkbox * {
+  box-sizing: border-box;
+}
+.tonada-checkbox > label {
+  cursor: pointer;
+}
+.tonada-checkbox-box {
+  display: flex;
+  flex-direction: row;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+  width: 24px;
+  height: 24px;
+  background-color: white;
+}
+.tonada-checkbox-box > i {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.tonada-checkbox.tonada-checkbox-checked .tonada-checkbox-box {
+  background-color: var(--tonada-checkbox-primary-color);
+}
+.tonada-checkbox.tonada-checkbox-checked .tonada-checkbox-box > i {
+  display: block;
+  background-image: var(--tonada-checkbox-icon);
+}
+
+.tonada-checkbox.tonada-checkbox-disabled .tonada-checkbox-box {
+  background-color: #f5f5f5;
+}
+
+.tonada-checkbox-group {
+  --tonada-checkbox-space: 8px;
+}
+
+.tonada-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tonada-checkbox-space);
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-button {
+  --tonada-button-primary-color: #1c3879;
+  --tonada-button-secondary-color: #607eaa;
+}
+
+.tonada-button {
+  display: flex;
+  flex-direction: row;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  padding: 0.4em 0.8em;
+  font-size: 1em;
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+}
+.tonada-button * {
+  box-sizing: border-box;
+}
+.tonada-button-sm {
+  font-size: 0.8em;
+}
+.tonada-button-md {
+  font-size: 1em;
+}
+.tonada-button-lg {
+  font-size: 1.2em;
+}
+.tonada-button-xl {
+  font-size: 1.5em;
+}
+.tonada-button:hover {
+  box-shadow: 0px 0px 2px 2px #a9bdeb;
+}
+.tonada-button[disabled] {
+  background-color: #f5f5f5;
+  color: black;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tonada-button-primary {
+  background-color: var(--tonada-button-primary-color);
+  box-shadow: 0px 0px 1px 1px #a9bdeb;
+  color: white;
+}
+
+.tonada-button-secondary {
+  background-color: var(--tonada-button-secondary-color);
+  box-shadow: 0px 0px 1px 1px #a9bdeb;
+  color: white;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-accordion {
+  --tonada-primary-color: #1c3879;
+  --tonada-border-width: 1px;
+  --tonada-border-color: #264ba2;
+}
+
+.tonada-accordion {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  overflow-y: hidden;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.tonada-accordion * {
+  box-sizing: border-box;
+}
+.tonada-accordion * {
+  box-sizing: border-box;
+}
+.tonada-accordion > .tonada-accordion-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header {
+  display: flex;
+  flex-direction: row;
+  padding: 0.2em 0.9em;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  background-color: #d2ddf5;
+  border-top: 1px solid var(--tonada-border-color);
+  border-left: 1px solid var(--tonada-border-color);
+  border-right: 1px solid var(--tonada-border-color);
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-header::after {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: green;
+}
+.tonada-accordion > .tonada-accordion-section > .tonada-accordion-content {
+  padding: 0.2em 0.9em;
+  border-top: 1px solid var(--tonada-border-color);
+  border-left: 1px solid var(--tonada-border-color);
+  border-right: 1px solid var(--tonada-border-color);
+  overflow-y: hidden;
+  transition: all 300ms ease-in-out;
+}
+.tonada-accordion > .tonada-accordion-section.tonada-closed > .tonada-accordion-content {
+  border-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.tonada-accordion > .tonada-accordion-section:last-child > .tonada-accordion-content {
+  border-bottom: var(--tonada-border-width) solid var(--tonada-border-color);
+}
+.tonada-accordion > .tonada-accordion-section:last-child.tonada-closed > .tonada-accordion-header {
+  border-bottom: 0;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-slider {
+  --tonada-background-color: #1c3879;
+  --tonada-active-page: #1c3879;
+  --tonada-page: #607eaa;
+}
+
+.tonada-slider {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--tonada-background-color);
+  position: relative;
+  justify-content: center;
+}
+.tonada-slider * {
+  box-sizing: border-box;
+}
+.tonada-slider > .tonada-list {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+  overflow-x: hidden;
+  height: 200px;
+}
+.tonada-slider > .tonada-list > .tonada-list-item {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  color: #ffffff;
+}
+.tonada-slider > .tonada-slider-button {
+  border-radius: 6px;
+  cursor: pointer;
+  position: absolute;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  z-index: 2;
+}
+.tonada-slider > .tonada-slider-button.tonada-next {
+  right: 1em;
+}
+.tonada-slider > .tonada-slider-button.tonada-prev {
+  left: 1em;
+}
+.tonada-slider > .tonada-slider-paginator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0.5em;
+  gap: 0.5em;
+  z-index: 2;
+}
+.tonada-slider > .tonada-slider-paginator > .tonada-slider-paginator-page {
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--tonada-page);
+  width: 2em;
+  height: 0.5em;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+.tonada-slider > .tonada-slider-paginator > .tonada-slider-paginator-page.tonada-active {
+  background-color: white;
+  opacity: 1;
+  width: 2.5em;
+}
+
+:root {
+  --tonada-color-primary: #1c3879;
+  --tonada-color-secondary: #607eaa;
+  --tonada-color-success: #30dd78;
+  --tonada-color-danger: #ff004c;
+  --tonada-color-white: #ffffff;
+  --tonada-font-family: Courier New, Courier, monospace;
+  --tonada-font-size: 16px;
+  --tonada-border-radius: 6px;
+}
+
+.tonada-select {
+  --tonada-font-size: 1rem;
+  --tonada-header-tag-background-color: #1c3879;
+  --tonada-header-tag-color: #ffffff;
+  --tonada-menu-background: #ffffff;
+  --tonada-selected-option-background-color: #1c3879;
+  --tonada-selected-option-color: #ffffff;
+  --tonada-selected-option: rgba(0, 0, 0, 0.2);
+  --tonada-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --tonada-disabled-bg-color: #fafafa;
+  --tonada-select-height: 3em;
+  --tonada-remove-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --tonada-close-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--tonada-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+  --tonada-expand-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+
+.tonada-select {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: var(--tonada-select-height);
+  position: relative;
+  box-shadow: var(--tonada-shadow);
+}
+.tonada-select * {
+  box-sizing: border-box;
+}
+.tonada-select-close-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 8px;
+  top: calc(-0.1em + 35%);
+  border-radius: 50%;
+  background-color: var(--tonada-header-tag-color);
+  background-image: var(--tonada-close-icon);
+}
+.tonada-select-expand-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 8px;
+  top: calc(-0.1em + 34%);
+  background-image: var(--tonada-expand-icon);
+}
+.tonada-select-expand-icon.tonada-expanded {
+  transform: rotate(-180deg);
+}
+.tonada-select-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 6px;
+  padding-right: 5em;
+  gap: 8px;
+  min-height: var(--tonada-select-height);
+}
+.tonada-select-header-option {
+  user-select: none;
+}
+.tonada-select-header-tag {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  user-select: none;
+  height: 2.5em;
+  padding: 6px 10px;
+  background-color: var(--tonada-header-tag-background-color);
+  color: var(--tonada-header-tag-color);
+  outline: 0;
+  border: 0;
+  font-size: 0.9em;
+}
+.tonada-select-header-tag .tonada-remove-button {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: var(--tonada-remove-button-icon);
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  width: 1.2em;
+  height: 1.2em;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-color: var(--tonada-header-tag-color);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="var(--tonada-header-tag-background-color)" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>');
+}
+.tonada-select-option {
+  padding: 6px 14px;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  text-align: start;
+}
+.tonada-select-option-selected {
+  background-color: var(--tonada-selected-option-background-color);
+  color: var(--tonada-selected-option-color);
+}
+.tonada-select-option:not(.tonada-select-option-selected):hover {
+  background-color: #d2ddf5;
+  color: black;
+}
+.tonada-select-menu {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  gap: 4px;
+  box-shadow: var(--tonada-shadow);
+  margin-top: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: var(--tonada-menu-background);
+  min-height: 50px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.tonada-select-menu.tonada-hide {
+  display: none;
+}
+.tonada-select-disabled {
+  background-color: var(--tonada-disabled-bg-color);
+}
+.tonada-select-disabled-header-option {
+  display: none;
+}
+.tonada-select-disabled-header-tag {
+  display: none;
+}
