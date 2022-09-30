@@ -1,7 +1,9 @@
 import { BaseElement } from "./base-element";
-import _ from 'lodash';
 
-function querySelector<T extends HTMLElement,S extends HTMLElement>(element: T, query: string): BaseElement<S>[] {
+function querySelector<T extends HTMLElement, S extends HTMLElement>(
+  element: T,
+  query: string
+): BaseElement<S>[] {
   const elements: BaseElement<S>[] = [];
   element.querySelectorAll(query).forEach((element: HTMLElement) => {
     elements.push(createBaseElement<S>(element));
@@ -20,11 +22,20 @@ function extendObject<T>(base: any, mixin: any): T {
   return base;
 }
 
-function clone(obj:any){
-  return _.clone(obj);
+function clone(obj: any) {
+  return JSON.parse(JSON.stringify(obj));
 }
-function generateUniqueId(){
-  return _.uniqueId();
+function generateUniqueId() {
+  return String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    ""
+  );
 }
 
-export { querySelector, createBaseElement, extendObject,clone,generateUniqueId};
+export {
+  querySelector,
+  createBaseElement,
+  extendObject,
+  clone,
+  generateUniqueId,
+};

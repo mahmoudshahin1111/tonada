@@ -1,5 +1,4 @@
 @import "./core.scss";
-@import "./icons.scss";
 $checkboxPrefix: #{$prefix}-checkbox;
 .#{$checkboxPrefix} {
   --#{$prefix}-checkbox-primary-color: #{map-get($map: $tn-colors, $key: primary)};

@@ -1,4 +1,3 @@
-@import "./core.scss";
 @import "./input.scss";
 $input-group-prefix: #{$input-prefix + "." + #{$prefix}-input-group};
 .#{$input-group-prefix} {

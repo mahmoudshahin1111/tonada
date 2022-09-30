@@ -1,6 +1,4 @@
 {
     "name": "tonada-input-group",
-    "version": "1.0.0",
-    "description": "",
     "main": "index.ts"
 }
