@@ -1,18 +1,25 @@
 [![npm version](https://badge.fury.io/js/tonada.svg)](https://badge.fury.io/js/tonada)
 ![example workflow](https://github.com/mahmoudshahin1111/numbers-to-arabic-words/actions/workflows/.github/workflows/test.yml/badge.svg)
+
 # Tonada
+
 Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌.
+
 ## Install
+
 NPM:
+
 ```bash
 npm install --save tonada
 ```
+
 CDN:
+
 ```html
 <!-- Import all the tonada component styles -->
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" />
-<!-- Or you can import the component style you going to use-->
-<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/icons.css" /> <!--👈🏻 You can change the icons later -->
+<!-- (Optional) Or you can import the component style you going to use-->
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/icons.css" />
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input.css" />
 <link
   rel="stylesheet"
@@ -31,8 +38,20 @@ CDN:
   rel="stylesheet"
   href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
 />
-<!--  -->
+<!-- ... -->
+<!-- (Required) ⛔ -->
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<!-- (Optional) -->
+<script src="https://unpkg.com/tonada/dist/js/input.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/select.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
 ```
 
 ## Getting Started
@@ -43,29 +62,35 @@ We going to import the style files for the components we will use and let's assu
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- ... -->
+    <!-- Import all the styles -->
     <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" />
-    <!-- ... -->
+    <!-- Or what you going to use only and i will use input style -->
+    <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input.css" />
   </head>
   <body>
-    <!-- ... -->
     <div id="element" class="floating-label">
       <input class="tonada-input" type="text" name="name" placeholder="Name" />
       <label for="">Name</label>
     </div>
-    <!-- ... -->
+    <!-- (Required) ⛔ -->
+    <script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+    <script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
     <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+    <!-- I Going to import the Input only-->
+    <script src="https://unpkg.com/tonada/dist/js/input.js"></script>
     <script>
       const input = Tonada.create("input", document.querySelector("#element"));
     </script>
   </body>
 </html>
 ```
+
 For more [Documentation](https://mahmoudshahin1111.github.io/tonada)
 
 You can Choose from tonada various components and features
 
 ## Table of Contents:
+
 - [Inputs](https://github.com/mahmoudshahin1111/tonada#inputs)
 - [Input Group](https://github.com/mahmoudshahin1111/tonada#input-group)
 - [Password](https://github.com/mahmoudshahin1111/tonada#password)
@@ -397,23 +422,29 @@ const accordion = Tonada.create(
 ---
 
 ### Changelog
-v1.0.5 
+
+v1.0.5
+
 - optimized bundle size
 - fix issues
 
-v1.0.4 
+v1.0.4
+
 - optimized bundle size
 - update docs
 
-v1.0.3 
+v1.0.3
+
 - docs updates.
 - fixing issues.
 
-v1.0.2 
+v1.0.2
+
 - docs updates.
 - fixing issues.
 
 v1.0.1
+
 - Release
 
 v1.0.0 - Pre-V1
