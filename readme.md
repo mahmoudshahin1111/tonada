@@ -424,7 +424,6 @@ const accordion = Tonada.create(
 This is our project file structure and you have 2 options :
 Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value in your own Sass without modifying Tonada’s source code. (Recommended)
 
-
 ```scss
 // Default variable overrides
 $tn-font-size: 16px;
@@ -437,8 +436,8 @@ $tn-border-radius: 8px;
 @import "../node_modules/tonada/src/scss/input";
 @import "../node_modules/tonada/src/scss/slider";
 // ...
-
 ```
+
 ```plain
 Tonada
 ┣ 📂src
@@ -452,29 +451,28 @@ Tonada
 ┃ ┃ ┃ ┗ 📜input-group.scss
 ```
 
-
 Or by override css root variables or override our classes
+
 ```html
 <link rel="stylesheet" href="../dist/css/button.css" />
 <link rel="stylesheet" href="../dist/css/icons.css" />
 <link rel="stylesheet" href="../dist/css/input.css" />
 <style>
-    :root {   
-        --tonada-color-primary: #1c3879;
-        --tonada-color-secondary: #607eaa; 
-        --tonada-color-success: #30dd78; 
-        --tonada-color-danger: #ff004c;
-        --tonada-color-white: #ffffff;
-        /* etc */     
-    }
+  :root {
+    --tonada-color-primary: #1c3879;
+    --tonada-color-secondary: #607eaa;
+    --tonada-color-success: #30dd78;
+    --tonada-color-danger: #ff004c;
+    --tonada-color-white: #ffffff;
+    /* etc */
+  }
 
-    .tonada-checkbox {  
-     /* etc */    
-    }
-
+  .tonada-checkbox {
+    /* etc */
+  }
 </style>
-
 ```
+
 ```plain
 Tonada
 ┣ 📂dist
@@ -490,12 +488,16 @@ Tonada
 ---
 
 ## Changelog
+
+v1.0.8
+- docs updated.
+  
 v1.0.7
-- optimized bundle size by 80% by splitting the javascript 
-files and you can pick that components you going to use.
+- optimized bundle size by 80% by splitting the javascript
+  files and you can pick that components you going to use.
 - fix issues
 
-v1.0.6 Pre Release 
+v1.0.6 Pre Release
 
 v1.0.5
 
