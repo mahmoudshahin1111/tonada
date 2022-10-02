@@ -24,20 +24,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/index.css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
-  <!-- Import all the tonada component styles -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/index.css" /> -->
-  <!-- Or you can import the component style you going to use-->
-
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/icons.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input-group.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input-password.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/select.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/slider.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/accordion.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/button.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/checkbox.css" />
-  <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/checkbox-group.css" />
+  <!-- LIBRARY CSS -->
+  <link rel="stylesheet" href="../dist/css/icons.css" />
+  <link rel="stylesheet" href="../dist/css/input.css" />
+  <link rel="stylesheet" href="../dist/css/input-group.css" />
+  <link rel="stylesheet" href="../dist/css/input-password.css" />
+  <link rel="stylesheet" href="../dist/css/select.css">
+  <link rel="stylesheet" href="../dist/css/slider.css">
+  <link rel="stylesheet" href="../dist/css/accordion.css">
+  <link rel="stylesheet" href="../dist/css/button.css">
+  <link rel="stylesheet" href="../dist/css/checkbox.css">
+  <link rel="stylesheet" href="../dist/css/checkbox-group.css">
+  <!-- Or -->
+  <!-- <link rel="stylesheet" href="../dist/css/index.css"> -->
+  <!-- END LIBRARY CSS -->
 </head>
 
 <body class="layout">
@@ -138,7 +138,6 @@
         </p>
         <pre>
             <code>
-              <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
               <div>&lt;script&gt;</div>
               <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
               <div>&lt;/script&gt;</div>
@@ -185,7 +184,6 @@
                     <div>&nbsp; &nbsp; &lt;input class="tonada-input" type="text" name="floating-name" placeholder="Name"&gt;</div>
                     <div>&nbsp; &nbsp; &lt;label for=""&gt;Name&lt;/label&gt;</div>
                     <div>&lt;/div&gt;</div>
-                    <div>&lt;script src="../dist/js/index.js"&gt;&lt;/script&gt;</div>
                     <div>&lt;script&gt;</div>
                     <div>&nbsp; &nbsp;<span class="class-name">Tonada</span>.create('input', document.getElementById('element'));</div>
                     <div>&lt;/script&gt;</div>
@@ -600,7 +598,7 @@
             </tr>
             <tr>
               <td>slideAnimation</td>
-              <td>how the slider going to slide between pages"</td>
+              <td>how the slider going to slide between pages</td>
               <td>"moving" or "fading"</td>
             </tr>
             <tr>
@@ -652,12 +650,6 @@
       <pre>
         <code>
           &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checkbox.css"/&gt;
-        </code>
-      </pre>
-      <p>Checkbox Group:</p>
-      <pre>
-        <code>
-          &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tonada@latest/dist/css/checbox-group.css"/&gt;
         </code>
       </pre>
       <div>
@@ -907,23 +899,26 @@
     <div id="customize-section">
       <h2>Customize Style</h2>
       <hr>
-      This is our project file structure and you have 2 options :
+      this is our project file structure and you have 2 options :
       <ol>
         <li>
-           Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value in your own Sass without modifying Tonada’s source code. (Recommended)
+          Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value
+          in your own Sass without modifying Tonada’s source code. (Recommended)
           <pre>
             <code>
               // Default variable overrides
               $tn-font-size: 16px;
               $tn-border-radius: 8px;
+
               // Required
               @import "../node_modules/tonada/src/scss/variables";
               @import "../node_modules/tonada/src/scss/mixins";
               @import "../node_modules/tonada/src/scss/root";
-              // Optional
+              
+              // Optional Tonada components here
               @import "../node_modules/tonada/src/scss/input";
               @import "../node_modules/tonada/src/scss/slider";
-              // ...
+              // etc
             </code>
           </pre>
           <pre>
@@ -989,20 +984,19 @@
     integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
   <script src="./assets/js/index.js"></script>
-  <!-- (Required) ⛔ -->
-  <script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/index.js"></script>
-  <!-- (Optional) -->
-  <script src="https://unpkg.com/tonada/dist/js/input.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/input-password.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/input-group.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/select.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
-  <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
+  <script src="../dist/js/runtime.js"></script>
+  <script src="../dist/js/shared.js"></script>
+  <script src="../dist/js/index.js"></script>
+  <script src="../dist/js/input.js"></script>
+  <script src="../dist/js/input-password.js"></script>
+  <script src="../dist/js/input-group.js"></script>
+  <script src="../dist/js/checkbox.js"></script>
+  <script src="../dist/js/checkbox-group.js"></script>
+  <script src="../dist/js/select.js"></script>
+  <script src="../dist/js/slider.js"></script>
+  <script src="../dist/js/accordion.js"></script>
   <script>
+    console.log(window.Tonada);
     window.document.addEventListener("DOMContentLoaded", () => {
       // DEFAULT INPUT
       document.querySelectorAll(".tonada-inputs").forEach((element) => {
@@ -1062,6 +1056,7 @@
       });
 
     });
+
     document.addEventListener('DOMContentLoaded', (event) => {
       document.querySelectorAll('pre code').forEach((el) => {
         hljs.highlightElement(el);
