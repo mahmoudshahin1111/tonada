@@ -1,7 +1,7 @@
 {
   "name": "tonada",
-  "version": "1.0.5",
-  "description": "Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight and seo friendly To make the web development more interesting and easiest 🙌.",
+  "version": "1.0.6",
+  "description": "Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌, with tonada you are free to select only one component and use it with minimum config ever just few steps and you get you component works , tonada has a continuous maintenance and upgrading.",
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
@@ -11,16 +11,20 @@
     "url": "https://github.com/mahmoudshahin1111/tonada"
   },
   "keywords": [
-    "ui-kit",
-    "ui",
+    "ui kit",
+    "tonada",
     "javascript",
+    "ui",
     "html",
     "css",
     "html5",
     "inputs",
     "slider",
     "select",
-    "codexline"
+    "codexline",
+    "accordion",
+    "password",
+    "ui library"
   ],
   "author": "codexline",
   "bugs": {

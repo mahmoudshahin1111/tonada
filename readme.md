@@ -3,7 +3,7 @@
 
 # Tonada
 
-Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌.
+Tonada is a free toolkit build with 💖 focus on performance,ease, lightweight,responsive and seo friendly To make the web development more interesting and easiest 🙌, with tonada you are free to select only one component and use it with minimum config ever just few steps and you get you component works , tonada has a continuous maintenance and upgrading.
 
 ## Install
 
@@ -484,6 +484,10 @@ Tonada
 ---
 
 ## Changelog
+v1.0.6
+- optimized bundle size by 80% by splitting the javascript 
+files and you can pick that components you going to use.
+- fix issues
 
 v1.0.5
 
