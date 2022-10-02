@@ -1,8 +1,9 @@
 const path = require("path");
 require("dotenv").config();
 const process = require("process");
-const _ = require("lodash");
 const fs = require("fs");
+const _ = require("lodash");
+const packageJson = require("./package.json");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 /**
@@ -38,8 +39,52 @@ class CleanUpAfterMiniPlugin {
   }
 }
 
+const styleConfig = {
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new CleanUpAfterMiniPlugin([/\.js(\.map)?$/i]),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { url: false } },
+          "sass-loader",
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".sass", ".css"],
+  },
+  entry: {},
+  output: {
+    path: path.resolve(__dirname, `dist/css`),
+  },
+};
 
-const sharedConfig = {
+fs.readdirSync(path.resolve(__dirname, "src", "scss"))
+  .filter((fileName) => fileName.match(/^(?!_).*\.scss$/i))
+  .forEach((fileName) => {
+    styleConfig.entry[`${fileName.replace(".scss", "")}`] = path.resolve(
+      __dirname,
+      "src",
+      "scss",
+      fileName
+    );
+  });
+
+const getPackagesNames = () => {
+  const filesNames = fs
+    .readdirSync(packageJson.workspaces.at(0).replace("*", ""))
+    .filter((fileName) => fileName.charAt(0) !== "_");
+  return filesNames;
+};
+
+const jsConfig = {
+  ...(process.env.debug === "true" ? { devtool: "source-map" } : {}),
   module: {
     rules: [
       {
@@ -52,59 +97,39 @@ const sharedConfig = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  ...(process.env.debug === 'true' ? { devtool: "source-map" } : {}),
-};
-
-const config = [];
-
-
-
-config.push(
-  ...fs.readdirSync(path.resolve(__dirname, "src", "scss")).filter(fileName=>fileName.match(/^(?!_).*\.scss$/i)).map((fileName) => {
-    return {
-      plugins: [
-        new MiniCssExtractPlugin(),
-        new CleanUpAfterMiniPlugin([/\.js(\.map)?$/i]),
-      ],
-      module: {
-        rules: [
-          {
-            test: /\.s[ac]ss$/i,
-            use: [
-              MiniCssExtractPlugin.loader,
-              { loader: "css-loader", options: { url: false } },
-              "sass-loader",
-            ],
-          },
-        ],
-      },
-      resolve: {
-        extensions: [".sass", ".css"],
-      },
-      entry: {
-        [`${fileName.replace('.scss','')}`]: path.resolve(__dirname, "src", "scss",fileName),
-      },
-      output: {
-        path: path.resolve(__dirname, `dist/css`)
-      },
-    };
-  })
-);
-
-
-
-config.push({
-  ...sharedConfig,
   entry: {
-    index: path.resolve(__dirname, "src", "index.ts"),
+    index: {
+      import: path.resolve(__dirname, "src", "index.ts"),
+      dependOn: "shared",
+      library: {
+        name: "Tonada",
+        type: "window",
+      },
+    },
+    shared: ["lodash"],
+  },
+  optimization: {
+    runtimeChunk: "single",
+    chunkIds: "named",
   },
   output: {
+    filename: (pathData) => {
+      return `${_.lowerCase(pathData.chunk.name).replace(' ','-')}.js`;
+    },
     path: path.resolve(__dirname, "dist", "js"),
+    clean: true,
+  },
+};
+
+getPackagesNames().forEach((packageName) => {
+  jsConfig.entry[packageName] = {
+    import: path.resolve(__dirname, "src", "packages", packageName, "index.ts"),
+    dependOn: "shared",
     library: {
-      name: "Tonada",
+      name: ["Tonada", "[name]"],
       type: "window",
     },
-  },
+  };
 });
 
-module.exports = config;
+module.exports = [styleConfig, jsConfig];
