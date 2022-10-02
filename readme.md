@@ -104,7 +104,7 @@ You can Choose from tonada various components and features
 
 ---
 
-### Inputs:
+## Inputs:
 
 ```html
 <div id="element">
@@ -116,7 +116,7 @@ You can Choose from tonada various components and features
 const input = Tonada.create("input", document.querySelector("#element"));
 ```
 
-##### Floating Label
+### Floating Label
 
 Enable floating label by add `floating-label` class and it work on the password inputs and input groups the same way.
 
@@ -127,7 +127,7 @@ Enable floating label by add `floating-label` class and it work on the password 
 </div>
 ```
 
-##### Error State
+### Error State
 
 ```html
 <div class="floating-label tonada-invalid">
@@ -141,7 +141,7 @@ Enable floating label by add `floating-label` class and it work on the password 
 </ul>
 ```
 
-##### Sizes
+### Sizes
 
 The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 
@@ -154,7 +154,7 @@ The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 
 ---
 
-### Input Group:
+## Input Group:
 
 ```html
 <div id="element">
@@ -168,7 +168,7 @@ The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 const input = Tonada.create("input-group", document.querySelector("#element"));
 ```
 
-##### Floating Label
+### Floating Label
 
 ```html
 <div>
@@ -184,7 +184,7 @@ const input = Tonada.create("input-group", document.querySelector("#element"));
 
 ---
 
-### Password:
+## Password:
 
 ```html
 <div id="element">
@@ -205,7 +205,7 @@ const input = Tonada.create(
 );
 ```
 
-##### Floating Label
+### Floating Label
 
 ```html
 <div class="floating-label">
@@ -220,7 +220,7 @@ const input = Tonada.create(
 </div>
 ```
 
-##### Sizes
+### Sizes
 
 The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 
@@ -239,7 +239,7 @@ The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 
 ---
 
-### Slider:
+## Slider:
 
 ```html
 <div id="element">
@@ -265,7 +265,7 @@ Tonada.create("slider", document.querySelector("#element"), {
 });
 ```
 
-#### API
+### API
 
 |        Name         |                                   Description                                    |         Type         |
 | :-----------------: | :------------------------------------------------------------------------------: | :------------------: |
@@ -278,7 +278,7 @@ Tonada.create("slider", document.querySelector("#element"), {
 
 ---
 
-### Select:
+## Select:
 
 ```html
 <div id="element">
@@ -296,7 +296,7 @@ Tonada.create("select", document.querySelector("#element"), {
 });
 ```
 
-#### API
+### API
 
 |   Name   |           Description           |  Type   |
 | :------: | :-----------------------------: | :-----: |
@@ -305,7 +305,7 @@ Tonada.create("select", document.querySelector("#element"), {
 
 ---
 
-### Checkbox
+## Checkbox
 
 ```html
 <div id="element">
@@ -318,7 +318,7 @@ Tonada.create("select", document.querySelector("#element"), {
 Tonada.create("checkbox", document.querySelector("#element"));
 ```
 
-#### Disabled
+### Disabled
 
 checkbox support the input default attributes so if you marked as checked it wil be checked or you can mark it as disabled like now.
 
@@ -331,7 +331,7 @@ checkbox support the input default attributes so if you marked as checked it wil
 
 ---
 
-### Checkbox Group
+## Checkbox Group
 
 ```html
 <div id="element">
@@ -362,7 +362,7 @@ Tonada.create("checkbox-group", document.querySelector("#element"));
 
 ---
 
-### Buttons
+## Buttons
 
 For buttons you don't need to add javascript but you can apply it by add this class on the button `tonada-button` and we have different types of the buttons
 
@@ -381,7 +381,7 @@ For buttons you don't need to add javascript but you can apply it by add this cl
 
 ---
 
-### Accordion
+## Accordion
 
 ```html
 <div id="element" class="tonada-accordion">
@@ -419,9 +419,71 @@ const accordion = Tonada.create(
 );
 ```
 
+## Customization
+
+This is our project file structure and you have 2 options :
+Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value in your own Sass without modifying Tonada’s source code. (Recommended)
+
+
+```sass
+// Default variable overrides
+$tn-font-size: 16px;
+$tn-border-radius: 8px;
+// Required
+@import "../node_modules/tonada/src/scss/variables";
+@import "../node_modules/tonada/src/scss/mixins";
+@import "../node_modules/tonada/src/scss/root";
+// Optional
+@import "../node_modules/tonada/src/scss/input";
+@import "../node_modules/tonada/src/scss/slider";
+// ...
+```
+
+Tonada
+┣ 📂src
+┃ ┣ 📂scss
+┃ ┃ ┃ ┣ 📜index.scss # It import all the component or you can import only your needs
+┃ ┃ ┃ ┣ 📜accordion.scss
+┃ ┃ ┃ ┣ 📜button.scss
+┃ ┃ ┃ ┣ 📜checkbox-group.scss
+┃ ┃ ┃ ┣ 📜checkbox.scss
+┃ ┃ ┃ ┗ 📜input-group.scss
+┃ ┃ ┃ ┗ 📜input-group.scss
+
+Or by override css root variables or override our classes
+```html
+<link rel="stylesheet" href="../dist/css/button.css" />
+<link rel="stylesheet" href="../dist/css/icons.css" />
+<link rel="stylesheet" href="../dist/css/input.css" />
+<style>
+    :root {   
+        --tonada-color-primary: #1c3879;
+        --tonada-color-secondary: #607eaa; 
+        --tonada-color-success: #30dd78; 
+        --tonada-color-danger: #ff004c;
+        --tonada-color-white: #ffffff;
+        /* etc */     
+    }
+
+    .tonada-checkbox {  
+     /* etc */    
+    }
+
+</style>
+```
+Tonada
+┣ 📂dist
+┃ ┣ 📂css
+┃ ┃ ┃ ┣ 📜index.css # Import this or only the components you need
+┃ ┃ ┃ ┣ 📜accordion.css
+┃ ┃ ┃ ┣ 📜button.css
+┃ ┃ ┃ ┣ 📜checkbox-group.css
+┃ ┃ ┃ ┣ 📜checkbox.css
+┃ ┃ ┃ ┗ 📜input-group.css
+
 ---
 
-### Changelog
+## Changelog
 
 v1.0.5
 
