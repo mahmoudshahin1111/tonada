@@ -484,10 +484,12 @@ Tonada
 ---
 
 ## Changelog
-v1.0.6
+v1.0.7
 - optimized bundle size by 80% by splitting the javascript 
 files and you can pick that components you going to use.
 - fix issues
+
+v1.0.6 Pre Release 
 
 v1.0.5
 
