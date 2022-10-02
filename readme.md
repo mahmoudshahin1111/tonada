@@ -425,7 +425,7 @@ This is our project file structure and you have 2 options :
 Every Sass variable in Tonada includes the !default flag allowing you to override the variable’s default value in your own Sass without modifying Tonada’s source code. (Recommended)
 
 
-```sass
+```scss
 // Default variable overrides
 $tn-font-size: 16px;
 $tn-border-radius: 8px;
@@ -437,8 +437,9 @@ $tn-border-radius: 8px;
 @import "../node_modules/tonada/src/scss/input";
 @import "../node_modules/tonada/src/scss/slider";
 // ...
-```
 
+```
+```plain
 Tonada
 ┣ 📂src
 ┃ ┣ 📂scss
@@ -449,6 +450,8 @@ Tonada
 ┃ ┃ ┃ ┣ 📜checkbox.scss
 ┃ ┃ ┃ ┗ 📜input-group.scss
 ┃ ┃ ┃ ┗ 📜input-group.scss
+```
+
 
 Or by override css root variables or override our classes
 ```html
@@ -470,7 +473,9 @@ Or by override css root variables or override our classes
     }
 
 </style>
+
 ```
+```plain
 Tonada
 ┣ 📂dist
 ┃ ┣ 📂css
@@ -480,6 +485,7 @@ Tonada
 ┃ ┃ ┃ ┣ 📜checkbox-group.css
 ┃ ┃ ┃ ┣ 📜checkbox.css
 ┃ ┃ ┃ ┗ 📜input-group.css
+```
 
 ---
 
