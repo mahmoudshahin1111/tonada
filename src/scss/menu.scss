@@ -1,5 +1,75 @@
 @import "./core.scss";
 $menu-prefix: #{$prefix}-menu;
 .#{$menu-prefix} {
-    
+}
+.#{$menu-prefix} {
+  position: fixed;
+  background-color: green;
+  width: 250px;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.#{$menu-prefix}-item {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(88, 43, 224);
+  width: 100%;
+  &-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: crimson;
+    width: 100%;
+    padding: 20px;
+    &-title {
+      margin: 0 5px;
+    }
+    & > .#{$prefix}-ic {
+      right: 20px;
+      position: absolute;
+    }
+  }
+}
+
+.#{$menu-prefix}-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+.#{$menu-prefix}-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: beige;
+  height: 65px;
+  padding: 20px;
+  & > &-title {
+    margin: 0 5px;
+  }
+}
+.#{$menu-prefix}-icon {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.#{$menu-prefix}-item-closed {
+  .#{$menu-prefix}-item-header {
+    & > .#{$prefix}-ic {
+      transform: rotate(-90deg);
+    }
+  }
+
+  & > .#{$menu-prefix}-links {
+    height: 0px;
+    padding: 0;
+    margin: 0;
+  }
 }
