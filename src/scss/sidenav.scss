@@ -1,0 +1,108 @@
+@import "./core.scss";
+$menu-prefix: #{$prefix}-sidenav;
+.#{$menu-prefix} {
+  --#{$menu-prefix}-width: 250px;
+  --#{$menu-prefix}-item-height: 65px;
+  --#{$menu-prefix}-extend-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+}
+.#{$menu-prefix} {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.#{$menu-prefix}-menu {
+  position: relative;
+  width: var(--#{$menu-prefix}-width);
+  background-color: green;
+}
+
+.#{$menu-prefix}-content {
+  flex: 1;
+}
+
+.#{$menu-prefix}-menu .#{$menu-prefix}-menu-items {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  & > .#{$menu-prefix}-menu-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    & > .#{$menu-prefix}-menu-item-header {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: wheat;
+      width: 100%;
+      padding: 20px;
+      border-bottom: 1px solid black;
+      &-title {
+        margin: 0 5px;
+      }
+      & > .#{$menu-prefix}-extend-icon {
+        right: 20px;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: var(--#{$menu-prefix}-extend-icon);
+      }
+      & > .#{$menu-prefix}-icon {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        width: 35px;
+      }
+    }
+  }
+
+  & > .#{$menu-prefix}-menu-item-closed {
+    & > .#{$menu-prefix}-menu-item-header {
+      & > .#{$menu-prefix}-extend-icon {
+        transform: rotate(-90deg);
+      }
+    }
+
+    & > .#{$menu-prefix}-menu-items {
+      height: 0px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+.#{$menu-prefix}-menu > .#{$menu-prefix}-menu-items {
+  height: calc(100% - 35px);
+}
+.#{$menu-prefix}-menu > .#{$menu-prefix}-menu-toggler {
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+}
+
+.#{$menu-prefix} .#{$menu-prefix}-menu-items {
+}
+
+.#{$menu-prefix}.#{$menu-prefix}-closed {
+  .#{$menu-prefix}-menu {
+    position: relative;
+    width: var(--#{$menu-prefix}-width) / 150px;
+    background-color: green;
+  }
+
+  .#{$menu-prefix}-content {
+    flex: 1;
+  }
+}
