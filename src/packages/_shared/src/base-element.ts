@@ -63,6 +63,9 @@ export class BaseElement<T extends HTMLElement = any> {
   getTop() {
     return this.element.getBoundingClientRect().top;
   }
+  getBoundingClientRect(){
+    return this.element.getBoundingClientRect();
+  }
   hide() {
     this.setStyle("display", "none");
   }

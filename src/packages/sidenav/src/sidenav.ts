@@ -4,35 +4,68 @@ import {
   createBaseElement,
   PREFIX,
 } from "tonada-shared";
+import { FloatingMenu } from "./floating-menu";
 import { SidenavContent } from "./sidenav-content";
-import { MenuItem } from "./menu-item";
 import { SidenavMenu } from "./sidenav-menu";
-import { Config, MenuItem as MenuItemType } from "./_common/types";
+import { Config } from "./_common/types";
+import { SIDENAV_PREFIX } from "./_common/utils";
 
-export class Sidenav extends Component {
+// TODO:: every menuItem can be has a menu floating appear only on hover so i need to move this floating
+// to be inside the sidenavMenu
+
+export class Sidenav extends Component<HTMLDivElement> {
   public sidenavMenu: SidenavMenu;
   public sidenavContent: SidenavContent;
-
-  constructor(
-    element: BaseElement<HTMLSelectElement>,
-    private _config?: Config
-  ) {
+  public floatingMenu: FloatingMenu;
+  private _isClosed: boolean = false;
+  constructor(element: BaseElement<HTMLDivElement>, private _config?: Config) {
     super(element);
     this.sidenavMenu = new SidenavMenu(
-      this.element.querySelector(`:scope > .${PREFIX}-sidenav-menu`).at(0),
+      this.element.querySelector(`:scope > .${SIDENAV_PREFIX}-menu`).at(0),
       this._config
     );
     this.sidenavContent = new SidenavContent(
-      this.element.querySelector(`:scope > .${PREFIX}-sidenav-content`).at(0),
+      this.element.querySelector(`:scope > .${SIDENAV_PREFIX}-content`).at(0),
       this._config
     );
+    const floatingMenuElement = createBaseElement(document.createElement("ul"));
+    this.floatingMenu = new FloatingMenu(floatingMenuElement);
   }
   build(): void {
-    this.element.addClass(`${PREFIX}-sidenav`);
+    this.element.addClass(SIDENAV_PREFIX);
     this.sidenavMenu.build();
-    this.sidenavMenu.onToggleClicked = ()=>{
-      this.element.toggleClass(`${PREFIX}-sidenav-closed`);
-    }
     this.sidenavContent.build();
+    this.floatingMenu.build();
+    this.sidenavMenu.element.element.appendChild(
+      this.floatingMenu.element.element
+    );
+    this.sidenavMenu.onToggleClicked = () => {
+      this._isClosed ? this.open() : this.close();
+    };
+    this.sidenavMenu.onMenuItemHovered = (menuItem) => {
+      if (!menuItem || !this._isClosed) return;
+      this.floatingMenu.element.removeClass(
+        `${SIDENAV_PREFIX}-floating-menu-hidden`
+      );
+      const bounding = menuItem.element.getBoundingClientRect();
+      this.floatingMenu.element.element.style.left = `${bounding.right}px`;
+      this.floatingMenu.element.element.style.top = `${bounding.top}px`;
+      this.floatingMenu.element.element.style.width = `250px`;
+      this.floatingMenu.element.element.style.height = "fit-content";
+      this.floatingMenu.render(menuItem);
+    };
+    this.sidenavMenu.element.element.addEventListener("mouseleave", () => {
+      this.floatingMenu.element.addClass(
+        `${SIDENAV_PREFIX}-floating-menu-hidden`
+      );
+    });
+  }
+  close() {
+    this.element.addClass(`${SIDENAV_PREFIX}-closed`);
+    this._isClosed = true;
+  }
+  open() {
+    this.element.removeClass(`${SIDENAV_PREFIX}-closed`);
+    this._isClosed = false;
   }
 }
