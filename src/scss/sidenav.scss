@@ -1,9 +1,12 @@
 @import "./core.scss";
 $sidenav-prefix: #{$prefix}-sidenav;
 .#{$sidenav-prefix} {
+  --#{$sidenav-prefix}-menu-background: #{map-get($tn-colors, "white")};
+  --#{$sidenav-prefix}-menu-item-background: #{map-get($tn-colors, "secondary")};
+  --#{$sidenav-prefix}-text-color: #{map-get($tn-colors, "white")};
   --#{$sidenav-prefix}-width: 250px;
   --#{$sidenav-prefix}-item-height: 65px;
-  --#{$sidenav-prefix}-extend-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+  --#{$sidenav-prefix}-extend-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
 }
 .#{$sidenav-prefix} {
   display: flex;
@@ -16,59 +19,61 @@ $sidenav-prefix: #{$prefix}-sidenav;
   * {
     box-sizing: border-box;
   }
+  & > .#{$sidenav-prefix}-menu {
+    position: relative;
+    width: var(--#{$sidenav-prefix}-width);
+    background: var(--#{$sidenav-prefix}-menu-background);
+  }
+
+  & > .#{$sidenav-prefix}-content {
+    width: calc(100vh - var(--#{$sidenav-prefix}-width));
+  }
 }
 
-.#{$sidenav-prefix}-menu {
-  position: relative;
-  width: var(--#{$sidenav-prefix}-width);
-  background-color: green;
-}
-
-.#{$sidenav-prefix}-content {
-  flex: 1;
-}
-
-.#{$sidenav-prefix}-menu .#{$sidenav-prefix}-menu-items {
+.#{$sidenav-prefix}-menu-items {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
-  & > .#{$sidenav-prefix}-menu-item {
+}
+
+.#{$sidenav-prefix}-menu-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  & > .#{$sidenav-prefix}-menu-item-header {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    background: var(--#{$sidenav-prefix}-menu-item-background);
     width: 100%;
-    overflow: hidden;
-    & > .#{$sidenav-prefix}-menu-item-header {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background-color: wheat;
-      width: 100%;
-      padding: 20px;
-      border-bottom: 1px solid black;
-      & > .#{$sidenav-prefix}-menu-item-header-title {
-        margin: 0 5px;
-      }
-      & > .#{$sidenav-prefix}-extend-icon {
-        right: 20px;
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-image: var(--#{$sidenav-prefix}-extend-icon);
-      }
-      & > .#{$sidenav-prefix}-icon {
-        display: grid;
-        align-content: center;
-        justify-content: center;
-        width: 35px;
-      }
+    height: 50px;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    & > .#{$sidenav-prefix}-menu-item-header-title {
+      margin: 0 5px;
+      color: var(--#{$sidenav-prefix}-text-color);
+    }
+    & > .#{$sidenav-prefix}-extend-icon {
+      right: 20px;
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: var(--#{$sidenav-prefix}-extend-icon);
+    }
+    & > .#{$sidenav-prefix}-menu-icon {
+      display: grid;
+      align-content: center;
+      justify-content: center;
+      width: 35px;
     }
   }
 
-  & > .#{$sidenav-prefix}-menu-item-closed {
+  &.#{$sidenav-prefix}-menu-item-closed {
     & > .#{$sidenav-prefix}-menu-item-header {
       & > .#{$sidenav-prefix}-extend-icon {
         transform: rotate(-90deg);
@@ -82,6 +87,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
     }
   }
 }
+
 .#{$sidenav-prefix}-menu > .#{$sidenav-prefix}-menu-items {
   height: calc(100% - 35px);
 }
@@ -96,6 +102,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   .#{$sidenav-prefix}-menu-items {
     & > .#{$sidenav-prefix}-menu-item {
       & > .#{$sidenav-prefix}-menu-item-header {
+        justify-content: center;
         & > .#{$sidenav-prefix}-menu-item-header-title {
           display: none;
         }
@@ -114,10 +121,9 @@ $sidenav-prefix: #{$prefix}-sidenav;
       }
     }
   }
+
   .#{$sidenav-prefix}-menu {
-    position: relative;
-    width: var(--#{$sidenav-prefix}-width) / 150px;
-    background-color: green;
+    width: calc(var(--#{$sidenav-prefix}-width) / 5);
   }
 
   .#{$sidenav-prefix}-content {
@@ -125,7 +131,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   }
 }
 
-.#{$sidenav-prefix}-floating-menu {
+.#{$sidenav-prefix}-floating-menu.#{$sidenav-prefix}-menu-item {
   display: inline-block;
   position: fixed;
   background-color: blue;
@@ -133,37 +139,32 @@ $sidenav-prefix: #{$prefix}-sidenav;
   top: 0;
   padding: 0;
   margin: 0;
-  & > .#{$sidenav-prefix}-floating-menu-item-header {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: wheat;
-    width: 100%;
-    padding: 20px;
-    border-bottom: 1px solid black;
-    & > .#{$sidenav-prefix}-floating-menu-item-header-title {
-      margin: 0 5px;
+  & > .#{$sidenav-prefix}-menu-item-header {
+
+    & > .#{$sidenav-prefix}-menu-item-header-title {
+      display: block;
     }
-    & > .#{$sidenav-prefix}-extend-icon {
-      right: 20px;
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-image: var(--#{$sidenav-prefix}-extend-icon);
+    & > .#{$sidenav-prefix}-menu-icon {
+      display: none;
     }
-    & > .#{$sidenav-prefix}-floating-menu-item-icon {
-      display: grid;
-      align-content: center;
-      justify-content: center;
-      width: 35px;
+  }
+  .#{$sidenav-prefix}-menu-items {
+    & > .#{$sidenav-prefix}-menu-item {
+      & > .#{$sidenav-prefix}-menu-item-header {
+    justify-content: flex-start;
+        & > .#{$sidenav-prefix}-menu-item-header-title {
+          display: block;
+        }
+        & > .#{$sidenav-prefix}-extend-icon {
+          display: block;
+        }
+      }
+      & > .#{$sidenav-prefix}-menu-items {
+        display: block !important;
+      }
     }
   }
   &.#{$sidenav-prefix}-floating-menu-hidden {
     display: none;
   }
 }
-
-
