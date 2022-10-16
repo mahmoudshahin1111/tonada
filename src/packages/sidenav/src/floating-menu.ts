@@ -15,24 +15,29 @@ export class FloatingMenu extends Component<HTMLElement> {
       `${SIDENAV_PREFIX}-menu-item`,
       `${SIDENAV_PREFIX}-floating-menu-hidden`
     );
-    this.element.element.style.top = "0px";
-    this.element.element.style.left = "0px";
   }
-  render(menuItem: MenuItem) {
+  open(menuItem: MenuItem) {
+    const bounding = menuItem.element.getBoundingClientRect();
+    this.element.element.style.left = `${bounding.right}px`;
+    this.element.element.style.top = `${bounding.top}px`;
     this.element.element.innerHTML = ``;
     const fragment = document.createDocumentFragment();
-    const headerElement = createBaseElement<HTMLAnchorElement>(document.createElement("a"));
+    const headerElement = createBaseElement<HTMLAnchorElement>(
+      document.createElement("a")
+    );
     headerElement.addClass(`${SIDENAV_PREFIX}-menu-item-header`);
     fragment.appendChild(headerElement.element);
-    menuItem.config.to ? (headerElement.element.href = menuItem.config.to) : null;
+    menuItem.config.to
+      ? (headerElement.element.href = menuItem.config.to)
+      : null;
     menuItem.config.iconHTML
       ? (headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${menuItem.config.iconHTML}</i>`)
       : null;
-      menuItem.config.title
+    menuItem.config.title
       ? (headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-item-header-title">${menuItem.config.title}</i>`)
       : null;
-      
-    if(menuItem.config.children?.length){
+
+    if (menuItem.config.children?.length) {
       const menuItemsDiv = createBaseElement(document.createElement("ul"));
       fragment.appendChild(menuItemsDiv.element);
       menuItemsDiv.element.classList.add(`${SIDENAV_PREFIX}-menu-items`);
@@ -46,8 +51,11 @@ export class FloatingMenu extends Component<HTMLElement> {
         menuItemsDiv.appendChild(compiledMenuItem.element);
       });
     }
-
-
+    this.element.removeClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
     this.element.element.appendChild(fragment);
+  }
+  close() {
+    this.element.element.removeAttribute("style");
+    this.element.addClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
   }
 }

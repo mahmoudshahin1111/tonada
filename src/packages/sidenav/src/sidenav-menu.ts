@@ -5,12 +5,12 @@ import {
   PREFIX,
 } from "tonada-shared";
 import { MenuItem } from "./menu-item";
-import { Config,MenuItem as MenuItemType } from "./_common/types";
+import { Config, MenuItem as MenuItemType } from "./_common/types";
 import { SIDENAV_PREFIX } from "./_common/utils";
 
 export class SidenavMenu extends Component<HTMLElement> {
-  onMenuItemHovered:(menuItem:MenuItem)=>void;
-  onToggleClicked:()=>void;
+  onMenuItemHovered: (menuItem: MenuItem) => void;
+  onToggleClicked: () => void;
   private _menuItems: MenuItem[] = [];
   constructor(element: BaseElement<HTMLElement>, private _config: Config) {
     super(element);
@@ -27,22 +27,38 @@ export class SidenavMenu extends Component<HTMLElement> {
       this._menuItems.push(compiledMenuItem);
       compiledMenuItem.build();
       menuItemsDiv.appendChild(compiledMenuItem.element.element);
-      compiledMenuItem.headerElement.element.addEventListener('mouseenter',()=>{
-        this.onMenuItemHovered ? this.onMenuItemHovered(compiledMenuItem) : null;
+      compiledMenuItem.headerElement.element.addEventListener(
+        "mouseenter",
+        () => {
+          this.onMenuItemHovered
+            ? this.onMenuItemHovered(compiledMenuItem)
+            : null;
+        }
+      );
+      compiledMenuItem.headerElement.element.addEventListener(
+        "mouseleave",
+        () => {
+          this.onMenuItemHovered ? this.onMenuItemHovered(null) : null;
+        }
+      );
     });
-    compiledMenuItem.headerElement.element.addEventListener('mouseleave',()=>{
-      this.onMenuItemHovered ? this.onMenuItemHovered(null):null;
-    });
-    });
- 
+
     const toggleButton = createBaseElement(document.createElement("button"));
     toggleButton.addClass(`${SIDENAV_PREFIX}-menu-toggler`);
-    toggleButton.onEvent('click',()=>{
-        this._menuItems.forEach(menuItem=>menuItem.close());
-        this.onToggleClicked ? this.onToggleClicked() : null;
+    toggleButton.element.innerHTML = `
+      <i class="${SIDENAV_PREFIX}-menu-toggler"></i>
+    `;
+    toggleButton.onEvent("click", () => {
+      this._menuItems.forEach((menuItem) => menuItem.close());
+      this.onToggleClicked ? this.onToggleClicked() : null;
     });
     fragment.appendChild(menuItemsDiv);
     fragment.appendChild(toggleButton.element);
     this.element.element.appendChild(fragment);
+  }
+  closeAllMenus(){
+    this._menuItems.forEach(menuItem=>{
+      menuItem.close();
+    })
   }
 }
