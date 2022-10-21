@@ -55,11 +55,7 @@ export class SidenavMenu extends Component<HTMLElement> {
   }
   closeAllMenus() {
     this._menuItems.forEach((menuItem) => {
-      if (!menuItem.config.iconHTML) {
-        menuItem.hide();
-      } else {
-        menuItem.close();
-      }
+      menuItem.close();
     });
   }
 }

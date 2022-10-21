@@ -17,7 +17,7 @@ export class MenuItem extends Component<HTMLElement> {
   constructor(
     element: BaseElement<HTMLElement>,
     public config: MenuItemType,
-    public options?: MenuItemOptions,
+    public options?: MenuItemOptions
   ) {
     super(element);
     this._isClosed = !config?.isOpened;
@@ -80,11 +80,7 @@ export class MenuItem extends Component<HTMLElement> {
     this.element.element.classList.add(`${SIDENAV_PREFIX}-menu-item-closed`);
     this._isClosed = true;
     this._menuItems.forEach((menuItem) => {
-      if (!menuItem.config.iconHTML) {
-        menuItem.hide();
-      } else {
-        menuItem.close();
-      }
+      menuItem.close();
     });
     if (this.options.isFloating) {
       this.element.element.removeAttribute("style");
