@@ -11,6 +11,9 @@ import { SIDENAV_PREFIX } from "./_common/utils";
 export class FloatingMenu extends Component<HTMLElement> {
   public headerElement: BaseElement<HTMLAnchorElement>;
   public menuItemsElement: BaseElement<HTMLUListElement>;
+  constructor(element:BaseElement<HTMLElement>){
+    super(element)
+  }
   build(): void {
     this.element.element.classList.add(
       `${SIDENAV_PREFIX}-floating-menu`,

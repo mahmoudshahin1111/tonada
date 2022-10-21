@@ -18,12 +18,11 @@ export class MenuItem extends Component<HTMLElement> {
     element: BaseElement<HTMLElement>,
     public config: MenuItemType,
     public options?: MenuItemOptions,
-    private _isFloating?:boolean
   ) {
     super(element);
-    this._isClosed = !config.isOpened;
+    this._isClosed = !config?.isOpened;
     this.options = Object.assign(getDefaultMenuItemOptions(), options);
-    if(this._isFloating){
+    if (options?.isFloating) {
       this.element.element.classList.add(
         `${SIDENAV_PREFIX}-floating-menu`,
         `${SIDENAV_PREFIX}-floating-menu-hidden`
@@ -44,6 +43,7 @@ export class MenuItem extends Component<HTMLElement> {
       fragment.appendChild(this.menuItemsElement.element);
       this.element.element.appendChild(fragment);
     }
+
     this.config.to ? (this.headerElement.element.href = this.config.to) : null;
     this.config.iconHTML
       ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${this.config.iconHTML}</i>`)
@@ -79,8 +79,14 @@ export class MenuItem extends Component<HTMLElement> {
   close() {
     this.element.element.classList.add(`${SIDENAV_PREFIX}-menu-item-closed`);
     this._isClosed = true;
-    this._menuItems.forEach((menuItem) => menuItem.close());
-    if(this._isFloating){
+    this._menuItems.forEach((menuItem) => {
+      if (!menuItem.config.iconHTML) {
+        menuItem.hide();
+      } else {
+        menuItem.close();
+      }
+    });
+    if (this.options.isFloating) {
       this.element.element.removeAttribute("style");
     }
   }

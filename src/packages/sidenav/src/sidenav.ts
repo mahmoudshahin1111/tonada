@@ -5,6 +5,7 @@ import {
   PREFIX,
 } from "tonada-shared";
 import { FloatingMenu } from "./floating-menu";
+import { MenuItem } from "./menu-item";
 import { SidenavContent } from "./sidenav-content";
 import { SidenavMenu } from "./sidenav-menu";
 import { Config } from "./_common/types";
@@ -14,7 +15,7 @@ export class Sidenav extends Component<HTMLDivElement> {
   public sidenavMenu: SidenavMenu;
   public sidenavContent: SidenavContent;
   public floatingMenu: FloatingMenu;
-  private _isClosed: boolean = false;
+  public isClosed: boolean;
   constructor(element: BaseElement<HTMLDivElement>, private _config?: Config) {
     super(element);
     this.sidenavMenu = new SidenavMenu(
@@ -36,27 +37,27 @@ export class Sidenav extends Component<HTMLDivElement> {
     this.sidenavMenu.element.appendChild(this.floatingMenu.element);
     this.sidenavMenu.onToggleClicked = () => {
       this.floatingMenu.close();
-      this._isClosed ? this.open() : this.close();
+      this.isClosed ? this.open() : this.close();
     };
     this.sidenavMenu.onMenuItemHovered = (menuItem) => {
-      if (!menuItem || !this._isClosed) return;
+      if (!menuItem || !this.isClosed) return;
       this.floatingMenu.open(menuItem);
     };
     this.sidenavMenu.element.element.addEventListener("mouseleave", () => {
       this.floatingMenu.close();
     });
     this.sidenavContent.element.onEvent("click", (e) => {
-      if (this._isClosed) {
+      if (this.isClosed) {
         this.floatingMenu.close();
       }
     });
   }
   close() {
     this.element.addClass(`${SIDENAV_PREFIX}-closed`);
-    this._isClosed = true;
+    this.isClosed = true;
   }
   open() {
     this.element.removeClass(`${SIDENAV_PREFIX}-closed`);
-    this._isClosed = false;
+    this.isClosed = false;
   }
 }

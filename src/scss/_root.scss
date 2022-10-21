@@ -15,3 +15,7 @@
   //   --#{$prefix}-select-menu-z-index: #{$tn-select-menu-z-index};
   //   --#{$prefix}-select-disabled-bg-color: #{$tn-select-disabled-bg-color};
 }
+
+[hidden]{
+  display: none !important;
+}

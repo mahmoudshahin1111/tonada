@@ -6,6 +6,7 @@ const _ = require("lodash");
 const packageJson = require("./package.json");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+
 /**
  * Remove the files by pattern after the build
  */
@@ -63,6 +64,7 @@ const styleConfig = {
   output: {
     path: path.resolve(__dirname, `dist/css`),
   },
+
 };
 
 fs.readdirSync(path.resolve(__dirname, "src", "scss"))

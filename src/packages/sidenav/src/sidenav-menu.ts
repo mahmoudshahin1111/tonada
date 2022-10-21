@@ -45,9 +45,6 @@ export class SidenavMenu extends Component<HTMLElement> {
 
     const toggleButton = createBaseElement(document.createElement("button"));
     toggleButton.addClass(`${SIDENAV_PREFIX}-menu-toggler`);
-    toggleButton.element.innerHTML = `
-      <i class="${SIDENAV_PREFIX}-menu-toggler"></i>
-    `;
     toggleButton.onEvent("click", () => {
       this._menuItems.forEach((menuItem) => menuItem.close());
       this.onToggleClicked ? this.onToggleClicked() : null;
@@ -56,9 +53,13 @@ export class SidenavMenu extends Component<HTMLElement> {
     fragment.appendChild(toggleButton.element);
     this.element.element.appendChild(fragment);
   }
-  closeAllMenus(){
-    this._menuItems.forEach(menuItem=>{
-      menuItem.close();
-    })
+  closeAllMenus() {
+    this._menuItems.forEach((menuItem) => {
+      if (!menuItem.config.iconHTML) {
+        menuItem.hide();
+      } else {
+        menuItem.close();
+      }
+    });
   }
 }
