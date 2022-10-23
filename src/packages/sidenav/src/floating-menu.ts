@@ -34,13 +34,9 @@ export class FloatingMenu extends Component<HTMLElement> {
   }
   open(menuItem: MenuItem) {
     const bounding = menuItem.element.getBoundingClientRect();
-    this.element.element.style.left = `${bounding.right}px`;
     this.element.element.style.top = `${bounding.top}px`;
     this.headerElement.element.innerHTML = ``;
     this.menuItemsElement.element.innerHTML = ``;
-    menuItem.config.to
-      ? (this.headerElement.element.href = menuItem.config.to)
-      : null;
     menuItem.config.iconHTML
       ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${menuItem.config.iconHTML}</i>`)
       : null;
@@ -62,7 +58,7 @@ export class FloatingMenu extends Component<HTMLElement> {
     this.element.removeClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
   }
   close() {
-    this.element.element.removeAttribute("style");
+    // this.element.element.removeAttribute('style');
     this.element.addClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
   }
 }
