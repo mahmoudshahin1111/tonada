@@ -55,9 +55,15 @@ export class Sidenav extends Component<HTMLDivElement> {
   close() {
     this.element.addClass(`${SIDENAV_PREFIX}-closed`);
     this.isClosed = true;
+    this.dispatchEvent(`${SIDENAV_PREFIX}_toggled`, { result: "closed" });
   }
   open() {
     this.element.removeClass(`${SIDENAV_PREFIX}-closed`);
     this.isClosed = false;
+    this.dispatchEvent(`${SIDENAV_PREFIX}_toggled`, { result: "opened" });
+  }
+  onToggled(callback: CallableFunction) {
+    
+    this.onEvent(`${SIDENAV_PREFIX}_toggled`, callback);
   }
 }

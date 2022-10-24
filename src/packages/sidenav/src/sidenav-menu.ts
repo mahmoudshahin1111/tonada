@@ -42,15 +42,16 @@ export class SidenavMenu extends Component<HTMLElement> {
         }
       );
     });
-
-    const toggleButton = createBaseElement(document.createElement("button"));
-    toggleButton.addClass(`${SIDENAV_PREFIX}-menu-toggler`);
-    toggleButton.onEvent("click", () => {
-      this._menuItems.forEach((menuItem) => menuItem.close());
-      this.onToggleClicked ? this.onToggleClicked() : null;
-    });
     fragment.appendChild(menuItemsDiv);
-    fragment.appendChild(toggleButton.element);
+    if (this._config.showToggler) {
+      const toggleButton = createBaseElement(document.createElement("button"));
+      toggleButton.addClass(`${SIDENAV_PREFIX}-menu-toggler`);
+      toggleButton.onEvent("click", () => {
+        this._menuItems.forEach((menuItem) => menuItem.close());
+        this.onToggleClicked ? this.onToggleClicked() : null;
+      });
+      fragment.appendChild(toggleButton.element);
+    }
     this.element.element.appendChild(fragment);
   }
   closeAllMenus() {

@@ -1,5 +1,6 @@
 export type Config = {
     showToggler?:boolean;
+    toggled?:boolean;
     menuItems:MenuItem[];
 };
 

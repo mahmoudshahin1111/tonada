@@ -429,28 +429,28 @@ const accordion = Tonada.create(
 ```
 
 ```javascript
-Tonada.create("sidenav", document.getElementById("element"), {
+const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
   menuItems: [
     {
-      // Main Section only (required)
+      /* Main Section only (required) */
       title: "Getting Started",
-      // OR
-      /* 
-      title: "<span>Getting Started</span>"
-      */
+      /* OR */
+      // title: "<span>Getting Started</span>"
     },
-    // Link
+    /* Only single link  */
     {
       title: "Installation",
-      // icon as html (optional)
+      /* icon as html (optional) */
       iconHTML: `<svg>...</svg>`,
-      // which path going to go after click on the link
+      /* which path going to go after click on the link */
       to: "/installation",
+      /* disabled the menu item */
+      disabled: true,
     },
     {
       title: "Dropdown Page",
       iconHTML: `<svg>...</svg>`,
-      // Sub Links (optional)
+      /* Sub Links (optional) */
       children: [
         {
           title: "Sub page",
@@ -460,11 +460,19 @@ Tonada.create("sidenav", document.getElementById("element"), {
       ],
     },
   ],
-  // Close the other menus if there is an menu opened 
-  toggleOnlyOne:true,
-  // Be to toggle mode on load
-  toggled:true
+  /* Close the other menus if there is an menu opened */
+  toggleOnlyOne: true,
+  /* Be to toggle mode on load */
+  toggled: true,
 });
+
+/* can close the menu items */
+// sidenav.closeAllMenuItems();
+
+/* Do something when minimize and extend the sidenav*/
+//sidenav.onToggled((e) => {
+/* Event data into e.detail and will be (closed) or (opened) */
+//});
 ```
 
 ## Customization

@@ -3,7 +3,9 @@ import { Config, MenuItemOptions } from "./types";
 
 export function getDefaultConfig(): Config {
     return {
-      
+      showToggler:true,
+      menuItems:[],
+      toggled:false
     } as Config;
   }
 
