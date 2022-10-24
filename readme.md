@@ -419,8 +419,53 @@ const accordion = Tonada.create(
 );
 ```
 
-## Menu
+## Sidenav
 
+```html
+<div id="element">
+  <div class="tonada-sidenav-menu"></div>
+  <div class="tonada-sidenav-content">...</div>
+</div>
+```
+
+```javascript
+Tonada.create("sidenav", document.getElementById("element"), {
+  menuItems: [
+    {
+      // Main Section only (required)
+      title: "Getting Started",
+      // OR
+      /* 
+      title: "<span>Getting Started</span>"
+      */
+    },
+    // Link
+    {
+      title: "Installation",
+      // icon as html (optional)
+      iconHTML: `<svg>...</svg>`,
+      // which path going to go after click on the link
+      to: "/installation",
+    },
+    {
+      title: "Dropdown Page",
+      iconHTML: `<svg>...</svg>`,
+      // Sub Links (optional)
+      children: [
+        {
+          title: "Sub page",
+          iconHTML: `<svg>...</svg>`,
+          to: "/sub-page",
+        },
+      ],
+    },
+  ],
+  // Close the other menus if there is an menu opened 
+  toggleOnlyOne:true,
+  // Be to toggle mode on load
+  toggled:true
+});
+```
 
 ## Customization
 
@@ -493,9 +538,11 @@ Tonada
 ## Changelog
 
 v1.0.8
+
 - docs updated.
-  
+
 v1.0.7
+
 - optimized bundle size by 80% by splitting the javascript
   files and you can pick that components you going to use.
 - fix issues
