@@ -5,11 +5,18 @@ export type Config = {
 };
 
 export type MenuItem = {
-    title:string;
-    iconHTML:string;
+    title:string|Function|HTMLElement;
+    iconHTML:string|Function|HTMLElement;
+    /**
+     * redirect link
+     */
     to:string;
+    /** 
+     * menu item opened by default
+     */
     isOpened:boolean;
     children:MenuItem[];
+    disabled:boolean;
 }
 
 export type MenuItemOptions = {

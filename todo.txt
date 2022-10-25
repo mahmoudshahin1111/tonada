@@ -1,0 +1,6 @@
+1- add an ability to disable the menu items 
+2- if minimized then disable the menu item ability to extend 
+3- can active an element on startup 
+4- make the element extended by default add an option for that
+5- update the readme
+6- title and icon can be a function or html or an object (done)

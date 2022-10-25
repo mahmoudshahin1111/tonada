@@ -434,8 +434,12 @@ const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
     {
       /* Main Section only (required) */
       title: "Getting Started",
-      /* OR */
+      /* OR as HTML */
       // title: "<span>Getting Started</span>"
+      /* OR as function */
+      // title: function (menuItem) {
+      //   return <span>Getting Started</span>;
+      // },
     },
     /* Only single link  */
     {
@@ -474,6 +478,20 @@ const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
 /* Event data into e.detail and will be (closed) or (opened) */
 //});
 ```
+
+### API
+
+MenuItem
+
+|       Name       |             Description              |              Type               |
+| :--------------: | :----------------------------------: | :-----------------------------: |
+| title (Required) |          for the menu title          | string / function / dom element |
+|     iconHTML     |            the menu icon             | string / function / dom element |
+|     disabled     |        for disabled or enable        |             boolean             |
+|        to        |        for the menu link url         |             boolean             |
+|    onToggled     | triggered menu item had been toggled |            function             |
+|     isOpened     |      set menu opened by default      |             boolean             |
+|     children     |            menu sub links            |             boolean             |
 
 ## Customization
 

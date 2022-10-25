@@ -2,15 +2,11 @@
 $sidenav-prefix: #{$prefix}-sidenav;
 
 .#{$sidenav-prefix} {
-  --#{$sidenav-prefix}-primary-color: map-get($map: $tn-colors, $key:"primary");
-  --#{$sidenav-prefix}-menu-background: #{map-get($tn-colors, "white")};
-  --#{$sidenav-prefix}-menu-item-background: #{map-get($tn-colors, "secondary")};
-  --#{$sidenav-prefix}-text-color: #{map-get($tn-colors, "white")};
   --#{$sidenav-prefix}-width: 250px;
   --#{$sidenav-prefix}-collapsed-width: 80px;
   --#{$sidenav-prefix}-item-height: 65px;
-  --#{$sidenav-prefix}-extend-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
-  --#{$sidenav-prefix}-toggle-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V28.5h3V39h30V8.9H9v10.6H6V8.9q0-1.2.9-2.1.9-.9 2.1-.9h30q1.2 0 2.1.9.9.9.9 2.1V39q0 1.2-.9 2.1-.9.9-2.1.9Zm11.65-8.35L18.4 31.4l5.9-5.9H6v-3h18.3l-5.9-5.9 2.25-2.25L30.3 24Z"/></svg>');
+  --#{$sidenav-prefix}-extend-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="black" height="48" width="48"><path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z"/></svg>');
+  --#{$sidenav-prefix}-toggle-button-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="black" height="48" width="48"><path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V28.5h3V39h30V8.9H9v10.6H6V8.9q0-1.2.9-2.1.9-.9 2.1-.9h30q1.2 0 2.1.9.9.9.9 2.1V39q0 1.2-.9 2.1-.9.9-2.1.9Zm11.65-8.35L18.4 31.4l5.9-5.9H6v-3h18.3l-5.9-5.9 2.25-2.25L30.3 24Z"/></svg>');
 }
 
 .#{$sidenav-prefix} {
@@ -18,7 +14,6 @@ $sidenav-prefix: #{$prefix}-sidenav;
   flex-direction: row;
   height: 100vh;
   width: 100%;
-
   * {
     box-sizing: border-box;
     transition: all 300ms ease-in-out;
@@ -26,7 +21,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
 
     &::-webkit-scrollbar {
       width: 10px;
-      background-color: map-get($map: $tn-colors, $key:"secondary");
+      background-color: rgba(map-get($tn-colors, "white"), 0.2);
     }
 
     &::-webkit-scrollbar-button {
@@ -35,10 +30,10 @@ $sidenav-prefix: #{$prefix}-sidenav;
 
     &::-webkit-scrollbar-thumb {
       border-radius: 15px;
-      background-color: rgba(map-get($map: $tn-colors, $key:"primary"), 0.2);
+      background-color: rgba(map-get($tn-colors, "primary"), 0.2);
 
       &:hover {
-        background-color: rgba(map-get($map: $tn-colors, $key:"primary"), 1);
+        background-color: rgba(map-get($tn-colors, "primary"), 1);
       }
     }
   }
@@ -48,12 +43,13 @@ $sidenav-prefix: #{$prefix}-sidenav;
   }
 }
 
+
+
 .#{$sidenav-prefix}-menu {
   display: flex;
   flex-direction: column;
   position: relative;
   width: var(--#{$sidenav-prefix}-width);
-  background-color: var(--#{$sidenav-prefix}-menu-background);
   overflow-y: auto;
   flex-grow: 0;
 
@@ -68,7 +64,11 @@ $sidenav-prefix: #{$prefix}-sidenav;
     }
   }
 
+
+
 }
+
+
 
 .#{$sidenav-prefix}-menu-toggler {
   display: flex;
@@ -79,7 +79,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   position: sticky;
   bottom: 0;
   border: 0;
-  background-color: map-get($map: $tn-colors, $key:"secondary");
+  // background-color: map-get($map: $tn-colors, $key:"secondary");
 
   &::before {
     content: " ";
@@ -103,20 +103,39 @@ $sidenav-prefix: #{$prefix}-sidenav;
   display: flex;
   flex-direction: column;
   width: 100%;
+  &>.#{$sidenav-prefix}-menu-item-header {
+    background-color: map-get($tn-colors, "secondary");
 
+    &>.#{$sidenav-prefix}-menu-item-header-title {
+      color: map-get($tn-colors, "white");
+    }
+  }
   &>.#{$sidenav-prefix}-menu-items {
     overflow: hidden;
     max-height: 100vh;
+    background-color: map-get($tn-colors, "secondary");
+    .#{$sidenav-prefix}-menu-item-header {
+      background-color: transparent;
+    }
   }
+
+
 
   &.#{$sidenav-prefix}-menu-item-closed {
     &>.#{$sidenav-prefix}-menu-item-header {
+      background-color: transparent;
+
+      &>.#{$sidenav-prefix}-menu-item-header-title {
+        color: map-get($tn-colors, "primary");
+      }
+
       &>.#{$sidenav-prefix}-extend-icon {
         transform: rotate(-90deg);
       }
     }
 
     &>.#{$sidenav-prefix}-menu-items {
+      background-color: transparent;
       max-height: 0px;
     }
   }
@@ -127,9 +146,9 @@ $sidenav-prefix: #{$prefix}-sidenav;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: var(--#{$sidenav-prefix}-menu-item-background);
+  background-color: map-get($tn-colors, "white");
   height: var(--#{$sidenav-prefix}-item-height);
-  border-bottom: 1px solid black;
+  // border-bottom: 1px solid map-get($tn-colors,"primary");
   text-decoration: none;
   max-width: var(--#{$sidenav-prefix}-width);
   max-height: 500px;
@@ -146,7 +165,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   }
 
   &>.#{$sidenav-prefix}-menu-item-header-title {
-    color: var(--#{$sidenav-prefix}-text-color);
+    color: map-get($tn-colors, "primary");
     overflow: hidden;
     max-width: 100%;
     opacity: 1;
@@ -164,6 +183,21 @@ $sidenav-prefix: #{$prefix}-sidenav;
   }
 }
 
+.#{$sidenav-prefix}-menu-item.#{$sidenav-prefix}-menu-item-disabled {
+  &>.#{$sidenav-prefix}-menu-item-header {
+    background-color: rgb(193, 193, 193);
+
+    &>.#{$sidenav-prefix}-menu-item-header-title {
+      color: map-get($tn-colors, "white");
+    }
+
+    &>.#{$sidenav-prefix}-menu-icon {
+      background-color: transparent;
+    }
+  }
+
+}
+
 .#{$sidenav-prefix}-content {
   overflow: hidden;
   flex-grow: 1;
@@ -173,7 +207,6 @@ $sidenav-prefix: #{$prefix}-sidenav;
 .#{$sidenav-prefix}-closed {
   &>.#{$sidenav-prefix}-menu {
     width: var(--#{$sidenav-prefix}-collapsed-width);
-
 
     &>.#{$sidenav-prefix}-menu-items {
       &>.#{$sidenav-prefix}-menu-item {
@@ -237,7 +270,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   max-width: var(--#{$sidenav-prefix}-width);
   max-height: 300px;
   display: block;
-  background-color: var(--#{$sidenav-prefix}-menu-item-background);
+  background-color: map-get($tn-colors, "secondary");
   opacity: 1;
 
   &.#{$sidenav-prefix}-menu-item {

@@ -30,6 +30,7 @@ export class SidenavMenu extends Component<HTMLElement> {
       compiledMenuItem.headerElement.element.addEventListener(
         "mouseenter",
         () => {
+          if(compiledMenuItem.config.disabled) return;
           this.onMenuItemHovered
             ? this.onMenuItemHovered(compiledMenuItem)
             : null;

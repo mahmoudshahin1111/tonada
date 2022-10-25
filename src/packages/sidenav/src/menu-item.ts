@@ -32,6 +32,9 @@ export class MenuItem extends Component<HTMLElement> {
   build(): void {
     if (!this.isBuilded) {
       this.element.addClass(`${SIDENAV_PREFIX}-menu-item`);
+      if (this.config.disabled) {
+        this.element.addClass(`${SIDENAV_PREFIX}-menu-item-disabled`);
+      }
       const fragment = document.createDocumentFragment();
       this.headerElement = createBaseElement<HTMLAnchorElement>(
         document.createElement("a")
@@ -43,14 +46,29 @@ export class MenuItem extends Component<HTMLElement> {
       fragment.appendChild(this.menuItemsElement.element);
       this.element.element.appendChild(fragment);
     }
+    if (this.config.to) {
+      this.headerElement.element.href = this.config.to;
+    }
 
-    this.config.to ? (this.headerElement.element.href = this.config.to) : null;
-    this.config.iconHTML
-      ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${this.config.iconHTML}</i>`)
-      : null;
-    this.config.title
-      ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-item-header-title">${this.config.title}</i>`)
-      : null;
+    if (this.config.iconHTML) {
+      let iconHTML = this.config.iconHTML;
+      if (typeof this.config.iconHTML === "function") {
+        iconHTML = (this.config.iconHTML as Function).bind(this, this.config)();
+      } else if (typeof this.config.iconHTML === "object") {
+        iconHTML = (this.config.iconHTML as HTMLElement).innerHTML;
+      }
+      this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${iconHTML}</i>`;
+    }
+
+    if (this.config.title) {
+      let title = this.config.title;
+      if (typeof this.config.title === "function") {
+        title = (this.config.title as Function).bind(this, this.config)();
+      } else if (typeof this.config.title === "object") {
+        title = (this.config.title as HTMLElement).innerHTML;
+      }
+      this.headerElement.element.innerHTML += `<span class="${SIDENAV_PREFIX}-menu-item-header-title">${title}</span>`;
+    }
 
     if (this.config.children?.length) {
       this.headerElement.element.innerHTML += ` <i class="${SIDENAV_PREFIX}-extend-icon"></i>`;
@@ -64,6 +82,7 @@ export class MenuItem extends Component<HTMLElement> {
         this.menuItemsElement.appendChild(compiledMenuItem.element);
       });
       this.headerElement.element.addEventListener("click", (e) => {
+        if(this.config.disabled) return;
         if (this._isClosed) {
           this.open();
         } else {

@@ -37,12 +37,27 @@ export class FloatingMenu extends Component<HTMLElement> {
     this.element.element.style.top = `${bounding.top}px`;
     this.headerElement.element.innerHTML = ``;
     this.menuItemsElement.element.innerHTML = ``;
-    menuItem.config.iconHTML
-      ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${menuItem.config.iconHTML}</i>`)
-      : null;
-    menuItem.config.title
-      ? (this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-item-header-title">${menuItem.config.title}</i>`)
-      : null;
+    
+
+    if (menuItem.config.iconHTML) {
+      let iconHTML = menuItem.config.iconHTML;
+      if (typeof menuItem.config.iconHTML === "function") {
+        iconHTML = (menuItem.config.iconHTML as Function).bind(this, menuItem.config)();
+      } else if (typeof menuItem.config.iconHTML === "object") {
+        iconHTML = (menuItem.config.iconHTML as HTMLElement).innerHTML;
+      }
+      this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-icon">${iconHTML}</i>`
+    }
+
+    if (menuItem.config.title) {
+      let title = menuItem.config.title;
+      if (typeof menuItem.config.title === "function") {
+        title = (menuItem.config.title as Function).bind(this, menuItem.config)();
+      } else if (typeof menuItem.config.title === "object") {
+        title = (menuItem.config.title as HTMLElement).title;
+      }
+      this.headerElement.element.innerHTML += `<i class="${SIDENAV_PREFIX}-menu-item-header-title">${title}</i>`
+    }
 
     if (menuItem.config.children?.length) {
       this.headerElement.element.innerHTML += ` <i class="${SIDENAV_PREFIX}-extend-icon"></i>`;
@@ -58,7 +73,6 @@ export class FloatingMenu extends Component<HTMLElement> {
     this.element.removeClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
   }
   close() {
-    // this.element.element.removeAttribute('style');
     this.element.addClass(`${SIDENAV_PREFIX}-floating-menu-hidden`);
   }
 }
