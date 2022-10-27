@@ -14,6 +14,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   flex-direction: row;
   height: 100vh;
   width: 100%;
+
   * {
     box-sizing: border-box;
     transition: all 300ms ease-in-out;
@@ -79,8 +80,6 @@ $sidenav-prefix: #{$prefix}-sidenav;
   position: sticky;
   bottom: 0;
   border: 0;
-  // background-color: map-get($map: $tn-colors, $key:"secondary");
-
   &::before {
     content: " ";
     background-image: var(--#{$sidenav-prefix}-toggle-button-icon);
@@ -103,6 +102,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
   display: flex;
   flex-direction: column;
   width: 100%;
+
   &>.#{$sidenav-prefix}-menu-item-header {
     background-color: map-get($tn-colors, "secondary");
 
@@ -110,12 +110,20 @@ $sidenav-prefix: #{$prefix}-sidenav;
       color: map-get($tn-colors, "white");
     }
   }
+
   &>.#{$sidenav-prefix}-menu-items {
     overflow: hidden;
     max-height: 100vh;
     background-color: map-get($tn-colors, "secondary");
-    .#{$sidenav-prefix}-menu-item-header {
-      background-color: transparent;
+
+    &>.#{$sidenav-prefix}-menu-item {
+      &>.#{$sidenav-prefix}-menu-item-header {
+        background-color: transparent;
+
+        &>.#{$sidenav-prefix}-menu-item-header-title {
+          color: map-get($tn-colors, "white");
+        }
+      }
     }
   }
 
@@ -291,7 +299,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
       }
     }
 
-    .#{$sidenav-prefix}-menu-items {
+    & > .#{$sidenav-prefix}-menu-items {
       overflow-y: auto;
       max-height: 150px;
 
@@ -311,7 +319,7 @@ $sidenav-prefix: #{$prefix}-sidenav;
         }
 
         &>.#{$sidenav-prefix}-menu-items {
-          display: block !important;
+          display: block;
         }
       }
     }
