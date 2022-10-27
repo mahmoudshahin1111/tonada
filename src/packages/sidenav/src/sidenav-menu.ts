@@ -17,11 +17,11 @@ export class SidenavMenu extends Component<HTMLElement> {
   }
   build(): void {
     const fragment = document.createDocumentFragment();
-    const menuItemsDiv = document.createElement("ul");
+    const menuItemsDiv = document.createElement("div");
     menuItemsDiv.classList.add(`${SIDENAV_PREFIX}-menu-items`);
     this._config.menuItems.forEach((menuItem) => {
       const compiledMenuItem = new MenuItem(
-        createBaseElement(document.createElement("li")),
+        createBaseElement(document.createElement("button")),
         menuItem
       );
       this._menuItems.push(compiledMenuItem);

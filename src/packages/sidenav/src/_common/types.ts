@@ -17,6 +17,7 @@ export type MenuItem = {
     isOpened:boolean;
     children:MenuItem[];
     disabled:boolean;
+    active:boolean;
 }
 
 export type MenuItemOptions = {

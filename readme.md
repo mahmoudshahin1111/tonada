@@ -492,6 +492,7 @@ MenuItem
 |    onToggled     | triggered menu item had been toggled |            function             |
 |     isOpened     |      set menu opened by default      |             boolean             |
 |     children     |            menu sub links            |             boolean             |
+|      active      |       set menu link as active        |             boolean             |
 
 ## Customization
 

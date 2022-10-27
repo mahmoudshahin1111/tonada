@@ -7,7 +7,7 @@ import {
 import { MenuItem as MenuItemType, MenuItemOptions } from "./_common/types";
 import { getDefaultMenuItemOptions, SIDENAV_PREFIX } from "./_common/utils";
 
-export class MenuItem extends Component<HTMLElement> {
+export class MenuItem extends Component<HTMLButtonElement> {
   public headerElement: BaseElement<HTMLAnchorElement>;
   public menuItemsElement: BaseElement<HTMLUListElement>;
   public height: number = 0;
@@ -15,7 +15,7 @@ export class MenuItem extends Component<HTMLElement> {
   private _isClosed: boolean = true;
   private _menuItems: MenuItem[] = [];
   constructor(
-    element: BaseElement<HTMLElement>,
+    element: BaseElement<HTMLButtonElement>,
     public config: MenuItemType,
     public options?: MenuItemOptions
   ) {
@@ -32,8 +32,11 @@ export class MenuItem extends Component<HTMLElement> {
   build(): void {
     if (!this.isBuilded) {
       this.element.addClass(`${SIDENAV_PREFIX}-menu-item`);
+      if (this.config.active) {
+        this.element.addClass(`${SIDENAV_PREFIX}-menu-item-active`);
+      }
       if (this.config.disabled) {
-        this.element.addClass(`${SIDENAV_PREFIX}-menu-item-disabled`);
+        this.element.element.disabled = true;
       }
       const fragment = document.createDocumentFragment();
       this.headerElement = createBaseElement<HTMLAnchorElement>(
@@ -41,7 +44,7 @@ export class MenuItem extends Component<HTMLElement> {
       );
       this.headerElement.addClass(`${SIDENAV_PREFIX}-menu-item-header`);
       fragment.appendChild(this.headerElement.element);
-      this.menuItemsElement = createBaseElement(document.createElement("ul"));
+      this.menuItemsElement = createBaseElement(document.createElement("div"));
       this.menuItemsElement.addClass(`${SIDENAV_PREFIX}-menu-items`);
       fragment.appendChild(this.menuItemsElement.element);
       this.element.element.appendChild(fragment);
@@ -74,7 +77,7 @@ export class MenuItem extends Component<HTMLElement> {
       this.headerElement.element.innerHTML += ` <i class="${SIDENAV_PREFIX}-extend-icon"></i>`;
       this.config.children?.forEach((menuItem) => {
         const compiledMenuItem = new MenuItem(
-          createBaseElement(document.createElement("li")),
+          createBaseElement(document.createElement("button")),
           menuItem
         );
         compiledMenuItem.build();
@@ -82,7 +85,7 @@ export class MenuItem extends Component<HTMLElement> {
         this.menuItemsElement.appendChild(compiledMenuItem.element);
       });
       this.headerElement.element.addEventListener("click", (e) => {
-        if(this.config.disabled) return;
+        if (this.config.disabled) return;
         if (this._isClosed) {
           this.open();
         } else {

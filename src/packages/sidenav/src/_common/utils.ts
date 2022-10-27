@@ -5,7 +5,7 @@ export function getDefaultConfig(): Config {
     return {
       showToggler:true,
       menuItems:[],
-      toggled:false
+      toggled:false,
     } as Config;
   }
 
