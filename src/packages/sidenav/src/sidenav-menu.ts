@@ -5,6 +5,7 @@ import {
   PREFIX,
 } from "tonada-shared";
 import { MenuItem } from "./menu-item";
+import { Sidenav } from "./sidenav";
 import { Config, MenuItem as MenuItemType } from "./_common/types";
 import { SIDENAV_PREFIX } from "./_common/utils";
 
@@ -12,7 +13,7 @@ export class SidenavMenu extends Component<HTMLElement> {
   onMenuItemHovered: (menuItem: MenuItem) => void;
   onToggleClicked: () => void;
   private _menuItems: MenuItem[] = [];
-  constructor(element: BaseElement<HTMLElement>, private _config: Config) {
+  constructor(public parent:Sidenav,element: BaseElement<HTMLElement>, private _config: Config) {
     super(element);
   }
   build(): void {
@@ -21,6 +22,7 @@ export class SidenavMenu extends Component<HTMLElement> {
     menuItemsDiv.classList.add(`${SIDENAV_PREFIX}-menu-items`);
     this._config.menuItems.forEach((menuItem) => {
       const compiledMenuItem = new MenuItem(
+        this,
         createBaseElement(document.createElement("button")),
         menuItem
       );

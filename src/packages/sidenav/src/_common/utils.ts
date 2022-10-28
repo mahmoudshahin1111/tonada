@@ -14,6 +14,6 @@ export const SIDENAV_PREFIX = `${PREFIX}-sidenav`
 
 export function getDefaultMenuItemOptions():MenuItemOptions{
   return {
-    isFloating:false,
+    extendDisabled:true,
   } as MenuItemOptions
 }

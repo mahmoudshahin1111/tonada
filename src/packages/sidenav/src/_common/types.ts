@@ -21,5 +21,5 @@ export type MenuItem = {
 }
 
 export type MenuItemOptions = {
-    isFloating:boolean;
+    extendDisabled:boolean;
 }

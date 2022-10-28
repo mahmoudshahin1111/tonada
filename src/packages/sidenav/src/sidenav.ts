@@ -18,7 +18,7 @@ export class Sidenav extends Component<HTMLDivElement> {
   public isClosed: boolean;
   constructor(element: BaseElement<HTMLDivElement>, private _config?: Config) {
     super(element);
-    this.sidenavMenu = new SidenavMenu(
+    this.sidenavMenu = new SidenavMenu(this,
       this.element.querySelector(`:scope > .${SIDENAV_PREFIX}-menu`).at(0),
       this._config
     );
@@ -27,7 +27,7 @@ export class Sidenav extends Component<HTMLDivElement> {
       this._config
     );
     const floatingMenuElement = createBaseElement(document.createElement("ul"));
-    this.floatingMenu = new FloatingMenu(floatingMenuElement);
+    this.floatingMenu = new FloatingMenu(this,floatingMenuElement);
   }
   build(): void {
     this.element.addClass(SIDENAV_PREFIX);
@@ -63,7 +63,6 @@ export class Sidenav extends Component<HTMLDivElement> {
     this.dispatchEvent(`${SIDENAV_PREFIX}_toggled`, { result: "opened" });
   }
   onToggled(callback: CallableFunction) {
-    
     this.onEvent(`${SIDENAV_PREFIX}_toggled`, callback);
   }
 }
