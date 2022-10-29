@@ -8,7 +8,8 @@
     "serve": "node scripts/serve.js"
   },
   "repository": {
-    "url": "https://github.com/mahmoudshahin1111/tonada"
+    "type": "git",
+    "url": "https://github.com/mahmoudshahin1111/tonada.git"
   },
   "keywords": [
     "ui kit",
