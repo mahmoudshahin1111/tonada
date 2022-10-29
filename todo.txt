@@ -1,9 +1,0 @@
-- add an ability to disable the menu items (done)
-- if minimized then disable the menu item ability to extend by passing the parent to the child components (done)
-- can active an element on startup (done)
-- title and icon can be a function or html or an object (done)
-- make the element extended by default add an option for that (done)
-- refactor the repeated code in float menu class use to build the menu (done)
-- organizing the sidenav style files and make all the css structured as it's in the html sp be easy to find away the element you searching for  (done)
-- instead of change the menu opened by focus event use the classes (done)
-
