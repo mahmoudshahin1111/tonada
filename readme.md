@@ -481,18 +481,25 @@ const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
 
 ### API
 
-MenuItem
+#### Sidenav
 
-|       Name       |             Description              |              Type               |
-| :--------------: | :----------------------------------: | :-----------------------------: |
-| title (Required) |          for the menu title          | string / function / dom element |
-|     iconHTML     |            the menu icon             | string / function / dom element |
-|     disabled     |        for disabled or enable        |             boolean             |
-|        to        |        for the menu link url         |             boolean             |
-|    onToggled     | triggered menu item had been toggled |            function             |
-|     isOpened     |      set menu opened by default      |             boolean             |
-|     children     |            menu sub links            |             boolean             |
-|      active      |       set menu link as active        |             boolean             |
+|    Name     |           Description           |  Type   |
+| :---------: | :-----------------------------: | :-----: |
+| showToggler | show or hide the toggler button | boolean |
+|   toggled   |   sidenav expanded by default   | boolean |
+|  menuItems  |       sidenav menu items        | boolean |
+
+#### MenuItem
+
+|       Name       |                                              Description                                               |              Type               |
+| :--------------: | :----------------------------------------------------------------------------------------------------: | :-----------------------------: |
+| title (Required) |                                           for the menu title                                           | string / function / dom element |
+|     iconHTML     |                                             the menu icon                                              | string / function / dom element |
+|     disabled     |                                         for disabled or enable                                         |             boolean             |
+|        to        |                                         for the menu link url                                          |             boolean             |
+|    onToggled     | do something when any menuitem had triggered and you will be have all the information about the menu item |            function             |
+|     isOpened     |                                       set menu opened by default                                       |             boolean             |
+|     children     |                                             menu sub links                                             |            MenuItem             |
 
 ## Customization
 

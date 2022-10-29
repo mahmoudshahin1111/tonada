@@ -1,23 +1,18 @@
-import {
-  BaseElement,
-  Component,
-  createBaseElement,
-  PREFIX,
-} from "tonada-shared";
+import { BaseElement, Component, createBaseElement } from "tonada-shared";
 import { SidenavMenu } from "./sidenav-menu";
 import { MenuItem as MenuItemType, MenuItemOptions } from "./_common/types";
 import { getDefaultMenuItemOptions, SIDENAV_PREFIX } from "./_common/utils";
 
 export class MenuItem extends Component<HTMLButtonElement> {
   public headerElement: BaseElement<HTMLAnchorElement>;
-  public menuItemsElement: BaseElement<HTMLUListElement>;
+  public menuItemsElement: BaseElement<HTMLDivElement>;
   public height: number = 0;
   public isBuilded: boolean;
   private _isClosed: boolean = true;
   private _menuItems: MenuItem[] = [];
-  private extendDisabled:Boolean;
+  private extendDisabled: Boolean = false;
   constructor(
-    public parent:SidenavMenu,
+    public parent: SidenavMenu,
     element: BaseElement<HTMLButtonElement>,
     public config: MenuItemType,
     public options?: MenuItemOptions
@@ -26,14 +21,6 @@ export class MenuItem extends Component<HTMLButtonElement> {
     this._isClosed = !config?.isOpened;
     this.options = Object.assign(getDefaultMenuItemOptions(), options);
     this.extendDisabled = this.options.extendDisabled;
-    this.parent.parent.onToggled((result:any)=>{
-      if(this.options.extendDisabled) return;
-        if(result === 'closed'){
-          this.extendDisabled = true;
-        }else{
-          this.extendDisabled = false;
-        }
-    });
   }
   build(): void {
     if (!this.isBuilded) {
@@ -54,6 +41,13 @@ export class MenuItem extends Component<HTMLButtonElement> {
       this.menuItemsElement.addClass(`${SIDENAV_PREFIX}-menu-items`);
       fragment.appendChild(this.menuItemsElement.element);
       this.element.element.appendChild(fragment);
+      this.parent.parent.onToggled((e: any) => {
+        if (e.detail.result === "closed") {
+          this.extendDisabled = true;
+        } else {
+          this.extendDisabled = false;
+        }
+      });
     }
     if (this.config.to) {
       this.headerElement.element.href = this.config.to;
@@ -81,18 +75,18 @@ export class MenuItem extends Component<HTMLButtonElement> {
 
     if (this.config.children?.length) {
       this.headerElement.element.innerHTML += ` <i class="${SIDENAV_PREFIX}-extend-icon"></i>`;
-      this.config.children?.forEach((menuItem) => {
+      this.config.children?.forEach((menuItemConfig) => {
         const compiledMenuItem = new MenuItem(
           this.parent,
           createBaseElement(document.createElement("button")),
-          menuItem
+          menuItemConfig
         );
         compiledMenuItem.build();
         this._menuItems.push(compiledMenuItem);
         this.menuItemsElement.appendChild(compiledMenuItem.element);
       });
       this.headerElement.element.addEventListener("click", (e) => {
-        if (this.extendDisabled) return;
+        if (this.extendDisabled || this.config.disabled) return;
         if (this._isClosed) {
           this.open();
         } else {
@@ -116,14 +110,18 @@ export class MenuItem extends Component<HTMLButtonElement> {
     this.element.element.classList.remove(`${SIDENAV_PREFIX}-menu-item-closed`);
     this._isClosed = false;
   }
-  public static clone(menuItem:MenuItem,config?:MenuItemOptions):DocumentFragment{
+  public static clone(
+    menuItem: MenuItem,
+    config?: MenuItemOptions
+  ): DocumentFragment {
     const fragment = document.createDocumentFragment();
-    const headerElement:BaseElement<HTMLAnchorElement> = createBaseElement<HTMLAnchorElement>(
-      document.createElement("a")
-    );
+    const headerElement: BaseElement<HTMLAnchorElement> =
+      createBaseElement<HTMLAnchorElement>(document.createElement("a"));
     headerElement.addClass(`${SIDENAV_PREFIX}-menu-item-header`);
     fragment.appendChild(headerElement.element);
-    const menuItemsElement:BaseElement<HTMLUListElement> = createBaseElement(document.createElement("ul"));
+    const menuItemsElement: BaseElement<HTMLUListElement> = createBaseElement(
+      document.createElement("div")
+    );
     menuItemsElement.addClass(`${SIDENAV_PREFIX}-menu-items`);
     fragment.appendChild(menuItemsElement.element);
     if (menuItem.config.iconHTML) {
@@ -159,7 +157,7 @@ export class MenuItem extends Component<HTMLButtonElement> {
           menuItem.parent,
           createBaseElement(document.createElement("button")),
           child,
-          Object.assign(menuItem.options,config)
+          Object.assign(menuItem.options, config)
         );
         compiledMenuItem.build();
         menuItemsElement.appendChild(compiledMenuItem.element);
