@@ -571,6 +571,12 @@ Tonada
 
 ## Changelog
 
+v1.0.9
+
+- added sidenav 
+- performance improvements 
+- docs updated.
+
 v1.0.8
 
 - docs updated.
