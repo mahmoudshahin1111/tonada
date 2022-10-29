@@ -5,6 +5,7 @@ import {
   PREFIX,
 } from "tonada-shared";
 
+// should be moved to index 
 export function create(element: HTMLDivElement) {
   const component = new Input(createBaseElement(element));
   component.build();
