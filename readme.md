@@ -38,6 +38,7 @@ CDN:
   rel="stylesheet"
   href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
 />
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/sidenav.css" />
 <!-- ... -->
 <!-- (Required) ⛔ -->
 <script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
@@ -52,6 +53,7 @@ CDN:
 <script src="https://unpkg.com/tonada/dist/js/select.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/sidenav.js"></script>
 ```
 
 ## Getting Started
