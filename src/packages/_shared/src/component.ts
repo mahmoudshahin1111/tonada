@@ -12,7 +12,7 @@ export abstract class Component<T extends HTMLElement = any> {
     this.element.removeAttribute("hidden");
   }
   onEvent(name: string, callBack: CallableFunction) {
-    const eventNamePrefixed = `${name}-${this.element.key}`;
+    const eventNamePrefixed = `${name}_${this.element.key}`;
     if (!this.events.has(eventNamePrefixed)) {
       this.events.set(eventNamePrefixed, []);
       this.element.element.addEventListener(
@@ -30,7 +30,7 @@ export abstract class Component<T extends HTMLElement = any> {
   }
   dispatchEvent(name: string, payload?: any) {
     this.element.element.dispatchEvent(
-      new CustomEvent(`${name}-${this.element.key}`, { detail: payload })
+      new CustomEvent(`${name}_${this.element.key}`, { detail: payload })
     );
   }
   getAllEvents() {
