@@ -1,0 +1,33 @@
+@import "./core";
+@import "./input.scss";
+$auto-complete-prefix: #{$prefix}-auto-complete;
+
+.#{$auto-complete-prefix} {
+    --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    .#{$auto-complete-prefix}-menu{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+        width: 100%;
+        max-height: 0px;
+        overflow-y: hidden;
+        box-shadow: $tn-auto-complete-shadow-box;
+        &.#{$auto-complete-prefix}-opened{
+            height: 100vh;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        & > button{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding: 10px;
+            background-color:  transparent;
+            &:hover{
+                background-color: map-get($tn-colors, "secondary");
+                color: white;
+            }
+       
+        }
+    }
+}
