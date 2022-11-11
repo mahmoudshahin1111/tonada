@@ -4,18 +4,22 @@ $auto-complete-prefix: #{$prefix}-auto-complete;
 
 .#{$auto-complete-prefix} {
     --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
-    .#{$auto-complete-prefix}-menu{
+    & > .#{$auto-complete-prefix}-menu{
         display: flex;
         flex-direction: column;
         gap:10px;
         width: 100%;
         max-height: 0px;
         overflow-y: hidden;
-        box-shadow: $tn-auto-complete-shadow-box;
+        margin-top: 1px;
+        border-bottom-left-radius: 15px ;
+        border-bottom-right-radius: 15px ;
+        padding: 0px 10px;
         &.#{$auto-complete-prefix}-opened{
             height: 100vh;
             max-height: 250px;
             overflow-y: auto;
+            box-shadow: $tn-auto-complete-shadow-box;
         }
         & > button{
             display: flex;
@@ -23,6 +27,8 @@ $auto-complete-prefix: #{$prefix}-auto-complete;
             width: 100%;
             padding: 10px;
             background-color:  transparent;
+            border: 0;
+            cursor: pointer;
             &:hover{
                 background-color: map-get($tn-colors, "secondary");
                 color: white;
