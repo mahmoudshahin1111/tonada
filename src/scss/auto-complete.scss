@@ -4,11 +4,11 @@ $auto-complete-prefix: #{$prefix}-auto-complete;
 
 .#{$auto-complete-prefix} {
     --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    position: relative;
     & > .#{$auto-complete-prefix}-menu{
         display: flex;
         flex-direction: column;
         gap:10px;
-        width: 100%;
         max-height: 0px;
         overflow-y: hidden;
         margin-top: 1px;

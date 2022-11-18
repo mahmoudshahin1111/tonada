@@ -43,7 +43,7 @@ function convertToHtml(
   ...args: any
 ): string {
   if (typeof container === "function") {
-    return (container as Function).call(this, args);
+    return (container as Function).call(this, ...args);
   } else if (typeof container === "object") {
     return (container as HTMLElement).innerHTML;
   } else {

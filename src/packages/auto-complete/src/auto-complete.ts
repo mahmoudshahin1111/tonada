@@ -62,94 +62,65 @@ export class Menu extends Component<HTMLDivElement> {
     const fragment = document.createDocumentFragment();
     this.element.element.appendChild(fragment);
   }
-  add(item: Item) {
-    this.element.appendChild(item.element);
-    this.items.push(item);
-  }
   open(items: ItemType[]) {
-    this.items.forEach((item) => item.element.remove());
     items.forEach((item) => {
       let createdItem = null;
       // if has options will be unselectable
-      if (item.options.length) {
-        const itemTitle = document.createElement("div");
-        if (item.options.length) {
-          itemTitle.innerHTML = convertToHtml(item.title, item);
-        }
-        createdItem = new Item(
-          null,
-          createBaseElement<HTMLButtonElement>(itemTitle),
-          {
-            isSelected: item.isSelected,
-            items: item.options.map((option) => {
-              const itemContainer = document.createElement("button");
-              itemContainer.innerHTML = convertToHtml(option.container, option);
-              return new Item(
-                option.value,
-                createBaseElement<HTMLButtonElement>(itemContainer)
-              );
-            }),
-          }
-        );
-        createdItem.build();
-        this.add(createdItem);
-      } else {
+      createdItem = new Item(item);
+      if (!item.items?.length) {
         // otherwise it will be selectable
-        const itemContainer = document.createElement("button");
-        itemContainer.innerHTML = convertToHtml(item.container, item);
-        createdItem = new Item(
-          null,
-          createBaseElement<HTMLButtonElement>(itemContainer),
-          {
-            isSelected: item.isSelected,
-            items: [],
-          }
-        );
-  
         createdItem.onSelect(({ detail }: any) => {
           this.dispatchEvent(`${AUTO_COMPLETE_PREFIX}_select`, detail);
         });
       }
-
       createdItem.build();
-      this.add(createdItem);
+      this.items.push(createdItem);
     });
-
+    const fragment = document.createDocumentFragment();
+    this.items.forEach((item) => {
+      fragment.appendChild(item.element.element);
+    });
+    this.element.element.appendChild(fragment);
     this.element.addClass(`${AUTO_COMPLETE_PREFIX}-opened`);
   }
+
   close() {
-    this.items.forEach((item) => item.element.remove());
     this.element.removeClass(`${AUTO_COMPLETE_PREFIX}-opened`);
+    this.items = [];
+    this.element.element.innerHTML = ``;
   }
   onSelect(callback: CallableFunction) {
     this.onEvent(`${AUTO_COMPLETE_PREFIX}_select`, callback);
   }
 }
 export class Item extends Component<HTMLButtonElement> {
-  isSelected: boolean;
-  items: Item[];
   menu: BaseElement<HTMLDivElement>;
-  constructor(
-    public value: string,
-    element: BaseElement<HTMLButtonElement>,
-    config?: { isSelected: boolean; items?: Item[] }
-  ) {
-    super(element);
-    this.isSelected = config?.isSelected;
-    this.items = config?.items;
+  title: BaseElement<HTMLDivElement>;
+  container: BaseElement<HTMLDivElement>;
+  items: Item[] = [];
+  isSelected: boolean;
+  constructor(public item: ItemType) {
+    super(
+      createBaseElement(
+        document.createElement(item.items?.length ? "div" : "button")
+      )
+    );
+    this.isSelected = item.isSelected;
   }
   build(): void {
     this.element.addClass(`${AUTO_COMPLETE_PREFIX}-menu-item`);
     const fragment = document.createDocumentFragment();
-    if (this.items?.length) {
+    if (this.item.items?.length) {
       this.menu = createBaseElement<HTMLDivElement>(
         document.createElement("div")
       );
       this.menu.addClass(`${AUTO_COMPLETE_PREFIX}-menu`);
-      this.items.forEach((item) => {
-        this.menu.appendChild(item.element);
+      this.item.items.forEach((item) => {
+        const createdItem = new Item(item);
+        createdItem.build();
+        this.items.push(createdItem);
+        this.menu.appendChild(createdItem.element);
       });
-      fragment.appendChild(this.menu.element);
     } else {
       if (this.isSelected) {
         this.element.addClass(`${AUTO_COMPLETE_PREFIX}-selected`);
@@ -158,7 +129,30 @@ export class Item extends Component<HTMLButtonElement> {
         this.dispatchEvent(`${AUTO_COMPLETE_PREFIX}_select`, this);
       });
     }
+    if (this.item.title) {
+      this.title = createBaseElement(document.createElement("div"));
+      this.title.element.innerHTML = convertToHtml(this.item.title, this);
+      fragment.appendChild(this.title.element);
+    }
+    this.container = createBaseElement(document.createElement("div"));
+    if (this.item?.items?.length) {
+      if (this.item.container) {
+        this.container.element.innerHTML = convertToHtml(
+          this.item.container,
+          this,
+          this.menu?.element?.innerHTML
+        );
+      } else {
+        this.container.appendChild(this.menu);
+      }
+    } else {
+      this.container.element.innerHTML = convertToHtml(
+        this.item.container,
+        this
+      );
+    }
 
+    fragment.appendChild(this.container.element);
     this.element.element.appendChild(fragment);
   }
   onSelect(callback: CallableFunction) {
