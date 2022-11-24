@@ -18,10 +18,9 @@ export abstract class Component<T extends HTMLElement = any> {
       this.element.element.addEventListener(
         eventNamePrefixed,
         (eventPayload) => {
-          this.events.forEach((event) => {
-            event.forEach((callback) => {
-              callback(eventPayload);
-            });
+          const listeners = this.events.get(eventNamePrefixed);
+          listeners.forEach((listener) => {
+            listener(eventPayload);
           });
         }
       );

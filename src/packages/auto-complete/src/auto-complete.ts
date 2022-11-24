@@ -23,18 +23,22 @@ export class AutoComplete extends Component<HTMLDivElement> {
         ?.at(0)?.element
     );
     this.input.build();
-    this.input.element.element.addEventListener("change", (e: any) => {
-      if (e.target.value === "") return this.menu.close();
-      this.dispatchEvent(`${AUTO_COMPLETE_PREFIX}_search`, {
-        result: e.target.value,
-      });
-    });
+    this.input.element.element.addEventListener(
+      this.config.updateOn === "blur" ? "change" : "input",
+      (e: any) => {
+        if (e.target.value === "") return this.menu.close();
+        this.dispatchEvent(`${AUTO_COMPLETE_PREFIX}_search`, {
+          result: e.target.value,
+        });
+      }
+    );
     this.menu = new Menu(createBaseElement(document.createElement("div")));
     this.menu.onSelect(({ detail }: any) => {
       this.dispatchEvent(`${AUTO_COMPLETE_PREFIX}_select`, detail);
+      this.close();
     });
     this.menu.build();
-
+    this.closeOnClickOutside();
     fragment.appendChild(this.menu.element.element);
     this.element.element.appendChild(fragment);
   }
@@ -49,6 +53,13 @@ export class AutoComplete extends Component<HTMLDivElement> {
   }
   close() {
     this.menu.close();
+  }
+  private closeOnClickOutside() {
+    document.body.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest(`.tonada-auto-complete`) !== this.element.element) {
+        this.close();
+      }
+    });
   }
 }
 
@@ -87,7 +98,6 @@ export class Menu extends Component<HTMLDivElement> {
   close() {
     this.element.removeClass(`${AUTO_COMPLETE_PREFIX}-opened`);
     this.items = [];
-    this.element.element.innerHTML = ``;
   }
   onSelect(callback: CallableFunction) {
     this.onEvent(`${AUTO_COMPLETE_PREFIX}_select`, callback);

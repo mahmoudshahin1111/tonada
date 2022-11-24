@@ -5,35 +5,44 @@ $auto-complete-prefix: #{$prefix}-auto-complete;
 .#{$auto-complete-prefix} {
     --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
     position: relative;
-    & > .#{$auto-complete-prefix}-menu{
+    transition: max-height $transition ease-in-out, opacity $transition ease-in-out;
+
+    &>.#{$auto-complete-prefix}-menu {
         display: flex;
         flex-direction: column;
-        gap:10px;
         max-height: 0px;
-        overflow-y: hidden;
+        opacity: 0;
+        overflow: hidden;
         margin-top: 1px;
-        border-bottom-left-radius: 15px ;
-        border-bottom-right-radius: 15px ;
-        padding: 0px 10px;
-        &.#{$auto-complete-prefix}-opened{
-            height: 100vh;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        transition: inherit;
+
+        &.#{$auto-complete-prefix}-opened {
+            height: 250px;
             max-height: 250px;
+            opacity: 1;
             overflow-y: auto;
             box-shadow: $tn-auto-complete-shadow-box;
         }
-        & > button{
+
+        &>button {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             width: 100%;
             padding: 10px;
-            background-color:  transparent;
+            background-color: transparent;
             border: 0;
+            margin: 5px;
             cursor: pointer;
-            &:hover{
+            transition: inherit;
+
+            &:hover {
                 background-color: map-get($tn-colors, "secondary");
                 color: white;
             }
-       
+
         }
     }
 }
