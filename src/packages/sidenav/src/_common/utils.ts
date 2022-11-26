@@ -16,3 +16,4 @@ export function getDefaultMenuItemOptions(): MenuItemOptions {
     extendDisabled: false,
   } as MenuItemOptions;
 }
+

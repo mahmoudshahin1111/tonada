@@ -2,10 +2,8 @@ import {
   BaseElement,
   Component,
   createBaseElement,
-  PREFIX,
 } from "tonada-shared";
 import { FloatingMenu } from "./floating-menu";
-import { MenuItem } from "./menu-item";
 import { SidenavContent } from "./sidenav-content";
 import { SidenavMenu } from "./sidenav-menu";
 import { Config } from "./_common/types";

@@ -33,3 +33,7 @@ $tn-input-border-radius: $tn-border-radius !default;
 $tn-select-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
 $tn-select-menu-z-index:$tn-menu-index !default;
 $tn-select-disabled-bg-color: darken(map-get($tn-colors, 'white'), 2) !default;
+
+$tn-auto-complete-shadow-box: 0px 0px 1px 1px rgba(0, 0, 0, 0.2) !default;
+
+$transition:100ms !default;

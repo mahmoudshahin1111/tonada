@@ -39,6 +39,10 @@ CDN:
   href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
 />
 <link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/sidenav.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/auto-complete.css"
+/>
 <!-- ... -->
 <!-- (Required) ⛔ -->
 <script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
@@ -54,6 +58,7 @@ CDN:
 <script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
 <script src="https://unpkg.com/tonada/dist/js/sidenav.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/auto-complete.js"></script>
 ```
 
 ## Getting Started
@@ -493,15 +498,70 @@ const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
 
 #### MenuItem
 
-|       Name       |                                              Description                                               |              Type               |
-| :--------------: | :----------------------------------------------------------------------------------------------------: | :-----------------------------: |
-| title (Required) |                                           for the menu title                                           | string / function / dom element |
-|     iconHTML     |                                             the menu icon                                              | string / function / dom element |
-|     disabled     |                                         for disabled or enable                                         |             boolean             |
-|        to        |                                         for the menu link url                                          |             boolean             |
+|       Name       |                                                Description                                                |              Type               |
+| :--------------: | :-------------------------------------------------------------------------------------------------------: | :-----------------------------: |
+| title (Required) |                                            for the menu title                                             | string / function / dom element |
+|     iconHTML     |                                               the menu icon                                               | string / function / dom element |
+|     disabled     |                                          for disabled or enable                                           |             boolean             |
+|        to        |                                           for the menu link url                                           |             boolean             |
 |    onToggled     | do something when any menuitem had triggered and you will be have all the information about the menu item |            function             |
-|     isOpened     |                                       set menu opened by default                                       |             boolean             |
-|     children     |                                             menu sub links                                             |            MenuItem             |
+|     isOpened     |                                        set menu opened by default                                         |             boolean             |
+|     children     |                                              menu sub links                                               |            MenuItem             |
+
+## AutoComplete
+
+```html
+<div id="element">
+  <div class="tonada-auto-complete-input">
+    <input class="tonada-input" type="text" />
+  </div>
+</div>
+```
+
+```javascript
+const autoComplete = Tonada.create(
+  "auto-complete",
+  document.querySelector("#element")
+);
+
+autoComplete.onSearch(async (search) => {
+  // do something on searching
+  const data = await getData(search);
+  // open the menu with the data you had fetched and pass an array of Items
+  autoComplete.open(
+    data.map((record) => ({
+      value: record.id,
+      container: (item) => record.name,
+      // ...
+    }))
+  );
+});
+autoComplete.onSelect((value) => {
+  // do something
+});
+```
+
+### API
+
+#### AutoComplete
+
+|   Name   |    Description    |   Type   |
+| :------: | :---------------: | :------: |
+| value | input default value | string  |
+| disabled | disable the input | boolean  |
+|  close   |  close the menu   | function |
+|  onSelect   |  an event executed if you have selected an item   | function(selectedItemValue) |
+|  onSearch   |  and event executed if you have searching     | function(searchValue) |
+
+#### Item
+
+|    Name    |                                       Description                                        |          Type          |
+| :--------: | :--------------------------------------------------------------------------------------: | :--------------------: |
+| container  | the item content and if the item has children then it will be a wrapper for the items | string/function/object |
+|   title    |                   item title you can pass function or string or Object                   | string/function/object |
+| isSelected |                                   selected by default                                    |        boolean         |
+|   items    |                  child items to display a custom content for every item                  |          Item          |
+|   value    |                         unique value for track the selected item                         |         string         |
 
 ## Customization
 
@@ -575,8 +635,8 @@ Tonada
 
 v1.0.9
 
-- added sidenav 
-- performance improvements 
+- added sidenav
+- performance improvements
 - docs updated.
 
 v1.0.8

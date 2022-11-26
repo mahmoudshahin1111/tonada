@@ -32,10 +32,30 @@ function generateUniqueId() {
   );
 }
 
+/**
+ * 
+ * @param container 
+ * @param args if the container was a function pass these args
+ * @returns 
+ */
+function convertToHtml(
+  container: string | Function | HTMLElement,
+  ...args: any
+): string {
+  if (typeof container === "function") {
+    return (container as Function).call(this, ...args);
+  } else if (typeof container === "object") {
+    return (container as HTMLElement).innerHTML;
+  } else {
+    return container as string;
+  }
+}
+
 export {
   querySelector,
   createBaseElement,
   extendObject,
   clone,
   generateUniqueId,
+  convertToHtml,
 };

@@ -1,0 +1,47 @@
+@import "./core";
+@import "./input.scss";
+$auto-complete-prefix: #{$prefix}-auto-complete;
+
+.#{$auto-complete-prefix} {
+    --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    position: relative;
+    transition: max-height $transition ease-in-out, opacity $transition ease-in-out;
+
+    &>.#{$auto-complete-prefix}-menu {
+        display: flex;
+        flex-direction: column;
+        max-height: 0px;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 1px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        transition: inherit;
+
+        &.#{$auto-complete-prefix}-opened {
+            height: 250px;
+            max-height: 250px;
+            opacity: 1;
+            overflow-y: auto;
+            box-shadow: $tn-auto-complete-shadow-box;
+        }
+
+        &>button {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 10px;
+            background-color: transparent;
+            border: 0;
+            margin: 5px;
+            cursor: pointer;
+            transition: inherit;
+
+            &:hover, &.#{$auto-complete-prefix}-selected {
+                background-color: map-get($tn-colors, "secondary");
+                color: white;
+            }
+        }
+    }
+}

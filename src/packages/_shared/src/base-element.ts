@@ -60,6 +60,9 @@ export class BaseElement<T extends HTMLElement = any> {
   getLeft() {
     return this.element.getBoundingClientRect().left;
   }
+  getRight(){
+    return this.element.getBoundingClientRect().right;
+  }
   getTop() {
     return this.element.getBoundingClientRect().top;
   }

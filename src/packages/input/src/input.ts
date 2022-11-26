@@ -12,10 +12,10 @@ export function create(element: HTMLDivElement) {
   return component;
 }
 
-export class Input extends Component {
-  input: BaseElement<HTMLElement>;
-  label: BaseElement<HTMLElement>;
-  constructor(element: BaseElement<HTMLElement>) {
+export class Input extends Component<HTMLDivElement> {
+  input: BaseElement<HTMLInputElement>;
+  label: BaseElement<HTMLLabelElement>;
+  constructor(element: BaseElement<HTMLDivElement>) {
     super(element);
   }
   build(): void {
@@ -27,5 +27,16 @@ export class Input extends Component {
         this.input.element.focus();
       });
     }
+  }
+  disable(){
+    this.input.setAttribute('disabled',"true");
+
+  }
+  enable(){
+    this.input.removeAttribute('disabled');
+
+  }
+  setValue(value:string){
+    this.input.setAttribute("value",value);
   }
 }
