@@ -38,6 +38,12 @@ export class AutoComplete extends Component<HTMLDivElement> {
       this.close();
     });
     this.menu.build();
+    if (this.config.value) {
+      this.setValue(this.config.value);
+    }
+    if (this.config.disabled) {
+      this.disable();
+    }
     this.closeOnClickOutside();
     fragment.appendChild(this.menu.element.element);
     this.element.element.appendChild(fragment);
@@ -54,9 +60,21 @@ export class AutoComplete extends Component<HTMLDivElement> {
   close() {
     this.menu.close();
   }
+  disable() {
+    this.input.disable();
+  }
+  enable() {
+    this.input.enable();
+  }
+  setValue(value: string) {
+    this.input.setValue(value);
+  }
   private closeOnClickOutside() {
     document.body.addEventListener("click", (e) => {
-      if ((e.target as HTMLElement).closest(`.tonada-auto-complete`) !== this.element.element) {
+      if (
+        (e.target as HTMLElement).closest(`.tonada-auto-complete`) !==
+        this.element.element
+      ) {
         this.close();
       }
     });
@@ -74,6 +92,7 @@ export class Menu extends Component<HTMLDivElement> {
     this.element.element.appendChild(fragment);
   }
   open(items: ItemType[]) {
+    this.element.element.innerHTML = "";
     items.forEach((item) => {
       let createdItem = null;
       // if has options will be unselectable

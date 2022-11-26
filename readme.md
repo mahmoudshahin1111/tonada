@@ -547,6 +547,7 @@ autoComplete.onSelect((value) => {
 
 |   Name   |    Description    |   Type   |
 | :------: | :---------------: | :------: |
+| value | input default value | string  |
 | disabled | disable the input | boolean  |
 |  close   |  close the menu   | function |
 |  onSelect   |  an event executed if you have selected an item   | function(selectedItemValue) |
@@ -556,7 +557,7 @@ autoComplete.onSelect((value) => {
 
 |    Name    |                                       Description                                        |          Type          |
 | :--------: | :--------------------------------------------------------------------------------------: | :--------------------: |
-| container  | the item content and if the item has child items then it will be a wrapper for the items | string/function/object |
+| container  | the item content and if the item has children then it will be a wrapper for the items | string/function/object |
 |   title    |                   item title you can pass function or string or Object                   | string/function/object |
 | isSelected |                                   selected by default                                    |        boolean         |
 |   items    |                  child items to display a custom content for every item                  |          Item          |

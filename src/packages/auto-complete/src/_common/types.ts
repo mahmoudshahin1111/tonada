@@ -1,6 +1,7 @@
 export type Config = {
-  disabled: boolean;
-  updateOn:'blur'|'change'
+  updateOn:'blur'|'change',
+  value?:string;
+  disabled?: boolean;
 };
 
 

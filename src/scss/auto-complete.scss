@@ -38,11 +38,10 @@ $auto-complete-prefix: #{$prefix}-auto-complete;
             cursor: pointer;
             transition: inherit;
 
-            &:hover {
+            &:hover, &.#{$auto-complete-prefix}-selected {
                 background-color: map-get($tn-colors, "secondary");
                 color: white;
             }
-
         }
     }
 }

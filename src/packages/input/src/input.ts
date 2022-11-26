@@ -28,4 +28,15 @@ export class Input extends Component<HTMLDivElement> {
       });
     }
   }
+  disable(){
+    this.input.setAttribute('disabled',"true");
+
+  }
+  enable(){
+    this.input.removeAttribute('disabled');
+
+  }
+  setValue(value:string){
+    this.input.setAttribute("value",value);
+  }
 }
