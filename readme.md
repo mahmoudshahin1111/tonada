@@ -639,7 +639,7 @@ v1.2.1 (Upcoming)
 - performance improvements
 
 
-v1.1.0
+v1.1.1
 
 - added AutoComplete component
 - performance improvements
