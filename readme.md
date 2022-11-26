@@ -633,6 +633,19 @@ Tonada
 
 ## Changelog
 
+v1.2.1 (Upcoming)
+
+- Surprise 😁
+- performance improvements
+
+
+v1.1.0
+
+- added AutoComplete component
+- performance improvements
+- docs updated.
+
+
 v1.0.9
 
 - added sidenav
