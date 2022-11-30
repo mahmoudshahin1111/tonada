@@ -4,22 +4,60 @@ $input-slider-prefix: #{$prefix}-input-slider;
 .#{$input-slider-prefix} {
     --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
     --#{$input-slider-prefix}-rail-height: 15px;
-    --#{$input-slider-prefix}-thumb-height: 25px;
+    --#{$input-slider-prefix}-thumb-size: 25px;
 
-    .#{$input-slider-prefix}-rail {
+    & > .#{$input-slider-prefix}-rail {
         position: relative;
         height: var(--#{$input-slider-prefix}-rail-height);
         background-color: red;
         border-radius: 15px;
-        width:100px;
-        .#{$input-slider-prefix}-thumb {
+        width: 250px;
+
+        & > .#{$input-slider-prefix}-thumb {
             position: absolute;
-            width: 25px;
-            height: 25px;
+            width: var(--#{$input-slider-prefix}-thumb-size);
+            height: var(--#{$input-slider-prefix}-thumb-size);
             background: green;
-            top: calc((var(--#{$input-slider-prefix}-thumb-height) - var(--#{$input-slider-prefix}-rail-height))/ -2);
-            transform: translateX(20px);
+            top: calc((var(--#{$input-slider-prefix}-thumb-size) - var(--#{$input-slider-prefix}-rail-height))/ -2);
+            transform: translateX(20px); // value * steps
+
+            & > .#{$input-slider-prefix}-tooltip {
+                position: absolute;
+                width: var(--#{$input-slider-prefix}-thumb-size);
+                height: var(--#{$input-slider-prefix}-thumb-size);
+                background-color: #555;
+                color: #ffffff;
+                left: 0;
+                top: calc(var(--#{$input-slider-prefix}-thumb-size) * -1.5);
+                display: inline-block;
+                display: grid;
+                align-content: center;
+                justify-content: center;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    border-left: 12.5px solid transparent;
+                    border-right:  12.5px solid transparent;
+                    border-top: 12.5px solid #555;
+                    bottom: -12.5px;
+                    left: 0;
+                
+                }
+            }
         }
+
+        .#{$input-slider-prefix}-fullfiled {
+            position: absolute;
+            left: 0; //start point
+            border-radius: 15px;
+            width: calc((10px * 2) + (var(--#{$input-slider-prefix}-thumb-size) / 2)); // end point (value * steps) + (thumb size/2)
+            height: var(--#{$input-slider-prefix}-rail-height);
+            background-color: black;
+        }
+
     }
 
 }
