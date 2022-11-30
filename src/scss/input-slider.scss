@@ -1,0 +1,25 @@
+@import "./core";
+$input-slider-prefix: #{$prefix}-input-slider;
+
+.#{$input-slider-prefix} {
+    --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    --#{$input-slider-prefix}-rail-height: 15px;
+    --#{$input-slider-prefix}-thumb-height: 25px;
+
+    .#{$input-slider-prefix}-rail {
+        position: relative;
+        height: var(--#{$input-slider-prefix}-rail-height);
+        background-color: red;
+        border-radius: 15px;
+        width:100px;
+        .#{$input-slider-prefix}-thumb {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: green;
+            top: calc((var(--#{$input-slider-prefix}-thumb-height) - var(--#{$input-slider-prefix}-rail-height))/ -2);
+            transform: translateX(20px);
+        }
+    }
+
+}
