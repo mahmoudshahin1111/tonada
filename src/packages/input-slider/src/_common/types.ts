@@ -1,4 +1,8 @@
 export type Config = {
-
+    min:number;
+    max:number;
+    step:number;
+    value:number[]| number;
+    range:boolean;
 };
 
