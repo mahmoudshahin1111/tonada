@@ -78,4 +78,10 @@ export class BaseElement<T extends HTMLElement = any> {
   remove(){
     this.element.remove();
   }
+  setObjectRef<T>(obj:T):void{
+    (this.element as any)['_objRef'] = obj;
+  }
+  getObjRef<T>():T|null{
+    return (this.element as any)['_objRef'] || null;
+  }
 }

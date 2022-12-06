@@ -47,6 +47,9 @@ export class InputSlider extends Component<HTMLDivElement> {
     const thumbElement = createBaseElement<HTMLSpanElement>(
       document.createElement("span")
     );
+    thumbElement.setObjectRef<{ value: string }>({
+      value: this.config.value.toString(),
+    });
     thumbElement.addClass(`${INPUT_SLIDER_PREFIX}-thumb`);
     const createdThumbTooltipElement = this.createThumbTooltip();
     createdThumbTooltipElement.element.innerHTML = value.toString();
@@ -57,27 +60,31 @@ export class InputSlider extends Component<HTMLDivElement> {
     let isHold = false;
     thumbElement.element.addEventListener("mousedown", (e: MouseEvent) => {
       isHold = true;
-      this.config.value = e.clientX - railElement.getBoundingClientRect().left;
     });
     document.addEventListener("mouseup", (e: MouseEvent) => {
       isHold = false;
       this.config.value = e.clientX - railElement.getBoundingClientRect().left;
     });
     document.addEventListener("mousemove", (e: MouseEvent) => {
-      const mouseX = e.clientX - railElement.getBoundingClientRect().left;
-      const newValue = mouseX / this.config.step;
-      const max =  thumbElement.getBoundingClientRect().width /this.config.max;
-      const min = thumbElement.getBoundingClientRect().left / this.config.min;
+      if (!isHold) return;
+      const mousePositionOnRail =
+        e.clientX - railElement.getBoundingClientRect().left;
+      const minRailLength = 0;
+      const maxRailLength =
+        minRailLength + railElement.getBoundingClientRect().width;
+      const thumbWidth = thumbElement.getBoundingClientRect().width;
       if (
-        isHold &&
-        newValue >= this.config.min &&
-        newValue <= this.config.max
-      ) {
-        this.config.value = newValue;
-        thumbElement.element.style.transform = `translateX(${parseInt(
-          ((mouseX - thumbElement.getBoundingClientRect().width / 2) * this.config.step).toString(),
-          10
-        )}px)`;
+        mousePositionOnRail < minRailLength - thumbWidth / 2 ||
+        mousePositionOnRail > maxRailLength - thumbWidth / 2
+      )
+        return;
+      thumbElement.element.style.transform = `translateX(${parseInt(
+        mousePositionOnRail.toString()
+      )}px)`;
+      if (!_.isArray(this.config.value)) {
+        const oldValue = thumbElement.getObjRef<{ value: string }>().value;
+        const newValue = parseFloat(((mousePositionOnRail / (maxRailLength - thumbWidth / 2)) * this.config.max).toString());
+        console.log(newValue);
       }
     });
     return thumbElement;
