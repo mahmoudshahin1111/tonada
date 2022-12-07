@@ -84,4 +84,5 @@ export class BaseElement<T extends HTMLElement = any> {
   getObjRef<T>():T|null{
     return (this.element as any)['_objRef'] || null;
   }
+  
 }

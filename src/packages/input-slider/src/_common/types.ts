@@ -3,6 +3,5 @@ export type Config = {
     max:number;
     step:number;
     value:number[]| number;
-    range:boolean;
 };
 

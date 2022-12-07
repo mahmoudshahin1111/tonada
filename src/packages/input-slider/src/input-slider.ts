@@ -1,29 +1,28 @@
 import _ from "lodash";
-import { Input } from "tonada-input/src/input";
 import { BaseElement, Component, createBaseElement } from "tonada-shared";
 import { Config } from "./_common/types";
 import { getDefaultConfig, INPUT_SLIDER_PREFIX } from "./_common/utils";
 
 export class InputSlider extends Component<HTMLDivElement> {
   thumbElement: BaseElement<HTMLSpanElement>[] = [];
+
   railElement: BaseElement<HTMLSpanElement>;
+
   fulfilledElement: BaseElement<HTMLSpanElement>;
+
   config: Config;
+
   constructor(element: BaseElement<HTMLDivElement>, config?: Config) {
     super(element);
     this.config = Object.assign(getDefaultConfig(), config);
   }
+
   build(): void {
     const fragment = document.createDocumentFragment();
-    this.config.max = this.getMaxAttribute();
-    this.config.min = this.getMinAttribute();
-    this.config.range = this.getRangeAttribute();
-    this.config.step = this.getStepAttribute();
-    this.config.value = this.getValueAttribute();
     this.railElement = this.createRailElement();
     this.fulfilledElement = this.createFulfilledElement();
     this.railElement.appendChild(this.fulfilledElement);
-    if (this.config.range) {
+    if (this.isRange()) {
       (this.config.value as number[]).forEach((value) => {
         const createdThumb = this.createThumb(this.railElement, value);
         this.thumbElement.push(createdThumb);
@@ -40,6 +39,7 @@ export class InputSlider extends Component<HTMLDivElement> {
     fragment.appendChild(this.railElement.element);
     this.element.element.appendChild(fragment);
   }
+
   private createThumb(
     railElement: BaseElement<HTMLElement>,
     value: number
@@ -47,14 +47,16 @@ export class InputSlider extends Component<HTMLDivElement> {
     const thumbElement = createBaseElement<HTMLSpanElement>(
       document.createElement("span")
     );
-    thumbElement.setObjectRef<{ value: string }>({
-      value: this.config.value.toString(),
+    thumbElement.setObjectRef<{ value: number[] | number }>({
+      value: this.isRange()
+        ? (this.getValue() as number[])
+        : (this.getValue() as number),
     });
     thumbElement.addClass(`${INPUT_SLIDER_PREFIX}-thumb`);
     const createdThumbTooltipElement = this.createThumbTooltip();
     createdThumbTooltipElement.element.innerHTML = value.toString();
     thumbElement.element.style.transform = `translateX(${
-      value * this.config.step
+      value * this.getStep()
     }px)`; // set default position
     thumbElement.appendChild(createdThumbTooltipElement);
     let isHold = false;
@@ -63,32 +65,60 @@ export class InputSlider extends Component<HTMLDivElement> {
     });
     document.addEventListener("mouseup", (e: MouseEvent) => {
       isHold = false;
-      this.config.value = e.clientX - railElement.getBoundingClientRect().left;
     });
     document.addEventListener("mousemove", (e: MouseEvent) => {
       if (!isHold) return;
       const mousePositionOnRail =
         e.clientX - railElement.getBoundingClientRect().left;
+      const thumbWidth = thumbElement.getBoundingClientRect().width;
       const minRailLength = 0;
       const maxRailLength =
         minRailLength + railElement.getBoundingClientRect().width;
-      const thumbWidth = thumbElement.getBoundingClientRect().width;
+
       if (
         mousePositionOnRail < minRailLength - thumbWidth / 2 ||
         mousePositionOnRail > maxRailLength - thumbWidth / 2
       )
         return;
-      thumbElement.element.style.transform = `translateX(${parseInt(
-        mousePositionOnRail.toString()
-      )}px)`;
-      if (!_.isArray(this.config.value)) {
-        const oldValue = thumbElement.getObjRef<{ value: string }>().value;
-        const newValue = parseFloat(((mousePositionOnRail / (maxRailLength - thumbWidth / 2)) * this.config.max).toString());
-        console.log(newValue);
+
+      if (this.isRange()) {
+      } else {
+        thumbElement.element.style.transform = `translateX(${this.calculateThumbPosition(
+          thumbElement.getBoundingClientRect().width,
+          mousePositionOnRail,
+          0,
+          maxRailLength,
+          this.getStep()
+        )}px)`;
+        console.log(
+          this.calculateThumbPosition(
+            thumbElement.getBoundingClientRect().width,
+            mousePositionOnRail,
+            0,
+            maxRailLength,
+            this.getStep()
+          )
+        );
       }
     });
     return thumbElement;
   }
+
+  private calculateThumbPosition(
+    thumbWidth: number,
+    currentPosition: number,
+    minPosition: number,
+    maxPosition: number,
+    step: number
+  ): number {
+    return (
+      Math.round(
+        ((currentPosition - thumbWidth / 2) / (maxPosition - thumbWidth / 2)) *
+          (maxPosition / step)
+      ) * step
+    );
+  }
+
   private createThumbTooltip(): BaseElement<HTMLSpanElement> {
     const thumbTooltipElement = createBaseElement<HTMLSpanElement>(
       document.createElement("span")
@@ -96,6 +126,7 @@ export class InputSlider extends Component<HTMLDivElement> {
     thumbTooltipElement.addClass(`${INPUT_SLIDER_PREFIX}-tooltip`);
     return thumbTooltipElement;
   }
+
   private createRailElement(): BaseElement<HTMLDivElement> {
     const railElement = createBaseElement<HTMLDivElement>(
       document.createElement("div")
@@ -103,6 +134,7 @@ export class InputSlider extends Component<HTMLDivElement> {
     railElement.addClass(`${INPUT_SLIDER_PREFIX}-rail`);
     return railElement;
   }
+
   private createFulfilledElement(): BaseElement<HTMLSpanElement> {
     const fulfilledElement = createBaseElement<HTMLSpanElement>(
       document.createElement("span")
@@ -110,31 +142,45 @@ export class InputSlider extends Component<HTMLDivElement> {
     fulfilledElement.addClass(`${INPUT_SLIDER_PREFIX}-fulfilled`);
     return fulfilledElement;
   }
-  private getMinAttribute(): number {
+
+  private getMin(): number {
+    if (this.config.min) {
+      return this.config.min;
+    }
     return parseFloat(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-min`));
   }
-  private getMaxAttribute(): number {
+
+  private getMax(): number {
+    if (this.config.max) {
+      return this.config.max;
+    }
     return parseFloat(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-max`));
   }
-  private getStepAttribute(): number {
+
+  private getStep(): number {
+    if (this.config.step) {
+      return this.config.step;
+    }
     return parseFloat(
       this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-step`) || "1"
     );
   }
-  private getRangeAttribute(): boolean {
-    return this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-range`) === "true"
-      ? true
-      : false;
+
+  private isRange(): boolean {
+    return _.isArray(this.getValue());
   }
-  private getValueAttribute(): number[] | number {
-    const valueEncoded = this.element.getAttribute(
-      `${INPUT_SLIDER_PREFIX}-value`
-    );
-    if (!!valueEncoded && valueEncoded != "") {
-      return JSON.parse(valueEncoded);
-    }
-    if (this.config.range) {
-      return [0, 0];
+
+  private getValue(): number[] | number {
+    let value: number | number[] = null;
+    if (this.config.value) {
+      value = this.config.value;
+    } else {
+      const valueEncoded = this.element.getAttribute(
+        `${INPUT_SLIDER_PREFIX}-value`
+      );
+      if (!!valueEncoded && valueEncoded != "") {
+        value = JSON.parse(valueEncoded);
+      }
     }
     return 0;
   }

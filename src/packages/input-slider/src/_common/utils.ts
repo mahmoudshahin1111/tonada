@@ -3,11 +3,10 @@ import { Config } from "./types";
 
 export function getDefaultConfig(): Config {
   return {
-    max:10,
+    max:100,
     min:0,
     value:0,
     step:1,
-    range:false,
   } as Config;
 }
 
