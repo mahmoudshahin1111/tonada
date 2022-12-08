@@ -68,31 +68,30 @@ export class InputSlider extends Component<HTMLDivElement> {
     });
     document.addEventListener("mousemove", (e: MouseEvent) => {
       if (!isHold) return;
-      const mousePositionOnRail =
-        e.clientX - railElement.getBoundingClientRect().left;
+     
       const thumbWidth = thumbElement.getBoundingClientRect().width;
+      const mousePositionOnRail =
+      e.clientX - railElement.getBoundingClientRect().left;
       const minRailLength = 0;
       const maxRailLength =
         minRailLength + railElement.getBoundingClientRect().width;
 
       if (
-        mousePositionOnRail < minRailLength - thumbWidth / 2 ||
-        mousePositionOnRail > maxRailLength - thumbWidth / 2
+        mousePositionOnRail < minRailLength ||
+        mousePositionOnRail > maxRailLength
       )
         return;
 
       if (this.isRange()) {
       } else {
         thumbElement.element.style.transform = `translateX(${this.calculateThumbPosition(
-          thumbElement.getBoundingClientRect().width,
           mousePositionOnRail,
           0,
           maxRailLength,
           this.getStep()
-        )}px)`;
+        ) -  (thumbWidth/2)}px)`;
         console.log(
           this.calculateThumbPosition(
-            thumbElement.getBoundingClientRect().width,
             mousePositionOnRail,
             0,
             maxRailLength,
@@ -105,17 +104,13 @@ export class InputSlider extends Component<HTMLDivElement> {
   }
 
   private calculateThumbPosition(
-    thumbWidth: number,
     currentPosition: number,
     minPosition: number,
     maxPosition: number,
     step: number
   ): number {
     return (
-      Math.round(
-        ((currentPosition - thumbWidth / 2) / (maxPosition - thumbWidth / 2)) *
-          (maxPosition / step)
-      ) * step
+      Math.round((currentPosition / maxPosition) * (maxPosition / step)) * step
     );
   }
 
