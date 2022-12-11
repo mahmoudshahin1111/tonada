@@ -84,34 +84,14 @@ export class InputSlider extends Component<HTMLDivElement> {
 
       if (this.isRange()) {
       } else {
-        thumbElement.element.style.transform = `translateX(${this.calculateThumbPosition(
-          mousePositionOnRail,
-          0,
-          maxRailLength,
-          this.getStep()
-        ) -  (thumbWidth/2)}px)`;
-        console.log(
-          this.calculateThumbPosition(
-            mousePositionOnRail,
-            0,
-            maxRailLength,
-            this.getStep()
-          )
-        );
+        const thumbPosition = Math.round((mousePositionOnRail / maxRailLength) * (maxRailLength / this.getStep())) * this.getStep()
+        const newValue = Math.round((thumbPosition / maxRailLength) * this.getMax());
+        // update thumb position
+        thumbElement.element.style.transform = `translateX(${thumbPosition -  (thumbWidth/2)}px)`;
+        console.log(thumbPosition,`new value:${newValue}`);
       }
     });
     return thumbElement;
-  }
-
-  private calculateThumbPosition(
-    currentPosition: number,
-    minPosition: number,
-    maxPosition: number,
-    step: number
-  ): number {
-    return (
-      Math.round((currentPosition / maxPosition) * (maxPosition / step)) * step
-    );
   }
 
   private createThumbTooltip(): BaseElement<HTMLSpanElement> {
