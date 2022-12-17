@@ -4,11 +4,11 @@ import { Config } from "./_common/types";
 import { getDefaultConfig, INPUT_SLIDER_PREFIX } from "./_common/utils";
 
 export class InputSlider extends Component<HTMLDivElement> {
-  thumbElement: BaseElement<HTMLSpanElement>[] = [];
+  thumbElements: Thumb[] = [];
 
-  railElement: BaseElement<HTMLSpanElement>;
+  railElement: Rail;
 
-  fulfilledElement: BaseElement<HTMLSpanElement>;
+  fulfilledElement: Fulfilled;
 
   config: Config;
 
@@ -19,103 +19,89 @@ export class InputSlider extends Component<HTMLDivElement> {
 
   build(): void {
     const fragment = document.createDocumentFragment();
-    this.railElement = this.createRailElement();
-    this.fulfilledElement = this.createFulfilledElement();
-    this.railElement.appendChild(this.fulfilledElement);
-    if (this.isRange()) {
-      (this.config.value as number[]).forEach((value) => {
-        const createdThumb = this.createThumb(this.railElement, value);
-        this.thumbElement.push(createdThumb);
-        this.railElement.appendChild(createdThumb);
-      });
-    } else {
-      const createdThumb = this.createThumb(
-        this.railElement,
-        this.config.value as number
-      );
-      this.thumbElement.push(createdThumb);
-      this.railElement.appendChild(createdThumb);
-    }
-    fragment.appendChild(this.railElement.element);
+    this.railElement = new Rail(
+      createBaseElement<HTMLSpanElement>(document.createElement("span"))
+    );
+
+    const createdThumb = this.createThumb();
+    this.thumbElements.push(createdThumb);
+    this.railElement.element.appendChild(createdThumb.element);
+    fragment.appendChild(this.railElement.element.element);
+    document.addEventListener("mouseup", (e: MouseEvent) =>
+      this.handleOnMouseUp(e, createdThumb)
+    );
+    document.addEventListener("mousemove", (e: MouseEvent) =>
+      this.handleOnMouseMove(e, createdThumb)
+    );
+    createdThumb.build();
+    this.railElement.build();
     this.element.element.appendChild(fragment);
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log(
+        Math.round(
+          ((this.railElement.element.getWidth() -
+            this.railElement.element.getLeft()) *
+            (this.getStep() * createdThumb.value)) /
+            (this.getMax() - this.getMin())
+        )
+      );
+
+      createdThumb.update(
+        Math.round(
+          (((this.railElement.element.getWidth() -
+            this.railElement.element.getLeft()) /
+            this.getStep()) *
+            (this.getStep() * createdThumb.value)) /
+            (this.getMax() - this.getMin())
+        ),
+        10
+      );
+    });
   }
 
-  private createThumb(
-    railElement: BaseElement<HTMLElement>,
-    value: number
-  ): BaseElement<HTMLSpanElement> {
-    const thumbElement = createBaseElement<HTMLSpanElement>(
-      document.createElement("span")
-    );
-    thumbElement.setObjectRef<{ value: number[] | number }>({
-      value: this.isRange()
-        ? (this.getValue() as number[])
-        : (this.getValue() as number),
-    });
-    thumbElement.addClass(`${INPUT_SLIDER_PREFIX}-thumb`);
-    const createdThumbTooltipElement = this.createThumbTooltip();
-    createdThumbTooltipElement.element.innerHTML = value.toString();
-    thumbElement.element.style.transform = `translateX(${
-      value * this.getStep()
-    }px)`; // set default position
-    thumbElement.appendChild(createdThumbTooltipElement);
-    let isHold = false;
-    thumbElement.element.addEventListener("mousedown", (e: MouseEvent) => {
-      isHold = true;
-    });
-    document.addEventListener("mouseup", (e: MouseEvent) => {
-      isHold = false;
-    });
-    document.addEventListener("mousemove", (e: MouseEvent) => {
-      if (!isHold) return;
-     
-      const thumbWidth = thumbElement.getBoundingClientRect().width;
-      const mousePositionOnRail =
-      e.clientX - railElement.getBoundingClientRect().left;
-      const minRailLength = 0;
-      const maxRailLength =
-        minRailLength + railElement.getBoundingClientRect().width;
-
-      if (
-        mousePositionOnRail < minRailLength ||
-        mousePositionOnRail > maxRailLength
-      )
-        return;
-
-      if (this.isRange()) {
-      } else {
-        const thumbPosition = Math.round((mousePositionOnRail / maxRailLength) * (maxRailLength / this.getStep())) * this.getStep()
-        const newValue = Math.round((thumbPosition / maxRailLength) * this.getMax());
-        // update thumb position
-        thumbElement.element.style.transform = `translateX(${thumbPosition -  (thumbWidth/2)}px)`;
-        console.log(thumbPosition,`new value:${newValue}`);
-      }
-    });
-    return thumbElement;
+  private handleOnMouseUp(e: MouseEvent, thumb: Thumb): void {
+    thumb.deHold();
+  }
+  private handleOnMouseDown(e: MouseEvent, thumb: Thumb): void {
+    thumb.hold();
+  }
+  private handleOnMouseMove(e: MouseEvent, thumb: Thumb): void {
+    if (!thumb.isHold()) return;
+    const currentMousePosition =
+      Math.round(e.clientX) -
+      Math.round(
+        this.railElement.element.element.getBoundingClientRect().left
+      ) -
+      thumb.element.element.getBoundingClientRect().width / 2;
+    const railStep =
+      (this.getStep() / this.getMax()) *
+      this.railElement.element.element.getBoundingClientRect().width;
+    const newPosition = Math.round(currentMousePosition / railStep) * railStep;
+    if (
+      newPosition <
+        this.railElement.element.element.getBoundingClientRect().width +
+          railStep &&
+      newPosition > -railStep &&
+      thumb.getPosition() !== newPosition
+    ) {
+      thumb.update(
+        newPosition,
+        this.getMax() *
+          (newPosition /
+            this.railElement.element.element.getBoundingClientRect().width)
+      );
+    }
   }
 
-  private createThumbTooltip(): BaseElement<HTMLSpanElement> {
-    const thumbTooltipElement = createBaseElement<HTMLSpanElement>(
-      document.createElement("span")
+  private createThumb(): Thumb {
+    const thumb = new Thumb(
+      createBaseElement<HTMLButtonElement>(document.createElement("button"))
     );
-    thumbTooltipElement.addClass(`${INPUT_SLIDER_PREFIX}-tooltip`);
-    return thumbTooltipElement;
-  }
+    thumb.element.element.addEventListener("mousedown", (e: MouseEvent) =>
+      this.handleOnMouseDown(e, thumb)
+    );
 
-  private createRailElement(): BaseElement<HTMLDivElement> {
-    const railElement = createBaseElement<HTMLDivElement>(
-      document.createElement("div")
-    );
-    railElement.addClass(`${INPUT_SLIDER_PREFIX}-rail`);
-    return railElement;
-  }
-
-  private createFulfilledElement(): BaseElement<HTMLSpanElement> {
-    const fulfilledElement = createBaseElement<HTMLSpanElement>(
-      document.createElement("span")
-    );
-    fulfilledElement.addClass(`${INPUT_SLIDER_PREFIX}-fulfilled`);
-    return fulfilledElement;
+    return thumb;
   }
 
   private getMin(): number {
@@ -134,7 +120,7 @@ export class InputSlider extends Component<HTMLDivElement> {
 
   private getStep(): number {
     if (this.config.step) {
-      return this.config.step;
+      return 10; // this.config.step;
     }
     return parseFloat(
       this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-step`) || "1"
@@ -158,5 +144,74 @@ export class InputSlider extends Component<HTMLDivElement> {
       }
     }
     return 0;
+  }
+}
+
+class Rail extends Component<HTMLSpanElement> {
+  fullFilled: Fulfilled;
+
+  constructor(element: BaseElement<HTMLSpanElement>) {
+    super(element);
+  }
+
+  build(): void {
+    const fragment = document.createDocumentFragment();
+    this.element.addClass(`${INPUT_SLIDER_PREFIX}-rail`);
+    this.fullFilled = new Fulfilled(
+      createBaseElement<HTMLSpanElement>(document.createElement("span"))
+    );
+    this.fullFilled.build();
+    fragment.append(this.fullFilled.element.element);
+    this.element.element.appendChild(fragment);
+  }
+}
+
+class Fulfilled extends Component<HTMLSpanElement> {
+  constructor(element: BaseElement<HTMLSpanElement>) {
+    super(element);
+  }
+  build(): void {
+    this.element.addClass(`${INPUT_SLIDER_PREFIX}-fulfilled`);
+  }
+}
+
+class Thumb extends Component<HTMLButtonElement> {
+  value: number = 0;
+  tooltip: BaseElement<HTMLSpanElement>;
+  private _position: number;
+  private _isHold: boolean;
+  constructor(element: BaseElement<HTMLButtonElement>) {
+    super(element);
+  }
+  build(): void {
+    this.tooltip = createBaseElement<HTMLSpanElement>(
+      document.createElement("span")
+    );
+    this.tooltip.addClass(`${INPUT_SLIDER_PREFIX}-tooltip`);
+    this.element.addClass(`${INPUT_SLIDER_PREFIX}-thumb`);
+    this.tooltip.element.innerHTML = this.value.toString();
+    this.element.appendChild(this.tooltip);
+  }
+  update(position: number, value: number) {
+    this.value = value;
+    this._position = position - this.element.element.getBoundingClientRect().width / 2;
+    this.element.element.style.transform = `translateX(${
+      this._position 
+    }px)`;
+    this.tooltip.element.innerHTML = value.toString();
+  }
+  hold() {
+    this._isHold = true;
+    this.element.addClass(`${INPUT_SLIDER_PREFIX}-holden`);
+  }
+  deHold() {
+    this._isHold = false;
+    this.element.removeClass(`${INPUT_SLIDER_PREFIX}-holden`);
+  }
+  isHold() {
+    return this._isHold;
+  }
+  getPosition(){
+    return this._position + this.element.element.getBoundingClientRect().width / 2;
   }
 }

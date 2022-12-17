@@ -7,6 +7,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
     --#{$input-slider-prefix}-thumb-size: 25px;
 
     &>.#{$input-slider-prefix}-rail {
+        display: inline-block;
         position: relative;
         height: var(--#{$input-slider-prefix}-rail-height);
         background-color: red;
@@ -26,8 +27,12 @@ $input-slider-prefix: #{$prefix}-input-slider;
             background: green;
             top: calc((var(--#{$input-slider-prefix}-thumb-size) - var(--#{$input-slider-prefix}-rail-height))/ -2);
             transform: translateX(20px); // value * steps
-
+            z-index: 1;
+            border: 0;
+            border-radius: 50%;
+            font-size: 0.8em;
             &>.#{$input-slider-prefix}-tooltip {
+                display: inline-block;
                 position: absolute;
                 width: var(--#{$input-slider-prefix}-thumb-size);
                 height: var(--#{$input-slider-prefix}-thumb-size);
@@ -56,7 +61,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
 
             }
 
-            &:hover {
+            &.#{$input-slider-prefix}-holden {
                 &>.#{$input-slider-prefix}-tooltip {
                     display: grid;
                 }
