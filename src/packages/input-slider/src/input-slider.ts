@@ -68,28 +68,30 @@ export class InputSlider extends Component<HTMLDivElement> {
   private handleOnMouseMove(e: MouseEvent, thumb: Thumb): void {
     if (!thumb.isHold()) return;
     const currentMousePosition =
-      Math.round(e.clientX) -
-      Math.round(
-        this.railElement.element.element.getBoundingClientRect().left
-      ) -
-      thumb.element.element.getBoundingClientRect().width / 2;
-    const railStep =
-      (this.getStep() / this.getMax()) *
-      this.railElement.element.element.getBoundingClientRect().width;
-    const newPosition = Math.round(currentMousePosition / railStep) * railStep;
+      e.clientX - this.railElement.element.element.getBoundingClientRect().left;
+    const x1 = this.getStep() / (this.getMax() - this.getMin());
+    const x2 = this.railElement.element.element.getBoundingClientRect().width;
+    const x3 =
+      thumb.element.element.getBoundingClientRect().left -
+      this.railElement.element.element.getBoundingClientRect().left;
+    const x4 = x3 + thumb.element.element.getBoundingClientRect().width;
+    const x5 = x2 * x1;
+    const x6 = x2 / x5;
     if (
-      newPosition <
-        this.railElement.element.element.getBoundingClientRect().width +
-          railStep &&
-      newPosition > -railStep &&
-      thumb.getPosition() !== newPosition
+      currentMousePosition > x4 &&
+      currentMousePosition > 0 &&
+      thumb.positionIndex + 1 < x6
     ) {
-      thumb.update(
-        newPosition,
-        this.getMax() *
-          (newPosition /
-            this.railElement.element.element.getBoundingClientRect().width)
-      );
+      thumb.update(++thumb.positionIndex * x5, 0);
+      this.railElement.fullFilled.update(0, currentMousePosition);
+    } else if (
+      currentMousePosition < x3 &&
+      currentMousePosition > 0 &&
+      thumb.positionIndex - 1 >
+        -(thumb.element.element.getBoundingClientRect().width / 2)
+    ) {
+      thumb.update(--thumb.positionIndex * x5, 0 /* reverse the formula */);
+      this.railElement.fullFilled.update(0, currentMousePosition);
     }
   }
 
@@ -105,22 +107,25 @@ export class InputSlider extends Component<HTMLDivElement> {
   }
 
   private getMin(): number {
-    if (this.config.min) {
-      return this.config.min;
+    let min = 0;
+    if (this.config.min !== null) {
+      min = this.config.min;
+    } else {
+      min = parseFloat(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-min`));
     }
-    return parseFloat(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-min`));
+    return min;
   }
 
   private getMax(): number {
-    if (this.config.max) {
+    if (this.config.max !== null) {
       return this.config.max;
     }
     return parseFloat(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-max`));
   }
 
   private getStep(): number {
-    if (this.config.step) {
-      return 10; // this.config.step;
+    if (this.config.step !== null) {
+      return this.config.step;
     }
     return parseFloat(
       this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-step`) || "1"
@@ -173,9 +178,14 @@ class Fulfilled extends Component<HTMLSpanElement> {
   build(): void {
     this.element.addClass(`${INPUT_SLIDER_PREFIX}-fulfilled`);
   }
+  update(startPosition: number, endPosition: number) {
+    this.element.element.style.left = `${startPosition}px`;
+    this.element.element.style.width = `${endPosition}px`;
+  }
 }
 
 class Thumb extends Component<HTMLButtonElement> {
+  positionIndex: number = 0;
   value: number = 0;
   tooltip: BaseElement<HTMLSpanElement>;
   private _position: number;
@@ -194,10 +204,9 @@ class Thumb extends Component<HTMLButtonElement> {
   }
   update(position: number, value: number) {
     this.value = value;
-    this._position = position - this.element.element.getBoundingClientRect().width / 2;
-    this.element.element.style.transform = `translateX(${
-      this._position 
-    }px)`;
+    this._position =
+      position - this.element.element.getBoundingClientRect().width / 2;
+    this.element.element.style.transform = `translateX(${this._position}px)`;
     this.tooltip.element.innerHTML = value.toString();
   }
   hold() {
@@ -211,7 +220,9 @@ class Thumb extends Component<HTMLButtonElement> {
   isHold() {
     return this._isHold;
   }
-  getPosition(){
-    return this._position + this.element.element.getBoundingClientRect().width / 2;
+  getPosition() {
+    return (
+      this._position + this.element.element.getBoundingClientRect().width / 2
+    );
   }
 }

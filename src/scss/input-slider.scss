@@ -61,7 +61,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
 
             }
 
-            &.#{$input-slider-prefix}-holden {
+            &:hover,&.#{$input-slider-prefix}-holden {
                 &>.#{$input-slider-prefix}-tooltip {
                     display: grid;
                 }
@@ -73,7 +73,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
             position: absolute;
             left: 0; //start point
             border-radius: 15px;
-            width: calc((10px * 2) + (var(--#{$input-slider-prefix}-thumb-size) / 2)); // end point (value * steps) + (thumb size/2)
+            width: 0; // end point (value * steps) + (thumb size/2)
             height: var(--#{$input-slider-prefix}-rail-height);
             background-color: black;
         }
