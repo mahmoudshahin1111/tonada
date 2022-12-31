@@ -4,6 +4,7 @@
     "noImplicitAny": true,
     "module": "CommonJS",
     "target": "es5",
+    "lib": ["DOM"],
     "allowJs": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,

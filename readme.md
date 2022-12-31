@@ -545,23 +545,64 @@ autoComplete.onSelect((value) => {
 
 #### AutoComplete
 
-|   Name   |    Description    |   Type   |
-| :------: | :---------------: | :------: |
-| value | input default value | string  |
-| disabled | disable the input | boolean  |
-|  close   |  close the menu   | function |
-|  onSelect   |  an event executed if you have selected an item   | function(selectedItemValue) |
-|  onSearch   |  and event executed if you have searching     | function(searchValue) |
+|   Name   |                  Description                   |            Type             |
+| :------: | :--------------------------------------------: | :-------------------------: |
+|  value   |              input default value               |           string            |
+| disabled |               disable the input                |           boolean           |
+|  close   |                 close the menu                 |          function           |
+| onSelect | an event executed if you have selected an item | function(selectedItemValue) |
+| onSearch |    and event executed if you have searching    |    function(searchValue)    |
 
 #### Item
 
-|    Name    |                                       Description                                        |          Type          |
-| :--------: | :--------------------------------------------------------------------------------------: | :--------------------: |
+|    Name    |                                      Description                                      |          Type          |
+| :--------: | :-----------------------------------------------------------------------------------: | :--------------------: |
 | container  | the item content and if the item has children then it will be a wrapper for the items | string/function/object |
-|   title    |                   item title you can pass function or string or Object                   | string/function/object |
-| isSelected |                                   selected by default                                    |        boolean         |
-|   items    |                  child items to display a custom content for every item                  |          Item          |
-|   value    |                         unique value for track the selected item                         |         string         |
+|   title    |                 item title you can pass function or string or Object                  | string/function/object |
+| isSelected |                                  selected by default                                  |        boolean         |
+|   items    |                child items to display a custom content for every item                 |          Item          |
+|   value    |                       unique value for track the selected item                        |         string         |
+
+## InputSlider
+
+```html
+<div id="element" class="tonada-input-slider"></div>
+```
+
+```javascript
+const inputSlider = Tonada.create(
+  "input-slider",
+  document.querySelector("#element"),
+  {
+    from: 10,
+    to: 10,
+    step: 1,
+    value: 5,
+  }
+);
+```
+
+### API
+
+#### AutoComplete
+
+|   Name   |                  Description                   |            Type             |
+| :------: | :--------------------------------------------: | :-------------------------: |
+|  value   |              input default value               |           string            |
+| disabled |               disable the input                |           boolean           |
+|  close   |                 close the menu                 |          function           |
+| onSelect | an event executed if you have selected an item | function(selectedItemValue) |
+| onSearch |    and event executed if you have searching    |    function(searchValue)    |
+
+#### Item
+
+|    Name    |                                      Description                                      |          Type          |
+| :--------: | :-----------------------------------------------------------------------------------: | :--------------------: |
+| container  | the item content and if the item has children then it will be a wrapper for the items | string/function/object |
+|   title    |                 item title you can pass function or string or Object                  | string/function/object |
+| isSelected |                                  selected by default                                  |        boolean         |
+|   items    |                child items to display a custom content for every item                 |          Item          |
+|   value    |                       unique value for track the selected item                        |         string         |
 
 ## Customization
 
@@ -638,13 +679,11 @@ v1.2.1 (Upcoming)
 - Surprise 😁
 - performance improvements
 
-
 v1.1.1
 
 - added AutoComplete component
 - performance improvements
 - docs updated.
-
 
 v1.0.9
 
