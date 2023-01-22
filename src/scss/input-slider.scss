@@ -3,6 +3,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
 
 .#{$input-slider-prefix} {
     --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    --#{$prefix}-secondary-color: #{map-get($tn-colors, "secondary")};
     --#{$input-slider-prefix}-rail-height: 15px;
     --#{$input-slider-prefix}-thumb-size: 25px;
 
@@ -10,7 +11,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
         display: inline-block;
         position: relative;
         height: var(--#{$input-slider-prefix}-rail-height);
-        background-color: red;
+        background-color: #b9b9b9;
         border-radius: 15px;
         width: 250px;
 
@@ -24,9 +25,9 @@ $input-slider-prefix: #{$prefix}-input-slider;
             position: absolute;
             width: var(--#{$input-slider-prefix}-thumb-size);
             height: var(--#{$input-slider-prefix}-thumb-size);
-            background: green;
+            background: var(--#{$prefix}-primary-color);
             top: calc((var(--#{$input-slider-prefix}-thumb-size) - var(--#{$input-slider-prefix}-rail-height))/ -2);
-            transform: translateX(20px); // value * steps
+            transform: translateX(calc(var(--#{$input-slider-prefix}-thumb-size) / -2)); // value * steps
             z-index: 1;
             border: 0;
             border-radius: 50%;
@@ -75,7 +76,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
             border-radius: 15px;
             width: 0; // end point (value * steps) + (thumb size/2)
             height: var(--#{$input-slider-prefix}-rail-height);
-            background-color: black;
+            background-color: var(--#{$prefix}-secondary-color);
         }
 
     }
