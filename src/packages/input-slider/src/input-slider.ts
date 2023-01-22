@@ -25,26 +25,36 @@ export class InputSlider extends Component<HTMLDivElement> {
     this.thumbElements.push(createdThumb);
     this.railElement.element.appendChild(createdThumb.element);
     fragment.appendChild(this.railElement.element.element);
+
+    // listen to mouse moving events to update thumb position
     document.addEventListener("mouseup", (e: MouseEvent) =>
       this.handleOnMouseUp(e, createdThumb)
     );
+
     document.addEventListener("mousemove", (e: MouseEvent) =>
       this.handleOnMouseMove(e, createdThumb)
     );
+
+    document.addEventListener("DOMContentLoaded", () => {
+      this.moveThumbToPositionByValue(createdThumb, this.getValue() as number);
+    });
+
+    this.railElement.element.element.addEventListener("mousedown", (e) => {
+      createdThumb.hold();
+      this.moveThumbToPosition(
+        createdThumb,
+        this.railElement.element.element.getBoundingClientRect().left,
+        e.clientX
+      );
+    });
+
+    this.railElement.element.element.addEventListener("mouseup", (e) => {
+      createdThumb.deHold();
+    });
+    // build
     createdThumb.build();
     this.railElement.build();
     this.element.element.appendChild(fragment);
-    document.addEventListener("DOMContentLoaded", () => {
-      const x1 = this.getValue() as number;
-      const x2 = this.getMax();
-      const x3 = this.getMin();
-      const x7 = this.getStep();
-      const x4 = this.railElement.element.element.getBoundingClientRect().left;
-      const x5 =
-        this.railElement.element.element.getBoundingClientRect().left +
-        this.railElement.element.element.getBoundingClientRect().width;
-      const x6 = (x2 - x3) / x7;
-    });
   }
 
   private handleOnMouseUp(e: MouseEvent, thumb: Thumb): void {
@@ -55,62 +65,53 @@ export class InputSlider extends Component<HTMLDivElement> {
   }
   private handleOnMouseMove(e: MouseEvent, thumb: Thumb): void {
     if (!thumb.isHold()) return;
-    this.updateThumb(e.clientX, thumb);
+    this.moveThumbToPosition(
+      thumb,
+      this.railElement.element.element.getBoundingClientRect().left,
+      e.clientX
+    );
   }
 
-  private updateThumb(mouseXPosition: number, thumb: Thumb) {
-    const x9 = mouseXPosition;
-    const x1 = this.getMax();
-    const x2 = this.getMin();
-    const x3 = this.getStep();
-    const x4 = this.railElement.element.element.getBoundingClientRect().right;
-    const x5 = this.railElement.element.element.getBoundingClientRect().left;
-    const x6 = x4 - x5;
-    const x7 = (x3 / (x1 - x2)) * x6;
-    let x11 = thumb.positionIndex;
+  private moveThumbToPositionByValue(thumb: Thumb, value: number) {
+    const steps = (this.getMax() - this.getMin()) / this.getStep();
+    const stepLength =
+      this.railElement.element.element.getBoundingClientRect().width / steps;
+    const movedIndexes = (value - this.getMin()) / this.getStep();
 
-    // move forward
-    let moveIndexBy =
-      x3 *
-      Math.floor(
-        Math.abs(
-          mouseXPosition - thumb.element.element.getBoundingClientRect().right
-        ) / x7
-      );
-    if (
-      x9 > thumb.element.element.getBoundingClientRect().right &&
-      x11 + moveIndexBy <= (x1 - x2) / x3
-    ) {
-      x11 += moveIndexBy;
-    }
+    thumb.positionIndex = movedIndexes;
 
-    // move backward
-    moveIndexBy =
-      x3 *
-      Math.floor(
-        Math.abs(
-          mouseXPosition - thumb.element.element.getBoundingClientRect().left
-        ) / x7
-      );
+    const newPosition = movedIndexes * stepLength;
+    thumb.update(newPosition, value);
+    this.railElement.fullFilled.update(0, movedIndexes * stepLength);
+  }
+
+  private moveThumbToPosition(
+    thumb: Thumb,
+    startPosition: number,
+    moveToPosition: number
+  ) {
+    const steps = (this.getMax() - this.getMin()) / this.getStep();
+    const stepLength =
+      this.railElement.element.element.getBoundingClientRect().width / steps;
+    const MovedIndexes = Math.round(
+      (moveToPosition - startPosition) / stepLength
+    );
     if (
-      x9 < thumb.element.element.getBoundingClientRect().left &&
-      x11 - moveIndexBy >= 0
+      moveToPosition <=
+        this.railElement.element.element.getBoundingClientRect().right &&
+      moveToPosition >=
+        this.railElement.element.element.getBoundingClientRect().left
     ) {
-      x11 -= moveIndexBy;
+      thumb.positionIndex = MovedIndexes;
+      const value = MovedIndexes * this.getStep() + this.getMin();
+      const newPosition = MovedIndexes * stepLength;
+      thumb.update(newPosition, value);
+      this.railElement.fullFilled.update(
+        startPosition -
+          this.railElement.element.element.getBoundingClientRect().left,
+        MovedIndexes * stepLength
+      );
     }
-    // set as max and min on out or rail
-    if (mouseXPosition >= x4) {
-      x11 = (x1 - x2) / x3;
-    } else if (
-      mouseXPosition <=
-      this.railElement.element.element.getBoundingClientRect().left
-    ) {
-      x11 = 0;
-    }
-    // update
-    thumb.positionIndex = x11;
-    thumb.update(x11 * x7, x11 * x3 + x2);
-    this.railElement.fullFilled.update(0, x11 * x7);
   }
 
   private createThumb(): Thumb {
@@ -150,23 +151,14 @@ export class InputSlider extends Component<HTMLDivElement> {
     );
   }
 
-  private isRange(): boolean {
-    return _.isArray(this.getValue());
-  }
-
   private getValue(): number[] | number {
     let value: number | number[] = null;
     if (this.config.value) {
       value = this.config.value;
     } else {
-      const valueEncoded = this.element.getAttribute(
-        `${INPUT_SLIDER_PREFIX}-value`
-      );
-      if (!!valueEncoded && valueEncoded != "") {
-        value = JSON.parse(valueEncoded);
-      }
+      value = Number(this.element.getAttribute(`${INPUT_SLIDER_PREFIX}-value`));
     }
-    return 0;
+    return value;
   }
 }
 
