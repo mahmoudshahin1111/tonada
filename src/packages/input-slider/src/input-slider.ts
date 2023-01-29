@@ -50,11 +50,18 @@ export class InputSlider extends Component<HTMLDivElement> {
 
     this.railElement.element.element.addEventListener("mouseup", (e) => {
       createdThumb.deHold();
+      this.dispatchEvent(`${INPUT_SLIDER_PREFIX}_change`, {
+        result: createdThumb.value,
+      });
     });
     // build
     createdThumb.build();
     this.railElement.build();
     this.element.element.appendChild(fragment);
+  }
+
+  onChange(callback: CallableFunction) {
+    this.onEvent(`${INPUT_SLIDER_PREFIX}_change`, callback);
   }
 
   private handleOnMouseUp(e: MouseEvent, thumb: Thumb): void {

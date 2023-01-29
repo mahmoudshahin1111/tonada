@@ -6,7 +6,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
     --#{$prefix}-secondary-color: #{map-get($tn-colors, "secondary")};
     --#{$input-slider-prefix}-rail-height: 15px;
     --#{$input-slider-prefix}-thumb-size: 25px;
-
+   
     &>.#{$input-slider-prefix}-rail {
         display: inline-block;
         position: relative;
@@ -71,6 +71,7 @@ $input-slider-prefix: #{$prefix}-input-slider;
         }
 
         .#{$input-slider-prefix}-fulfilled {
+
             position: absolute;
             left: 0; //start point
             border-radius: 15px;
