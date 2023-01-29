@@ -1,0 +1,85 @@
+@import "./core";
+$input-slider-prefix: #{$prefix}-input-slider;
+
+.#{$input-slider-prefix} {
+    --#{$prefix}-primary-color: #{map-get($tn-colors, "primary")};
+    --#{$prefix}-secondary-color: #{map-get($tn-colors, "secondary")};
+    --#{$input-slider-prefix}-rail-height: 15px;
+    --#{$input-slider-prefix}-thumb-size: 25px;
+   
+    &>.#{$input-slider-prefix}-rail {
+        display: inline-block;
+        position: relative;
+        height: var(--#{$input-slider-prefix}-rail-height);
+        background-color: #b9b9b9;
+        border-radius: 15px;
+        width: 250px;
+
+        &>:first-child(input) {
+            display: none;
+        }
+
+        &>.#{$input-slider-prefix}-thumb {
+            user-select: none;
+            cursor: pointer;
+            position: absolute;
+            width: var(--#{$input-slider-prefix}-thumb-size);
+            height: var(--#{$input-slider-prefix}-thumb-size);
+            background: var(--#{$prefix}-primary-color);
+            top: calc((var(--#{$input-slider-prefix}-thumb-size) - var(--#{$input-slider-prefix}-rail-height))/ -2);
+            transform: translateX(calc(var(--#{$input-slider-prefix}-thumb-size) / -2)); // value * steps
+            z-index: 1;
+            border: 0;
+            border-radius: 50%;
+            font-size: 0.8em;
+            &>.#{$input-slider-prefix}-tooltip {
+                display: inline-block;
+                position: absolute;
+                width: var(--#{$input-slider-prefix}-thumb-size);
+                height: var(--#{$input-slider-prefix}-thumb-size);
+                background-color: #555;
+                color: #ffffff;
+                left: 0;
+                top: calc(var(--#{$input-slider-prefix}-thumb-size) * -1.5);
+                display: inline-block;
+                display: none;
+                align-content: center;
+                justify-content: center;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    border-left: 12.5px solid transparent;
+                    border-right: 12.5px solid transparent;
+                    border-top: 12.5px solid #555;
+                    bottom: -12.5px;
+                    left: 0;
+
+                }
+
+            }
+
+            &:hover,&.#{$input-slider-prefix}-holden {
+                &>.#{$input-slider-prefix}-tooltip {
+                    display: grid;
+                }
+
+            }
+        }
+
+        .#{$input-slider-prefix}-fulfilled {
+
+            position: absolute;
+            left: 0; //start point
+            border-radius: 15px;
+            width: 0; // end point (value * steps) + (thumb size/2)
+            height: var(--#{$input-slider-prefix}-rail-height);
+            background-color: var(--#{$prefix}-secondary-color);
+        }
+
+    }
+
+}
