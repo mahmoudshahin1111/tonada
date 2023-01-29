@@ -27,9 +27,12 @@ export class InputSlider extends Component<HTMLDivElement> {
     fragment.appendChild(this.railElement.element.element);
 
     // listen to mouse moving events to update thumb position
-    document.addEventListener("mouseup", (e: MouseEvent) =>
-      this.handleOnMouseUp(e, createdThumb)
-    );
+    document.addEventListener("mouseup", (e: MouseEvent) => {
+      this.handleOnMouseUp(e, createdThumb);
+      this.dispatchEvent(`${INPUT_SLIDER_PREFIX}_change`, {
+        result: createdThumb.value,
+      });
+    });
 
     document.addEventListener("mousemove", (e: MouseEvent) =>
       this.handleOnMouseMove(e, createdThumb)
@@ -50,9 +53,6 @@ export class InputSlider extends Component<HTMLDivElement> {
 
     this.railElement.element.element.addEventListener("mouseup", (e) => {
       createdThumb.deHold();
-      this.dispatchEvent(`${INPUT_SLIDER_PREFIX}_change`, {
-        result: createdThumb.value,
-      });
     });
     // build
     createdThumb.build();

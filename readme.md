@@ -45,7 +45,7 @@ CDN:
 />
 <link
   rel="stylesheet"
-  href="https://unpkg.com/tonada/dist/js/input-slider.css"
+  href="https://unpkg.com/tonada/dist/css/input-slider.css"
 />
 
 <!-- ... -->
@@ -120,6 +120,12 @@ You can Choose from tonada various components and features
 ## Inputs:
 
 ```html
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/input.css" />
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input.js"></script>
+
 <div id="element">
   <input class="tonada-input" type="text" name="name" placeholder="Name" />
 </div>
@@ -255,6 +261,12 @@ The available sizes are `tonada-`(`sm`-`lg`-`xl`)
 ## Slider:
 
 ```html
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/slider.css" />
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/slider.js"></script>
+
 <div id="element">
   <ul class="tonada-list">
     <li class="tonada-list-item">1</li>
@@ -321,6 +333,12 @@ Tonada.create("select", document.querySelector("#element"), {
 ## Checkbox
 
 ```html
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/checkbox.css" />
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox.js"></script>
+
 <div id="element">
   <label for="checkbox_1">...</label>
   <input id="checkbox_1" type="checkbox" />
@@ -347,6 +365,15 @@ checkbox support the input default attributes so if you marked as checked it wil
 ## Checkbox Group
 
 ```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/checkbox-group.css"
+/>
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/checkbox-group.js"></script>
+
 <div id="element">
   <div>
     <label for="test3">Option 1</label>
@@ -397,6 +424,12 @@ For buttons you don't need to add javascript but you can apply it by add this cl
 ## Accordion
 
 ```html
+<link rel="stylesheet" href="https://unpkg.com/tonada/dist/css/accordion.css" />
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/accordion.js"></script>
+
 <div id="element" class="tonada-accordion">
   <div class="tonada-accordion-section">
     <div class="tonada-accordion-header">
@@ -435,6 +468,15 @@ const accordion = Tonada.create(
 ## Sidenav
 
 ```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/sidenav-menu.css"
+/>
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/sidenav-menu.js"></script>
+
 <div id="element">
   <div class="tonada-sidenav-menu"></div>
   <div class="tonada-sidenav-content">...</div>
@@ -517,6 +559,15 @@ const sidenav = Tonada.create("sidenav", document.getElementById("element"), {
 ## AutoComplete
 
 ```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/auto-complete.css"
+/>
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/auto-complete.js"></script>
+
 <div id="element">
   <div class="tonada-auto-complete-input">
     <input class="tonada-input" type="text" />
@@ -572,7 +623,15 @@ autoComplete.onSelect((value) => {
 ## InputSlider
 
 ```html
-<script src="../dist/js/input-slider.js"></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/input-slider.css"
+/>
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/input-slider.js"></script>
+
 <div id="element" class="tonada-input-slider"></div>
 ```
 
@@ -670,65 +729,6 @@ Tonada
 ┃ ┃ ┃ ┣ 📜checkbox.css
 ┃ ┃ ┃ ┗ 📜input-group.css
 ```
-
----
-
-## Changelog
-
-v1.2.0
-
-- added Input Slider
-- performance improvements
-
-v1.1.1
-
-- added AutoComplete component
-- performance improvements
-- docs updated.
-
-v1.0.9
-
-- added sidenav
-- performance improvements
-- docs updated.
-
-v1.0.8
-
-- docs updated.
-
-v1.0.7
-
-- optimized bundle size by 80% by splitting the javascript
-  files and you can pick that components you going to use.
-- fix issues
-
-v1.0.6 Pre Release
-
-v1.0.5
-
-- optimized bundle size
-- fix issues
-
-v1.0.4
-
-- optimized bundle size
-- update docs
-
-v1.0.3
-
-- docs updates.
-- fixing issues.
-
-v1.0.2
-
-- docs updates.
-- fixing issues.
-
-v1.0.1
-
-- Release
-
-v1.0.0 - Pre-V1
 
 ### Contributions
 
