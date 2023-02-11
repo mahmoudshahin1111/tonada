@@ -1,5 +1,4 @@
 [![npm version](https://badge.fury.io/js/tonada.svg)](https://badge.fury.io/js/tonada)
-![example workflow](https://github.com/mahmoudshahin1111/numbers-to-arabic-words/actions/workflows/.github/workflows/test.yml/badge.svg)
 
 # Tonada
 
