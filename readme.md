@@ -664,6 +664,42 @@ inputSlider.onChange((e) => {
 |  value   |           the current value           |         number          |
 | onChange |      triggered on value changed       | function(e:CustomEvent) |
 
+
+
+
+## Calendar
+
+```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/tonada/dist/css/calendar.css"
+/>
+<script src="https://unpkg.com/tonada/dist/js/runtime.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/shared.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/index.js"></script>
+<script src="https://unpkg.com/tonada/dist/js/calendar.js"></script>
+
+<div id="element"></div>
+```
+
+```javascript
+const autoComplete = Tonada.create(
+  "calendar",
+  document.querySelector("#element")
+);
+
+
+```
+
+### API
+
+#### AutoComplete
+
+|   Name   |                  Description                   |            Type             |
+| :------: | :--------------------------------------------: | :-------------------------: |
+|     |                             |           |
+
+
 ## Customization
 
 This is our project file structure and you have 2 options :

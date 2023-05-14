@@ -1,0 +1,19 @@
+@import "./core.scss";
+
+.#{$prefix}-calendar {
+  --#{$prefix}-background-color: #{map-get($tn-colors, "primary")};
+}
+
+.#{$prefix}-calendar {
+  @include border-radius;
+  @include flex-column;
+  box-sizing: border-box;
+  background-color: var(--#{$prefix}-background-color);
+  position: relative;
+  justify-content: center;
+
+  * {
+    box-sizing: border-box;
+  }
+
+}
